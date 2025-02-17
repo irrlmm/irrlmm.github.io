@@ -3,22 +3,31 @@
 @import url(./fonts.css);
 
 html {
-  background-color: var(--bg);
+  background-color: var(--background);
   line-height: 1.5;
 }
 
 * {
-  color: var(--fg);
+  color: var(--on-surface);
 }
 
 body {
-  padding: 64px;
+  padding: 64px 32px;
+  display: flex;
+  justify-content: center;
 }
 
-header {
-  background: var(--bg);
+footer {
+  margin-top: 64px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__logo {
+  height: 24px;
+  width: 48px;
 }
 
 main {
-  max-width: 800px;
+  max-width: 640px;
 }
