@@ -47,7 +47,7 @@ header {
   align-items: center;
 }
 
-.footer {
+footer {
   display: flex;
   justify-content: space-between;
 }
