@@ -1,14 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap");
 
-.t-regular {
-  font-family: "Chivo Mono", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-weight: 250;
-  opacity: 0.8;
-  letter-spacing: 0.03em;
-}
-
 .t-bold {
   font-family: "Chivo Mono", serif;
   font-optical-sizing: auto;

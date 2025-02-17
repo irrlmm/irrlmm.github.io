@@ -3,22 +3,51 @@
 @import url(./fonts.css);
 
 html {
-  background-color: var(--background);
+  font-family: "Chivo Mono", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 250;
   line-height: 1.5;
-}
-
-* {
+  background-color: var(--background);
   color: var(--on-surface);
 }
 
-body {
-  padding: 64px 32px;
-  display: flex;
-  justify-content: center;
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
 }
 
-footer {
-  margin-top: 64px;
+p {
+  color: var(--on-surface-var);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 64px 32px;
+}
+
+header {
+  display: flex;
+  justify-content: stretch;
+  margin-bottom: 64px;
+  gap: 4px;
+}
+
+.header__link {
+  display: inline-flex;
+  flex: 1;
+  height: 64px;
+  justify-content: center;
+  background-color: var(--surface-dim);
+  align-items: center;
+}
+
+.footer {
   display: flex;
   justify-content: space-between;
 }
@@ -29,5 +58,33 @@ footer {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   max-width: 640px;
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--outline);
+}
+
+.home-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(256px, 1fr));
+}
+
+.home-grid__card {
+  display: flex;
+  aspect-ratio: 1/1;
+  background-color: var(--surface-light);
+  border-radius: 25%;
+}
+
+.headline {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
