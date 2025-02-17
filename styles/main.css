@@ -31,11 +31,23 @@ body {
   padding: 64px 32px;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 640px;
+}
+
 header {
   display: flex;
   justify-content: stretch;
   margin-bottom: 64px;
   gap: 4px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .header__link {
@@ -47,21 +59,9 @@ header {
   align-items: center;
 }
 
-footer {
-  display: flex;
-  justify-content: space-between;
-}
-
 .header__logo {
   height: 24px;
   width: 48px;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  max-width: 640px;
 }
 
 .separator {
