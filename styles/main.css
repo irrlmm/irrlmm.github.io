@@ -1,2 +1,25 @@
 @import url(./normalize.css);
 @import url(./vars.css);
+@import url(./fonts.css);
+@import url(./opacity.css);
+
+html {
+  background-color: var(--bg);
+  line-height: 1.5;
+}
+
+* {
+  color: var(--fg);
+}
+
+body {
+  padding: 64px;
+}
+
+header {
+  background: var(--bg);
+}
+
+main {
+  max-width: 800px;
+}
