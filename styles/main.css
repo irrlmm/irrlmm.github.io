@@ -1,7 +1,6 @@
 @import url(./normalize.css);
 @import url(./vars.css);
 @import url(./fonts.css);
-@import url(./opacity.css);
 
 html {
   background-color: var(--bg);

@@ -3,7 +3,10 @@
 .t-regular {
   font-family: "Chivo Mono", serif;
   font-optical-sizing: auto;
-  font-weight: 200;
+  font-style: normal;
+  font-weight: 250;
+  opacity: 0.8;
+  letter-spacing: 0.03em;
 }
 
 .t-bold {
@@ -11,4 +14,5 @@
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
+  opacity: 0.95;
 }
