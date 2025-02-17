@@ -32,6 +32,12 @@
   </head>
   <body>
     <main>
+      <header>
+        <span id="datetime"></span>
+      </header>
+
+      <div class="avatar"></div>
+
       <h1 class="headline">Igor Lemeshkin</h1>
 
       <section>
@@ -63,7 +69,7 @@
             height="9"
             viewBox="0 0 18 9"
             fill="var(--on-surface)"
-            class="header__logo"
+            class="logo-monogram"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -75,4 +81,14 @@
       </footer>
     </main>
   </body>
+  <script>
+    // Get current date and time
+    var now = new Date();
+    var datetime = now.toLocaleString("en-US", {
+      timeZone: "Asia/Bangkok",
+    });
+
+    // Insert date and time into HTML
+    document.getElementById("datetime").innerHTML = datetime;
+  </script>
 </html>

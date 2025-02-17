@@ -26,9 +26,9 @@ p {
 
 body {
   display: flex;
-  justify-content: center;
-  align-items: start;
-  padding: 64px 32px;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
 main {
@@ -36,13 +36,18 @@ main {
   flex-direction: column;
   gap: 40px;
   max-width: 640px;
+  padding: 64px 32px;
 }
 
 header {
   display: flex;
-  justify-content: stretch;
+  align-self: stretch;
   margin-bottom: 64px;
   gap: 4px;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  background-color: var(--background);
 }
 
 footer {
@@ -59,20 +64,34 @@ footer {
   align-items: center;
 }
 
-.header__logo {
-  height: 24px;
-  width: 48px;
-}
-
-.separator {
-  height: 1px;
-  background-color: var(--outline);
+.avatar {
+  width: 160px;
+  aspect-ratio: 1/1;
+  background-color: var(--surface-light);
+  border-radius: 25%;
 }
 
 .home-grid {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(2, 1fr);
+}
+
+.home-grid__card {
+  display: flex;
+  aspect-ratio: 1/1;
+  background-color: var(--surface-light);
+  border-radius: 25%;
+}
+
+.logo-monogram {
+  height: 24px;
+  width: 48px;
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--on-surface);
 }
 
 .home-grid__card {
