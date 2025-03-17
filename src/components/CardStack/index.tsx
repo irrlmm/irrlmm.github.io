@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import "./style.css";
-import Svg from "../Svg.astro";
 
 const Card = ({
   card,
@@ -15,7 +14,7 @@ const Card = ({
 }) => {
   const controls = useAnimation();
 
-  const rotate = Math.random() * -11 + 5;
+  const rotate = Math.random() * -15 + 7;
 
   const variants = {
     idle: {
@@ -24,7 +23,7 @@ const Card = ({
       scale: 0.98,
       rotate,
       border: "solid 1px var(--outline)",
-      filter: "blur(2.0px)",
+      filter: "blur(3.5px)",
     },
     active: {
       opacity: 1,
@@ -118,7 +117,20 @@ const Card = ({
       transition={{ duration: 0.25 }}
     >
       <div className="col flex-1 justify-between padding-32">
-        <h3>{card.title}</h3>
+        <div className="row gap-16 align-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--on-surface)"
+            strokeWidth={1.5}
+          >
+            <path d={card.icon} vector-effect="non-scaling-stroke"></path>
+          </svg>
+          <h3>{card.title}</h3>
+        </div>
 
         <div className="col gap-8">
           <h1>{card.values[0]}</h1>
