@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import "./style.css";
+import Separator from "../Separator.astro";
 
 const Card = ({
   card,
@@ -23,7 +24,7 @@ const Card = ({
       scale: 0.98,
       rotate,
       border: "solid 1px var(--outline)",
-      filter: "blur(3.5px)",
+      filter: "blur(5px)",
     },
     active: {
       opacity: 1,
@@ -42,12 +43,12 @@ const Card = ({
     swipeR: {
       x: 500,
       opacity: 0,
-      filter: "blur(0.0px)",
+      filter: "blur(5px)",
     },
     swipeL: {
       x: -500,
       opacity: 0,
-      filter: "blur(0.0px)",
+      filter: "blur(5px)",
     },
   };
 
@@ -116,30 +117,50 @@ const Card = ({
       style={{ x }}
       transition={{ duration: 0.25 }}
     >
-      <div className="col flex-1 justify-between padding-32">
-        <div className="row gap-16 align-center">
+      <div className="col flex-1 gap-32 padding-32">
+        <h3>{card.title}</h3>
+
+        <div className="row" role="separator">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--on-surface)"
-            strokeWidth={1.5}
+            viewBox="0 0 520 4"
+            width="100%"
+            height="4"
+            preserveAspectRatio="none"
+            vector-effect="non-scaling-stroke"
+            stroke="var(--outline)"
           >
-            <path d={card.icon} vector-effect="non-scaling-stroke"></path>
+            <path d="M0 2 L 520 2"></path>
           </svg>
-          <h3>{card.title}</h3>
         </div>
 
         <div className="col gap-8">
-          <h1>{card.values[0]}</h1>
-          {card.values.map((v: any) => (
-            <span>{v}</span>
-          ))}
+          {card.values.pre && (
+            <span className="body-s color-secondary">{card.values.pre}</span>
+          )}
+          <span className="identity-card-value-main">{card.values.main}</span>
+          {card.values.post && (
+            <span className="body-s color-secondary">{card.values.post}</span>
+          )}
         </div>
 
-        <p className="body-s color-secondary">{card.description}</p>
+        <div className="row" role="separator">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 520 4"
+            width="100%"
+            height="4"
+            preserveAspectRatio="none"
+            vector-effect="non-scaling-stroke"
+            stroke="var(--outline)"
+          >
+            <path d="M0 2 L 520 2"></path>
+          </svg>
+        </div>
+
+        <div className="inside col gap-8">
+          <p className="body-s color-secondary">{card.description}</p>
+        </div>
       </div>
     </motion.div>
   );

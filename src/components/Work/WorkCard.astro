@@ -17,8 +17,6 @@ const company = c ? await getEntry("company", c.id) : null;
 ---
 
 <div class="card col gap-32">
-  <Separator />
-
   <div class="col gap-16">
     <p class="body-m color-secondary">
       {moment(date).format("DD MMM YYYY")}
@@ -29,7 +27,7 @@ const company = c ? await getEntry("company", c.id) : null;
     <p class="body-m color-secondary">{subtitle}</p>
   </div>
 
-  <Separator />
+  <Separator isSurface />
 
   <Values
     values={[
