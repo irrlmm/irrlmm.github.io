@@ -1,0 +1,145 @@
+---
+import Menu from "../components/Menu/Menu.astro";
+import Separator from "../components/Separator.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import CompetencesList from "../components/CompetencesList.astro";
+import AnimatedLead from "../components/AnimatedLead.astro";
+import {
+  COMPETENCE_ITEM_DESIGN_SYSTEM,
+  COMPETENCE_ITEM_UI,
+  COMPETENCE_ITEM_VALIDATION,
+  COMPETENCE_ITEM_INTERACTIONS,
+  COMPETENCE_ITEM_HANDOFFS,
+  COMPETENCE_ITEM_SOLUTIONS,
+} from "../consts/data/competences";
+import {
+  IDENTITY_ITEM_LOYAL,
+  IDENTITY_ITEM_COFFEE,
+  IDENTITY_ITEM_MUSIC,
+  IDENTITY_ITEM_ROADTRIP,
+  IDENTITY_ITEM_TRAVELER,
+} from "../consts/data/identity";
+import Footer from "../components/Footer.astro";
+import {
+  MENU_ABOUT,
+  MENU_CONTACT,
+  MENU_CV,
+  MENU_WORK,
+} from "../consts/ui/menu";
+import TitleWrapper from "../components/TitleWrapper.astro";
+import CardStack from "../components/CardStack";
+---
+
+<MainLayout hasHeader={true}>
+  <div class="wrapper">
+    <section class="col gap-32">
+      <TitleWrapper {...MENU_ABOUT} />
+
+      <AnimatedLead
+        addSpaceBetween
+        lines={[
+          "I design with precision, clarity, and long-term impact. My work is built on a simple but powerful principle — less is more — focusing on what truly matters while keeping products scalable and intuitive.",
+          "I take a Kaizen approach, continuously refining and improving designs so they adapt, evolve, and stay relevant.",
+          "My work isn't possible without other people — stakeholders and developers bring ideas to life, and the best results come from jams, iterations, and true collaboration.",
+          "Every project is an opportunity to push the work further — challenging the boredom of today, crafting sustainable solutions for the future.",
+        ]}
+      />
+    </section>
+
+    <Menu options={[MENU_CV]} isList={true} />
+
+    <Separator isDashed />
+
+    <section class="col gap-32">
+      <h2>What I do</h2>
+
+      <CompetencesList
+        competences={[
+          COMPETENCE_ITEM_DESIGN_SYSTEM,
+          COMPETENCE_ITEM_UI,
+          COMPETENCE_ITEM_INTERACTIONS,
+          COMPETENCE_ITEM_HANDOFFS,
+          COMPETENCE_ITEM_VALIDATION,
+          COMPETENCE_ITEM_SOLUTIONS,
+        ]}
+      />
+    </section>
+
+    <Separator isDashed />
+
+    <section class="col gap-32">
+      <h2>My method</h2>
+
+      <AnimatedLead
+        addSpaceBetween
+        lines={[
+          "Great design goes beyond the surface. It's not just about interfaces — it's about understanding the entire ecosystem a product exists in. That's why I immerse myself in the industries I design for, seeing the bigger picture first before refining the details.",
+          "To truly understand music distribution, I explored production hardware and software firsthand. This deep dive gave me insights into how creative tools shape workflows, helping me design one of the most seamless distribution experiences in the industry.",
+          "The same approach applies to every product I work on — understanding the industry, its workflows, and the people using products is what makes a design truly work.",
+        ]}
+      />
+    </section>
+
+    <Menu options={[MENU_WORK]} isList={true} />
+
+    <Separator isDashed />
+
+    <section class="col gap-32">
+      <h2>Beyond the pixels</h2>
+
+      <CardStack
+        client:load
+        cards={[
+          IDENTITY_ITEM_TRAVELER,
+          IDENTITY_ITEM_COFFEE,
+          IDENTITY_ITEM_ROADTRIP,
+          IDENTITY_ITEM_MUSIC,
+          IDENTITY_ITEM_LOYAL,
+        ]}
+      />
+
+      <!-- <IdentityCards
+        cards={[
+          IDENTITY_ITEM_TRAVELER,
+          IDENTITY_ITEM_COFFEE,
+          IDENTITY_ITEM_ROADTRIP,
+          IDENTITY_ITEM_MUSIC,
+        ]}
+      /> -->
+    </section>
+
+    <Separator isDashed />
+
+    <Menu options={[MENU_CONTACT]} isList={true} />
+
+    <Separator />
+
+    <Footer />
+  </div>
+</MainLayout>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 576px;
+    gap: 64px;
+  }
+
+  h2 {
+    animation: appear 0.33s var(--bezier) 0.2s both;
+  }
+
+  .profile-cover {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .profile-cover img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 25%;
+  }
+</style>

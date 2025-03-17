@@ -1,0 +1,55 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+
+interface Props {
+  hasHeader?: boolean;
+}
+
+const { hasHeader } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="Title" description="Description" />
+  </head>
+
+  <body>
+    <>{hasHeader && <Header />}</>
+
+    <main>
+      <article>
+        <slot />
+      </article>
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    position: relative;
+  }
+
+  main {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    gap: 64px;
+    padding: 64px 32px;
+  }
+
+  article {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+  }
+
+  @media (max-width: 512px) {
+    main {
+      padding: 64px 16px;
+    }
+  }
+</style>

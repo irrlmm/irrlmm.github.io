@@ -1,0 +1,32 @@
+{
+  "$ref": "#/definitions/company",
+  "definitions": {
+    "company": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "logo"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

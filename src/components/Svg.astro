@@ -1,0 +1,32 @@
+---
+interface Props {
+  id?: string;
+  d?: string;
+  stroke?: string;
+  strokeWidth?: number;
+}
+
+import { SVG_DEFAULT } from "../consts/svg";
+
+const { d, stroke, strokeWidth, ...rest } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="none"
+  {...rest}
+>
+  <path d={d || SVG_DEFAULT} vector-effect="non-scaling-stroke"></path>
+</svg>
+
+<style>
+  svg {
+    stroke: var(--on-surface);
+    stroke-width: 1.5;
+    transition: all 0.2s var(--bezier);
+  }
+</style>

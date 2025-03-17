@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p,
+span {
+  font-family: "DM Mono";
+  margin: 0;
+  transition: color 0.2s var(--bezier);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 130%;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+p,
+span {
+  font-weight: 400;
+  line-height: 150%;
+}
+
+strong {
+  font-weight: 500;
+}
+
+.body-s {
+  font-size: 14px;
+  letter-spacing: 0em;
+}
+
+.body-m {
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.body-l {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.color-primary {
+  color: var(--on-surface);
+}
+
+.color-secondary {
+  color: var(--on-surface-var);
+}
+
+.color-tertiary {
+  color: var(--on-surface-var-2);
+}
+
+@media (max-width: 512px) {
+  h1 {
+    font-size: 26px;
+  }
+  h2 {
+    font-size: 21px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  .body-l {
+    font-size: 16px;
+  }
+  .body-m {
+    font-size: 14px;
+  }
+  .body-s {
+    font-size: 12px;
+  }
+}

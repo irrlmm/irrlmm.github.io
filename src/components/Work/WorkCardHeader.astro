@@ -1,0 +1,48 @@
+---
+import { MENU_WORK } from "../../consts/ui/menu";
+import { SVG_CHEVRON_BACK } from "../../consts/svg";
+import Svg from "../Svg.astro";
+---
+
+<div>
+  <a class="row gap-8" href={MENU_WORK.href}>
+    <Svg d={SVG_CHEVRON_BACK} />
+
+    <span class="body-m color-secondary">Back</span>
+  </a>
+
+  <span class="body-m color-secondary">Share</span>
+</div>
+
+<style>
+  div {
+    z-index: 100;
+    position: sticky;
+    top: calc(64px + 8px);
+    display: flex;
+    padding: 0 32px;
+    width: 100%;
+    max-width: calc(576px + 64px);
+    height: 64px;
+    border-radius: 32px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--surface-fx);
+    backdrop-filter: blur(12px);
+    margin-bottom: -140px;
+    transform-origin: top center;
+    animation: appear-with-scale 0.66s var(--bezier) 0.2s both;
+  }
+
+  a svg {
+    stroke: var(--on-surface-var);
+  }
+
+  a:hover span {
+    color: var(--on-surface);
+  }
+  a:hover svg {
+    transform: translateX(-4px);
+    stroke: var(--on-surface);
+  }
+</style>

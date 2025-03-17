@@ -1,0 +1,78 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+import { Image } from "astro:assets";
+import MainLayout from "../../layouts/MainLayout.astro";
+import WorkCard from "../../components/Work/WorkCard.astro";
+import WorkCardHeader from "../../components/Work/WorkCardHeader.astro";
+import Separator from "../../components/Separator.astro";
+import Footer from "../../components/Footer.astro";
+import AnimatedLead from "../../components/AnimatedLead.astro";
+import Values from "../../components/Values.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("work");
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"work">;
+
+const post = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif,svg}"
+);
+---
+
+<MainLayout hasHeader>
+  <Image
+    class="hero-image"
+    widths={[1024, 1536, 2048]}
+    width="768"
+    layout="responsive"
+    fit="contain"
+    src={images[post.data.coverImage]()}
+    alt={post.data.title}
+  />
+
+  <WorkCardHeader />
+
+  <WorkCard data={post.data} />
+
+  <div class="wrapper">
+    {
+      post.data.sections.map((s) => (
+        <section class="col gap-40">
+          <h2>{s.title}</h2>
+
+          {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
+
+          {s.values && <Values values={s.values} />}
+        </section>
+      ))
+    }
+  </div>
+
+  <div class="wrapper">
+    <Separator />
+
+    <Footer />
+  </div>
+</MainLayout>
+
+<style>
+  .hero-image {
+    animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    width: 100%;
+    max-width: 576px;
+  }
+</style>

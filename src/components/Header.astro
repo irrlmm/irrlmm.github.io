@@ -1,0 +1,51 @@
+---
+import {
+  MENU_ABOUT,
+  MENU_CONTACT,
+  MENU_CV,
+  MENU_HOME,
+  MENU_WORK,
+} from "../consts/ui/menu";
+import HeaderLink from "./HeaderLink.astro";
+
+const menu = [MENU_HOME, MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
+---
+
+<header>
+  <nav>
+    <ul class="row">
+      {menu.map((link) => <HeaderLink href={link.href} label={link.label} />)}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--background-fx);
+    backdrop-filter: blur(16px);
+    transition: all 0.2s var(--bezier);
+    padding: 0 32px;
+  }
+
+  nav {
+    width: 100%;
+    max-width: 576px;
+  }
+
+  ul {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 512px) {
+    header {
+      padding: 0 16px;
+    }
+  }
+</style>

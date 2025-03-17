@@ -1,0 +1,87 @@
+---
+import { SVG_ARROW } from "../consts/svg";
+import Svg from "./Svg.astro";
+
+interface Props {
+  values: {
+    label: string;
+    value: {
+      text: string;
+      href?: string;
+    };
+  }[];
+}
+
+const { values } = Astro.props;
+---
+
+<div class="col gap-16">
+  {
+    values.map(({ label, value }) => {
+      return (
+        <p class="body-m row gap-8">
+          <span class="flex-1 color-tertiary">{label}</span>
+          <span class="flex-1 color-secondary">
+            {value.href ? (
+              <a
+                class="row color-secondary gap-4"
+                href={value.href}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {value.text}
+                <Svg d={SVG_ARROW} />
+              </a>
+            ) : (
+              value.text
+            )}
+          </span>
+        </p>
+      );
+    })
+  }
+</div>
+
+<style>
+  p {
+    flex-wrap: wrap;
+    animation: appear 0.33s var(--bezier) both;
+  }
+
+  p:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  p:nth-child(2) {
+    animation-delay: 0.22s;
+  }
+  p:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+  p:nth-child(4) {
+    animation-delay: 0.26s;
+  }
+  p:nth-child(n + 5) {
+    animation-delay: 0.28s;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+  a:hover {
+    color: var(--on-surface);
+  }
+
+  a svg {
+    width: 8px;
+    height: 8px;
+    stroke: var(--on-surface);
+  }
+  a:hover svg {
+    stroke: var(--on-surface);
+  }
+
+  p > * {
+    min-width: 200px;
+  }
+</style>

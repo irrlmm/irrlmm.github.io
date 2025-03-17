@@ -1,0 +1,24 @@
+[
+  {
+    "id": "imusician",
+    "name": "iMusician",
+    "logo": "/src/assets/workplace/imd.png",
+    "href": "https://www.imusician.pro"
+  },
+  {
+    "id": "99sales",
+    "name": "99sales",
+    "logo": "/src/assets/workplace/99sales.png"
+  },
+  {
+    "id": "outline",
+    "name": "Outline Studio",
+    "logo": "/src/assets/workplace/outline.png"
+  },
+  {
+    "id": "uniyo",
+    "name": "Uniyo",
+    "logo": "/src/assets/workplace/uniyo.png",
+    "href": "https://www.producthunt.com/products/uniyo"
+  }
+]

@@ -1,0 +1,77 @@
+---
+import Svg from "../components/Svg.astro";
+
+interface Props {
+  competences: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+}
+
+const { competences } = Astro.props;
+---
+
+<ul>
+  {
+    competences.map((competence) => (
+      <li class="col gap-32 padding-32">
+        <Svg d={competence.icon} />
+
+        <div class="col gap-8">
+          <h3>{competence.title}</h3>
+          <p class="body-s color-secondary">{competence.description}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  li {
+    border-radius: 40px;
+    border: solid 1px var(--outline);
+    transition: all 0.2s var(--bezier);
+    transform-origin: top left;
+    animation: appear-with-scale 0.33s var(--bezier) both;
+  }
+  li:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  li:nth-child(2) {
+    animation-delay: 0.22s;
+  }
+  li:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+  li:nth-child(4) {
+    animation-delay: 0.26s;
+  }
+  li:nth-child(n + 5) {
+    animation-delay: 0.28s;
+  }
+  li:hover {
+    border-color: var(--accent);
+  }
+  li:hover svg {
+    stroke: var(--accent);
+  }
+
+  li > svg {
+    width: calc(2 * 24px);
+    height: calc(2 * 24px);
+    stroke: var(--on-surface-var-2);
+  }
+
+  @media (max-width: 512px) {
+    ul {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+</style>

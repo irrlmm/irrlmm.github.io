@@ -1,0 +1,38 @@
+---
+import AnimatedLead from "../components/AnimatedLead.astro";
+import Menu from "../components/Menu/Menu.astro";
+import TitleWrapper from "../components/TitleWrapper.astro";
+import { MENU_HOME, MENU_404 } from "../consts/ui/menu";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout hasHeader>
+  <div class="wrapper">
+    <section class="col gap-32">
+      <TitleWrapper {...MENU_404} />
+
+      <AnimatedLead
+        lines={["The page you are looking for was not found.", "Start again."]}
+      />
+
+      <Menu options={[MENU_HOME]} isList />
+    </section>
+  </div>
+</MainLayout>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    width: 100%;
+    max-width: 576px;
+  }
+
+  .decor-headline {
+    font-size: calc(100vh / 4);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    color: var(--on-surface-var-2);
+  }
+</style>

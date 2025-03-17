@@ -1,0 +1,102 @@
+---
+import { SVG_SUN, SVG_MOON, SVG_SUN_AUTO, SVG_MOON_AUTO } from "../consts/svg";
+import Svg from "./Svg.astro";
+---
+
+<button id="theme-toggle">
+  <Svg data-theme="light" d={SVG_SUN} />
+  <Svg data-theme="dark" d={SVG_MOON} />
+  <Svg data-theme="auto light" d={SVG_SUN_AUTO} />
+  <Svg data-theme="auto dark" d={SVG_MOON_AUTO} />
+</button>
+
+<style>
+  button {
+    position: relative;
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid var(--outline);
+    border-radius: 25%;
+    overflow: hidden;
+    transition: all 0.2s var(--bezier);
+    cursor: pointer;
+  }
+
+  button svg {
+    display: none;
+    animation: appear-with-scale 0.33s var(--bezier);
+  }
+
+  html[data-theme="auto"] svg {
+    stroke: var(--on-surface-var-2);
+  }
+
+  html[data-theme="dark"] svg[data-theme="dark"] {
+    display: initial;
+  }
+  html[data-theme="light"] svg[data-theme="light"] {
+    display: initial;
+  }
+  @media (prefers-color-scheme: light) {
+    html[data-theme="auto"] svg[data-theme="auto light"] {
+      display: initial;
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] svg[data-theme="auto dark"] {
+      display: initial;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    // Apply the theme by setting a data attribute on <html>
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      console.log(`Theme set to: ${theme}`);
+    }
+
+    // Update theme based on stored preference and system settings (if in auto)
+    function updateTheme() {
+      const theme = localStorage.getItem("theme") || "auto";
+      applyTheme(theme);
+    }
+
+    // Initial theme setup
+    updateTheme();
+
+    // Listen for system theme changes – only respond when in 'auto' mode
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", function () {
+      if ((localStorage.getItem("theme") || "auto") === "auto") {
+        updateTheme();
+      }
+    });
+
+    // Theme toggle listener cycles through: auto -> dark -> light -> auto
+    const toggleButton = document.getElementById("theme-toggle");
+    if (toggleButton) {
+      toggleButton.addEventListener("click", function () {
+        const current = localStorage.getItem("theme") || "auto";
+        let next;
+        // Cycle order: auto => dark => light => auto
+        if (current === "auto") {
+          next = "dark";
+        } else if (current === "dark") {
+          next = "light";
+        } else {
+          next = "auto";
+        }
+        localStorage.setItem("theme", next);
+        updateTheme();
+      });
+    }
+  })();
+</script>

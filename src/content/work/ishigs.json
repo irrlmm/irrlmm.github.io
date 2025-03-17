@@ -1,0 +1,43 @@
+{
+  "coverImage": "/src/assets/grid-test.svg",
+  "date": "Mar 1 2025",
+  "timeline": "1 month",
+  "client": "imusician",
+  "role": "Lead Product Designer",
+  "title": "Instant Mastering Instant Remake",
+  "subtitle": "Rapid redesign of iMusician's mastering tool, optimizing usability and cost-efficiency in under one month.",
+  "sections": [
+    {
+      "title": "Problem statement",
+      "lines": [
+        "iMusician urgently needed to transition from a third-party mastering solution to a powerful, affordable, and lightning-fast in-house alternative — Instant Mastering.",
+        "The timeline was exceptionally tight: one month total, with just one week dedicated to iterative design."
+      ]
+    },
+    {
+      "title": "Team",
+      "values": [
+        {
+          "label": "CTO",
+          "value": { "text": "Christopher Scott" }
+        },
+        {
+          "label": "Frontend",
+          "value": { "text": "Nick Poteryaev" }
+        },
+        {
+          "label": "VP of Product",
+          "value": { "text": "Julie Buchik" }
+        },
+        {
+          "label": "Product & Marketing Lead",
+          "value": { "text": "Susann" }
+        },
+        {
+          "label": "Backend",
+          "value": { "text": "Gökhan Guney" }
+        }
+      ]
+    }
+  ]
+}

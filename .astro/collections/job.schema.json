@@ -1,0 +1,86 @@
+{
+  "$ref": "#/definitions/job",
+  "definitions": {
+    "job": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "collection": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "collection"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "slug": {
+                  "type": "string"
+                },
+                "collection": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "slug",
+                "collection"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "timeline": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isCurrent": {
+          "type": "boolean"
+        },
+        "linkNext": {
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "company",
+        "timeline",
+        "title",
+        "description",
+        "scope"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

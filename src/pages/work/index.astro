@@ -1,0 +1,82 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Menu from "../../components/Menu/Menu.astro";
+import Separator from "../../components/Separator.astro";
+import SectionLinks from "../../components/SectionLinks.astro";
+import PostsList from "../../components/Posts/PostsList.astro";
+import Footer from "../../components/Footer.astro";
+import {
+  MENU_ABOUT,
+  MENU_CONTACT,
+  MENU_CV,
+  MENU_WORK,
+} from "../../consts/ui/menu";
+import {
+  LINK_BEHANCE,
+  LINK_DRIBBBLE,
+  LINK_LINKEDIN,
+} from "../../consts/ui/links";
+import TitleWrapper from "../../components/TitleWrapper.astro";
+
+const posts = (await getCollection("work")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<MainLayout hasHeader={true}>
+  <div class="wrapper">
+    <section class="col gap-32">
+      <TitleWrapper {...MENU_WORK} />
+    </section>
+
+    <section class="col gap-32">
+      <h2>Case studies</h2>
+
+      <PostsList posts={posts} />
+    </section>
+
+    <Separator isDashed />
+
+    <section class="col gap-32">
+      <h2>More work</h2>
+
+      <SectionLinks links={[LINK_LINKEDIN, LINK_DRIBBBLE, LINK_BEHANCE]} />
+    </section>
+
+    <Separator isDashed />
+
+    <Menu options={[MENU_CV, MENU_ABOUT, MENU_CONTACT]} isList={true} />
+
+    <Separator />
+
+    <Footer />
+  </div>
+</MainLayout>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 576px;
+    gap: 64px;
+  }
+
+  h1 {
+    animation: appear 0.33s var(--bezier) 0.15s both;
+  }
+
+  h2 {
+    animation: appear 0.33s var(--bezier) 0.2s both;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

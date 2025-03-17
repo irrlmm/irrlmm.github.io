@@ -1,0 +1,24 @@
+---
+import type { MenuItem } from "../consts/ui/menu";
+import Svg from "./Svg.astro";
+
+interface Props extends MenuItem {}
+
+const { icon, title } = Astro.props;
+---
+
+<div class="row gap-16 align-center">
+  <!-- <Svg d={icon} /> -->
+  <h1 class="flex-1">{title}</h1>
+</div>
+
+<style>
+  div {
+    animation: appear 0.33s var(--bezier) 0.15s both;
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+</style>

@@ -1,0 +1,31 @@
+/* src/components/CardStack.css */
+.card-stack-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  padding: 32px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px var(--outline);
+  background-color: var(--background);
+  overflow: hidden;
+  will-change: transform, filter, opacity;
+}
+
+.identity-card {
+  position: absolute;
+  width: 80%;
+  max-width: 360px;
+  border-radius: 32px;
+  aspect-ratio: 4/5;
+  background: var(--surface);
+  color: var(--on-surface);
+}
+
+.card-stack-container > span {
+  position: absolute;
+  bottom: 32px;
+}

@@ -1,0 +1,66 @@
+---
+import Values from "../Values.astro";
+import moment from "moment";
+import Separator from "../Separator.astro";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
+import { undefined } from "astro:schema";
+
+interface Props {
+  data: CollectionEntry<"work">["data"];
+}
+
+const {
+  data: { date, title, subtitle, timeline, client: c, role },
+} = Astro.props;
+
+const company = c ? await getEntry("company", c.id) : null;
+---
+
+<div class="card col gap-32">
+  <Separator />
+
+  <div class="col gap-16">
+    <p class="body-m color-secondary">
+      {moment(date).format("DD MMM YYYY")}
+    </p>
+
+    <h1>{title}</h1>
+
+    <p class="body-m color-secondary">{subtitle}</p>
+  </div>
+
+  <Separator />
+
+  <Values
+    values={[
+      {
+        label: "Client",
+        value: {
+          text: company?.data.name || "-",
+          href: company?.data.href,
+        },
+      },
+      {
+        label: "Role",
+        value: { text: role || "-" },
+      },
+      {
+        label: "Timeline",
+        value: { text: timeline },
+      },
+    ]}
+  />
+</div>
+
+<style>
+  .card {
+    width: 100%;
+    max-width: calc(576px + 64px);
+    border-radius: 32px;
+    padding: 88px 32px 32px;
+    background-color: var(--surface);
+    animation: appear-with-scale 0.66s var(--bezier) 0.2s both;
+    transform-origin: top center;
+  }
+</style>

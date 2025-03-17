@@ -1,0 +1,188 @@
+---
+import Menu from "../components/Menu/Menu.astro";
+import Separator from "../components/Separator.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import JobCardsList from "../components/Jobs/JobCardsList.astro";
+import Values from "../components/Values.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+import {
+  MENU_ABOUT,
+  MENU_CONTACT,
+  MENU_CV,
+  MENU_WORK,
+} from "../consts/ui/menu";
+import TitleWrapper from "../components/TitleWrapper.astro";
+
+const jobs = await getCollection("job");
+---
+
+<MainLayout hasHeader>
+  <div class="wrapper">
+    <TitleWrapper {...MENU_CV} />
+
+    <section class="col gap-32">
+      <h2>Igor Lemeshkin</h2>
+
+      <Values
+        values={[
+          { label: "Position", value: { text: "Lead Product Designer" } },
+          { label: "Experience", value: { text: "10+ years" } },
+          {
+            label: "Industries",
+            value: {
+              text: "Music Distribution, Finance, Education, Fashion Tech, Social, Education",
+            },
+          },
+        ]}
+      />
+    </section>
+
+    <section>
+      <JobCardsList jobs={jobs} />
+    </section>
+
+    <Separator isDashed />
+
+    <section class="col gap-48">
+      <h2>Skillset</h2>
+
+      <Values
+        values={[
+          {
+            label: "UX Design",
+            value: {
+              text: "User Research, Wireframing, Prototyping, WCAG, UX Writing",
+            },
+          },
+          {
+            label: "UI Design",
+            value: { text: "Motion, (Micro)Interactions, Icon Design" },
+          },
+          {
+            label: "Design Systems",
+            value: {
+              text: "Libraries, Components, Variants, Tokens, Design-to-Code",
+            },
+          },
+          {
+            label: "Frontend",
+            value: {
+              text: "HTML, CSS (CSS-in-JS, Tailwind), JS, TS, React, Astro, Git",
+            },
+          },
+          {
+            label: "Product",
+            value: {
+              text: "Strategy, MVP, Growth Design, A/B Testing, Conversion Optimization, Metrics-Driven UX, Competitive Analysis",
+            },
+          },
+          {
+            label: "Tools",
+            value: { text: "Figma, Framer, Notion, ChatGPT, GitHub, Jira" },
+          },
+          { label: "Frameworks", value: { text: "Agile, Scrum, Crystal" } },
+        ]}
+      />
+    </section>
+
+    <Separator isDashed />
+
+    <section class="col gap-48">
+      <h2>Education</h2>
+
+      <Values
+        values={[
+          {
+            label: "University",
+            value: {
+              text: "National Research University Higher School of Economics (HSE)",
+            },
+          },
+          { label: "Faculty", value: { text: "Business Informatics" } },
+          { label: "Degree", value: { text: "Bachelor" } },
+          { label: "Graduated", value: { text: "2018" } },
+          {
+            label: "",
+            value: {
+              text: "HSE University",
+              href: "https://hse.ru",
+            },
+          },
+        ]}
+      />
+    </section>
+
+    <Separator isDashed />
+
+    <section class="col gap-48">
+      <h2>Hackathons</h2>
+
+      <div class="col gap-24">
+        <h3>Leaders of Digital</h3>
+
+        <Values
+          values={[
+            {
+              label: "Year",
+              value: { text: "2019" },
+            },
+            {
+              label: "Description",
+              value: {
+                text: "Application project pitch for the Bank of Russia",
+              },
+            },
+            {
+              label: "Status",
+              value: { text: "Participants" },
+            },
+          ]}
+        />
+      </div>
+
+      <div class="col gap-32">
+        <h3>Microsoft Imagine Cup</h3>
+
+        <Values
+          values={[
+            {
+              label: "Year",
+              value: { text: "2017" },
+            },
+            {
+              label: "Description",
+              value: { text: "Chat roulette application project" },
+            },
+            {
+              label: "Status",
+              value: { text: "Winners" },
+            },
+          ]}
+        />
+      </div>
+    </section>
+
+    <Separator isDashed />
+
+    <Menu options={[MENU_CONTACT, MENU_WORK, MENU_ABOUT]} isList={true} />
+
+    <Separator />
+
+    <Footer />
+  </div>
+</MainLayout>
+
+<style>
+  .wrapper {
+    width: 100%;
+    max-width: 576px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  h2 {
+    animation: appear 0.33s var(--bezier) 0.2s both;
+  }
+</style>

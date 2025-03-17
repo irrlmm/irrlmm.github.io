@@ -1,0 +1,36 @@
+---
+import { SVG_STAR } from "../../consts/svg";
+import Svg from "../Svg.astro";
+
+interface Props {
+  scope: string[];
+}
+
+const { scope } = Astro.props;
+---
+
+<ul class="col gap-32 padding-32">
+  {
+    scope.map((line) => (
+      <li class="row gap-32">
+        <Svg d={SVG_STAR} />
+        <p class="body-m color-secondary">{line}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  li:hover svg {
+    transform: rotate(calc(45deg / 2));
+    stroke: var(--accent);
+  }
+
+  li > p {
+    flex: 1;
+  }
+
+  li > svg {
+    stroke: var(--on-surface-var-2);
+  }
+</style>

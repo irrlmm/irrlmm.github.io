@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from "astro:content";
+import JobCardHeader from "./JobCardHeader.astro";
+import JobCardScope from "./JobCardScope.astro";
+
+type J = CollectionEntry<"job">["data"];
+
+interface Props extends J {}
+
+const { company, title, description, timeline, scope, isCurrent } = Astro.props;
+---
+
+<div class="card col">
+  <JobCardHeader
+    timeline={timeline}
+    company={company}
+    title={title}
+    isCurrent={isCurrent}
+  />
+
+  <div class="card-desc col align-center">
+    <p class="body-m color-secondary padding-32">{description}</p>
+  </div>
+
+  <JobCardScope scope={scope} />
+</div>
+
+<style>
+  .card {
+    transform-origin: top left;
+    animation: appear-with-scale 0.6s var(--bezier) both;
+  }
+  .card:nth-child(1) {
+    animation-delay: 0.25s;
+  }
+  .card:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  .card:nth-child(n + 3) {
+    animation-delay: 0.35s;
+  }
+
+  .card {
+    border-radius: 32px;
+    background-color: var(--surface);
+  }
+
+  .card-desc {
+    padding: 0 32px;
+  }
+
+  .card-desc p {
+    text-align: center;
+    background-color: var(--background);
+    border-radius: 16px;
+  }
+</style>
