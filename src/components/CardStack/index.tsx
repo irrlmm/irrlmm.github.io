@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import "./style.css";
-import Separator from "../Separator.astro";
 
 const Card = ({
   card,
@@ -16,17 +15,22 @@ const Card = ({
   const controls = useAnimation();
 
   const rotate = Math.random() * -15 + 7;
+  const baseX = Math.random() * -15 + 7;
+  const baseY = Math.random() * -15 + 7;
 
   const variants = {
     idle: {
-      x: 0,
+      x: baseX,
+      y: baseY,
       opacity: 1,
       scale: 0.98,
       rotate,
       border: "solid 1px var(--outline)",
-      filter: "blur(5px)",
+      filter: "blur(5.0px)",
     },
     active: {
+      x: 0,
+      y: 0,
       opacity: 1,
       scale: 1,
       rotate: rotate / 2,
@@ -34,6 +38,7 @@ const Card = ({
       filter: "blur(0.0px)",
     },
     focus: {
+      y: 0,
       scale: 1.02,
       opacity: 1,
       rotate: rotate / 3,
@@ -43,12 +48,12 @@ const Card = ({
     swipeR: {
       x: 500,
       opacity: 0,
-      filter: "blur(5px)",
+      filter: "blur(5.0px)",
     },
     swipeL: {
       x: -500,
       opacity: 0,
-      filter: "blur(5px)",
+      filter: "blur(5.0px)",
     },
   };
 
