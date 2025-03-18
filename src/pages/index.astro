@@ -15,9 +15,10 @@ import {
   MENU_HOME,
   MENU_WORK,
 } from "../consts/ui/menu";
+import { SCHEMA_PERSON_MINI } from "../consts/schemas";
 ---
 
-<MainLayout>
+<MainLayout schema={SCHEMA_PERSON_MINI}>
   <div class="wrapper">
     <div class="hero">
       <ProfileCard

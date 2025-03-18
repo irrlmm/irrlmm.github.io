@@ -1,17 +1,24 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
+import type { WithContext, Person, Article, CreativeWork } from "schema-dts";
 
 interface Props {
   hasHeader?: boolean;
+  schema?: WithContext<Person | Article | CreativeWork>;
 }
 
-const { hasHeader } = Astro.props;
+const { hasHeader, schema } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <BaseHead title="Title" description="Description" />
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
   </head>
 
   <body>

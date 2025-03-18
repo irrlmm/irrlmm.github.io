@@ -12,12 +12,13 @@ import {
   MENU_CV,
   MENU_WORK,
 } from "../consts/ui/menu";
+import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import TitleWrapper from "../components/TitleWrapper.astro";
 
 const jobs = await getCollection("job");
 ---
 
-<MainLayout hasHeader>
+<MainLayout hasHeader schema={SCHEMA_PERSON_FULL}>
   <div class="wrapper">
     <TitleWrapper {...MENU_CV} />
 

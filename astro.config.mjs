@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://irrlmm.github.com",
+  site: "https://irrlmm.github.io",
   integrations: [react(), mdx(), sitemap()],
   experimental: {
     responsiveImages: true,
