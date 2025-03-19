@@ -5,10 +5,8 @@ import Svg from "./Svg.astro";
 interface Props {
   values: {
     label: string;
-    value: {
-      text: string;
-      href?: string;
-    };
+    value: string;
+    href?: string;
   }[];
 }
 
@@ -17,23 +15,23 @@ const { values } = Astro.props;
 
 <div class="col gap-16">
   {
-    values.map(({ label, value }) => {
+    values.map(({ label, value, href }) => {
       return (
         <p class="body-m row gap-8">
           <span class="flex-1 color-tertiary">{label}</span>
           <span class="flex-1 color-secondary">
-            {value.href ? (
+            {href ? (
               <a
                 class="row color-secondary gap-4"
-                href={value.href}
+                href={href}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                {value.text}
+                {value}
                 <Svg d={SVG_ARROW} />
               </a>
             ) : (
-              value.text
+              value
             )}
           </span>
         </p>

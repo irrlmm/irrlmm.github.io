@@ -1,7 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Menu from "../components/Menu/Menu.astro";
-import avatarImage from "../assets/avatar.png";
 import ProfileCard from "../components/ProfileCard.astro";
 import SectionLinks from "../components/SectionLinks.astro";
 import AnimatedLead from "../components/AnimatedLead.astro";
@@ -12,20 +11,22 @@ import {
   MENU_ABOUT,
   MENU_CONTACT,
   MENU_CV,
-  MENU_HOME,
   MENU_WORK,
 } from "../consts/ui/menu";
 import { SCHEMA_PERSON_MINI } from "../consts/schemas";
+import { getEntry } from "astro:content";
+
+const person = await getEntry("meta:person", "me");
+
+if (!person) {
+  throw Error("No person loaded!");
+}
 ---
 
 <MainLayout schema={SCHEMA_PERSON_MINI}>
   <div class="wrapper">
     <div class="hero">
-      <ProfileCard
-        title={MENU_HOME.title}
-        subtitle={MENU_HOME.description}
-        image={avatarImage}
-      />
+      <ProfileCard person={person.data} />
 
       <AnimatedLead
         lines={[

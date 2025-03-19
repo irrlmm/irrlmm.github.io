@@ -1,22 +1,32 @@
 ---
 import Values from "../Values.astro";
 import moment from "moment";
-import Separator from "../Separator.astro";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
+import CardSeparator from "../CardSeparator.astro";
 
 interface Props {
   data: CollectionEntry<"work">["data"];
 }
 
 const {
-  data: { date, title, subtitle, timeline, client: c, role },
+  data: { date, title, subtitle, overview, client: c },
 } = Astro.props;
 
-const company = c ? await getEntry("company", c.id) : null;
+const client: { label: string; value: string; href?: string } = {
+  label: "Client",
+  value: "-",
+};
+
+if (c) {
+  await getEntry("meta:company", c?.id)?.then((res) => {
+    client.value = res.data.name;
+    client.href = res.data.href;
+  });
+}
 ---
 
-<div class="card col gap-32">
+<div class="card col gap-32 padding-32">
   <div class="col gap-16">
     <p class="body-m color-secondary">
       {moment(date).format("DD MMM YYYY")}
@@ -27,27 +37,9 @@ const company = c ? await getEntry("company", c.id) : null;
     <p class="body-m color-secondary">{subtitle}</p>
   </div>
 
-  <Separator isSurface />
+  <CardSeparator />
 
-  <Values
-    values={[
-      {
-        label: "Client",
-        value: {
-          text: company?.data.name || "-",
-          href: company?.data.href,
-        },
-      },
-      {
-        label: "Role",
-        value: { text: role || "-" },
-      },
-      {
-        label: "Timeline",
-        value: { text: timeline },
-      },
-    ]}
-  />
+  <Values values={[client, ...overview]} />
 </div>
 
 <style>
@@ -55,7 +47,6 @@ const company = c ? await getEntry("company", c.id) : null;
     width: 100%;
     max-width: calc(576px + 64px);
     border-radius: 32px;
-    padding: 88px 32px 32px;
     background-color: var(--surface);
     animation: appear-with-scale 0.66s var(--bezier) 0.2s both;
     transform-origin: top center;

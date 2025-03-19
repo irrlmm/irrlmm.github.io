@@ -1,0 +1,89 @@
+[
+  {
+    "id": "about",
+    "title": "About me",
+    "lead": [
+      "I design with precision, clarity, and long-term impact. My work is built on a simple but powerful principle — less is more — focusing on what truly matters while keeping products scalable and intuitive.",
+      "I take a Kaizen approach, continuously refining and improving designs so they adapt, evolve, and stay relevant.",
+      "My work isn't possible without other people — stakeholders and developers bring ideas to life, and the best results come from jams, iterations, and true collaboration.",
+      "Every project is an opportunity to push the work further — challenging the boredom of today, crafting sustainable solutions for the future."
+    ],
+    "sections": [
+      {
+        "title": "What I do",
+        "cards": [
+          {
+            "label": "Design Systems",
+            "description": "A foundation that keeps products consistent and future-proof",
+            "value": ""
+          },
+          {
+            "label": "Precision UI/UX",
+            "description": "Interfaces that look sharp and feel effortless.",
+            "value": ""
+          },
+          {
+            "label": "Validation",
+            "description": "Insights-backed decisions that illuminate the way.",
+            "value": ""
+          },
+          {
+            "label": "Interactions",
+            "description": "Smooth and effortless user navigation.",
+            "value": ""
+          },
+          {
+            "label": "Handoffs",
+            "description": "Documentation that speeds up development.",
+            "value": ""
+          },
+          {
+            "label": "Solutions",
+            "description": "Impact boosting engagement and growth.",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "title": "My method",
+        "lines": [
+          "Great design goes beyond the surface. It's not just about interfaces — it's about understanding the entire ecosystem a product exists in. That's why I immerse myself in the industries I design for, seeing the bigger picture first before refining the details.",
+          "To truly understand music distribution, I explored production hardware and software firsthand. This deep dive gave me insights into how creative tools shape workflows, helping me design one of the most seamless distribution experiences in the industry.",
+          "The same approach applies to every product I work on — understanding the industry, its workflows, and the people using products is what makes a design truly work."
+        ]
+      },
+      {
+        "title": "Beyond the pixels",
+        "cards": [
+          {
+            "label": "Loyal worker",
+            "description": "Great design takes commitment. That was a great run 🖤",
+            "value": "7 years",
+            "post": "at iMusician"
+          },
+          {
+            "label": "Explorer at heart",
+            "description": "I find design inspiration in cultures, spaces, and everyday moments.",
+            "pre": "Currently in:",
+            "value": "Jakarta"
+          },
+          {
+            "label": "Pocket barista",
+            "description": "I craft coffee like I design — patiently, precisely, and with flow.",
+            "value": ""
+          },
+          {
+            "label": "Roadtrip UX Analyst",
+            "description": "Every long drive is a usability test for cities, roads, and interfaces.",
+            "value": ""
+          },
+          {
+            "label": "Music designer",
+            "description": "I shape sound like I shape design — structured, intentional, and rhythmic.",
+            "value": ""
+          }
+        ]
+      }
+    ]
+  }
+]

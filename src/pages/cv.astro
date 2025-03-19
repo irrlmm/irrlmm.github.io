@@ -14,8 +14,15 @@ import {
 } from "../consts/ui/menu";
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import TitleWrapper from "../components/TitleWrapper.astro";
+import { getEntry } from "astro:content";
 
-const jobs = await getCollection("job");
+const cv = await getEntry("page:cv", "cv");
+
+if (!cv) {
+  throw Error("No data found");
+}
+
+const person = await getEntry("meta:person", cv.data.person.id);
 ---
 
 <MainLayout hasHeader schema={SCHEMA_PERSON_FULL}>
@@ -23,167 +30,63 @@ const jobs = await getCollection("job");
     <TitleWrapper {...MENU_CV} />
 
     <section class="col gap-32">
-      <h2>Igor Lemeshkin</h2>
-
-      <Values
-        values={[
-          { label: "Position", value: { text: "Lead Product Designer" } },
-          { label: "Experience", value: { text: "10+ years" } },
-          {
-            label: "Industries",
-            value: {
-              text: "Music Distribution, Finance, Education, Fashion Tech, Social, Education",
-            },
-          },
-        ]}
-      />
+      <h2>{person?.data.name}</h2>
+      <Values values={cv.data.brief} />
     </section>
 
     <section>
-      <JobCardsList jobs={jobs} />
+      <JobCardsList jobs={cv.data.jobs} />
     </section>
 
     <Separator isDashed />
 
     <section class="col gap-48">
-      <h2>Skillset</h2>
-
-      <Values
-        values={[
-          {
-            label: "UX Design",
-            value: {
-              text: "User Research, Wireframing, Prototyping, WCAG, UX Writing",
-            },
-          },
-          {
-            label: "UI Design",
-            value: { text: "Motion, (Micro)Interactions, Icon Design" },
-          },
-          {
-            label: "Design Systems",
-            value: {
-              text: "Libraries, Components, Variants, Tokens, Design-to-Code",
-            },
-          },
-          {
-            label: "Frontend",
-            value: {
-              text: "HTML, CSS (CSS-in-JS, Tailwind), JS, TS, React, Astro, Git",
-            },
-          },
-          {
-            label: "Product",
-            value: {
-              text: "Strategy, MVP, Growth Design, A/B Testing, Conversion Optimization, Metrics-Driven UX, Competitive Analysis",
-            },
-          },
-          {
-            label: "Tools",
-            value: { text: "Figma, Framer, Notion, ChatGPT, GitHub, Jira" },
-          },
-          { label: "Frameworks", value: { text: "Agile, Scrum, Crystal" } },
-        ]}
-      />
+      <h2>Skills</h2>
+      <Values values={cv.data.skills} />
     </section>
 
     <Separator isDashed />
 
     <section class="col gap-48">
       <h2>Education</h2>
-
-      <Values
-        values={[
-          {
-            label: "University",
-            value: {
-              text: "National Research University Higher School of Economics (HSE)",
-            },
-          },
-          { label: "Faculty", value: { text: "Business Informatics" } },
-          { label: "Degree", value: { text: "Bachelor" } },
-          { label: "Graduated", value: { text: "2018" } },
-          {
-            label: "",
-            value: {
-              text: "HSE University",
-              href: "https://hse.ru",
-            },
-          },
-        ]}
-      />
+      <Values values={cv.data.education} />
     </section>
 
     <Separator isDashed />
 
-    <section class="col gap-48">
+    <section class="col gap-64">
       <h2>Hackathons</h2>
 
-      <div class="col gap-24">
-        <h3>Leaders of Digital</h3>
+      {
+        cv.data.competitions.map((c) => (
+          <div class="col gap-32">
+            <h3>{c.title}</h3>
+            <Values values={c.values} />
+          </div>
+        ))
+      }
 
-        <Values
-          values={[
-            {
-              label: "Year",
-              value: { text: "2019" },
-            },
-            {
-              label: "Description",
-              value: {
-                text: "Application project pitch for the Bank of Russia",
-              },
-            },
-            {
-              label: "Status",
-              value: { text: "Participants" },
-            },
-          ]}
-        />
-      </div>
+      <Separator isDashed />
 
-      <div class="col gap-32">
-        <h3>Microsoft Imagine Cup</h3>
+      <Menu options={[MENU_CONTACT, MENU_WORK, MENU_ABOUT]} isList={true} />
 
-        <Values
-          values={[
-            {
-              label: "Year",
-              value: { text: "2017" },
-            },
-            {
-              label: "Description",
-              value: { text: "Chat roulette application project" },
-            },
-            {
-              label: "Status",
-              value: { text: "Winners" },
-            },
-          ]}
-        />
-      </div>
+      <Separator />
+
+      <Footer />
     </section>
-
-    <Separator isDashed />
-
-    <Menu options={[MENU_CONTACT, MENU_WORK, MENU_ABOUT]} isList={true} />
-
-    <Separator />
-
-    <Footer />
   </div>
+
+  <style>
+    .wrapper {
+      width: 100%;
+      max-width: 576px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    h2 {
+      animation: appear 0.33s var(--bezier) 0.2s both;
+    }
+  </style>
 </MainLayout>
-
-<style>
-  .wrapper {
-    width: 100%;
-    max-width: 576px;
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-  }
-
-  h2 {
-    animation: appear 0.33s var(--bezier) 0.2s both;
-  }
-</style>

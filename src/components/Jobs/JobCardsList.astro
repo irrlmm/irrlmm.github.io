@@ -2,10 +2,18 @@
 import { SVG_CHEVRON_UP } from "../../consts/svg";
 import JobCard from "./JobCard.astro";
 import Svg from "../Svg.astro";
-import type { CollectionEntry } from "astro:content";
+import type { ReferenceDataEntry } from "astro:content";
 
 interface Props {
-  jobs: CollectionEntry<"job">[];
+  jobs: {
+    title: string;
+    description: string;
+    company: ReferenceDataEntry<"meta:company">;
+    timeline: string;
+    scope: string[];
+    linkNext?: boolean;
+    isCurrent?: boolean;
+  }[];
 }
 
 const { jobs } = Astro.props;
@@ -15,9 +23,9 @@ const { jobs } = Astro.props;
   {
     jobs.map((job, i) => (
       <>
-        <JobCard {...job.data} />
+        <JobCard {...job} />
 
-        {job.data.linkNext ? (
+        {job.linkNext ? (
           <div role="separator" class="separator-link">
             <Svg d={SVG_CHEVRON_UP} />
           </div>

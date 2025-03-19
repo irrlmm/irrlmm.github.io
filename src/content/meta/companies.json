@@ -2,23 +2,23 @@
   {
     "id": "imusician",
     "name": "iMusician",
-    "logo": "/src/assets/workplace/imd.png",
+    "logo": "/src/assets/companies/imd.png",
     "href": "https://www.imusician.pro"
   },
   {
     "id": "99sales",
     "name": "99sales",
-    "logo": "/src/assets/workplace/99sales.png"
+    "logo": "/src/assets/companies/99sales.png"
   },
   {
     "id": "outline",
     "name": "Outline Studio",
-    "logo": "/src/assets/workplace/outline.png"
+    "logo": "/src/assets/companies/outline.png"
   },
   {
     "id": "uniyo",
     "name": "Uniyo",
-    "logo": "/src/assets/workplace/uniyo.png",
+    "logo": "/src/assets/companies/uniyo.png",
     "href": "https://www.producthunt.com/products/uniyo"
   }
 ]

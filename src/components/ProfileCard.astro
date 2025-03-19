@@ -1,19 +1,23 @@
 ---
 import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import getImage from "../helpers/getImage";
 
 interface Props {
-  title: string;
-  subtitle: string;
-  image: ImageMetadata;
+  person: CollectionEntry<"meta:person">["data"];
 }
 
-const { title, subtitle, image } = Astro.props;
+const {
+  person: { name, jobTitle, avatar },
+} = Astro.props;
+
+const avatarImage = getImage(avatar);
 ---
 
 <div class="row gap-32 align-center">
   <Image
     class="avatar"
-    src={image}
+    src={avatarImage()}
     width={128}
     widths={[128, 256]}
     layout="responsive"
@@ -22,8 +26,8 @@ const { title, subtitle, image } = Astro.props;
   />
 
   <div class="col gap-4">
-    <h1>{title}</h1>
-    <span class="body-l color-secondary">{subtitle}</span>
+    <h1>{name}</h1>
+    <span class="body-l color-secondary">{jobTitle}</span>
   </div>
 </div>
 

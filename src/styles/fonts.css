@@ -64,6 +64,13 @@ strong {
   letter-spacing: -0.02em;
 }
 
+.display {
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
 .color-primary {
   color: var(--on-surface);
 }

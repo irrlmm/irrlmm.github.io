@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import Svg from "../Svg.astro";
 import { SVG_CHEVRON_FWD } from "../../consts/svg";
 import moment from "moment";
+import getImage from "../../helpers/getImage";
 
 type Props = CollectionEntry<"work">;
 
@@ -13,14 +14,7 @@ const {
   data: { coverImage, title, subtitle, date },
 } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.{jpeg,jpg,png,gif,svg}"
-);
-
-if (!images[coverImage])
-  throw new Error(
-    `"${coverImage}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
-  );
+const image = getImage(coverImage);
 ---
 
 <li>
@@ -32,12 +26,7 @@ if (!images[coverImage])
       <Svg d={SVG_CHEVRON_FWD} />
     </div>
 
-    <Image
-      src={images[coverImage]()}
-      alt={title}
-      layout="responsive"
-      loading="eager"
-    />
+    <Image src={image()} alt={title} layout="responsive" loading="eager" />
 
     <div class="col gap-8">
       <h3>{title}</h3>

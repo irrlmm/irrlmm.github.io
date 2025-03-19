@@ -2,9 +2,11 @@
 import type { MenuItem } from "../consts/ui/menu";
 import Svg from "./Svg.astro";
 
-interface Props extends MenuItem {}
+interface Props {
+  title: string;
+}
 
-const { icon, title } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <div class="row gap-16 align-center">

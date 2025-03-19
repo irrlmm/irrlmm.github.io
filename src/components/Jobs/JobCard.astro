@@ -1,11 +1,6 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import JobCardHeader from "./JobCardHeader.astro";
 import JobCardScope from "./JobCardScope.astro";
-
-type J = CollectionEntry<"job">["data"];
-
-interface Props extends J {}
 
 const { company, title, description, timeline, scope, isCurrent } = Astro.props;
 ---
