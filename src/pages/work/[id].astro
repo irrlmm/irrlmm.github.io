@@ -40,16 +40,20 @@ const coverImage = getImage(post.data.coverImage);
 
   <div class="wrapper">
     {
-      post.data.sections.map((s) => (
-        <section class="col gap-40">
-          <h2>{s.title}</h2>
+      post.data.sections.map((s, i) => (
+        <>
+          <Separator isDashed />
 
-          {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
+          <section class="col gap-40">
+            <h2>{s.title}</h2>
 
-          {s.values && <Values values={s.values} />}
+            {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
 
-          {s.cards && <CardStack client:load cards={s.cards} />}
-        </section>
+            {s.values && <Values values={s.values} />}
+
+            {s.cards && <CardStack client:load cards={s.cards} />}
+          </section>
+        </>
       ))
     }
   </div>

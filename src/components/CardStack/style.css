@@ -1,6 +1,6 @@
 .card-stack-wrapper {
   width: 100%;
-  aspect-ratio: 7/8;
+  aspect-ratio: 5/6;
   border-radius: 32px;
   display: flex;
   flex-direction: column;
@@ -16,15 +16,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-}
-
-.card-stack-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  border-bottom: solid 1px var(--outline);
 }
 
 .card-stack-completion-indicator {
@@ -39,8 +30,8 @@
 
 .animated-card {
   position: absolute;
-  height: calc(100% - 80px);
-  max-height: 400px;
+  height: calc(100% - 64px);
+  max-height: 448px;
   aspect-ratio: 3/4;
   display: flex;
   cursor: grab;
@@ -55,6 +46,10 @@
 
 .achievements-card {
   text-align: center;
+}
+
+.toolbar-top {
+  padding-bottom: 0;
 }
 
 .identity-card-refresh {

@@ -12,7 +12,7 @@ type Props = {
   isActive: boolean;
   onSwipe: () => void;
   shouldSwipe: boolean;
-  renderItem: React.FC<{ card: CardType }>;
+  renderItem: React.FC<{ card: CardType; isActive: boolean }>;
 };
 
 const AnimatedCard: React.FC<Props> = ({
@@ -116,7 +116,7 @@ const AnimatedCard: React.FC<Props> = ({
         duration: 0.5,
       }}
     >
-      <Item card={card} />
+      <Item card={card} isActive={isActive} />
     </motion.div>
   );
 };

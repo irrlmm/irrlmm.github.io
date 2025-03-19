@@ -65,10 +65,10 @@ strong {
 }
 
 .display {
-  font-size: 32px;
-  line-height: 1.3;
+  font-size: 30px;
+  line-height: 1.33;
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.03em;
 }
 
 .color-primary {

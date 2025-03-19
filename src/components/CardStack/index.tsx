@@ -7,8 +7,9 @@ import Svg from "../Svg";
 import { SVG_CHECK } from "../../consts/svg";
 
 export type CardType = {
-  label: string;
-  value: string;
+  id: string;
+  label?: string;
+  value?: string;
   pre?: string;
   post?: string;
   icon?: string;
@@ -43,10 +44,10 @@ const CardStack = ({ cards }: { cards: CardType[] }) => {
 
   return (
     <div className="card-stack-wrapper">
-      <div className="card-stack-toolbar">
-        <div className="row gap-8 align-center">
+      <div className="toolbar-top row gap-16 padding-32 align-center justify-between">
+        <div className="row gap-16 align-center">
           {hasViewedAll && (
-            <Svg size={20} d={SVG_CHECK} stroke="var(--accent)" />
+            <Svg size={16} d={SVG_CHECK} stroke="var(--accent)" />
           )}
 
           <span className="body-s color-secondary card-stack-label-drag">
@@ -54,17 +55,13 @@ const CardStack = ({ cards }: { cards: CardType[] }) => {
           </span>
         </div>
 
-        <span className="body-s color-secondary card-stack-label-drag">
-          {"Swipe / Drag"}
-        </span>
-
         <RefreshButton onClick={handleClickRefresh} />
       </div>
 
       <div className="card-stack-container">
         {cardsShown.map((card, i) => (
           <AnimatedCard
-            key={card.label}
+            key={card.id}
             card={card}
             isActive={i === cardsShown.length - 1}
             onSwipe={handleSwipe}

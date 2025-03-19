@@ -1,7 +1,7 @@
 type Props = {
   id?: string;
   d?: string;
-  size?: number;
+  size?: number | string;
   stroke?: string;
   strokeWidth?: number;
 };

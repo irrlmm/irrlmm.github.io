@@ -12,12 +12,13 @@ const valueSchema = z.object({
 });
 
 const cardSchema = z.object({
-  label: z.string(),
-  value: z.string(),
+  id: z.string(),
+  label: z.optional(z.string()),
+  value: z.optional(z.string()),
   icon: z.optional(z.string()),
   pre: z.optional(z.string()),
   post: z.optional(z.string()),
-  description: z.string(),
+  description: z.optional(z.string()),
 });
 
 //
