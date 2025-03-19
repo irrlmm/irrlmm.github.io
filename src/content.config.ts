@@ -14,6 +14,7 @@ const valueSchema = z.object({
 const cardSchema = z.object({
   label: z.string(),
   value: z.string(),
+  icon: z.optional(z.string()),
   pre: z.optional(z.string()),
   post: z.optional(z.string()),
   description: z.string(),

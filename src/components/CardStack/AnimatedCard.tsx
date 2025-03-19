@@ -22,26 +22,31 @@ const AnimatedCard: React.FC<Props> = ({
   shouldSwipe,
   renderItem: Item,
 }) => {
-  const baseX = Math.random() * -120 + 60;
+  const baseX = Math.random() * -100 + 50;
+  const baseY = Math.abs(baseX) / 4;
   const [isConstrained, setIsConstrained] = useState(true);
 
   const v = useRef(0);
 
   const controls = useAnimation();
   const x = useMotionValue(baseX);
-  const scale = useTransform(x, [-100, 0, 100], [0.98, 1.0, 0.98]);
-  const rotate = useTransform(x, [-100, 0, 100], [-5, 0, 5], { clamp: false });
-  const opacity = useTransform(x, [-500, -200, 200, 500], [0, 1, 1, 0]);
+  const rotate = useTransform(x, [-100, 0, 100], [-5, 0, 5], {
+    clamp: false,
+  });
 
   const variants = {
     idle: {
       x: baseX,
+      y: baseY,
       scale: 0.98,
       filter: "blur(5.0px)",
+      boxShadow: "0 0 0 1px var(--outline)",
     },
     active: {
       x: 0,
+      y: 0,
       filter: "blur(0.0px)",
+      boxShadow: "0 0 0 1px var(--accent)",
     },
     swipeR: {
       x: 500,
@@ -102,10 +107,7 @@ const AnimatedCard: React.FC<Props> = ({
       dragElastic={{ top: 0.2, bottom: 0.2, left: 1, right: 1 }}
       style={{
         x,
-        scale,
         rotate,
-        opacity,
-        border: `solid 1px ${isActive ? "var(--accent)" : "transparent"}`,
       }}
       transition={{
         type: "spring",

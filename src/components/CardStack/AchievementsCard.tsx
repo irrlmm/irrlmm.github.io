@@ -1,4 +1,5 @@
 import type { CardType } from ".";
+import Svg from "../Svg";
 import "./style.css";
 
 type Props = {
@@ -7,18 +8,10 @@ type Props = {
 
 const AchievementsCard = ({ card }: Props) => {
   return (
-    <div className="achievements-card col justify-between align-center flex-1 gap-32 padding-32">
+    <div className="achievements-card col justify-center align-center flex-1 gap-16 padding-32">
+      {card.icon && <Svg d={card.icon} size={48} />}
+
       <h3>{card.label}</h3>
-
-      <div className="col align-center gap-4">
-        {card.pre && <span className="body-m color-secondary">{card.pre}</span>}
-
-        <span className="display">{card.value}</span>
-
-        {card.post && (
-          <span className="body-s color-secondary">{card.post}</span>
-        )}
-      </div>
 
       <p className="body-s color-secondary">{card.description}</p>
     </div>

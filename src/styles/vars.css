@@ -2,22 +2,23 @@
   color-scheme: light dark;
 
   /* Primitives */
-  --gray-10: #1c1b1c;
-  --gray-10-fx: #1c1b1ce6;
-  --gray-20: #2e2d2e;
-  --gray-20-fx: #2e2d2ee6;
-  --gray-30: #464545;
-  --gray-40: #636262;
-  --gray-50: #848282;
-  --gray-60: #929090;
-  --gray-70: #b7b5b5;
-  --gray-80: #d9d6d6;
-  --gray-90: #f2efef;
-  --gray-90-fx: #f2efefe6;
-  --gray-99: #fffbfb;
-  --gray-99-fx: #fffbfbe6;
-  --sunglow-25: #4c3818;
-  --sunglow-95: #ffeedb;
+  --gray-10: #111110;
+  --gray-10-fx: #111110e6;
+  --gray-20: #1c1c1b;
+  --gray-20-fx: #1c1c1be6;
+  --gray-30: #2e2e2d;
+  --gray-40: #494848;
+  --gray-50: #6b6a68;
+  --gray-60: #908e8d;
+  --gray-70: #b6b3b2;
+  --gray-80: #d7d4d2;
+  --gray-90: #f0edeb;
+  --gray-90-fx: #f0edebe6;
+  --gray-99: #fffbfa;
+  --gray-99-fx: #fffbfae6;
+
+  --sepia-20: #422900;
+  --sepia-90: #ffead3;
 
   /* Surface tokens */
   --background: light-dark(var(--gray-90), var(--gray-10));
@@ -35,8 +36,8 @@
   --inverse-on-surface-var: light-dark(var(--gray-90), var(--gray-30));
 
   /* Accent tokens */
-  --accent: light-dark(var(--sunglow-25), var(--sunglow-95));
-  --on-accent: light-dark(var(--sunglow-95), var(--sunglow-25));
+  --accent: light-dark(var(--sepia-20), var(--sepia-90));
+  --on-accent: light-dark(var(--sepia-90), var(--sepia-20));
 
   /* Bezier curve */
   --bezier: cubic-bezier(0.25, 0.75, 0.5, 1);
