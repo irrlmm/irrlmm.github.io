@@ -17,6 +17,10 @@
   letter-spacing: 0;
 }
 
+.cardContentWrapper p {
+  text-align: center;
+}
+
 .button {
   width: 100%;
   display: inline-flex;

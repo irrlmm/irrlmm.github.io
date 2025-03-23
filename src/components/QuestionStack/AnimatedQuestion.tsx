@@ -165,9 +165,9 @@ const AnimatedQuestion: React.FC<Props> = ({
           />
 
           <h3>{answer?.response.title}</h3>
-        </div>
 
-        <p className="body-s">{answer?.response.text}</p>
+          <p className="body-s">{answer?.response.text}</p>
+        </div>
 
         <button className={innerStyles.button} onClick={handleClickContinue}>
           <span className="body-m">Continue</span>
