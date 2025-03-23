@@ -76,16 +76,16 @@
                 "label": "Car designer",
                 "response": {
                   "type": "positive",
-                  "title": "You guessed right!",
+                  "title": "Correct!",
                   "text": "He still sketches cars when he has free time and visits car museums around the world."
                 }
               },
               {
-                "label": "Enzyme powder",
+                "label": "Racer",
                 "response": {
-                  "type": "negative",
-                  "title": "negative",
-                  "text": "You are weird!"
+                  "type": "positive",
+                  "title": "Yes! Car desiner too.",
+                  "text": "Cars are one of Igor's passions, he's always been impressed with high speed and their timeless beauty."
                 }
               }
             ]

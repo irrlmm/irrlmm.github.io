@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { SVG_CHECK } from "../../consts/svg";
 import RefreshButton from "../RefreshButton";
 import styles from "./styles.module.css";
@@ -7,13 +7,15 @@ type Props = {
   hasViewedAll: boolean;
   currentStep: number;
   totalSteps: number;
-  onClickRefresh: () => void;
+  onClickRefresh: () => void | false;
+  enableRefresh?: boolean;
 };
 
 const StackProgressToolbar: React.FC<Props> = ({
   hasViewedAll,
   currentStep,
   totalSteps,
+  enableRefresh = true,
   onClickRefresh,
 }) => {
   const CIRCLE_RADIUS = 10;
@@ -91,7 +93,7 @@ const StackProgressToolbar: React.FC<Props> = ({
         </span>
       </div>
 
-      <RefreshButton onClick={onClickRefresh} />
+      <RefreshButton onClick={onClickRefresh} isEnabled={enableRefresh} />
     </div>
   );
 };

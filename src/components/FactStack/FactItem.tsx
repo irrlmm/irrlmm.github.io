@@ -33,7 +33,7 @@ const FactItem: React.FC<Props> = ({
 
       <div className="col gap-16">
         <h3 className={styles.text}>{title}</h3>
-        <p className="body-s color-secondary">{text}</p>
+        <p className="body-m color-secondary">{text}</p>
       </div>
     </div>
   );
