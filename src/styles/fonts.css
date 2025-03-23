@@ -83,7 +83,7 @@ strong {
   color: var(--on-surface-var-2);
 }
 
-@media (max-width: 512px) {
+/* @media (max-width: 512px) {
   h1 {
     font-size: 26px;
   }
@@ -102,4 +102,4 @@ strong {
   .body-s {
     font-size: 12px;
   }
-}
+} */
