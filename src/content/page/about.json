@@ -68,6 +68,29 @@
       {
         "questions": [
           {
+            "id": "potty",
+            "image": "",
+            "text": "What was the first product Igor ever disassembled?",
+            "options": [
+              {
+                "label": "Musical potty",
+                "response": {
+                  "type": "positive",
+                  "title": "That's right.",
+                  "text": "Wouldn't you be amazed by a device that rewards, well, outcomes that way?"
+                }
+              },
+              {
+                "label": "Cousin's old phone",
+                "response": {
+                  "type": "negative",
+                  "title": "Good try, but no.",
+                  "text": "Besides, what does "
+                }
+              }
+            ]
+          },
+          {
             "id": "childhood",
             "image": "",
             "text": "As a kid, who did he want to become?",

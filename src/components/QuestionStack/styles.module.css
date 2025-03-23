@@ -28,6 +28,7 @@
   background-color: var(--accent-semi);
   /* background-color: transparent; */
   transition: all 0.2s var(--bezier);
+  cursor: pointer;
 }
 
 .button:hover {

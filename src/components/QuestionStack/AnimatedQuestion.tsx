@@ -5,7 +5,7 @@ import {
   useTransform,
 } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-import type { QuestionType, AnswerOption } from "../QuestionStack";
+import type { QuestionType, AnswerOption } from ".";
 import styles from "../CardStack/styles.module.css";
 import innerStyles from "./styles.module.css";
 import Svg from "../Svg";
@@ -36,7 +36,7 @@ const AnimatedQuestion: React.FC<Props> = ({
 
   const controls = useAnimation();
   const x = useMotionValue(baseX);
-  const rotate = useTransform(x, [-100, 0, 100], [-5, 0, 5], {
+  const rotateZ = useTransform(x, [-100, 0, 100], [5, 0, -5], {
     clamp: false,
   });
 
@@ -64,16 +64,12 @@ const AnimatedQuestion: React.FC<Props> = ({
 
   const contentVariants = {
     hide: {
-      filter: `blur(12px)`,
+      filter: `blur(5px)`,
       opacity: 0,
-      scale: 0.98,
-      transformOrigin: "top center",
     },
     show: {
       filter: "blur(0.0px)",
       opacity: 1,
-      scale: 1,
-      transformOrigin: "bottom center",
     },
   };
 
@@ -97,6 +93,10 @@ const AnimatedQuestion: React.FC<Props> = ({
   };
 
   const handleClickAnswer = (o: AnswerOption) => {
+    controls.start(
+      { rotateY: "180deg" },
+      { type: "spring", delay: 0.2, bounce: 0.3, duration: 1 }
+    );
     setAnswer(o);
   };
 
@@ -106,16 +106,14 @@ const AnimatedQuestion: React.FC<Props> = ({
 
   return (
     <motion.div
-      className={`${styles.card} ${isActive && styles.cardActive}`}
+      className={styles.card}
       animate={controls}
       variants={variants}
-      drag={isActive}
-      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      dragElastic={0.2}
       style={{
         x,
-        rotate,
+        rotateZ,
       }}
+      whileTap={{ scale: 0.99, transition: { duration: 0.15 } }}
       transition={{
         type: "spring",
         delay: 0.01,
@@ -129,23 +127,19 @@ const AnimatedQuestion: React.FC<Props> = ({
         variants={contentVariants}
         style={{ pointerEvents: answer ? "none" : "auto" }}
       >
-        <span className="body-s color-secondary">Question:</span>
+        <span className="body-s color-secondary">Question</span>
 
         <h3>{question.text}</h3>
 
         <div className="col gap-8">
           {question.options.map((o) => (
-            <motion.button
+            <button
               key={o.label}
               className={innerStyles.button}
-              whileTap={{
-                scale: !answer ? 0.97 : 1,
-                transition: { duration: 0.15 },
-              }}
               onClick={() => handleClickAnswer(o)}
             >
               <span className="body-m">{o.label}</span>
-            </motion.button>
+            </button>
           ))}
         </div>
       </motion.div>
@@ -154,9 +148,9 @@ const AnimatedQuestion: React.FC<Props> = ({
         className={innerStyles.cardContentWrapper}
         initial={"hide"}
         animate={answer ? "show" : "hide"}
-        transition={{ delay: 0.25 }}
+        transition={{ delay: 0.4 }}
         variants={contentVariants}
-        style={{ pointerEvents: answer ? "auto" : "none" }}
+        style={{ pointerEvents: answer ? "auto" : "none", scaleX: -1 }}
       >
         <div className="row gap-8">
           <span className="body-s color-secondary">{">"}</span>
@@ -167,6 +161,7 @@ const AnimatedQuestion: React.FC<Props> = ({
           <Svg
             d={answer?.response.type === "positive" ? SVG_CHECK : SVG_DEFAULT}
             size={48}
+            stroke="var(--accent)"
           />
 
           <h3>{answer?.response.title}</h3>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StackProgressToolbar from "../StackProgressToolbar";
-import AnimatedQuestion from "../AnimatedQuestion";
+import AnimatedQuestion from "./AnimatedQuestion";
 import styles from "../CardStack/styles.module.css";
 
 export type AnswerOption = {
