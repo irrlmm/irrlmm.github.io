@@ -45,6 +45,9 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
 
   const handleClickRefresh = () => {
     setCardsShown(questions.toReversed());
+    setCurrentStep(0);
+    setRightCount(0);
+    setWrongCount(0);
   };
 
   const handleRight = () => {
