@@ -1,18 +1,18 @@
 ---
-import Menu from "../components/Menu/Menu.astro";
 import Separator from "../components/Separator.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import AnimatedLead from "../components/AnimatedLead.astro";
 import Footer from "../components/Footer.astro";
-import {
-  MENU_ABOUT,
-  MENU_CONTACT,
-  MENU_CV,
-  MENU_WORK,
-} from "../consts/ui/menu";
 import TitleWrapper from "../components/TitleWrapper.astro";
-import CardStack from "../components/CardStack";
+import AchievementStack from "../components/AchievementStack/AchievementStack";
+import FactStackAstro from "../components/FactStack/index.astro";
 import { getEntry } from "astro:content";
+import AnimatedChecklist from "../components/AnimatedChecklist";
+import Values from "../components/Values.astro";
+import CardSeparator from "../components/CardSeparator.astro";
+import Image from "astro/components/Image.astro";
+import getImage from "../helpers/getImage";
+import QuestionStack from "../components/QuestionStack";
 
 const about = await getEntry("page:about", "about");
 
@@ -22,30 +22,57 @@ if (!about) {
 ---
 
 <MainLayout hasHeader={true}>
+  <Image
+    class="hero-image"
+    widths={[1024, 1536, 2048]}
+    width="768"
+    layout="responsive"
+    loading="eager"
+    fit="contain"
+    alt="Cover image"
+    src={getImage("/src/assets/ishigs/grid-test.svg")()}
+  />
+
+  <div class="main-card col gap-32 padding-32">
+    <TitleWrapper title={about.data.title} />
+
+    <AnimatedLead lines={about.data.lead} addSpaceBetween />
+
+    <CardSeparator />
+
+    <Values values={about.data.overview} />
+  </div>
+
   <div class="wrapper">
-    <section class="col gap-32">
-      <TitleWrapper title={about.data.title} />
-
-      <AnimatedLead addSpaceBetween lines={about.data.lead} />
-    </section>
-
-    <Menu options={[MENU_CV]} isList={true} />
-
-    <Separator isDashed />
-
     {
-      about.data.sections.map((s) => (
-        <section class="col gap-32">
-          <h2>{s.title}</h2>
+      about.data.sections.map((s) => {
+        if (s.separator) {
+          return <Separator isDashed />;
+        }
 
-          {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
+        return (
+          <section class="col gap-32">
+            {s.title && <h2>{s.title}</h2>}
 
-          {s.cards && <CardStack client:load cards={s.cards} />}
-        </section>
-      ))
+            {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
+
+            {s.values && <Values values={s.values} />}
+
+            {s.checklist && (
+              <AnimatedChecklist client:idle list={s.checklist} />
+            )}
+
+            {s.cards && <AchievementStack client:idle cards={s.cards} />}
+
+            {s.facts && <FactStackAstro facts={s.facts} />}
+
+            {s.questions && (
+              <QuestionStack client:load questions={s.questions} />
+            )}
+          </section>
+        );
+      })
     }
-
-    <Menu options={[MENU_CONTACT]} isList={true} />
 
     <Separator />
 
@@ -54,12 +81,35 @@ if (!about) {
 </MainLayout>
 
 <style>
+  .hero-image {
+    animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
+  }
+
+  .main-card {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    background-color: var(--surface-hi);
+    border-radius: 32px;
+    animation: appear-with-scale 0.66s var(--bezier) 0.2s both;
+    transform-origin: top center;
+  }
+
   .wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 576px;
     gap: 64px;
+  }
+
+  video {
+    width: 100%;
+    max-width: 768px;
+    aspect-ratio: 21/9;
+    background-color: var(--surface-lo);
+    border-radius: 48px;
+    animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
   }
 
   h2 {

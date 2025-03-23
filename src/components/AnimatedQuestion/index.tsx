@@ -4,33 +4,31 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
-import type { GenericCardContent } from ".";
-import styles from "./styles.module.css";
+import React, { useEffect, useRef } from "react";
+import type { QuestionType } from "../QuestionStack";
+import styles from "../CardStack/styles.module.css";
+import innerStyles from "./styles.module.css";
 
-type Props<T> = {
+type Props = {
   index: number;
-  card: T;
+  question: QuestionType;
   isActive: boolean;
-  onSwipeLeft: () => void;
-  onSwipeRight: () => void;
-  shouldSwipe: boolean;
-  renderItem: React.FC<GenericCardContent<T>>;
+  onRight: () => void;
+  onWrong: () => void;
+  onClickContinue: () => void;
 };
 
-const AnimatedCard = <T,>({
+const AnimatedQuestion: React.FC<Props> = ({
   index,
-  card,
+  question,
   isActive,
-  onSwipeLeft,
-  onSwipeRight,
-  shouldSwipe,
-  renderItem: CardContent,
-}: Props<T>) => {
+  onRight,
+  onWrong,
+  onClickContinue,
+}) => {
   const deviateX = 100;
   const baseX = Math.random() * deviateX - deviateX / 2;
   const baseY = Math.abs(baseX) / 4;
-  const [isConstrained, setIsConstrained] = useState(true);
 
   const v = useRef(0);
 
@@ -45,14 +43,14 @@ const AnimatedCard = <T,>({
       x: baseX,
       y: baseY,
       scale: 0.98,
-      filter: `blur(${1 * index}px)`,
+      filter: `blur(${2 * index}px)`,
       boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.1)",
     },
     active: {
       x: 0,
       y: 0,
       filter: "blur(0.0px)",
-      boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.5)",
+      boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.3)",
     },
     swipeR: {
       x: 500,
@@ -70,46 +68,23 @@ const AnimatedCard = <T,>({
     }
   }, [isActive, index]);
 
-  useEffect(() => {
-    if (shouldSwipe) {
-      const dir = Math.random() - 0.5;
-      swipeAway(dir > 0 ? "swipeR" : "swipeL");
-    }
-  }, [shouldSwipe]);
-
   const handleDrag = () => {
     v.current = x.getVelocity();
   };
 
   const swipeAway = (variant: "swipeL" | "swipeR") => {
-    setIsConstrained(false);
     controls.start(variant, { duration: 0.2 }).finally(() => {
-      setIsConstrained(true);
       switch (variant) {
         case "swipeL":
-          onSwipeLeft();
+          onRight();
           break;
         case "swipeR":
-          onSwipeRight();
+          onWrong();
           break;
         default:
           break;
       }
     });
-  };
-
-  const handleDragEnd = () => {
-    if (Math.abs(v.current) > 200 || Math.abs(x.get()) > 200) {
-      swipeAway(
-        Math.abs(v.current) > 200
-          ? v.current > 0
-            ? "swipeR"
-            : "swipeL"
-          : x.get() > 0
-          ? "swipeR"
-          : "swipeL"
-      );
-    }
   };
 
   return (
@@ -118,12 +93,8 @@ const AnimatedCard = <T,>({
       animate={controls}
       variants={variants}
       drag={isActive}
-      onDrag={handleDrag}
-      onDragEnd={handleDragEnd}
-      dragConstraints={
-        isConstrained && { left: 0, right: 0, top: 0, bottom: 0 }
-      }
-      dragElastic={{ top: 0.2, bottom: 0.2, left: 1, right: 1 }}
+      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+      dragElastic={0.2}
       style={{
         x,
         rotate,
@@ -135,9 +106,21 @@ const AnimatedCard = <T,>({
         duration: 0.5,
       }}
     >
-      <CardContent isActive={isActive} card={card} />
+      <div className={innerStyles.questionCard}>
+        <img src={question.image} alt={question.text} />
+
+        <h3>{question.text}</h3>
+
+        <div className="col gap-8">
+          {question.options.map((o) => (
+            <button key={o.label} className={innerStyles.answer}>
+              <span className="body-m">{o.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
     </motion.div>
   );
 };
 
-export default AnimatedCard;
+export default AnimatedQuestion;

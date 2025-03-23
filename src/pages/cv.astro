@@ -5,7 +5,6 @@ import MainLayout from "../layouts/MainLayout.astro";
 import JobCardsList from "../components/Jobs/JobCardsList.astro";
 import Values from "../components/Values.astro";
 import Footer from "../components/Footer.astro";
-import { getCollection } from "astro:content";
 import {
   MENU_ABOUT,
   MENU_CONTACT,
@@ -15,6 +14,8 @@ import {
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import TitleWrapper from "../components/TitleWrapper.astro";
 import { getEntry } from "astro:content";
+import { getEntries } from "astro:content";
+import { getCollection } from "astro:content";
 
 const cv = await getEntry("page:cv", "cv");
 
@@ -22,6 +23,7 @@ if (!cv) {
   throw Error("No data found");
 }
 
+const jobs = await getEntries(cv.data.jobs);
 const person = await getEntry("meta:person", cv.data.person.id);
 ---
 
@@ -35,7 +37,7 @@ const person = await getEntry("meta:person", cv.data.person.id);
     </section>
 
     <section>
-      <JobCardsList jobs={cv.data.jobs} />
+      <JobCardsList jobs={jobs} />
     </section>
 
     <Separator isDashed />

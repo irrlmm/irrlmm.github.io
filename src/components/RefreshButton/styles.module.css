@@ -1,0 +1,14 @@
+.refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--background);
+}
+
+.content {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+}

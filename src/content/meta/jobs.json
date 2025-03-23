@@ -1,0 +1,64 @@
+[
+  {
+    "id": "im-design",
+    "company": "imusician",
+    "timeline": "2020 - ",
+    "title": "Lead Product Designer",
+    "description": "Creating innovative distribution and promotion solutions for music artists.",
+    "scope": [
+      "Drove the transition to subscription-based services, increasing customer lifetime value and reducing churn.",
+      "Improved revenue growth with strategic subscription upsell innovations.",
+      "Expanded iMusician's ecosystem by launching Artist Hub. Strengthened brand visibility & audience engagement.",
+      "Built scalable design system, improving UI development efficiency and maintaining consistency across products.",
+      "Contributed to a marketing-driven rebranding and subsequently redesigned the app (this stress-test successfully validated the component library).",
+      "Managed small design team, mentoring (and learning from) a junior designer and optimizing workflows to reduce iteration time.",
+      "Aligned work with business goals, increasing engagement, streamlining workflows, and driving revenue growth through data-driven optimizations."
+    ],
+    "isCurrent": true,
+    "linkNext": true
+  },
+  {
+    "id": "im-dev",
+    "timeline": "2017 - 2020",
+    "title": "UI Engineer",
+    "company": "imusician",
+    "description": "Developed and designed pixel-perfect, motion-enhanced, beautiful and functional interfaces that beat the competition.",
+    "scope": [
+      "Contributed to the early development of the design system by developing and maintaining UI components, laying the foundation for a scalable and consistent UI framework.",
+      "Enhanced the user experience for core platform features by implementing responsive design solutions and top-notch usability principles."
+    ]
+  },
+  {
+    "id": "99sales",
+    "timeline": "2019 - 2020",
+    "title": "Lead Designer",
+    "company": "99sales",
+    "description": "Co-founded a startup. Lots of challenges, lots of lessons. It didn't go far, but the experience was worth it.",
+    "scope": [
+      "Pivoted from client work to in-house product development, shaping the design direction and user experience for the studio's own digital product."
+    ],
+    "linkNext": true
+  },
+  {
+    "id": "outline",
+    "timeline": "2018 - 2019",
+    "title": "Lead Designer",
+    "company": "outline",
+    "description": "Designed innovative app experiences for diverse clients.",
+    "scope": [
+      "Handled both product and brand design.",
+      "Designed a cloud infrastructure experience for a leading financial institution.",
+      "Collaborated with diverse clients and tech teams, driving rapid prototyping to refine and deliver high-impact designs in tight timeframes."
+    ]
+  },
+  {
+    "id": "uniyo",
+    "timeline": "2017 - 2018",
+    "title": "Mobile App Developer",
+    "company": "uniyo",
+    "description": "Developed and designed a cross-platform campus messenger, creating a seamless communication experience for students.",
+    "scope": [
+      "Tested and refined the app in real-world scenarios, rapidly iterating based on student feedback in battle mode to improve usability and engagement."
+    ]
+  }
+]

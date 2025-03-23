@@ -5,10 +5,23 @@ import { defineCollection, reference, z } from "astro:content";
  * FAKE DATABASE COLLECTIONS
  */
 
+const checklistSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+});
+
 const valueSchema = z.object({
   label: z.string(),
   value: z.string(),
   href: z.optional(z.string()),
+});
+
+const factSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  text: z.string(),
+  image: z.optional(z.string()),
+  tags: z.optional(z.array(reference("meta:tag"))),
 });
 
 const cardSchema = z.object({
@@ -21,9 +34,32 @@ const cardSchema = z.object({
   description: z.optional(z.string()),
 });
 
+const questionSchema = z.object({
+  id: z.string(),
+  image: z.string(),
+  text: z.string(),
+  options: z.array(
+    z.object({
+      label: z.string(),
+      response: z.object({
+        type: z.enum(["positive", "negative"]),
+        title: z.string(),
+        text: z.string(),
+      }),
+    })
+  ),
+});
+
 //
 // Metadata schema
 //
+
+const tag = defineCollection({
+  loader: file("./src/content/meta/tags.json"),
+  schema: z.object({
+    label: z.string(),
+  }),
+});
 
 const person = defineCollection({
   loader: file("./src/content/meta/persons.json"),
@@ -43,6 +79,19 @@ const company = defineCollection({
   }),
 });
 
+const job = defineCollection({
+  loader: file("./src/content/meta/jobs.json"),
+  schema: z.object({
+    company: reference("meta:company"),
+    timeline: z.string(),
+    title: z.string(),
+    description: z.string(),
+    scope: z.array(z.string()),
+    isCurrent: z.optional(z.boolean()),
+    linkNext: z.optional(z.boolean()),
+  }),
+});
+
 //
 // Work schema
 //
@@ -55,19 +104,13 @@ const work = defineCollection({
     title: z.string(),
     subtitle: z.string(),
     client: z.optional(reference("meta:company")),
-    overview: z.array(
-      z.object({
-        label: z.string(),
-        value: z.string(),
-        href: z.optional(z.string()),
-      })
-    ),
+    overview: z.array(valueSchema),
     sections: z.array(
       z.object({
         title: z.string(),
         lines: z.optional(z.array(z.string())),
         values: z.optional(z.array(valueSchema)),
-        cards: z.optional(z.array(cardSchema)),
+        facts: z.optional(z.array(factSchema)),
       })
     ),
   }),
@@ -82,11 +125,16 @@ const about = defineCollection({
   schema: z.object({
     title: z.string(),
     lead: z.array(z.string()),
+    overview: z.array(valueSchema),
     sections: z.array(
       z.object({
-        title: z.string(),
-        cards: z.optional(z.array(cardSchema)),
+        title: z.optional(z.string()),
         lines: z.optional(z.array(z.string())),
+        values: z.optional(z.array(valueSchema)),
+        checklist: z.optional(z.array(checklistSchema)),
+        facts: z.optional(z.array(factSchema)),
+        cards: z.optional(z.array(cardSchema)),
+        questions: z.optional(z.array(questionSchema)),
         separator: z.optional(z.boolean()),
       })
     ),
@@ -100,17 +148,7 @@ const cv = defineCollection({
     brief: z.array(valueSchema),
     skills: z.array(valueSchema),
     education: z.array(valueSchema),
-    jobs: z.array(
-      z.object({
-        company: reference("meta:company"),
-        timeline: z.string(),
-        title: z.string(),
-        description: z.string(),
-        scope: z.array(z.string()),
-        isCurrent: z.optional(z.boolean()),
-        linkNext: z.optional(z.boolean()),
-      })
-    ),
+    jobs: z.array(reference("meta:job")),
     competitions: z.array(
       z.object({
         title: z.string(),
@@ -122,8 +160,10 @@ const cv = defineCollection({
 
 export const collections = {
   work,
+  "meta:tag": tag,
   "meta:person": person,
   "meta:company": company,
+  "meta:job": job,
   "page:cv": cv,
   "page:about": about,
 };

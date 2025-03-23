@@ -55,24 +55,16 @@
     },
     {
       title: Learnings,
-      cards: [
+      facts: [
         {
-          id: a,
-          label: Learning 1,
-          description: "When speed matters, function first. Refinement can come later.",
-          value: "Curate. The. Feedback."
+          id: learning-1,
+          title: 'Curate. The. Feedback.',
+          text: "When speed matters, function first. Refinement can come later.",
         },
         {
-          id: b,
-          label: Learning 2,
-          description: "When speed matters, function first. Refinement can come later.",
-          value: "Curate. The. Feedback."
-        },
-        {
-          id: c,
-          label: Learning 3,
-          description: "When speed matters, function first. Refinement can come later.",
-          value: "Curate. The. Feedback."
+          id: learning-2,
+          title: 'Curate. The. Feedback.',
+          text: "When speed matters, function first. Refinement can come later.",
         }
       ]
     }

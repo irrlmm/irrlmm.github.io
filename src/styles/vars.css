@@ -15,29 +15,32 @@
   --gray-90: #f0edeb;
   --gray-90-fx: #f0edebe6;
   --gray-99: #fffbfa;
-  --gray-99-fx: #fffbfae6;
+  --gray-99-fx: #fffbfa88;
 
-  --sepia-20: #422900;
-  --sepia-90: #ffead3;
+  --sepia-20: #e09300;
+  --sepia-90: #ffb41f;
 
   /* Surface tokens */
   --background: light-dark(var(--gray-90), var(--gray-10));
   --background-fx: light-dark(var(--gray-90-fx), var(--gray-10-fx));
-  --surface: light-dark(var(--gray-99), var(--gray-20));
-  --surface-fx: light-dark(var(--gray-99-fx), var(--gray-20-fx));
+  --surface-lo: light-dark(rgba(0, 0, 0, 0.03), rgba(255, 255, 255, 0.025));
+  --surface-hi: light-dark(var(--gray-99), var(--gray-20));
   --on-surface: light-dark(var(--gray-10), var(--gray-99));
   --on-surface-var: light-dark(var(--gray-30), var(--gray-80));
   --on-surface-var-2: light-dark(var(--gray-50), var(--gray-60));
   --outline: light-dark(var(--gray-70), var(--gray-40));
 
   /* Inverse tokens */
-  --inverse-surface: light-dark(var(--gray-10), var(--gray-90));
+  --inverse-background: light-dark(var(--gray-10), var(--gray-90));
+  --inverse-surface: light-dark(var(--gray-20), var(--gray-99));
   --inverse-on-surface: light-dark(var(--gray-99), var(--gray-10));
-  --inverse-on-surface-var: light-dark(var(--gray-90), var(--gray-30));
+  --inverse-on-surface-var: light-dark(var(--gray-80), var(--gray-30));
 
   /* Accent tokens */
-  --accent: light-dark(var(--sepia-20), var(--sepia-90));
+  --accent: light-dark(#51480d, #fef0a4);
   --on-accent: light-dark(var(--sepia-90), var(--sepia-20));
+
+  --accent-semi: light-dark(#51480d10, #fef0a410);
 
   /* Bezier curve */
   --bezier: cubic-bezier(0.25, 0.75, 0.5, 1);

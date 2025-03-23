@@ -1,79 +1,163 @@
 [
   {
     "id": "about",
-    "title": "About me",
+    "title": "Who is Igor Lemeshkin?",
     "lead": [
-      "I design with precision, clarity, and long-term impact. My work is built on a simple but powerful principle — less is more — focusing on what truly matters while keeping products scalable and intuitive.",
-      "I take a Kaizen approach, continuously refining and improving designs so they adapt, evolve, and stay relevant.",
-      "My work isn't possible without other people — stakeholders and developers bring ideas to life, and the best results come from jams, iterations, and true collaboration.",
-      "Every project is an opportunity to push the work further — challenging the boredom of today, crafting sustainable solutions for the future."
+      "Igor Lemeshkin is a product designer focused on clarity, precision, and real impact.",
+      "He creates sharp interfaces, streamlined systems, and intuitive interactions — always grounded in real workflows, not trends.",
+      "He breaks down complexity, aligns tightly with development, and builds scalable solutions that last."
+    ],
+    "overview": [
+      { "label": "Age", "value": "27" },
+      {
+        "label": "Specialties",
+        "value": "Product design, Creative Frontend Development"
+      },
+      {
+        "label": "Location",
+        "value": "Currently in Kuala Lumpur"
+      }
     ],
     "sections": [
+      { "separator": true },
       {
-        "title": "What I do",
-        "cards": [
+        "title": "What Igor does",
+        "checklist": [
           {
-            "id": "ds",
-            "icon": "M8.306 3.428 4.612 5.447m3.694-2.02.739-.403c1.034-.565 1.551-.848 2.148-.954a4.7 4.7 0 0 1 1.614 0c.597.106 1.114.389 2.148.954l.739.404m-7.388 0L12 5.447m-7.388 0-.739.404c-1.034.565-1.551.848-1.745 1.174a.83.83 0 0 0 0 .882c.194.326.71.609 1.745 1.174l.739.404m0-4.038 3.694 2.019m-3.694 2.02 3.694 2.018M4.612 9.485l-.739.404c-1.034.566-1.551.848-1.745 1.174a.83.83 0 0 0 0 .883c.194.326.71.608 1.745 1.174l.731.4m.008-4.035 3.694-2.019m0 4.038.739.404c1.034.566 1.551.848 2.148.954.524.093 1.09.093 1.614 0 .597-.106 1.114-.388 2.148-.954l.739-.404m-7.388 0L12 9.485M8.306 7.466 12 9.486m-3.694-2.02L12 5.446m0 0 3.694 2.02M12 5.446l3.694-2.018m0 0 3.694 2.019m0 0 .739.404c1.034.565 1.551.848 1.745 1.174.17.287.17.595 0 .882-.194.326-.71.609-1.745 1.174l-.739.404m0-4.038-3.694 2.019m0 0 3.694 2.02m-3.694-2.02L12 9.486m0 0 3.694 2.018m3.694-2.019-3.694 2.02m3.694-2.02.739.404c1.034.566 1.551.848 1.745 1.174.17.287.17.596 0 .883-.194.326-.71.608-1.745 1.174l-.731.4m0 0 .73.399c1.035.565 1.552.848 1.746 1.174.17.287.17.595 0 .882-.194.326-.71.609-1.745 1.174l-5.172 2.827c-1.034.566-1.551.848-2.148.954a4.7 4.7 0 0 1-1.614 0c-.597-.106-1.114-.389-2.148-.954L3.873 17.15c-1.034-.565-1.551-.848-1.745-1.174a.83.83 0 0 1 0-.882c.194-.326.71-.609 1.745-1.174l.731-.4m14.792 0-4.44 2.428c-1.035.565-1.552.848-2.149.954a4.7 4.7 0 0 1-1.614 0c-.597-.106-1.114-.39-2.148-.954l-4.44-2.428",
-            "description": "A foundation that keeps products consistent and future-proof",
-            "value": "Design Systems"
+            "title": "Design Systems",
+            "description": "A foundation for consistent products"
           },
           {
-            "id": "ui",
-            "icon": "M16 21H8a4 4 0 0 1 0-8h8m0 8a4 4 0 0 0 0-8m0 8a4 4 0 0 1 0-8M4 2h9M4 6h17M4 9h12",
-            "description": "Interfaces that look sharp and feel effortless.",
-            "value": "Precision UI/UX"
+            "title": "Impactful Solutions",
+            "description": "Impact boosting engagement and growth"
           },
           {
-            "id": "val",
-            "icon": "M4 5.728h7.877m2.215-.455 1.2 1.386a1.037 1.037 0 0 0 1.538 0L20 3M4 12.728h7.877m2.215-.455 1.2 1.386a1.037 1.037 0 0 0 1.538 0L20 10M4 19.728h7.877m2.215-.455 1.2 1.386a1.037 1.037 0 0 0 1.538 0L20 17",
-            "description": "Insights-backed decisions that illuminate the way.",
-            "value": "Validation"
+            "title": "Optimized Interactions",
+            "description": "Effortless user navigation"
           },
           {
-            "id": "int",
-            "icon": "M14 1V7M20.364 3.63604L16.1213 7.87868M23 10H17M3 11H9C10.4001 11 11.1002 11 11.635 11.2725C11.8702 11.3923 12.0834 11.5479 12.2678 11.7322M13 21V15C13 13.5999 13 12.8998 12.7275 12.365C12.6077 12.1298 12.4521 11.9166 12.2678 11.7322M12.2678 11.7322L3 21",
-            "description": "Smooth and effortless user navigation.",
-            "value": "Interactions"
+            "title": "Precision UI",
+            "description": "Sharp and clean user interfaces"
           },
           {
-            "id": "code",
-            "icon": "M7.5 9L5.85358 10.9757C5.54992 11.3401 5.39809 11.5223 5.34007 11.7257C5.28892 11.905 5.28892 12.095 5.34007 12.2743C5.39809 12.4777 5.54992 12.6599 5.85358 13.0243L7.5 15M16.5 9L18.1464 10.9757C18.4501 11.3401 18.6019 11.5223 18.6599 11.7257C18.7111 11.905 18.7111 12.095 18.6599 12.2743C18.6019 12.4777 18.4501 12.6599 18.1464 13.0243L16.5 15M10 16L14 8M10 2H14C16.8003 2 18.2004 2 19.27 2.54497C20.2108 3.02433 20.9757 3.78924 21.455 4.73005C22 5.79961 22 7.19974 22 10V14C22 16.8003 22 18.2004 21.455 19.27C20.9757 20.2108 20.2108 20.9757 19.27 21.455C18.2004 22 16.8003 22 14 22H10C7.19974 22 5.79961 22 4.73005 21.455C3.78924 20.9757 3.02433 20.2108 2.54497 19.27C2 18.2004 2 16.8003 2 14V10C2 7.19974 2 5.79961 2.54497 4.73005C3.02433 3.78924 3.78924 3.02433 4.73005 2.54497C5.79961 2 7.19974 2 10 2Z",
-            "description": "Documentation that speeds up development.",
-            "value": "Handoffs"
+            "title": "Seamless Handoffs",
+            "description": "Zero friction from concept to code"
           },
           {
-            "id": "bus",
-            "icon": "M18 12a6 6 0 1 1-6-6m0 6 5-5m0 0V4.414a1 1 0 0 1 .293-.707l2.28-2.28a.25.25 0 0 1 .427.177V4m-3 3 3-3m-3 3h2.586a1 1 0 0 0 .707-.293l2.28-2.28A.25.25 0 0 0 22.396 4H20m-5 8a3 3 0 1 1-3-3m9 3a9 9 0 1 1-9-9",
-            "description": "Impact boosting engagement and growth.",
-            "value": "Solutions"
+            "title": "Validated decisions",
+            "description": "Insights-backed product strategy"
           }
         ]
       },
+      { "separator": true },
       {
-        "title": "My method",
+        "title": "But that's not all",
         "lines": [
-          "Great design goes beyond the surface. It's not just about interfaces — it's about understanding the entire ecosystem a product exists in. That's why I immerse myself in the industries I design for, seeing the bigger picture first before refining the details.",
-          "To truly understand music distribution, I explored production hardware and software firsthand. This deep dive gave me insights into how creative tools shape workflows, helping me design one of the most seamless distribution experiences in the industry.",
-          "The same approach applies to every product I work on — understanding the industry, its workflows, and the people using products is what makes a design truly work."
+          "Let's not pretend Igor stops at design — he also codes. For example, he built this very website, including these neatly crafted cards.",
+          "However, in the grand scheme of things, labels don't matter. Automation is creeping into every field, and the real game is staying relevant.",
+          "Igor calls himself a designer because his edge comes from sharp, distinctly human decisions, rooted in rich multidisciplinary experience. That genuine product vision will always be hard to replicate."
+        ]
+      },
+      { "separator": true },
+      {
+        "title": "Not Your Average Origin Story",
+        "lines": [
+          "Igor didn't follow a straight path. Explore the moments that defined his journey — one guess at a time."
         ]
       },
       {
-        "title": "Beyond the pixels",
+        "questions": [
+          {
+            "id": "childhood",
+            "image": "",
+            "text": "As a kid, who did he want to become?",
+            "options": [
+              {
+                "label": "Car designer",
+                "response": {
+                  "type": "positive",
+                  "title": "You guessed right!",
+                  "text": "He still sketches cars when he has free time and visits car museums around the world."
+                }
+              },
+              {
+                "label": "Enzyme powder",
+                "response": {
+                  "type": "negative",
+                  "title": "negative",
+                  "text": "You are weird!"
+                }
+              }
+            ]
+          },
+          {
+            "id": "hackathons",
+            "image": "",
+            "text": "Has Igor participated in hackathons?",
+            "options": [
+              {
+                "label": "Yes",
+                "response": {
+                  "type": "positive",
+                  "title": "Correct!",
+                  "text": "He's joined hackathons since year one of college, sharpening his rapid prototyping skills early on."
+                }
+              },
+              {
+                "label": "No",
+                "response": {
+                  "type": "negative",
+                  "title": "Wrong!",
+                  "text": "How else would he get so good at rapid prototyping and efficient coding?"
+                }
+              }
+            ]
+          },
+          {
+            "id": "firstjob",
+            "image": "",
+            "text": "What was Igor's first job?",
+            "options": [
+              {
+                "label": "UI Designer",
+                "response": {
+                  "type": "positive",
+                  "title": "Correct",
+                  "text": ""
+                }
+              },
+              {
+                "label": "Mobile developer",
+                "response": {
+                  "type": "positive",
+                  "title": "Correct",
+                  "text": ""
+                }
+              }
+            ]
+          }
+        ]
+      },
+      { "separator": true },
+      {
+        "title": "Side Quest Certified",
+        "lines": [
+          "Igor is always chasing new hobbies. But no matter where he wanders, he always circles back to his first love: design. And yes, every side quest adds a little something extra to the way he does it."
+        ]
+      },
+      {
         "cards": [
           {
             "id": "loyal",
             "label": "Loyal worker",
-            "description": "Great design takes commitment. That was a great run 🖤",
-            "value": "7 years",
-            "post": "at iMusician"
+            "description": "Great design takes commitment. 7 years at iMusican was a great ride"
           },
           {
             "id": "travel",
-            "label": "Explorer at heart",
-            "description": "I find design inspiration in cultures, spaces, and everyday moments.",
-            "pre": "Currently in:",
-            "value": "Jakarta"
+            "label": "Inspiration Hunter",
+            "description": "Ideas happen wherever you are.",
+            "pre": "Remote Work from:",
+            "value": "Asia, Europe & Beyond"
           },
           {
             "id": "coffee",
@@ -92,6 +176,36 @@
             "label": "Music designer",
             "description": "I shape sound like I shape design — structured, intentional, and rhythmic.",
             "value": ""
+          }
+        ]
+      },
+      { "separator": true },
+      {
+        "title": "His principles",
+        "facts": [
+          {
+            "id": "principle-1",
+            "title": "Dive really deep",
+            "text": "Think as a user. Imagine you are them, what they are inspired from and what they are tired of.",
+            "tags": ["process"]
+          },
+          {
+            "id": "principle-2",
+            "title": "Principle 2",
+            "text": "Text example",
+            "tags": ["ui"]
+          },
+          {
+            "id": "principle-3",
+            "title": "Principle 3",
+            "text": "Text example",
+            "tags": ["ui", "ux"]
+          },
+          {
+            "id": "principle-4",
+            "title": "Principle 4",
+            "text": "Text example",
+            "tags": ["research", "ui"]
           }
         ]
       }

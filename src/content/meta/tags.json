@@ -1,0 +1,18 @@
+[
+  {
+    "id": "process",
+    "label": "Process"
+  },
+  {
+    "id": "research",
+    "label": "Research"
+  },
+  {
+    "id": "ui",
+    "label": "UI"
+  },
+  {
+    "id": "ux",
+    "label": "UX"
+  }
+]

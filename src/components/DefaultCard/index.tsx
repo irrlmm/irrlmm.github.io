@@ -1,6 +1,6 @@
-import type { CardType } from ".";
+import type { CardType } from "../CardStack";
 import Svg from "../Svg";
-import "./style.css";
+import "./styles.module.css";
 
 type Props = {
   card: CardType;
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const AchievementsCard = ({ card, isActive }: Props) => (
-  <div className="achievements-card col padding-32 gap-16">
+  <div className="card col padding-32 gap-16">
     {card.label && <h3>{card.label}</h3>}
 
     <div className="col gap-8 flex-1 justify-center">
