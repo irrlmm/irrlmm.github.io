@@ -10,7 +10,7 @@ html[data-font="mono"] {
 html[data-font="byte"] {
   font-family: "Tiny5", sans-serif;
   font-size: 18px;
-  line-height: 1.33;
+  line-height: 1.2;
   letter-spacing: 0.03em;
 }
 
@@ -18,7 +18,6 @@ html[data-font="sans"] {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-size: 16px;
-  font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.03em;
   font-feature-settings: "ss01", "case", "zero", "cv11";
@@ -30,12 +29,26 @@ h3 {
   text-transform: uppercase;
 }
 
+html[data-font="mono"] h1,
+html[data-font="mono"] h2,
+html[data-font="mono"] h3 {
+  line-height: 1.2;
+}
+
 html[data-font="sans"] h1,
 html[data-font="sans"] h2,
 html[data-font="sans"] h3 {
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0;
+  line-height: 1.15;
   text-transform: initial;
+}
+html[data-font="sans"] h1 {
+  font-size: 2.5rem;
+}
+html[data-font="sans"] h2,
+html[data-font="sans"] h3 {
+  font-weight: 500;
 }
 
 h1,
@@ -91,4 +104,8 @@ strong {
 
 .color-tertiary {
   color: var(--on-surface-var-2);
+}
+
+.color-accent {
+  color: var(--accent);
 }

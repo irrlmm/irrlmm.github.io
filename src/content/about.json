@@ -1,7 +1,7 @@
 [
   {
     "id": "about",
-    "title": "Igor's profile",
+    "title": "Igor's Profile",
     "lead": [
       "Igor Lemeshkin is a product designer focused on clarity, precision, and real impact."
     ],
@@ -26,15 +26,15 @@
         ],
         "checklist": [
           {
-            "title": "Design Systems",
+            "title": "Design systems",
             "description": "A foundation for consistent products"
           },
           {
-            "title": "Impactful Solutions",
+            "title": "Impactful solutions",
             "description": "Impact boosting engagement and growth"
           },
           {
-            "title": "Optimized Interactions",
+            "title": "Optimized interactions",
             "description": "Effortless user navigation"
           },
           {
@@ -42,7 +42,7 @@
             "description": "Sharp and clean user interfaces"
           },
           {
-            "title": "Seamless Handoffs",
+            "title": "Seamless handoffs",
             "description": "Zero friction from concept to code"
           },
           {

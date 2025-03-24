@@ -41,18 +41,28 @@ const AnimatedQuestion: React.FC<Props> = ({
   });
 
   const variants = {
+    initial: {
+      x: baseX * 20,
+      y: baseY * 2,
+      scale: 0.9,
+      filter: `blur(20px)`,
+      opacity: 0.8,
+    },
     idle: {
       x: baseX,
       y: baseY,
       scale: 0.98,
       filter: `blur(${2.5 * index}px)`,
       boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.1)",
+      opacity: 1,
     },
     active: {
       x: 0,
       y: 0,
+      scale: 1,
       filter: "blur(0.0px)",
       boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.3)",
+      opacity: 1,
     },
     swipeR: {
       x: 800,
@@ -64,11 +74,9 @@ const AnimatedQuestion: React.FC<Props> = ({
 
   const contentVariants = {
     hide: {
-      // filter: `blur(5px)`,
       opacity: 0,
     },
     show: {
-      // filter: "blur(0.0px)",
       opacity: 1,
     },
   };
@@ -109,6 +117,7 @@ const AnimatedQuestion: React.FC<Props> = ({
       className={styles.card}
       animate={controls}
       variants={variants}
+      initial={"initial"}
       style={{
         x,
         rotateZ,

@@ -8,11 +8,14 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul class="col gap-32">
+<ul>
   {posts.map((post) => <PostCard {...post} />)}
 </ul>
 
 <style>
   ul {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 </style>

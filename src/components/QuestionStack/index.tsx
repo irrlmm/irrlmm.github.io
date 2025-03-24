@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import StackProgressToolbar from "../StackProgressToolbar";
 import AnimatedQuestion from "./AnimatedQuestion";
 import styles from "../CardStack/styles.module.css";
+import { motion } from "framer-motion";
 
 export type AnswerOption = {
   label: string;
@@ -87,9 +88,30 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
         ))}
 
         {cardsShown.length === 0 && (
-          <div>
-            Right answers: {rightCount}. Wrong answers: {wrongCount}.
-          </div>
+          <motion.div
+            className="col gap-32 align-center padding-32"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="col gap-8 align-center">
+              <h3>Thank you for your time.</h3>
+              <p className="body-m color-secondary">
+                Thank you for participating in this quiz 🖤
+              </p>
+            </div>
+
+            <div className="col gap-8 align-center">
+              <span className="body-m color-secondary">
+                Right answers:{" "}
+                <span className="color-accent">{rightCount}</span>
+              </span>
+
+              <span className="body-m color-secondary">
+                Wrong answers:{" "}
+                <span className="color-accent">{wrongCount}</span>
+              </span>
+            </div>
+          </motion.div>
         )}
       </div>
     </div>
