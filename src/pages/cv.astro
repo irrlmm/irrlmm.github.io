@@ -35,11 +35,15 @@ const person = await getEntry("meta:person", cv.data.person.id);
       <h2>{person?.data.name}</h2>
       <Values values={cv.data.brief} />
     </section>
+  </div>
 
+  <div class="wide">
     <section>
       <JobCardsList jobs={jobs} />
     </section>
+  </div>
 
+  <div class="wrapper">
     <Separator isDashed />
 
     <section class="col gap-48">
@@ -85,6 +89,11 @@ const person = await getEntry("meta:person", cv.data.person.id);
       display: flex;
       flex-direction: column;
       gap: 64px;
+    }
+
+    .wide {
+      width: 100%;
+      max-width: calc(576px + 64px);
     }
 
     h2 {

@@ -67,7 +67,7 @@ const person = defineCollection({
     name: z.string(),
     jobTitle: z.string(),
     avatar: z.string(),
-    birthDate: z.optional(z.coerce.date()),
+    birthDate: z.coerce.date(),
   }),
 });
 

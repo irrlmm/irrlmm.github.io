@@ -14,12 +14,12 @@
   --gray-99: #fffbff;
   --gray-99-fx: #fffbffe6;
 
-  --ac-1: #271e12;
-  --ac-2: #352b1f;
-  --ac-3: #493e31;
-  --ac-4: #ddccba;
-  --ac-5: #f6e4d1;
-  --ac-6: #fff8f4;
+  --ac-1: #1e1b19;
+  --ac-2: #2b2826;
+  --ac-3: #474340;
+  --ac-4: #ccc6c2;
+  --ac-5: #f0e9e5;
+  --ac-6: #fffbff;
 }
 
 :root[data-accent="mono"] {
@@ -39,7 +39,7 @@
   --gray-99-fx: #ffffffe6;
 
   --ac-1: var(--gray-20);
-  --ac-2: var(--gray-40);
+  --ac-2: var(--gray-30);
   --ac-3: var(--gray-20);
   --ac-4: var(--gray-90);
   --ac-5: var(--gray-80);

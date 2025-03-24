@@ -21,6 +21,17 @@ const person = await getEntry("meta:person", "me");
 if (!about || !person) {
   throw Error("No data!");
 }
+
+const birthDate = new Date(person.data.birthDate);
+const now = new Date(Date.now());
+
+const age = now.getFullYear() - birthDate.getFullYear();
+const isBirthdayPassed =
+  now.getMonth() > birthDate.getMonth() ||
+  (now.getMonth() === birthDate.getMonth() &&
+    now.getDate() >= birthDate.getDate());
+
+const fullYears = isBirthdayPassed ? age : age - 1;
 ---
 
 <MainLayout hasHeader={true}>
@@ -41,7 +52,12 @@ if (!about || !person) {
 
     <CardSeparator />
 
-    <Values values={about.data.overview} />
+    <Values
+      values={[
+        { label: "Age", value: fullYears.toString() },
+        ...about.data.overview,
+      ]}
+    />
   </div>
 
   <div class="wrapper">
