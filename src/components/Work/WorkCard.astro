@@ -4,6 +4,7 @@ import moment from "moment";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 import CardSeparator from "../CardSeparator.astro";
+import AnimatedLead from "../AnimatedLead.astro";
 
 interface Props {
   data: CollectionEntry<"work">["data"];
@@ -27,14 +28,18 @@ if (c) {
 ---
 
 <div class="card col gap-32 padding-32">
-  <div class="col gap-16">
+  <div class="col gap-24">
     <p class="body-m color-secondary">
       {moment(date).format("DD MMM YYYY")}
     </p>
 
     <h1>{title}</h1>
 
-    <p class="body-m color-secondary">{subtitle}</p>
+    <AnimatedLead lines={[subtitle]} />
+
+    <div class="row gap-4">
+      <span class="tag">WIP Article</span>
+    </div>
   </div>
 
   <CardSeparator />

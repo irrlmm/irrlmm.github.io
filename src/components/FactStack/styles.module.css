@@ -1,10 +1,17 @@
-.text {
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.fact h3 {
+  text-transform: none;
   font-size: 24px;
 }
 
-.image {
-  width: 100px;
-  aspect-ratio: 2/1;
+.text {
+  font-size: 24px;
 }
 
 @media (max-width: 512px) {

@@ -18,15 +18,24 @@
 }
 
 .cardContentWrapper p {
+  font-size: 16px;
   text-align: center;
 }
 
 @media (max-width: 512px) {
+  .cardContentWrapper {
+    padding: 24px;
+  }
+
   .cardContentWrapper h3 {
-    font-size: 6vw;
+    font-size: 20px;
   }
 
   .cardContentWrapper button {
-    font-size: 4vw;
+    font-size: 16px;
+  }
+
+  .cardContentWrapper p {
+    font-size: 14px;
   }
 }

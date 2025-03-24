@@ -60,11 +60,13 @@
           id: learning-1,
           title: 'Curate. The. Feedback.',
           text: "When speed matters, function first. Refinement can come later.",
+          tags: ["process"],
         },
         {
           id: learning-2,
           title: 'Curate. The. Feedback.',
           text: "When speed matters, function first. Refinement can come later.",
+          tags: ["process"],
         }
       ]
     }
