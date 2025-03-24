@@ -107,16 +107,18 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
 
             <span className={innerStyles.score}>{completionPercent}%</span>
 
-            <span className={innerStyles.resultText}>
-              You earned ${rightCount} 💎
-            </span>
+            <div className="col gap-16">
+              <span className={innerStyles.resultText}>
+                You earned {rightCount} 💎
+              </span>
 
-            <span className={innerStyles.resultText}>
-              {wrongCount === 0
-                ? `You know Igor scary well... But hey, there are still hidden gems in the wrong answers. Restart if you're curious.`
-                : `Think you can uncover more? Restart and go again.`}
-              <br />
-            </span>
+              <span className={innerStyles.resultText}>
+                {wrongCount === 0
+                  ? `You know Igor scary well... But hey, there are still hidden gems in the wrong answers. Restart if you're curious.`
+                  : `Think you can uncover more? Restart and go again.`}
+                <br />
+              </span>
+            </div>
           </motion.div>
         )}
       </div>

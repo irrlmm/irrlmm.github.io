@@ -96,10 +96,10 @@ const StackProgressToolbar: React.FC<Props> = ({
           </span>
         </div>
 
-        {gems && (
+        {gems !== undefined && (
           <div className={styles.progress}>
             <span>💎</span>
-            <span>{gems}</span>
+            <span className="body-m color-secondary">{gems}</span>
           </div>
         )}
       </div>

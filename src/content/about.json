@@ -63,13 +63,13 @@
             "id": "fact-1",
             "title": "Invented a Design Pattern",
             "text": "At iMusician, Igor pioneered the “everything is a field” system — reducing clutter, scaling fast, and making users and devs actually happy.",
-            "tags": ["ui"]
+            "tags": ["ui", "ux"]
           },
           {
             "id": "fact-2",
             "title": "Designed for Scale, Not Screenshots",
             "text": "His design system works across 5 products with different tech stacks — and still feels like one",
-            "tags": ["process", "research"]
+            "tags": ["process", "ui"]
           },
           {
             "id": "fact-3",
