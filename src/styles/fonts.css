@@ -1,11 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
 
-html {
-  -webkit-font-smoothing: antialiased;
+html[data-font="mono"] {
+  font-family: "DM Mono", monospace;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-a {
-  text-decoration: none;
+html[data-font="byte"] {
+  font-family: "Tiny5", sans-serif;
+  font-size: 18px;
+  line-height: 1.33;
+  letter-spacing: 0.03em;
+}
+
+html[data-font="sans"] {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  font-feature-settings: "ss01", "tnum", "case", "zero", "cv11";
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+}
+
+html[data-font="sans"] h1,
+html[data-font="sans"] h2,
+html[data-font="sans"] h3 {
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: initial;
 }
 
 h1,
@@ -13,7 +43,6 @@ h2,
 h3,
 p,
 span {
-  font-family: "DM Mono";
   margin: 0;
   transition: color 0.2s var(--bezier);
 }
@@ -21,28 +50,19 @@ span {
 h1,
 h2,
 h3 {
-  line-height: 130%;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 2rem;
 }
 
 h2 {
-  font-size: 23px;
+  font-size: 1.5rem;
 }
 
 h3 {
-  font-size: 18px;
-}
-
-p,
-span {
-  font-weight: 400;
-  line-height: 150%;
+  font-size: 1.25rem;
 }
 
 strong {
@@ -50,25 +70,15 @@ strong {
 }
 
 .body-s {
-  font-size: 14px;
-  letter-spacing: 0em;
+  font-size: 0.85rem;
 }
 
 .body-m {
-  font-size: 16px;
-  letter-spacing: 0em;
+  font-size: 1rem;
 }
 
 .body-l {
-  font-size: 18px;
-  letter-spacing: -0.01em;
-}
-
-.display {
-  font-size: 30px;
-  line-height: 1.33;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  font-size: 1.15rem;
 }
 
 .color-primary {
@@ -82,24 +92,3 @@ strong {
 .color-tertiary {
   color: var(--on-surface-var-2);
 }
-
-/* @media (max-width: 512px) {
-  h1 {
-    font-size: 26px;
-  }
-  h2 {
-    font-size: 21px;
-  }
-  h3 {
-    font-size: 16px;
-  }
-  .body-l {
-    font-size: 16px;
-  }
-  .body-m {
-    font-size: 14px;
-  }
-  .body-s {
-    font-size: 12px;
-  }
-} */

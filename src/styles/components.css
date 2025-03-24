@@ -14,7 +14,6 @@ button {
   justify-content: center;
   height: 48px;
   border-radius: 24px;
-  font-family: "DM Mono", monospace;
   font-weight: 500;
   border: solid 1px var(--outline);
   background-color: transparent;
@@ -35,4 +34,8 @@ button:disabled {
   color: var(--on-surface-var-2);
   pointer-events: none;
   cursor: initial;
+}
+
+a {
+  text-decoration: none;
 }

@@ -45,7 +45,7 @@ const AnimatedQuestion: React.FC<Props> = ({
       x: baseX,
       y: baseY,
       scale: 0.98,
-      filter: `blur(${2 * index}px)`,
+      filter: `blur(${2.5 * index}px)`,
       boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.1)",
     },
     active: {

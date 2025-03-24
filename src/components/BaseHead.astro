@@ -21,9 +21,13 @@ const isProd = import.meta.env.PROD;
 <!-- Global Metadata -->
 <>{isProd && <PostHog />}</>
 <meta charset="utf-8" />
+
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
 <link rel="sitemap" href="/sitemap-index.xml" />
+
 <link
   rel="alternate"
   type="application/rss+xml"
@@ -49,3 +53,7 @@ const isProd = import.meta.env.PROD;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Inter -->
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />

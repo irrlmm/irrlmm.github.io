@@ -5,6 +5,7 @@ import {
   MENU_CV,
   MENU_WORK,
 } from "../consts/ui/menu";
+import FontSwitch from "./FontSwitch.astro";
 import HeaderLink from "./HeaderLink.astro";
 import ThemeSwitch from "./ThemeSwitch.astro";
 
@@ -33,14 +34,14 @@ const menu = [MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
   </nav>
 
   <div class="tools">
+    <FontSwitch />
+
     <ThemeSwitch />
   </div>
 </header>
 
 <style>
   header {
-    /* position: sticky;
-    top: 0; */
     padding: 24px 32px;
     z-index: 100;
     display: flex;
@@ -66,6 +67,8 @@ const menu = [MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
 
   .tools {
     right: 32px;
+    display: flex;
+    gap: 8px;
   }
 
   ul {
