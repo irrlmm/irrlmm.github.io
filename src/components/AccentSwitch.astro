@@ -1,0 +1,57 @@
+---
+
+---
+
+<button id="accent-toggle"><div></div></button>
+
+<style>
+  button {
+    width: 40px;
+    height: 40px;
+  }
+
+  button div {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    // Apply the accent by setting a data attribute on <html>
+    function applyAccent(accent) {
+      document.querySelector(":root").setAttribute("data-accent", accent);
+      console.log(`Accent set to: ${accent}`);
+    }
+
+    // Update font based on stored preference
+    function updateAccent() {
+      const accent = localStorage.getItem("accent") || "sepia";
+      applyAccent(accent);
+    }
+
+    // Initial theme setup
+    updateAccent();
+
+    // Font toggle listener cycles through: mono -> byte -> sans
+    const toggleButton = document.getElementById("accent-toggle");
+    if (toggleButton) {
+      toggleButton.addEventListener("click", function () {
+        const current = localStorage.getItem("accent") || "auto";
+        let next;
+        // Cycle order: auto => dark => light => auto
+        if (current === "sepia") {
+          next = "gold";
+        } else if (current === "gold") {
+          next = "mono";
+        } else {
+          next = "sepia";
+        }
+        localStorage.setItem("accent", next);
+        updateAccent();
+      });
+    }
+  })();
+</script>

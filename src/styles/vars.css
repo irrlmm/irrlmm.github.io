@@ -17,9 +17,6 @@
   --gray-99: #fffbfa;
   --gray-99-fx: #fffbfa88;
 
-  --sepia-20: #e09300;
-  --sepia-90: #ffb41f;
-
   /* Surface tokens */
   --background: light-dark(var(--gray-90), var(--gray-10));
   --background-fx: light-dark(var(--gray-90-fx), var(--gray-10-fx));
@@ -36,12 +33,24 @@
   --inverse-on-surface: light-dark(var(--gray-99), var(--gray-10));
   --inverse-on-surface-var: light-dark(var(--gray-80), var(--gray-30));
 
-  /* Accent tokens */
-  --accent: light-dark(#51480d, #fef0a4);
-  --on-accent: light-dark(var(--sepia-90), var(--sepia-20));
-
-  --accent-semi: light-dark(#51480d10, #fef0a410);
-
   /* Bezier curve */
   --bezier: cubic-bezier(0.25, 0.75, 0.5, 1);
+}
+
+:root[data-accent="sepia"] {
+  /* Accent tokens */
+  --accent: light-dark(#51480d, #fef0a4);
+  --accent-semi: light-dark(#51480d10, #fef0a410);
+}
+
+:root[data-accent="gold"] {
+  /* Accent tokens */
+  --accent: light-dark(, #ffd700);
+  --accent-semi: light-dark(#ffd70010, #ffd70010);
+}
+
+:root[data-accent="mono"] {
+  /* Accent tokens */
+  --accent: light-dark(rgba(0, 0, 0, 1), rgba(255, 255, 255, 1));
+  --accent-semi: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
 }
