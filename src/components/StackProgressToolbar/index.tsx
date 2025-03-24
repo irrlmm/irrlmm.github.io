@@ -96,10 +96,12 @@ const StackProgressToolbar: React.FC<Props> = ({
           </span>
         </div>
 
-        <div className={styles.progress}>
-          <span>💎</span>
-          <span>{gems}</span>
-        </div>
+        {gems && (
+          <div className={styles.progress}>
+            <span>💎</span>
+            <span>{gems}</span>
+          </div>
+        )}
       </div>
 
       <RefreshButton onClick={onClickRefresh} isEnabled={enableRefresh} />
