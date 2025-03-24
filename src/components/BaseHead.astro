@@ -30,7 +30,10 @@ const isProd = import.meta.env.PROD;
   title={SITE_TITLE}
   href={new URL("rss.xml", Astro.site)}
 />
+
 <meta name="generator" content={Astro.generator} />
+
+<meta name="theme-color" content="#1c1c1b" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

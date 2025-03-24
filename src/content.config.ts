@@ -121,9 +121,10 @@ const work = defineCollection({
 //
 
 const about = defineCollection({
-  loader: file("./src/content/page/about.json"),
+  loader: file("./src/content/about.json"),
   schema: z.object({
     title: z.string(),
+    tag: z.optional(reference("meta:tag")),
     lead: z.array(z.string()),
     overview: z.array(valueSchema),
     sections: z.array(
@@ -142,7 +143,7 @@ const about = defineCollection({
 });
 
 const cv = defineCollection({
-  loader: file("./src/content/page/cv.json"),
+  loader: file("./src/content/cv.json"),
   schema: z.object({
     person: reference("meta:person"),
     brief: z.array(valueSchema),

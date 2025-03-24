@@ -30,6 +30,7 @@
   height: 48px;
   border-radius: 24px;
   background-color: var(--accent-semi);
+  border: solid 1px var(--accent);
 }
 
 .progress {

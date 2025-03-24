@@ -11,13 +11,31 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
 ---
 
-<a href={href} class:list={["row align-center", { active: isActive }]}>
+<a href={href} class:list={[{ active: isActive }]}>
   <span class="color-tertiary body-s">{label}</span>
 </a>
 
 <style>
   a {
-    height: 64px;
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    height: 40px;
+  }
+  a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--on-surface);
+    transform: scaleX(0);
+    transition: all 0.3s var(--bezier);
+    transform-origin: left center;
+  }
+  a:hover::after,
+  a.active::after {
+    transform: scaleX(1);
   }
 
   span {

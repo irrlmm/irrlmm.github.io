@@ -64,11 +64,11 @@ const AnimatedQuestion: React.FC<Props> = ({
 
   const contentVariants = {
     hide: {
-      filter: `blur(5px)`,
+      // filter: `blur(5px)`,
       opacity: 0,
     },
     show: {
-      filter: "blur(0.0px)",
+      // filter: "blur(0.0px)",
       opacity: 1,
     },
   };
@@ -95,7 +95,7 @@ const AnimatedQuestion: React.FC<Props> = ({
   const handleClickAnswer = (o: AnswerOption) => {
     controls.start(
       { rotateY: "180deg" },
-      { type: "spring", delay: 0.2, bounce: 0.3, duration: 1 }
+      { type: "spring", delay: 0.1, bounce: 0.3, duration: 1 }
     );
     setAnswer(o);
   };
@@ -113,7 +113,9 @@ const AnimatedQuestion: React.FC<Props> = ({
         x,
         rotateZ,
       }}
-      whileTap={{ scale: 0.99, transition: { duration: 0.15 } }}
+      whileTap={
+        isActive ? { scale: 0.99, transition: { duration: 0.15 } } : undefined
+      }
       transition={{
         type: "spring",
         delay: 0.01,
@@ -134,8 +136,10 @@ const AnimatedQuestion: React.FC<Props> = ({
         <div className="col gap-8">
           {question.options.map((o) => (
             <button
-              key={o.label}
               className={innerStyles.button}
+              key={o.label}
+              data-primary={isActive}
+              disabled={!isActive}
               onClick={() => handleClickAnswer(o)}
             >
               {o.label}
@@ -161,12 +165,13 @@ const AnimatedQuestion: React.FC<Props> = ({
           <Svg
             d={answer?.response.type === "positive" ? SVG_CHECK : SVG_DEFAULT}
             size={48}
+            strokeWidth={3}
             stroke="var(--accent)"
           />
 
           <h3>{answer?.response.title}</h3>
 
-          <p className="body-s">{answer?.response.text}</p>
+          <p className="body-s color-secondary">{answer?.response.text}</p>
         </div>
 
         <button className={innerStyles.button} onClick={handleClickContinue}>

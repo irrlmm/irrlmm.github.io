@@ -1,11 +1,9 @@
 [
   {
     "id": "about",
-    "title": "Who is Igor Lemeshkin?",
+    "title": "Igor's profile",
     "lead": [
-      "Igor Lemeshkin is a product designer focused on clarity, precision, and real impact.",
-      "He creates sharp interfaces, streamlined systems, and intuitive interactions — always grounded in real workflows, not trends.",
-      "He breaks down complexity, aligns tightly with development, and builds scalable solutions that last."
+      "Igor Lemeshkin is a product designer focused on clarity, precision, and real impact."
     ],
     "overview": [
       { "label": "Age", "value": "27" },
@@ -21,7 +19,11 @@
     "sections": [
       { "separator": true },
       {
-        "title": "What Igor does",
+        "title": "What he does",
+        "lines": [
+          "He creates sharp interfaces, streamlined systems, and intuitive interactions — always grounded in real workflows, not trends.",
+          "He breaks down complexity, aligns tightly with development, and builds scalable solutions that last."
+        ],
         "checklist": [
           {
             "title": "Design Systems",
@@ -56,6 +58,32 @@
           "Let's not pretend Igor stops at design — he also codes. For example, he built this very website, including these neatly crafted cards.",
           "However, in the grand scheme of things, labels don't matter. Automation is creeping into every field, and the real game is staying relevant.",
           "Igor calls himself a designer because his edge comes from sharp, distinctly human decisions, rooted in rich multidisciplinary experience. That genuine product vision will always be hard to replicate."
+        ],
+        "facts": [
+          {
+            "id": "principle-1",
+            "title": "Dive really deep",
+            "text": "Think as a user. Imagine you are them, what they are inspired from and what they are tired of.",
+            "tags": ["process"]
+          },
+          {
+            "id": "principle-2",
+            "title": "Principle 2",
+            "text": "Text example",
+            "tags": ["ui"]
+          },
+          {
+            "id": "principle-3",
+            "title": "Principle 3",
+            "text": "Text example",
+            "tags": ["ui", "ux"]
+          },
+          {
+            "id": "principle-4",
+            "title": "Principle 4",
+            "text": "Text example",
+            "tags": ["research", "ui"]
+          }
         ]
       },
       { "separator": true },
@@ -63,9 +91,7 @@
         "title": "Not Your Average Origin Story",
         "lines": [
           "Igor didn't follow a straight path. Explore the moments that defined his journey — one guess at a time."
-        ]
-      },
-      {
+        ],
         "questions": [
           {
             "id": "potty",
@@ -81,11 +107,11 @@
                 }
               },
               {
-                "label": "Cousin's old phone",
+                "label": "Dad's cellphone",
                 "response": {
                   "type": "negative",
-                  "title": "Good try, but no.",
-                  "text": "Besides, what does "
+                  "title": "Nope",
+                  "text": "It was later, and by accident."
                 }
               }
             ]
@@ -122,7 +148,7 @@
                 "label": "Yes",
                 "response": {
                   "type": "positive",
-                  "title": "Correct!",
+                  "title": "Fact.",
                   "text": "He's joined hackathons since year one of college, sharpening his rapid prototyping skills early on."
                 }
               },
@@ -144,16 +170,16 @@
               {
                 "label": "UI Designer",
                 "response": {
-                  "type": "positive",
-                  "title": "Correct",
-                  "text": ""
+                  "type": "negative",
+                  "title": "He mostly coded.",
+                  "text": "However, he had to open Sketch sometimes to design things that weren't well thought out. Startup vibes!"
                 }
               },
               {
                 "label": "Mobile developer",
                 "response": {
                   "type": "positive",
-                  "title": "Correct",
+                  "title": "He did both.",
                   "text": ""
                 }
               }
@@ -165,10 +191,9 @@
       {
         "title": "Side Quest Certified",
         "lines": [
-          "Igor is always chasing new hobbies. But no matter where he wanders, he always circles back to his first love: design. And yes, every side quest adds a little something extra to the way he does it."
-        ]
-      },
-      {
+          "Igor is always chasing new hobbies. But no matter where he wanders, he always circles back to his first love: design.",
+          "And yes, every side quest adds a little something extra to the way he does it."
+        ],
         "cards": [
           {
             "id": "loyal",
@@ -199,36 +224,6 @@
             "label": "Music designer",
             "description": "I shape sound like I shape design — structured, intentional, and rhythmic.",
             "value": ""
-          }
-        ]
-      },
-      { "separator": true },
-      {
-        "title": "His principles",
-        "facts": [
-          {
-            "id": "principle-1",
-            "title": "Dive really deep",
-            "text": "Think as a user. Imagine you are them, what they are inspired from and what they are tired of.",
-            "tags": ["process"]
-          },
-          {
-            "id": "principle-2",
-            "title": "Principle 2",
-            "text": "Text example",
-            "tags": ["ui"]
-          },
-          {
-            "id": "principle-3",
-            "title": "Principle 3",
-            "text": "Text example",
-            "tags": ["ui", "ux"]
-          },
-          {
-            "id": "principle-4",
-            "title": "Principle 4",
-            "text": "Text example",
-            "tags": ["research", "ui"]
           }
         ]
       }

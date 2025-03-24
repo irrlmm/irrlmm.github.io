@@ -14,5 +14,13 @@
   {
     "id": "ux",
     "label": "UX"
+  },
+  {
+    "id": "quest",
+    "label": "Take a quest"
+  },
+  {
+    "id": "cards",
+    "label": "Explore facts"
   }
 ]

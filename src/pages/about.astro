@@ -45,16 +45,18 @@ if (!about) {
 
   <div class="wrapper">
     {
-      about.data.sections.map((s) => {
+      about.data.sections.map(async (s) => {
         if (s.separator) {
           return <Separator isDashed />;
         }
 
         return (
-          <section class="col gap-32">
-            {s.title && <h2>{s.title}</h2>}
+          <section class="col gap-48">
+            <div class="col gap-32">
+              {s.title && <h2>{s.title}</h2>}
 
-            {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
+              {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
+            </div>
 
             {s.values && <Values values={s.values} />}
 
@@ -62,12 +64,26 @@ if (!about) {
               <AnimatedChecklist client:idle list={s.checklist} />
             )}
 
-            {s.cards && <AchievementStack client:idle cards={s.cards} />}
+            {s.cards && (
+              <div class="col gap-16">
+                {/* <span class="body-l color-tertiary">
+                  {(await getEntry("meta:tag", "cards"))?.data.label}
+                </span> */}
+
+                <AchievementStack client:idle cards={s.cards} />
+              </div>
+            )}
 
             {s.facts && <FactStackAstro facts={s.facts} />}
 
             {s.questions && (
-              <QuestionStack client:load questions={s.questions} />
+              <div class="col gap-16">
+                {/* <span class="body-m color-tertiary">
+                  {(await getEntry("meta:tag", "quest"))?.data.label}
+                </span> */}
+
+                <QuestionStack client:load questions={s.questions} />
+              </div>
             )}
           </section>
         );
@@ -88,7 +104,7 @@ if (!about) {
   .main-card {
     position: relative;
     width: 100%;
-    max-width: 640px;
+    max-width: calc(576px + 64px);
     background-color: var(--surface-hi);
     border-radius: 32px;
     animation: appear-with-scale 0.66s var(--bezier) 0.2s both;
