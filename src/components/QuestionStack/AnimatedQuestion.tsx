@@ -138,7 +138,7 @@ const AnimatedQuestion: React.FC<Props> = ({
               className={innerStyles.button}
               onClick={() => handleClickAnswer(o)}
             >
-              <span className="body-m">{o.label}</span>
+              {o.label}
             </button>
           ))}
         </div>
@@ -170,7 +170,7 @@ const AnimatedQuestion: React.FC<Props> = ({
         </div>
 
         <button className={innerStyles.button} onClick={handleClickContinue}>
-          <span className="body-m">Continue</span>
+          Continue
         </button>
       </motion.div>
     </motion.div>

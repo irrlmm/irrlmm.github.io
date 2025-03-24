@@ -6,3 +6,8 @@
   border-radius: 16px;
   background-color: var(--accent-semi);
 }
+
+button {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+}
