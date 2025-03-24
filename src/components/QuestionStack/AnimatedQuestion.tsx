@@ -113,9 +113,6 @@ const AnimatedQuestion: React.FC<Props> = ({
         x,
         rotateZ,
       }}
-      whileTap={
-        isActive ? { scale: 0.99, transition: { duration: 0.15 } } : undefined
-      }
       transition={{
         type: "spring",
         delay: 0.01,
@@ -135,15 +132,17 @@ const AnimatedQuestion: React.FC<Props> = ({
 
         <div className="col gap-8">
           {question.options.map((o) => (
-            <button
-              className={innerStyles.button}
+            <motion.button
               key={o.label}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", duration: 0.2, bounce: 0.1 }}
+              className={innerStyles.button}
               data-primary={isActive}
               disabled={!isActive}
               onClick={() => handleClickAnswer(o)}
             >
               {o.label}
-            </button>
+            </motion.button>
           ))}
         </div>
       </motion.div>

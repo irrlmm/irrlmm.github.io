@@ -18,6 +18,7 @@ button {
   font-weight: 500;
   border: solid 1px var(--outline);
   background-color: transparent;
+  color: var(--on-surface);
   transition: all 0.2s var(--bezier);
   cursor: pointer;
 }
