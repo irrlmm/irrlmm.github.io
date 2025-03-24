@@ -21,7 +21,7 @@ html[data-font="sans"] {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.03em;
-  font-feature-settings: "ss01", "tnum", "case", "zero", "cv11";
+  font-feature-settings: "ss01", "case", "zero", "cv11";
 }
 
 h1,

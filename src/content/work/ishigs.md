@@ -28,6 +28,35 @@
         "The timeline was exceptionally tight: one month total, with just one week dedicated to iterative design."
       ],
     },
+    { separator: true },
+    {
+      image: "/src/assets/ishigs/grid-test.svg",
+    },
+    {
+      image: "/src/assets/ishigs/grid-test.svg",
+    },
+    {
+      image: "/src/assets/ishigs/grid-test.svg",
+    },
+    { separator: true },
+    {
+      title: Learnings,
+      facts: [
+        {
+          id: learning-1,
+          title: 'Curate. The. Feedback.',
+          text: "When speed matters, function first. Refinement can come later.",
+          tags: ["process"],
+        },
+        {
+          id: learning-2,
+          title: 'Curate. The. Feedback.',
+          text: "When speed matters, function first. Refinement can come later.",
+          tags: ["process"],
+        }
+      ]
+    },
+    { separator: true },
     {
       title: Team,
       values: [
@@ -51,24 +80,7 @@
           label: "Backend",
           value: "Gökhan"
         },
-      ]
-    },
-    {
-      title: Learnings,
-      facts: [
-        {
-          id: learning-1,
-          title: 'Curate. The. Feedback.',
-          text: "When speed matters, function first. Refinement can come later.",
-          tags: ["process"],
-        },
-        {
-          id: learning-2,
-          title: 'Curate. The. Feedback.',
-          text: "When speed matters, function first. Refinement can come later.",
-          tags: ["process"],
-        }
-      ]
+      ],
     }
   ]
 ---

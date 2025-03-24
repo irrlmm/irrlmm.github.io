@@ -1,5 +1,5 @@
 ---
-import ThemeSwitch from "./ThemeSwitch.astro";
+const year = new Date(Date.now()).getFullYear();
 ---
 
 <footer class="row align-center justify-between">
@@ -17,7 +17,7 @@ import ThemeSwitch from "./ThemeSwitch.astro";
     </svg>
   </a>
 
-  <span class="body-s color-secondary">Igor Lemeshkin © 2025</span>
+  <span class="body-s color-secondary">Igor Lemeshkin © {year}</span>
 </footer>
 
 <style>
@@ -31,7 +31,7 @@ import ThemeSwitch from "./ThemeSwitch.astro";
   }
 
   a > svg {
-    width: 48px;
-    height: 24px;
+    width: 44px;
+    height: 22px;
   }
 </style>

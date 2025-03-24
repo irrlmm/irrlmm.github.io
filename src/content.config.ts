@@ -107,10 +107,13 @@ const work = defineCollection({
     overview: z.array(valueSchema),
     sections: z.array(
       z.object({
-        title: z.string(),
+        title: z.optional(z.string()),
         lines: z.optional(z.array(z.string())),
         values: z.optional(z.array(valueSchema)),
+        checklist: z.optional(z.array(checklistSchema)),
         facts: z.optional(z.array(factSchema)),
+        image: z.optional(z.string()),
+        separator: z.optional(z.boolean()),
       })
     ),
   }),

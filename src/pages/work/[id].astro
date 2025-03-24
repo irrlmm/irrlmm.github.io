@@ -21,32 +21,47 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"work">;
 
 const post = Astro.props;
-
-const coverImage = getImage(post.data.coverImage);
 ---
 
 <MainLayout hasHeader>
   <Image
-    class="hero-image"
+    class="image"
     widths={[1024, 1536, 2048]}
     width="768"
     layout="responsive"
     loading="eager"
     fit="contain"
-    src={coverImage()}
+    src={getImage(post.data.coverImage)()}
     alt={post.data.title}
   />
 
   <WorkCard data={post.data} />
 
-  <div class="wrapper">
-    {
-      post.data.sections.map((s, i) => (
-        <>
-          <Separator isDashed />
+  {
+    post.data.sections.map((s, i) => {
+      if (s.separator) {
+        return <Separator isDashed />;
+      }
 
+      if (s.image) {
+        return (
+          <Image
+            class="image"
+            widths={[1024, 1536, 2048]}
+            width="768"
+            layout="responsive"
+            loading="eager"
+            fit="contain"
+            src={getImage(s.image)()}
+            alt={post.data.title}
+          />
+        );
+      }
+
+      return (
+        <div class="wrapper">
           <section class="col gap-40">
-            <h2>{s.title}</h2>
+            {s.title && <h2>{s.title}</h2>}
 
             {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
 
@@ -54,10 +69,10 @@ const coverImage = getImage(post.data.coverImage);
 
             {s.facts && <FactStackAstro facts={s.facts} />}
           </section>
-        </>
-      ))
-    }
-  </div>
+        </div>
+      );
+    })
+  }
 
   <div class="wrapper">
     <Separator />
@@ -67,7 +82,7 @@ const coverImage = getImage(post.data.coverImage);
 </MainLayout>
 
 <style>
-  .hero-image {
+  .image {
     animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
   }
 
