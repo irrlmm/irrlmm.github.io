@@ -1,9 +1,8 @@
 .card {
   position: absolute;
-  width: calc(100% - 64px);
-  height: calc(100% - 64px);
-  max-width: 360px;
-  max-height: 480px;
+  width: calc(100% - 80px);
+  height: calc(100% - 80px);
+  max-height: 512px;
   display: flex;
   padding: 32px;
   border-radius: 24px;
@@ -38,23 +37,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1/1;
-  perspective: 1000px;
+  aspect-ratio: 6/7;
+  perspective: 1200px;
 }
 
 .containerLandscape {
-  aspect-ratio: 16/10;
+  aspect-ratio: 4/3;
 }
 
-.containerLandscape > .card {
-  max-width: 448px;
-  max-height: initial;
+.container:not(.containerLandscape) > .card {
+  max-width: 360px;
 }
 
 @media (max-width: 512px) {
   .card {
-    width: calc(100% - 48px);
-    height: calc(100% - 48px);
     border-radius: 16px;
     padding: 24px;
   }

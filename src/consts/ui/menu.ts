@@ -18,7 +18,7 @@ export const MENU_HOME: MenuItem = {
 
 export const MENU_ABOUT: MenuItem = {
   href: "/about",
-  title: "About me",
+  title: "About",
   label: "About",
   icon: SVG_ARROW,
   description: "What drives my work.",
@@ -26,7 +26,7 @@ export const MENU_ABOUT: MenuItem = {
 
 export const MENU_WORK: MenuItem = {
   href: "/work",
-  title: "My work",
+  title: "Work",
   label: "Work",
   icon: SVG_ARROW,
   description: "Latest case studies.",

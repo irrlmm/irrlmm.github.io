@@ -3,6 +3,7 @@
     "id": "me",
     "name": "Igor Lemeshkin",
     "jobTitle": "Product designer",
-    "avatar": "/src/assets/persons/irrlmm.png"
+    "avatar": "/src/assets/persons/irrlmm.png",
+    "birthDate": "12 May 1997"
   }
 ]

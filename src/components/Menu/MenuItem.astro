@@ -71,7 +71,7 @@ const { href, title, description, icon, isList, isSpecial } = Astro.props;
   }
 
   a.special {
-    background-color: var(--inverse-surface);
+    background-color: var(--accent);
   }
   a.special h3 {
     color: var(--inverse-on-surface);
@@ -99,6 +99,10 @@ const { href, title, description, icon, isList, isSpecial } = Astro.props;
     background-color: var(--inverse-on-surface);
   }
 
+  a.special .icon-wrapper {
+    background-color: var(--accent-container);
+  }
+
   .icon-wrapper {
     width: 64px;
     height: 64px;
@@ -111,6 +115,10 @@ const { href, title, description, icon, isList, isSpecial } = Astro.props;
     background-color: var(--background);
     transition: background-color 0.2s var(--bezier);
   }
+  .icon-wrapper svg {
+    color: var(--on-accent);
+  }
+
   a.list .icon-wrapper {
     order: 1;
     width: 64px;

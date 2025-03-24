@@ -28,9 +28,9 @@ const FactItem: React.FC<Props> = ({
         </div>
       )}
 
-      <h3 className={styles.text}>{title}</h3>
+      <span className={styles.title}>{title}</span>
 
-      <p className="body-s color-secondary">{text}</p>
+      <p className={styles.text}>{text}</p>
     </div>
   );
 };

@@ -16,7 +16,9 @@ import QuestionStack from "../components/QuestionStack";
 
 const about = await getEntry("page:about", "about");
 
-if (!about) {
+const person = await getEntry("meta:person", "me");
+
+if (!about || !person) {
   throw Error("No data!");
 }
 ---
@@ -24,13 +26,12 @@ if (!about) {
 <MainLayout hasHeader={true}>
   <Image
     class="hero-image"
-    widths={[1024, 1536, 2048]}
-    width="768"
+    widths={[768, 1536]}
     layout="responsive"
+    width={768}
     loading="eager"
-    fit="contain"
     alt="Cover image"
-    src={getImage("/src/assets/ishigs/grid-test.svg")()}
+    src={getImage(person.data.avatar)()}
   />
 
   <div class="main-card col gap-32 padding-32">
@@ -44,6 +45,8 @@ if (!about) {
   </div>
 
   <div class="wrapper">
+    <Separator isDashed />
+
     {
       about.data.sections.map(async (s) => {
         if (s.separator) {
@@ -51,40 +54,34 @@ if (!about) {
         }
 
         return (
-          <section class="col gap-48">
-            <div class="col gap-32">
+          <section>
+            <div class="text-column">
+              {s.questions && (
+                <span class="tag body-l">
+                  {(await getEntry("meta:tag", "quest"))?.data.label}
+                </span>
+              )}
+
               {s.title && <h2>{s.title}</h2>}
 
               {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
             </div>
 
-            {s.values && <Values values={s.values} />}
+            <div class="content-column">
+              {s.values && <Values values={s.values} />}
 
-            {s.checklist && (
-              <AnimatedChecklist client:idle list={s.checklist} />
-            )}
+              {s.checklist && (
+                <AnimatedChecklist client:idle list={s.checklist} />
+              )}
 
-            {s.cards && (
-              <div class="col gap-16">
-                {/* <span class="body-l color-tertiary">
-                  {(await getEntry("meta:tag", "cards"))?.data.label}
-                </span> */}
+              {s.cards && <AchievementStack client:idle cards={s.cards} />}
 
-                <AchievementStack client:idle cards={s.cards} />
-              </div>
-            )}
+              {s.facts && <FactStackAstro facts={s.facts} />}
 
-            {s.facts && <FactStackAstro facts={s.facts} />}
-
-            {s.questions && (
-              <div class="col gap-16">
-                {/* <span class="body-m color-tertiary">
-                  {(await getEntry("meta:tag", "quest"))?.data.label}
-                </span> */}
-
+              {s.questions && (
                 <QuestionStack client:load questions={s.questions} />
-              </div>
-            )}
+              )}
+            </div>
           </section>
         );
       })
@@ -98,6 +95,9 @@ if (!about) {
 
 <style>
   .hero-image {
+    border-radius: 32px;
+    object-position: top center;
+    aspect-ratio: 21/9;
     animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
   }
 
@@ -115,17 +115,31 @@ if (!about) {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 576px;
-    gap: 64px;
+    max-width: 1136px;
+    gap: 80px;
   }
 
-  video {
-    width: 100%;
-    max-width: 768px;
-    aspect-ratio: 21/9;
-    background-color: var(--surface-lo);
-    border-radius: 48px;
-    animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
+  section {
+    display: flex;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .text-column {
+    flex: 0.75;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  section:nth-of-type(even) .text-column {
+    order: 1;
+  }
+
+  .content-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
 
   h2 {
@@ -142,5 +156,28 @@ if (!about) {
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 25%;
+  }
+
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .wrapper {
+      max-width: 576px;
+      gap: 64px;
+    }
+
+    section {
+      flex-direction: column;
+      gap: 48px;
+      align-items: initial;
+    }
+
+    section:nth-of-type(even) .text-column {
+      order: initial;
+    }
   }
 </style>

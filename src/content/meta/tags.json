@@ -17,10 +17,10 @@
   },
   {
     "id": "quest",
-    "label": "Take a quest"
+    "label": "Quest"
   },
   {
     "id": "cards",
-    "label": "Explore facts"
+    "label": "Facts"
   }
 ]

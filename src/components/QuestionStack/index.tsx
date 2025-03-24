@@ -3,6 +3,7 @@ import StackProgressToolbar from "../StackProgressToolbar";
 import AnimatedQuestion from "./AnimatedQuestion";
 import styles from "../CardStack/styles.module.css";
 import { motion } from "framer-motion";
+import innerStyles from "./styles.module.css";
 
 export type AnswerOption = {
   label: string;
@@ -61,6 +62,12 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
     nextQuestion();
   };
 
+  const allPositiveCount = questions.filter((q) =>
+    q.options.some((o) => o.response.type === "positive")
+  ).length;
+
+  const completionPercent = Math.round((rightCount / allPositiveCount) * 100);
+
   return (
     <div className={styles.wrapper}>
       <StackProgressToolbar
@@ -69,6 +76,7 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
         hasViewedAll={hasViewedAll}
         onClickRefresh={handleClickRefresh}
         enableRefresh={cardsShown.length === 0}
+        gems={rightCount}
       />
 
       <div
@@ -89,28 +97,26 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
 
         {cardsShown.length === 0 && (
           <motion.div
-            className="col gap-32 align-center padding-32"
+            className={innerStyles.resultWrapper}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className="col gap-8 align-center">
-              <h3>Thank you for your time.</h3>
-              <p className="body-m color-secondary">
-                Thank you for participating in this quiz 🖤
-              </p>
-            </div>
+            <h3>
+              {wrongCount === 0 ? "You nailed it!" : "All done! You scored:"}
+            </h3>
 
-            <div className="col gap-8 align-center">
-              <span className="body-m color-secondary">
-                Right answers:{" "}
-                <span className="color-accent">{rightCount}</span>
-              </span>
+            <span className={innerStyles.score}>{completionPercent}%</span>
 
-              <span className="body-m color-secondary">
-                Wrong answers:{" "}
-                <span className="color-accent">{wrongCount}</span>
-              </span>
-            </div>
+            <span className={innerStyles.resultText}>
+              You earned ${rightCount} 💎
+            </span>
+
+            <span className={innerStyles.resultText}>
+              {wrongCount === 0
+                ? `You know Igor scary well... But hey, there are still hidden gems in the wrong answers. Restart if you're curious.`
+                : `Think you can uncover more? Restart and go again.`}
+              <br />
+            </span>
           </motion.div>
         )}
       </div>

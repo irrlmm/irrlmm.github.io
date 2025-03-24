@@ -182,7 +182,11 @@ const AnimatedQuestion: React.FC<Props> = ({
           <p className="body-s color-secondary">{answer?.response.text}</p>
         </div>
 
-        <button className={innerStyles.button} onClick={handleClickContinue}>
+        <button
+          className={innerStyles.button}
+          onClick={handleClickContinue}
+          data-primary
+        >
           Continue
         </button>
       </motion.div>

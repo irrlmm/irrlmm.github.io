@@ -28,7 +28,7 @@
 
     // Update font based on stored preference
     function updateAccent() {
-      const accent = localStorage.getItem("accent") || "sepia";
+      const accent = localStorage.getItem("accent") || "mono";
       applyAccent(accent);
     }
 
@@ -39,15 +39,12 @@
     const toggleButton = document.getElementById("accent-toggle");
     if (toggleButton) {
       toggleButton.addEventListener("click", function () {
-        const current = localStorage.getItem("accent") || "auto";
+        const current = localStorage.getItem("accent") || "mono";
         let next;
-        // Cycle order: auto => dark => light => auto
-        if (current === "sepia") {
-          next = "gold";
-        } else if (current === "gold") {
+        if (current === "paper") {
           next = "mono";
-        } else {
-          next = "sepia";
+        } else if (current === "mono") {
+          next = "paper";
         }
         localStorage.setItem("accent", next);
         updateAccent();

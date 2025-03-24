@@ -4,6 +4,9 @@
 }
 
 .progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
   height: 40px;
   background-color: var(--background);
   padding: 0 16px;

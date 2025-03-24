@@ -5,17 +5,19 @@
   justify-content: space-between;
 }
 
-.fact h3 {
+.title {
   text-transform: none;
-  font-size: 24px;
+  font-size: 2rem;
+  line-height: 1.2;
 }
 
 .text {
-  font-size: 24px;
+  font-size: 1rem;
+  color: var(--on-surface-var);
 }
 
 @media (max-width: 512px) {
-  .text {
+  .title {
     font-size: 4vw;
   }
 }

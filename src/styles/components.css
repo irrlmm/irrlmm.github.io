@@ -2,10 +2,10 @@
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
-  padding: 0 16px;
+  padding: 0 12px;
   height: 32px;
   border-radius: 16px;
-  background-color: var(--accent-semi);
+  background-color: var(--accent-container);
 }
 
 button {
@@ -15,20 +15,25 @@ button {
   height: 48px;
   border-radius: 24px;
   font-weight: 500;
-  background-color: transparent;
   border: solid 1px var(--outline);
+  background-color: transparent;
   color: var(--on-surface);
   transition: all 0.2s var(--bezier);
   cursor: pointer;
 }
+button:hover {
+  border: solid 1px var(--on-surface-var-2);
+  background-color: var(--surface-lo);
+}
+
 button[data-primary="true"]:not(:disabled) {
   border: solid 1px var(--accent);
 }
-button:not(:disabled):hover {
-  border: solid 1px var(--accent);
-  background-color: var(--accent-semi);
-  color: var(--accent);
+button[data-primary="true"]:not(:disabled):hover {
+  background-color: var(--accent);
+  color: var(--on-accent);
 }
+
 button:disabled {
   border: solid 1px var(--outline);
   color: var(--on-surface-var-2);

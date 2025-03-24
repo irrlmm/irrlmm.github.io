@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap");
 
 html[data-font="mono"] {
   font-family: "DM Mono", monospace;
@@ -15,9 +16,10 @@ html[data-font="byte"] {
 }
 
 html[data-font="sans"] {
-  font-family: "Inter", sans-serif;
+  font-family: "SUSE", sans-serif;
+  font-weight: 300;
   font-optical-sizing: auto;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
   letter-spacing: 0.03em;
   font-feature-settings: "ss01", "case", "zero", "cv11";
@@ -38,7 +40,7 @@ html[data-font="mono"] h3 {
 html[data-font="sans"] h1,
 html[data-font="sans"] h2,
 html[data-font="sans"] h3 {
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0;
   line-height: 1.15;
   text-transform: initial;

@@ -3,7 +3,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import Svg from "../Svg.astro";
-import { SVG_CHEVRON_FWD } from "../../consts/svg";
+import { SVG_ARROW, SVG_CHEVRON_FWD } from "../../consts/svg";
 import moment from "moment";
 import getImage from "../../helpers/getImage";
 
@@ -23,7 +23,7 @@ const image = getImage(coverImage);
       <span class="body-m color-secondary"
         >{moment(date).format("DD MMM YYYY")}</span
       >
-      <Svg d={SVG_CHEVRON_FWD} />
+      <Svg d={SVG_ARROW} />
     </div>
 
     <Image src={image()} alt={title} layout="responsive" loading="eager" />
@@ -80,7 +80,7 @@ const image = getImage(coverImage);
     opacity: 0.03;
   }
   a:hover svg {
-    transform: translate(4px);
+    transform: translate(4px, -4px);
   }
 
   svg {
