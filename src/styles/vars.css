@@ -45,8 +45,8 @@
 
 :root[data-accent="gold"] {
   /* Accent tokens */
-  --accent: light-dark(, #ffd700);
-  --accent-semi: light-dark(#ffd70010, #ffd70010);
+  --accent: light-dark(#db334f, #f14662);
+  --accent-semi: light-dark(#db334f10, #ffc0cb10);
 }
 
 :root[data-accent="mono"] {
