@@ -34,22 +34,6 @@ const cardSchema = z.object({
   description: z.optional(z.string()),
 });
 
-const questionSchema = z.object({
-  id: z.string(),
-  image: z.string(),
-  text: z.string(),
-  options: z.array(
-    z.object({
-      label: z.string(),
-      response: z.object({
-        type: z.enum(["positive", "negative"]),
-        title: z.string(),
-        text: z.string(),
-      }),
-    })
-  ),
-});
-
 //
 // Metadata schema
 //
@@ -65,9 +49,15 @@ const person = defineCollection({
   loader: file("./src/content/meta/persons.json"),
   schema: z.object({
     name: z.string(),
-    jobTitle: z.string(),
+    title: z.string(),
     avatar: z.string(),
     birthDate: z.coerce.date(),
+    currentJob: reference("meta:job"),
+    location: z.object({
+      country: z.string(),
+      city: z.string(),
+      flag: z.string(),
+    }),
   }),
 });
 
@@ -96,6 +86,41 @@ const job = defineCollection({
 //
 // Work schema
 //
+
+const quiz = defineCollection({
+  loader: glob({
+    base: "./src/content/quizzes",
+    pattern: "**/*.{md,mdx,json}",
+  }),
+  schema: z.object({
+    endMessages: z.object({
+      allCorrect: z.object({
+        title: z.string(),
+        text: z.string(),
+      }),
+      someCorrect: z.object({
+        title: z.string(),
+        text: z.string(),
+      }),
+    }),
+    questions: z.array(
+      z.object({
+        id: z.string(),
+        text: z.string(),
+        options: z.array(
+          z.object({
+            label: z.string(),
+            response: z.object({
+              type: z.enum(["positive", "negative"]),
+              title: z.string(),
+              text: z.string(),
+            }),
+          })
+        ),
+      })
+    ),
+  }),
+});
 
 const work = defineCollection({
   loader: glob({ base: "./src/content/work", pattern: "**/*.{md,mdx,json}" }),
@@ -130,7 +155,6 @@ const about = defineCollection({
     title: z.string(),
     tag: z.optional(reference("meta:tag")),
     lead: z.array(z.string()),
-    overview: z.array(valueSchema),
     sections: z.array(
       z.object({
         title: z.optional(z.string()),
@@ -139,7 +163,7 @@ const about = defineCollection({
         checklist: z.optional(z.array(checklistSchema)),
         facts: z.optional(z.array(factSchema)),
         cards: z.optional(z.array(cardSchema)),
-        questions: z.optional(z.array(questionSchema)),
+        quiz: z.optional(reference("quiz")),
         separator: z.optional(z.boolean()),
       })
     ),
@@ -165,6 +189,7 @@ const cv = defineCollection({
 
 export const collections = {
   work,
+  quiz,
   "meta:tag": tag,
   "meta:person": person,
   "meta:company": company,

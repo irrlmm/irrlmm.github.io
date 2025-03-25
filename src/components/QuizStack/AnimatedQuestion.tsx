@@ -5,15 +5,18 @@ import {
   useTransform,
 } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-import type { QuestionType, AnswerOption } from ".";
 import styles from "../CardStack/styles.module.css";
 import innerStyles from "./styles.module.css";
 import Svg from "../Svg";
 import { SVG_CHECK, SVG_DEFAULT } from "../../consts/svg";
+import type { CollectionEntry } from "astro:content";
+
+type Question = CollectionEntry<"quiz">["data"]["questions"][0];
+type Answer = CollectionEntry<"quiz">["data"]["questions"][0]["options"][0];
 
 type Props = {
   index: number;
-  question: QuestionType;
+  question: Question;
   isActive: boolean;
   onRight: () => void;
   onWrong: () => void;
@@ -26,7 +29,7 @@ const AnimatedQuestion: React.FC<Props> = ({
   onRight,
   onWrong,
 }) => {
-  const [answer, setAnswer] = useState<null | AnswerOption>();
+  const [answer, setAnswer] = useState<Answer>();
 
   const deviateX = 100;
   const baseX = Math.random() * deviateX - deviateX / 2;
@@ -61,7 +64,7 @@ const AnimatedQuestion: React.FC<Props> = ({
       y: 0,
       scale: 1,
       filter: "blur(0.0px)",
-      boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.3)",
+      boxShadow: "0 0 0 1px var(--on-surface)",
       opacity: 1,
     },
     swipeR: {
@@ -100,7 +103,7 @@ const AnimatedQuestion: React.FC<Props> = ({
     });
   };
 
-  const handleClickAnswer = (o: AnswerOption) => {
+  const handleClickAnswer = (o: Answer) => {
     controls.start(
       { rotateY: "180deg" },
       { type: "spring", delay: 0.1, bounce: 0.3, duration: 1 }
