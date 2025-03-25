@@ -52,7 +52,7 @@ const AnimatedCard = <T,>({
       x: 0,
       y: 0,
       filter: "blur(0.0px)",
-      boxShadow: "0 0 0 1px rgba(128, 128, 128, 0.5)",
+      boxShadow: "0 0 0 1px var(--on-surface)",
     },
     swipeR: {
       x: 500,

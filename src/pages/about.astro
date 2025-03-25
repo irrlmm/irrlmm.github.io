@@ -12,14 +12,27 @@ import Values from "../components/Values.astro";
 import CardSeparator from "../components/CardSeparator.astro";
 import Image from "astro/components/Image.astro";
 import getImage from "../helpers/getImage";
-import QuestionStack from "../components/QuestionStack";
+import QuestionStack from "../components/QuizStack";
+import Quiz from "../components/Quiz.astro";
 
 const about = await getEntry("page:about", "about");
 
 const person = await getEntry("meta:person", "me");
 
 if (!about || !person) {
-  throw Error("No data!");
+  throw Error("No person!");
+}
+
+const job = await getEntry("meta:job", person?.data.currentJob.id);
+
+if (!job) {
+  throw Error("No job!");
+}
+
+const company = await getEntry("meta:company", job.data.company.id);
+
+if (!company) {
+  throw Error("No company!");
 }
 
 const birthDate = new Date(person.data.birthDate);
@@ -55,7 +68,16 @@ const fullYears = isBirthdayPassed ? age : age - 1;
     <Values
       values={[
         { label: "Age", value: fullYears.toString() },
-        ...about.data.overview,
+        { label: "Position", value: job.data.title },
+        {
+          label: "Works at",
+          value: company.data.name,
+          href: company.data.href,
+        },
+        {
+          label: "Current location",
+          value: ` ${person.data.location.city}, ${person.data.location.flag} ${person.data.location.country}`,
+        },
       ]}
     />
   </div>
@@ -72,7 +94,7 @@ const fullYears = isBirthdayPassed ? age : age - 1;
         return (
           <section>
             <div class="text-column">
-              {s.questions && (
+              {s.quiz && (
                 <span class="tag body-l">
                   {(await getEntry("meta:tag", "quest"))?.data.label}
                 </span>
@@ -94,9 +116,7 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 
               {s.facts && <FactStackAstro facts={s.facts} />}
 
-              {s.questions && (
-                <QuestionStack client:load questions={s.questions} />
-              )}
+              {s.quiz && <Quiz quiz={s.quiz} />}
             </div>
           </section>
         );

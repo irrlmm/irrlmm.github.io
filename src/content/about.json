@@ -3,17 +3,9 @@
     "id": "about",
     "title": "Who is Igor Lemeshkin?",
     "lead": [
-      "Igor Lemeshkin is a product designer focused on clarity, precision, and real impact."
-    ],
-    "overview": [
-      {
-        "label": "Specialties",
-        "value": "Product design, Creative Frontend Development"
-      },
-      {
-        "label": "Location",
-        "value": "🇲🇾 Kuala Lumpur, Malaysia"
-      }
+      "Igor Lemeshkin designs products that work — sharp, scalable, and built to last.",
+      "He blends design, dev, and strategy to ship with precision and impact.",
+      "Outside the screen, he lives curiously — chasing inspiration through roadtrips, music, fast cars, and a perfectly brewed cup of coffee."
     ],
     "sections": [
       {
@@ -51,11 +43,11 @@
       },
       { "separator": true },
       {
-        "title": "He also codes.",
+        "title": "It Doesn't End There.",
         "lines": [
-          "Can we call him a good coder? Sure. For example, he designed and built this very website in no time.",
-          "But to him, it's all design. Labels don't mean much. As automation spreads, the ones who stay ahead are those who think across disciplines and make the right calls.",
-          "Igor's edge comes from sharp, distinctly human decisions, rooted in rich multidisciplinary experience. With that, he is stepping into roles of the future."
+          "Igor not only designs stuff. He can also build a product, like the one you're looking at.",
+          "To him, it's all design. Other labels don't mean much. As automation spreads, he is staying ahead, thinking across disciplines and making the right calls.",
+          "His power is in sharp decisions, rooted in rich multidisciplinary experience. That's exactly what tomorrow demands."
         ],
         "facts": [
           {
@@ -101,100 +93,7 @@
         "lines": [
           "Igor didn't follow a straight path. Explore the moments that defined his journey — one guess at a time."
         ],
-        "questions": [
-          {
-            "id": "potty",
-            "image": "",
-            "text": "What was the first product Igor ever disassembled?",
-            "options": [
-              {
-                "label": "Musical potty",
-                "response": {
-                  "type": "positive",
-                  "title": "That's right.",
-                  "text": "Wouldn't you be amazed by a device that rewards, well, outcomes that way?"
-                }
-              },
-              {
-                "label": "Dad's cellphone",
-                "response": {
-                  "type": "negative",
-                  "title": "Nope",
-                  "text": "It was later, and by accident."
-                }
-              }
-            ]
-          },
-          {
-            "id": "childhood",
-            "image": "",
-            "text": "As a kid, who did he want to become?",
-            "options": [
-              {
-                "label": "Car designer",
-                "response": {
-                  "type": "positive",
-                  "title": "Correct!",
-                  "text": "He still sketches cars when he has free time and visits car museums around the world."
-                }
-              },
-              {
-                "label": "Racer",
-                "response": {
-                  "type": "positive",
-                  "title": "Yes! Car desiner too.",
-                  "text": "Cars are one of Igor's passions, he's always been impressed with high speed and their timeless beauty."
-                }
-              }
-            ]
-          },
-          {
-            "id": "hackathons",
-            "image": "",
-            "text": "Has Igor participated in hackathons?",
-            "options": [
-              {
-                "label": "Yes",
-                "response": {
-                  "type": "positive",
-                  "title": "Fact.",
-                  "text": "He's joined hackathons since year one of college, sharpening his rapid prototyping skills early on."
-                }
-              },
-              {
-                "label": "No",
-                "response": {
-                  "type": "negative",
-                  "title": "Wrong!",
-                  "text": "How else would he get so good at rapid prototyping and efficient coding?"
-                }
-              }
-            ]
-          },
-          {
-            "id": "firstjob",
-            "image": "",
-            "text": "What was Igor's first job?",
-            "options": [
-              {
-                "label": "UI Designer",
-                "response": {
-                  "type": "negative",
-                  "title": "Nice try!",
-                  "text": "However, he had to open Sketch sometimes to design things that weren't well thought out. Startup vibes!"
-                }
-              },
-              {
-                "label": "Mobile developer",
-                "response": {
-                  "type": "positive",
-                  "title": "Right!",
-                  "text": "He was a React Native mobile app developer. That's where all the love for animated interpolations started..."
-                }
-              }
-            ]
-          }
-        ]
+        "quiz": "guess-igor"
       },
       { "separator": true },
       {

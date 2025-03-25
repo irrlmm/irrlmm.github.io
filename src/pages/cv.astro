@@ -25,6 +25,10 @@ if (!cv) {
 
 const jobs = await getEntries(cv.data.jobs);
 const person = await getEntry("meta:person", cv.data.person.id);
+
+if (!person || !jobs) {
+  throw Error("no data");
+}
 ---
 
 <MainLayout hasHeader schema={SCHEMA_PERSON_FULL}>
@@ -33,7 +37,12 @@ const person = await getEntry("meta:person", cv.data.person.id);
 
     <section class="col gap-32">
       <h2>{person?.data.name}</h2>
-      <Values values={cv.data.brief} />
+      <Values
+        values={[
+          { label: "Title", value: person.data.title },
+          ...cv.data.brief,
+        ]}
+      />
     </section>
   </div>
 

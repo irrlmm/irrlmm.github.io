@@ -1,32 +1,18 @@
 import React, { useEffect, useState } from "react";
 import StackProgressToolbar from "../StackProgressToolbar";
 import AnimatedQuestion from "./AnimatedQuestion";
-import styles from "../CardStack/styles.module.css";
 import { motion } from "framer-motion";
+
+import type { CollectionEntry } from "astro:content";
+
+import styles from "../CardStack/styles.module.css";
 import innerStyles from "./styles.module.css";
 
-export type AnswerOption = {
-  label: string;
-  response: {
-    type: "positive" | "negative";
-    title: string;
-    text: string;
-  };
-};
-
-export type QuestionType = {
-  id: string;
-  image: string;
-  text: string;
-  options: AnswerOption[];
-};
-
 type Props = {
-  questions: QuestionType[];
-  isLandscape?: boolean;
+  data: CollectionEntry<"quiz">["data"];
 };
 
-const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
+const QuizStack: React.FC<Props> = ({ data: { questions, endMessages } }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [rightCount, setRightCount] = useState(0);
   const [wrongCount, setWrongCount] = useState(0);
@@ -79,11 +65,7 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
         gems={rightCount}
       />
 
-      <div
-        className={`${styles.container} ${
-          isLandscape ? styles.containerLandscape : undefined
-        }`}
-      >
+      <div className={styles.container}>
         {cardsShown.map((question, i) => (
           <AnimatedQuestion
             key={question.id}
@@ -102,7 +84,10 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
             animate={{ opacity: 1 }}
           >
             <h3>
-              {wrongCount === 0 ? "You nailed it!" : "All done! You scored:"}
+              {
+                endMessages[wrongCount === 0 ? "allCorrect" : "someCorrect"]
+                  .title
+              }
             </h3>
 
             <span className={innerStyles.score}>{completionPercent}%</span>
@@ -113,9 +98,10 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
               </span>
 
               <span className={innerStyles.resultText}>
-                {wrongCount === 0
-                  ? `You know Igor scary well... But hey, there are still hidden gems in the wrong answers. Restart if you're curious.`
-                  : `Think you can uncover more? Restart and go again.`}
+                {
+                  endMessages[wrongCount === 0 ? "allCorrect" : "someCorrect"]
+                    .text
+                }
                 <br />
               </span>
             </div>
@@ -126,4 +112,4 @@ const QuestionStack: React.FC<Props> = ({ questions, isLandscape }) => {
   );
 };
 
-export default QuestionStack;
+export default QuizStack;

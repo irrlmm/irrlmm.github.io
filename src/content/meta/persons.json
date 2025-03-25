@@ -2,8 +2,15 @@
   {
     "id": "me",
     "name": "Igor Lemeshkin",
-    "jobTitle": "Product designer",
+    "title": "Product designer",
     "avatar": "/src/assets/persons/irrlmm.png",
-    "birthDate": "12 May 1997"
+    "birthDate": "12 May 1997",
+    "currentJob": "im-design",
+    "location": {
+      "remote": true,
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "flag": "🇲🇾"
+    }
   }
 ]
