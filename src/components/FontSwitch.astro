@@ -44,12 +44,15 @@
         const current = localStorage.getItem("font") || "auto";
         let next;
         // Cycle order: auto => dark => light => auto
-        if (current === "mono") {
-          next = "byte";
-        } else if (current === "byte") {
-          next = "sans";
-        } else {
-          next = "mono";
+        switch (current) {
+          case "mono":
+            next = "byte";
+            break;
+          case "byte":
+            next = "mono";
+            break;
+          default:
+            next = "mono";
         }
         localStorage.setItem("font", next);
         updateFont();
