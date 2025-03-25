@@ -25,9 +25,7 @@ const { hasHeader, schema } = Astro.props;
     <>{hasHeader && <Header />}</>
 
     <main>
-      <article>
-        <slot />
-      </article>
+      <slot />
     </main>
   </body>
 </html>
@@ -43,20 +41,5 @@ const { hasHeader, schema } = Astro.props;
     align-items: center;
     flex-direction: column;
     gap: 64px;
-    padding: 48px 32px 64px;
-  }
-
-  article {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 64px;
-    align-items: center;
-  }
-
-  @media (max-width: 512px) {
-    main {
-      padding: 64px 16px;
-    }
   }
 </style>
