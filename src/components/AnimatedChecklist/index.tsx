@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SVG_CHECK } from "../../consts/svg";
 
@@ -30,7 +30,7 @@ const AnimatedChecklistItem: React.FC<ChecklistItemProps> = ({
 
   const iconStrokeDashoffset = useTransform(
     scrollYProgress,
-    [0.2, 0.4, 0.5],
+    [0.6, 0.7, 0.8],
     [33.112, 33.112 * 1.75, 33.112 * 2]
   );
 
@@ -54,7 +54,7 @@ const AnimatedChecklistItem: React.FC<ChecklistItemProps> = ({
             stroke="var(--accent)"
             style={{ strokeDashoffset: iconStrokeDashoffset }}
             strokeDasharray={33.112}
-            strokeWidth={3}
+            strokeWidth={2}
           ></motion.path>
         </svg>
       </div>
@@ -68,12 +68,6 @@ const AnimatedChecklistItem: React.FC<ChecklistItemProps> = ({
 };
 
 const AnimatedChecklist: React.FC<Props> = ({ list }) => {
-  const [selectedOption, setSelectedOption] = useState<null | string>(null);
-
-  const handleItemClick = (id: string) => {
-    setSelectedOption(id);
-  };
-
   return (
     <div className={styles.wrapper}>
       {list.map((item) => (
