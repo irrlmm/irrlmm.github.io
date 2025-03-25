@@ -26,6 +26,8 @@ const { hasHeader, schema } = Astro.props;
 
     <main>
       <slot />
+
+      <!-- <button class="top">To the top</button> -->
     </main>
   </body>
 </html>
@@ -42,4 +44,11 @@ const { hasHeader, schema } = Astro.props;
     flex-direction: column;
     gap: 64px;
   }
+
+  /* button.top {
+    position: sticky;
+    align-self: flex-end;
+    bottom: 16px;
+    right: 32px;
+  } */
 </style>
