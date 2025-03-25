@@ -49,6 +49,29 @@
 :root {
   color-scheme: light dark;
 
+  /* Primitives */
+  --gray-10: #111111;
+  --gray-10-fx: #111111e6;
+  --gray-20: #1b1b1b;
+  --gray-20-fx: #1b1b1be6;
+  --gray-30: #2d2d2d;
+  --gray-40: #484848;
+  --gray-50: #6a6a6a;
+  --gray-60: #919191;
+  --gray-70: #b7b7b7;
+  --gray-80: #d9d9d9;
+  --gray-90: #f2f2f2;
+  --gray-90-fx: #f2f2f2e6;
+  --gray-99: #ffffff;
+  --gray-99-fx: #ffffffe6;
+
+  --ac-1: var(--gray-20);
+  --ac-2: var(--gray-30);
+  --ac-3: var(--gray-20);
+  --ac-4: var(--gray-90);
+  --ac-5: var(--gray-80);
+  --ac-6: var(--gray-90);
+
   /* Surface tokens */
   --background: light-dark(var(--gray-90), var(--gray-10));
   --background-fx: light-dark(var(--gray-90-fx), var(--gray-10-fx));
