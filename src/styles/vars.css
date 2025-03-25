@@ -1,25 +1,25 @@
 :root[data-accent="paper"] {
-  --gray-10: #161515;
-  --gray-10-fx: #161515e6;
-  --gray-20: #212020;
-  --gray-20-fx: #212020e6;
-  --gray-30: #343332;
-  --gray-40: #4e4d4c;
-  --gray-50: #6f6d6c;
-  --gray-60: #93908f;
-  --gray-70: #b7b3b3;
-  --gray-80: #d7d3d2;
-  --gray-90: #f0eceb;
-  --gray-90-fx: #f0ecebe6;
-  --gray-99: #fffbff;
-  --gray-99-fx: #fffbffe6;
+  --gray-10: #111111;
+  --gray-10-fx: #111111e6;
+  --gray-20: #1b1b1b;
+  --gray-20-fx: #1b1b1be6;
+  --gray-30: #2d2d2d;
+  --gray-40: #484848;
+  --gray-50: #6a6a6a;
+  --gray-60: #919191;
+  --gray-70: #b7b7b7;
+  --gray-80: #d9d9d9;
+  --gray-90: #f2f2f2;
+  --gray-90-fx: #f2f2f2e6;
+  --gray-99: #ffffff;
+  --gray-99-fx: #ffffffe6;
 
-  --ac-1: #1e1b19;
-  --ac-2: #2b2826;
-  --ac-3: #474340;
-  --ac-4: #ccc6c2;
-  --ac-5: #f0e9e5;
-  --ac-6: #fffbff;
+  --ac-1: var(--gray-20);
+  --ac-2: var(--gray-30);
+  --ac-3: var(--gray-20);
+  --ac-4: var(--gray-90);
+  --ac-5: var(--gray-80);
+  --ac-6: var(--gray-90);
 }
 
 :root[data-accent="mono"] {
