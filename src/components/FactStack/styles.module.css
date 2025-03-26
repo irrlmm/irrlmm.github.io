@@ -7,11 +7,11 @@
 
 .title {
   text-transform: none;
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-3xl);
   letter-spacing: -0.04em;
 }
 
 .text {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
   color: var(--on-surface-var);
 }

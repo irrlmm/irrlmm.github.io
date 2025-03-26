@@ -107,8 +107,10 @@ const fullYears = isBirthdayPassed ? age : age - 1;
         {
           cv.data.competitions.map((c) => (
             <div class="col gap-32">
-              <h3>{c.title}</h3>
-              <Values values={c.values} />
+              {/* <h3 class="competition">{c.title}</h3> */}
+              <Values
+                values={[{ label: "Title", value: c.title }, ...c.values]}
+              />
             </div>
           ))
         }
@@ -137,6 +139,10 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 
   .centered {
     text-align: center;
+  }
+
+  .competition {
+    font-size: var(--font-size-lg);
   }
 
   .hero-section {
