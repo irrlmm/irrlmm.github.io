@@ -47,9 +47,9 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 
         <AnimatedLead lines={about.data.lead} addSpaceBetween />
       </div>
-    </section>
 
-    <section>
+      <Separator isDashed />
+
       <Values
         values={[
           { label: "Age", value: fullYears.toString() },
@@ -62,10 +62,10 @@ const fullYears = isBirthdayPassed ? age : age - 1;
           ...cv.data.brief,
         ]}
       />
-    </section>
 
-    <section>
       <SectionLinks links={[LINK_LINKEDIN, LINK_DRIBBBLE]} />
+
+      <Separator isDashed />
     </section>
 
     <section class="wide-section">
@@ -116,11 +116,11 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 <style>
   article {
     width: 100%;
-    padding: 64px 8px;
+    padding: 160px 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 80px;
+    gap: 64px;
   }
 
   .centered {

@@ -79,7 +79,7 @@ html[data-font="mono"] h2,
 html[data-font="mono"] h3,
 html[data-font="mono"] h4 {
   line-height: var(--line-height-tight);
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 700;
 }
 

@@ -21,6 +21,7 @@ const { links } = Astro.props;
           href={link.href}
         >
           <span class="body-s">{link.label}</span>
+
           <Svg d={SVG_ARROW} />
         </a>
       </li>
@@ -39,10 +40,10 @@ const { links } = Astro.props;
   }
 
   a {
-    height: 32px;
-    padding: 0 16px;
-    border-radius: 16px;
-    background-color: var(--surface-hi);
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 24px;
+    background-color: var(--surface-lo);
     transform-origin: top left;
     animation: appear-with-scale 0.33s var(--bezier) both;
     transition: all 0.2s var(--bezier);
@@ -71,9 +72,9 @@ const { links } = Astro.props;
   }
 
   svg {
-    margin-left: 16px;
-    width: 12px;
-    height: 12px;
+    margin-left: 24px;
+    width: 16px;
+    height: 16px;
   }
 
   a:hover::before {

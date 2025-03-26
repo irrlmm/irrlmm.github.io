@@ -52,7 +52,7 @@
   /* Primitives */
   --gray-10: #111111;
   --gray-10-fx: #111111da;
-  --gray-10-fx-2: #11111107;
+  --gray-10-fx-2: #11111110;
   --gray-20: #1b1b1b;
   --gray-20-fx: #1b1b1bda;
   --gray-30: #2d2d2d;
@@ -65,7 +65,7 @@
   --gray-90-fx: #f2f2f2da;
   --gray-99: #ffffff;
   --gray-99-fx: #ffffffda;
-  --gray-99-fx-2: #ffffff07;
+  --gray-99-fx-2: #ffffff05;
 
   --ac-1: var(--gray-20);
   --ac-2: var(--gray-30);
