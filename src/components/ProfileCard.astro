@@ -8,26 +8,26 @@ interface Props {
 }
 
 const {
-  person: { name, jobTitle, avatar },
+  person: { name, title, avatar },
 } = Astro.props;
 
 const avatarImage = getImage(avatar);
 ---
 
-<div class="row gap-32 align-center">
-  <Image
+<div class="col gap-32">
+  <!-- <Image
     class="avatar"
     src={avatarImage()}
-    width={128}
+    width={96}
     widths={[128, 256]}
     layout="responsive"
     alt="Igor Lemeshkin"
     loading="eager"
-  />
+  /> -->
 
   <div class="col gap-4">
     <h1>{name}</h1>
-    <span class="body-l color-secondary">{jobTitle}</span>
+    <!-- <span class="body-l color-secondary">{title}</span> -->
   </div>
 </div>
 
@@ -36,6 +36,10 @@ const avatarImage = getImage(avatar);
     border-radius: 25%;
     animation: appear-with-blur 0.33s var(--bezier) both;
     animation-delay: 0.15s;
+  }
+
+  p {
+    text-align: center;
   }
 
   .col > h1,

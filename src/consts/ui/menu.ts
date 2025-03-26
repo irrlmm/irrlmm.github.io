@@ -35,7 +35,7 @@ export const MENU_WORK: MenuItem = {
 export const MENU_CV: MenuItem = {
   href: "/cv",
   title: "CV / Resume",
-  label: "CV",
+  label: "Resume",
   icon: SVG_ARROW,
   description: "My experience and skills.",
 };

@@ -25,7 +25,7 @@
       title: Problem statement,
       lines: [
         "iMusician urgently needed to transition from a third-party mastering solution to a powerful, affordable, and lightning-fast in-house alternative — Instant Mastering.",
-        "The timeline was exceptionally tight: one month total, with just one week dedicated to iterative design."
+        "The timeline was exceptionally tight. One month total, with just one week dedicated to iterative design."
       ],
     },
     { separator: true },

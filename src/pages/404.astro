@@ -9,7 +9,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 <MainLayout hasHeader>
   <div class="wrapper">
     <section class="col gap-32">
-      <TitleWrapper {...MENU_404} />
+      <h1>404</h1>
 
       <AnimatedLead
         lines={["The page you are looking for was not found.", "Start again."]}
@@ -27,6 +27,10 @@ import MainLayout from "../layouts/MainLayout.astro";
     gap: 64px;
     width: 100%;
     max-width: 576px;
+  }
+
+  h1 {
+    font-size: var(--font-size-5xl);
   }
 
   .decor-headline {

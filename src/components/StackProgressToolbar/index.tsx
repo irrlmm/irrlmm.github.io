@@ -37,7 +37,7 @@ const StackProgressToolbar: React.FC<Props> = ({
               height={24}
               viewBox="0 0 24 24"
               fill="none"
-              stroke="none"
+              vectorEffect="non-scaling-stroke"
             >
               <motion.circle
                 cx="12"
@@ -74,17 +74,17 @@ const StackProgressToolbar: React.FC<Props> = ({
                 height={20}
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="none"
+                stroke="var(--accent)"
               >
                 <motion.path
                   d={SVG_CHECK}
-                  stroke="var(--accent)"
+                  vectorEffect="non-scaling-stroke"
                   animate={{
                     strokeDashoffset: PATH_CHECK_LENGTH * 2,
                   }}
                   strokeDashoffset={PATH_CHECK_LENGTH}
                   strokeDasharray={PATH_CHECK_LENGTH}
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   transition={{ delay: 0.2 }}
                 ></motion.path>
               </svg>

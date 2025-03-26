@@ -83,12 +83,12 @@ const QuizStack: React.FC<Props> = ({ data: { questions, endMessages } }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <h3>
+            <span className={innerStyles.resultText}>
               {
                 endMessages[wrongCount === 0 ? "allCorrect" : "someCorrect"]
                   .title
               }
-            </h3>
+            </span>
 
             <span className={innerStyles.score}>{completionPercent}%</span>
 

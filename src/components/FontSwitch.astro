@@ -1,22 +1,16 @@
 ---
-
+import { SVG_TEXT } from "../consts/svg";
+import Svg from "./Svg.astro";
 ---
 
-<button id="font-toggle">Aa</button>
+<button id="font-toggle"><Svg d={SVG_TEXT} /></button>
 
 <style>
   button {
     width: 40px;
     height: 40px;
     font-weight: 400;
-  }
-
-  button svg {
-    display: none;
-  }
-
-  html[data-font="byte"] svg[data-font="byte"] {
-    display: initial;
+    border: none;
   }
 </style>
 

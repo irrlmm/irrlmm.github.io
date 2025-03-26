@@ -1,72 +1,165 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
 import Menu from "../components/Menu/Menu.astro";
-import ProfileCard from "../components/ProfileCard.astro";
-import SectionLinks from "../components/SectionLinks.astro";
-import AnimatedLead from "../components/AnimatedLead.astro";
-import Footer from "../components/Footer.astro";
 import Separator from "../components/Separator.astro";
-import { LINK_BEHANCE, LINK_DRIBBBLE, LINK_LINKEDIN } from "../consts/ui/links";
-import {
-  MENU_ABOUT,
-  MENU_CONTACT,
-  MENU_CV,
-  MENU_WORK,
-} from "../consts/ui/menu";
-import { SCHEMA_PERSON_MINI } from "../consts/schemas";
+import MainLayout from "../layouts/MainLayout.astro";
+import JobCardsList from "../components/Jobs/JobCardsList.astro";
+import Values from "../components/Values.astro";
+import Footer from "../components/Footer.astro";
+import { MENU_ABOUT, MENU_CONTACT, MENU_WORK } from "../consts/ui/menu";
+import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import { getEntry } from "astro:content";
+import { getEntries } from "astro:content";
+import AnimatedLead from "../components/AnimatedLead.astro";
+import SectionLinks from "../components/SectionLinks.astro";
+import { LINK_DRIBBBLE, LINK_LINKEDIN } from "../consts/ui/links";
 
-const person = await getEntry("meta:person", "me");
+const cv = await getEntry("page:cv", "cv");
 
-if (!person) {
-  throw Error("No person loaded!");
+if (!cv) {
+  throw Error("No data found");
 }
+
+const jobs = await getEntries(cv.data.jobs);
+const person = await getEntry("meta:person", cv.data.person.id);
+const about = await getEntry("page:about", "about");
+
+if (!person || !jobs || !about) {
+  throw Error("no data");
+}
+
+const birthDate = new Date(person.data.birthDate);
+const now = new Date(Date.now());
+
+const age = now.getFullYear() - birthDate.getFullYear();
+const isBirthdayPassed =
+  now.getMonth() > birthDate.getMonth() ||
+  (now.getMonth() === birthDate.getMonth() &&
+    now.getDate() >= birthDate.getDate());
+
+const fullYears = isBirthdayPassed ? age : age - 1;
 ---
 
-<MainLayout schema={SCHEMA_PERSON_MINI} hasHeader>
-  <div class="wrapper">
-    <div class="hero">
-      <ProfileCard person={person.data} />
+<MainLayout hasHeader schema={SCHEMA_PERSON_FULL}>
+  <article>
+    <section>
+      <div class="col gap-32">
+        <h1>{person.data.name}</h1>
 
-      <AnimatedLead
-        lines={[
-          "I create app designs with high precision.",
-          "I develop design systems used across many products.",
-          "I solve problems with clarity and technical knowledge.",
-          "My products remain impactful over time.",
+        <AnimatedLead lines={about.data.lead} addSpaceBetween />
+      </div>
+    </section>
+
+    <section>
+      <Values
+        values={[
+          { label: "Age", value: fullYears.toString() },
+          {
+            label: "Title",
+            value:
+              jobs.find((j) => j.id === person.data.currentJob.id)?.data
+                .title || "",
+          },
+          ...cv.data.brief,
         ]}
       />
+    </section>
 
-      <SectionLinks links={[LINK_LINKEDIN, LINK_DRIBBBLE, LINK_BEHANCE]} />
-    </div>
+    <section>
+      <SectionLinks links={[LINK_LINKEDIN, LINK_DRIBBBLE]} />
+    </section>
 
-    <Menu options={[MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT]} />
+    <section class="wide-section">
+      <JobCardsList jobs={jobs} />
+    </section>
 
-    <Separator />
+    <Separator isDashed />
 
-    <Footer />
-  </div>
+    <section>
+      <section class="col gap-48">
+        <h2>Skills</h2>
+        <Values values={cv.data.skills} />
+      </section>
+
+      <Separator isDashed />
+
+      <section class="col gap-48">
+        <h2>Education</h2>
+        <Values values={cv.data.education} />
+      </section>
+
+      <Separator isDashed />
+
+      <section class="col gap-64">
+        <h2>Hackathons</h2>
+
+        {
+          cv.data.competitions.map((c) => (
+            <div class="col gap-32">
+              <h3>{c.title}</h3>
+              <Values values={c.values} />
+            </div>
+          ))
+        }
+
+        <Separator isDashed />
+
+        <Menu options={[MENU_CONTACT, MENU_WORK, MENU_ABOUT]} isList={true} />
+      </section>
+    </section>
+  </article>
+
+  <Separator />
+
+  <Footer />
 </MainLayout>
 
 <style>
-  .wrapper {
+  article {
+    width: 100%;
+    padding: 64px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .hero-section {
+    width: 100%;
+    padding: 128px;
+    display: flex;
+    gap: 64px;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px var(--outline);
+    border-radius: 32px;
+  }
+
+  h1 {
+    font-size: var(--font-size-4xl);
+    animation: appear 0.33s var(--bezier) 0.15s both;
+  }
+
+  section {
+    width: 100%;
+    max-width: 576px;
     display: flex;
     flex-direction: column;
     gap: 64px;
-    width: 100%;
-    padding: 64px 32px;
-    max-width: 640px;
   }
 
-  .hero {
+  .wide-section {
+    width: 100%;
+    max-width: calc(576px + 64px);
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 64px;
   }
 
-  @media (max-width: 512px) {
-    .wrapper {
-      padding: 32px;
-    }
+  h2 {
+    animation: appear 0.33s var(--bezier) 0.2s both;
   }
 </style>

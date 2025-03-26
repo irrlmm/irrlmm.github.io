@@ -1,11 +1,12 @@
 ---
+import CardSeparator from "../CardSeparator.astro";
 import JobCardHeader from "./JobCardHeader.astro";
 import JobCardScope from "./JobCardScope.astro";
 
 const { company, title, description, timeline, scope, isCurrent } = Astro.props;
 ---
 
-<div class="card col">
+<li class="card col">
   <JobCardHeader
     timeline={timeline}
     company={company}
@@ -17,8 +18,10 @@ const { company, title, description, timeline, scope, isCurrent } = Astro.props;
     <p class="body-m color-secondary padding-32">{description}</p>
   </div>
 
+  <!-- <CardSeparator /> -->
+
   <JobCardScope scope={scope} />
-</div>
+</li>
 
 <style>
   .card {

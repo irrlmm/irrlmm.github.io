@@ -140,7 +140,7 @@ const AnimatedQuestion: React.FC<Props> = ({
       >
         <span className="body-s color-secondary">Question</span>
 
-        <h3>{question.text}</h3>
+        <p className={innerStyles.question}>{question.text}</p>
 
         <div className="col gap-8">
           {question.options.map((o) => (
@@ -180,7 +180,7 @@ const AnimatedQuestion: React.FC<Props> = ({
             stroke="var(--accent)"
           />
 
-          <h3>{answer?.response.title}</h3>
+          <h4>{answer?.response.title}</h4>
 
           <p className="body-s color-secondary">{answer?.response.text}</p>
         </div>

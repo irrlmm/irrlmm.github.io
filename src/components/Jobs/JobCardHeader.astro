@@ -30,15 +30,17 @@ const logo = getImage(company.data.logo);
 ---
 
 <div class="card-header-wrapper">
+  <div class="card-header-fix"></div>
+
   <div class="card-header row align-center justify-between gap-16 padding-32">
-    <div class="col flex-1 gap-4">
+    <div class="col flex-1 gap-8">
       <p class="body-m color-tertiary">
         {timeline}
-        {isCurrent && <span class="chip-current">Now</span>}
+        {isCurrent && <span class="tag color-primary">Now</span>}
       </p>
 
       <h3>
-        {company.data.name} | {title}
+        {company.data.name} - {title}
       </h3>
     </div>
 
@@ -63,17 +65,33 @@ const logo = getImage(company.data.logo);
 </div>
 
 <style>
+  p,
+  h3 {
+    text-align: start;
+  }
+
   .card-header-wrapper {
     z-index: 1;
     position: sticky;
-    top: 0;
+    top: 16px;
     border-radius: 0 0 32px 32px;
-    background-color: var(--background);
   }
 
   .card-header {
     border-radius: 32px;
-    background-color: var(--surface-hi);
+    background-color: var(--surface-hi-fx);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.2s var(--bezier);
+  }
+
+  .card-header-fix {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    width: 100%;
+    height: calc(16px + 32px);
+    background-color: var(--background);
+    transition: background-color 0.2s var(--bezier);
   }
 
   .chip-current {

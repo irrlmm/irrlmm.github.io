@@ -17,21 +17,21 @@ const FactItem: React.FC<Props> = ({
   isActive,
 }) => {
   return (
-    <div className={styles.fact}>
+    <ul className={styles.fact}>
       {tags && (
-        <div className="row gap-8">
+        <li className="row gap-8">
           {tags.map((tag, i) => (
             <span key={i} className="tag body-s">
               {tag}
             </span>
           ))}
-        </div>
+        </li>
       )}
 
-      <span className={styles.title}>{title}</span>
+      <h4 className={styles.title}>{title}</h4>
 
       <p className={styles.text}>{text}</p>
-    </div>
+    </ul>
   );
 };
 

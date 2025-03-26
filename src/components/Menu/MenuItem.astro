@@ -22,7 +22,7 @@ const { href, title, description, icon, isList, isSpecial } = Astro.props;
 
     <div class="col gap-4">
       <h3>{title}</h3>
-      <span class="body-s color-secondary">{description}</span>
+      <span class="body-m color-secondary">{description}</span>
     </div>
   </a>
 </li>
@@ -44,6 +44,10 @@ const { href, title, description, icon, isList, isSpecial } = Astro.props;
   }
   li:nth-child(4) {
     animation-delay: 0.45s;
+  }
+
+  h3 {
+    text-align: start;
   }
 
   a {

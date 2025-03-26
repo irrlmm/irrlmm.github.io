@@ -7,13 +7,13 @@ import TitleWrapper from "../components/TitleWrapper.astro";
 import AchievementStack from "../components/AchievementStack/AchievementStack";
 import FactStackAstro from "../components/FactStack/index.astro";
 import { getEntry } from "astro:content";
-import AnimatedChecklist from "../components/AnimatedChecklist";
+import AnimatedChecklist from "../components/AnimatedCheckItem";
 import Values from "../components/Values.astro";
 import CardSeparator from "../components/CardSeparator.astro";
 import Image from "astro/components/Image.astro";
 import getImage from "../helpers/getImage";
-import QuestionStack from "../components/QuizStack";
 import Quiz from "../components/Quiz.astro";
+import CheckList from "../components/CheckList.astro";
 
 const about = await getEntry("page:about", "about");
 
@@ -48,7 +48,7 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 ---
 
 <MainLayout hasHeader={true}>
-  <Image
+  <!-- <Image
     class="hero-image"
     widths={[768, 1536]}
     layout="responsive"
@@ -56,7 +56,26 @@ const fullYears = isBirthdayPassed ? age : age - 1;
     loading="eager"
     alt="Cover image"
     src={getImage(person.data.avatar)()}
-  />
+  /> -->
+
+  <div class="lead-wrapper">
+    <div class="lead">
+      <Image
+        class="hero-image"
+        widths={[768, 1536]}
+        layout="responsive"
+        width={128}
+        loading="eager"
+        alt="Cover image"
+        src={getImage(person.data.avatar)()}
+      />
+
+      <h1>{about.data.title}</h1>
+      <p>
+        {about.data.lead.map((l) => <span>{l}</span>)}
+      </p>
+    </div>
+  </div>
 
   <div class="main-card col gap-32 padding-32">
     <TitleWrapper title={about.data.title} />
@@ -83,8 +102,6 @@ const fullYears = isBirthdayPassed ? age : age - 1;
   </div>
 
   <div class="wrapper">
-    <Separator isDashed />
-
     {
       about.data.sections.map(async (s) => {
         if (s.separator) {
@@ -108,9 +125,7 @@ const fullYears = isBirthdayPassed ? age : age - 1;
             <div class="content-column">
               {s.values && <Values values={s.values} />}
 
-              {s.checklist && (
-                <AnimatedChecklist client:idle list={s.checklist} />
-              )}
+              {s.checklist && <CheckList list={s.checklist} />}
 
               {s.cards && <AchievementStack client:idle cards={s.cards} />}
 
@@ -130,10 +145,43 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 </MainLayout>
 
 <style>
+  .lead-wrapper {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: stretch;
+    padding: 32px;
+  }
+
+  .lead {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    gap: 32px;
+    /* border: solid 1px var(--outline); */
+    background-color: var(--surface-hi);
+  }
+
+  .lead h1 {
+    font-size: var(--font-size-5xl);
+    max-width: 1280px;
+  }
+
+  .lead p {
+    font-size: 1.25rem;
+    color: var(--on-surface);
+    letter-spacing: -0.03em;
+    max-width: 768px;
+  }
+
   .hero-image {
-    border-radius: 32px;
+    /* margin-top: 64px; */
+    border-radius: 25%;
     object-position: top center;
-    aspect-ratio: 21/9;
+    /* aspect-ratio: 21/9; */
     animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
   }
 

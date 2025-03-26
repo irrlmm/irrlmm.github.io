@@ -34,12 +34,11 @@ const { isDashed, ...rest } = Astro.props;
   svg.separator-main {
     width: 100%;
     stroke: var(--outline);
-    stroke-width: 1.5px;
+    stroke-width: 1px;
     transition: stroke 0.2s var(--bezier);
   }
 
   div.dashed svg.separator-main {
     stroke-dasharray: 4px;
-    /* max-width: 50%; */
   }
 </style>

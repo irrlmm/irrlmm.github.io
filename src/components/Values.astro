@@ -43,7 +43,7 @@ const { values } = Astro.props;
 
 <style>
   p {
-    flex-wrap: wrap;
+    text-align: start;
     animation: appear 0.33s var(--bezier) both;
   }
 
@@ -83,5 +83,15 @@ const { values } = Astro.props;
 
   p > * {
     min-width: 200px;
+  }
+
+  @media (max-width: 512px) {
+    div {
+      gap: 32px;
+    }
+
+    p {
+      flex-direction: column;
+    }
   }
 </style>

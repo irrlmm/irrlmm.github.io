@@ -17,7 +17,8 @@ const { d, stroke, strokeWidth, ...rest } = Astro.props;
   height="24"
   viewBox="0 0 24 24"
   fill="none"
-  stroke="none"
+  stroke={stroke || "var(--on-surface)"}
+  stroke-width={strokeWidth || 1.5}
   {...rest}
 >
   <path d={d || SVG_DEFAULT} vector-effect="non-scaling-stroke"></path>
@@ -25,8 +26,6 @@ const { d, stroke, strokeWidth, ...rest } = Astro.props;
 
 <style>
   svg {
-    stroke: var(--on-surface);
-    stroke-width: 1.5px;
     transition: all 0.2s var(--bezier);
   }
 </style>

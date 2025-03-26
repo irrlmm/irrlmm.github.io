@@ -1,16 +1,17 @@
 ---
+import { SVG_MENU } from "../consts/svg";
 import {
   MENU_ABOUT,
   MENU_CONTACT,
   MENU_CV,
   MENU_WORK,
 } from "../consts/ui/menu";
-import AccentSwitch from "./AccentSwitch.astro";
 import FontSwitch from "./FontSwitch.astro";
 import HeaderLink from "./HeaderLink.astro";
+import Svg from "./Svg.astro";
 import ThemeSwitch from "./ThemeSwitch.astro";
 
-const menu = [MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
+const menu = [MENU_WORK, MENU_CONTACT];
 ---
 
 <header>
@@ -27,6 +28,8 @@ const menu = [MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
       ></path>
     </svg>
   </a>
+
+  <button><Svg d={SVG_MENU} /> Menu</button>
 
   <nav>
     <ul>
@@ -45,6 +48,8 @@ const menu = [MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
 
 <style>
   header {
+    /* position: sticky; */
+    /* top: 0; */
     height: 88px;
     z-index: 100;
     display: flex;
@@ -52,12 +57,15 @@ const menu = [MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
     justify-content: center;
     width: 100%;
     background-color: var(--background-fx);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(10px);
     transition: all 0.2s var(--bezier);
   }
 
-  header > button {
-    width: 40px;
+  button {
+    position: absolute;
+    left: 104px;
+    width: fit-content;
+    padding: 0 16px;
     height: 40px;
   }
 
@@ -81,11 +89,17 @@ const menu = [MENU_ABOUT, MENU_WORK, MENU_CV, MENU_CONTACT];
 
   ul {
     display: flex;
-    gap: 64px;
+    gap: 16px;
   }
 
   ul {
     justify-content: space-between;
+  }
+
+  @media (min-width: 768px) {
+    button {
+      display: none;
+    }
   }
 
   @media (max-width: 768px) {
