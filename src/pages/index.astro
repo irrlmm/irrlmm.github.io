@@ -10,7 +10,6 @@ import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import { getEntry } from "astro:content";
 import { getEntries } from "astro:content";
 import AnimatedLead from "../components/AnimatedLead.astro";
-import SectionLinks from "../components/SectionLinks.astro";
 import { LINK_DRIBBBLE, LINK_LINKEDIN } from "../consts/ui/links";
 
 const cv = await getEntry("page:cv", "cv");
@@ -63,7 +62,20 @@ const fullYears = isBirthdayPassed ? age : age - 1;
         ]}
       />
 
-      <SectionLinks links={[LINK_LINKEDIN, LINK_DRIBBBLE]} />
+      <Values
+        values={[
+          {
+            label: LINK_LINKEDIN.label,
+            href: LINK_LINKEDIN.href,
+            value: "Igor Lemeshkin",
+          },
+          {
+            label: LINK_DRIBBBLE.label,
+            href: LINK_DRIBBBLE.href,
+            value: "irrlmm",
+          },
+        ]}
+      />
 
       <Separator isDashed />
     </section>

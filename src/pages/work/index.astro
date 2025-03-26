@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Menu from "../../components/Menu/Menu.astro";
 import Separator from "../../components/Separator.astro";
-import SectionLinks from "../../components/SectionLinks.astro";
+import Links from "../../components/Links.astro";
 import PostsList from "../../components/Posts/PostsList.astro";
 import Footer from "../../components/Footer.astro";
 import {
@@ -41,7 +41,7 @@ const posts = (await getCollection("work")).sort(
     <section class="col gap-32">
       <h2>More work</h2>
 
-      <SectionLinks links={[LINK_LINKEDIN, LINK_DRIBBBLE, LINK_BEHANCE]} />
+      <Links links={[LINK_LINKEDIN, LINK_DRIBBBLE, LINK_BEHANCE]} />
     </section>
 
     <Separator isDashed />

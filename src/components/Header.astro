@@ -29,7 +29,7 @@ const menu = [MENU_WORK, MENU_CONTACT];
     </svg>
   </a>
 
-  <button><Svg d={SVG_MENU} /> Menu</button>
+  <!-- <button><Svg d={SVG_MENU} /> Menu</button> -->
 
   <nav>
     <ul>
@@ -89,22 +89,10 @@ const menu = [MENU_WORK, MENU_CONTACT];
 
   ul {
     display: flex;
-    gap: 16px;
+    gap: 8px;
   }
 
   ul {
     justify-content: space-between;
-  }
-
-  @media (min-width: 768px) {
-    button {
-      display: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    nav {
-      display: none;
-    }
   }
 </style>
