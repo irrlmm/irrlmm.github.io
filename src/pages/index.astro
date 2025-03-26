@@ -41,7 +41,7 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 <MainLayout hasHeader schema={SCHEMA_PERSON_FULL}>
   <article>
     <section>
-      <div class="col gap-32">
+      <div class="col gap-48">
         <h1>{person.data.name}</h1>
 
         <AnimatedLead lines={about.data.lead} addSpaceBetween />
@@ -128,7 +128,7 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 <style>
   article {
     width: 100%;
-    padding: 160px 32px;
+    padding: 176px 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
