@@ -14,24 +14,36 @@
 }
 
 :root {
+  --unit-2xs: 0.25rem;
   --unit-xs: 0.5rem;
   --unit-s: 0.75rem;
   --unit-m: 1rem;
   --unit-l: 1.5rem;
   --unit-xl: 2rem;
   --unit-2xl: 4rem;
-  --unit-3xl: 6rem;
 
   font-family: "gt-regular", monospace;
   font-size: 32px;
-  line-height: 1;
-  letter-spacing: 0.04em;
+  line-height: 1.1;
+  letter-spacing: 0.015em;
   text-transform: uppercase;
 
   -webkit-font-smoothing: antialiased;
 }
 
 @media (max-width: 512px) {
+  :root {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 360px) {
   :root {
     font-size: 24px;
   }
@@ -44,6 +56,17 @@ h4,
 h5,
 h6,
 strong {
+  font-size: var(--unit-m);
   font-family: "gt-bold", monospace;
-  font-weight: 500;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }

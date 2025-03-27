@@ -43,5 +43,18 @@ const { hasHeader, schema } = Astro.props;
     align-items: center;
     flex-direction: column;
     gap: 64px;
+    padding: 0 var(--unit-l);
+  }
+
+  @media (max-width: 512px) {
+    main {
+      padding: 0 var(--unit-m);
+    }
+  }
+
+  @media (max-width: 360px) {
+    main {
+      padding: 0 var(--unit-s);
+    }
   }
 </style>

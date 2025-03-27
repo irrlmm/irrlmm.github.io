@@ -1,0 +1,87 @@
+---
+import Band from "./Band.astro";
+import TabDecor from "./TabDecor.astro";
+---
+
+<div class="col flex-1 gap-m padding-m">
+  <h2>Case file</h2>
+
+  <TabDecor />
+
+  <ul class="col gap-xs">
+    {
+      [
+        { label: "Age", value: "27" },
+        { label: "Experience", value: "8+ years" },
+        // { label: "Location", value: "Kuala Lumpur, Malaysia" },
+        {
+          label: "Dribbble",
+          value: "irrlmm",
+          href: "https://dribbble.com/irrlmm",
+        },
+        {
+          label: "LinkedIn",
+          value: "Igor Lemeshkin",
+          href: "https://linkedin.com/irrlmm",
+        },
+      ].map((v) => (
+        <li class="row gap-s">
+          <h4>{v.label}</h4>
+          {v.href ? (
+            <a href={v.href} rel="noopener noreferrer" target="_blank">
+              {v.value}
+            </a>
+          ) : (
+            <span>{v.value}</span>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+
+  <Band class="flex-1" />
+
+  <p>
+    My career goal is to design products that make the world better — not
+    boring. Join a visionary team. Get paid well. Push boundaries with purpose.
+  </p>
+</div>
+
+<div class="row justify-between">
+  <a href="/work">My work</a>
+  <a href="/cv">My resume</a>
+</div>
+
+<style>
+  div:first-of-type {
+    border: solid 2px var(--on-surface);
+    border-radius: var(--unit-2xs);
+  }
+
+  div {
+    position: relative;
+  }
+
+  h2,
+  li h4,
+  li span,
+  li a,
+  li p {
+    font-size: var(--unit-s);
+  }
+
+  li h4,
+  li span,
+  li a {
+    flex: 1;
+    text-align: left;
+  }
+
+  h4 {
+    font-family: "gt-regular";
+  }
+
+  p {
+    font-size: var(--unit-s);
+  }
+</style>

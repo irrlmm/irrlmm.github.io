@@ -1,0 +1,20 @@
+---
+const { ...rest } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 4"
+  preserveAspectRatio="none"
+  {...rest}
+>
+  <path d="M0 2 L 100 2" vector-effect="non-scaling-stroke"></path>
+</svg>
+
+<style>
+  svg {
+    height: var(--unit-m);
+    stroke: var(--on-surface-var);
+    stroke-width: 2px;
+  }
+</style>

@@ -1,88 +1,75 @@
 ---
-import Quiz from "../components/Quiz.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import Monogram from "../components/Monogram.astro";
+import ResumeOverview from "../components/ResumeOverview.astro";
+import Image from "astro/components/Image.astro";
+import getImage from "../helpers/getImage";
 ---
 
 <MainLayout>
-  <article>
-    <h1 class="hidden">Igor Lemeshkin</h1>
-    <h2 class="hidden">Product designer</h2>
+  <article class="col align-start">
+    <Monogram />
 
-    <svg
-      viewBox="0 0 18 9"
-      fill="var(--on-surface)"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M0 2V0H2V2H0ZM3 0H6V2H5V4H3V0ZM7 9V0H9V9H7ZM10 0H18V4H16V2H15V4H13V2H12V4H10V0ZM0 9V3H2V6V9H0ZM3 5H6V7H5V9H3V5ZM10 5H18V9H16V7H15V9H13V7H12V9H10V5Z"
-      ></path>
-    </svg>
+    <section class="col gap-m">
+      <h1 class="hidden">Igor Lemeshkin</h1>
+      <h2 class="hidden">Senior product designer</h2>
 
-    <section>
+      <p>Greetings.</p>
       <p>
-        Hello. I'm <strong>Igor Lemeshkin</strong>, the <strong
-          >product designer</strong
+        I am
+        <Image
+          src={getImage("/src/assets/persons/irrlmm.png")()}
+          widths={[64, 128]}
+          layout="full-width"
+          width={32}
+          alt=""
+        />
+        <strong>Igor Lemeshkin</strong>, a <strong
+          >senior product designer</strong
         >.
       </p>
+
       <p>
-        I create sharp-looking, human-centered apps based on research and
-        insights and my vast hands-on experience.
+        I design clear human interfaces with system thinking at the core. I
+        cover edge cases, ship clean UI, and stay close to dev.
       </p>
-      <!-- <p>
-          He uses his knowledge of code, personal experience and his zest for
-          learning to make the best looking, feeling and lasting product.
-        </p> -->
+
       <p>
-        <strong>You want</strong> to know how your product should look, feel and
-        transform over time.
-      </p>
-      <p>
-        <strong>I give</strong> you the renders, the code and everything dev needs
-        to ship it.
+        My approach is shaped by a dev background, a sharp eye for detail, and a
+        habit of leading collaboration.
       </p>
     </section>
 
-    <!-- <Quiz quiz={{ collection: "quiz", id: "guess-igor" }} /> -->
+    <section class="col gap-m">
+      <ResumeOverview />
+    </section>
   </article>
-
-  <style>
-    article {
-      display: flex;
-      flex-direction: column;
-      padding: var(--unit-3xl) var(--unit-m);
-      gap: var(--unit-xl);
-    }
-
-    svg {
-      width: calc(var(--unit-xl) * 0.75);
-      height: var(--unit-m);
-      margin-bottom: 7px;
-    }
-
-    section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      max-width: 576px;
-      gap: 1rem;
-    }
-
-    p,
-    span,
-    h1,
-    h2 {
-      font-size: var(--font-size-2xl);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-align: justify;
-      line-height: 1;
-      display: inline;
-    }
-
-    h1,
-    h2 {
-      font-weight: 700;
-    }
-  </style>
 </MainLayout>
+
+<style>
+  article {
+    width: 100%;
+    max-width: 576px;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    padding: var(--unit-2xl) 0;
+    gap: var(--unit-2xl);
+    animation: page-appear 0.66s var(--bezier) 0.1s both;
+  }
+
+  p {
+    vertical-align: middle;
+  }
+
+  img {
+    width: var(--unit-m);
+    border-radius: 10%;
+    vertical-align: middle;
+    transform: translateY(calc(-0.1 * var(--unit-m)));
+  }
+
+  section {
+    align-self: stretch;
+  }
+</style>

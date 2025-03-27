@@ -1,15 +1,15 @@
 :root {
-  transition-duration: 0.15s;
-  transition-timing-function: var(--bezier);
-  /* transition-property: "background-color", "color"; */
+  transition: color 0.15s var(--bezier), background-color 0.15s var(--bezier);
 }
 
-@keyframes appear {
+@keyframes page-appear {
   0% {
     opacity: 0;
+    filter: blur(8px);
   }
   100% {
     opacity: 1;
+    filter: blur(0);
   }
 }
 
