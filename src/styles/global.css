@@ -5,8 +5,3 @@
 @import url(./theme.css);
 @import url(./layout.css);
 @import url(./animations.css);
-
-html {
-  background-color: var(--background);
-  transition: background-color 0.2s var(--bezier);
-}

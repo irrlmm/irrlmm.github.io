@@ -1,101 +1,20 @@
-:root[data-accent="paper"] {
-  --gray-10: #111111;
-  --gray-10-fx: #111111e6;
-  --gray-20: #1b1b1b;
-  --gray-20-fx: #1b1b1be6;
-  --gray-30: #2d2d2d;
-  --gray-40: #484848;
-  --gray-50: #6a6a6a;
-  --gray-60: #919191;
-  --gray-70: #b7b7b7;
-  --gray-80: #d9d9d9;
-  --gray-90: #f2f2f2;
-  --gray-90-fx: #f2f2f2e6;
-  --gray-99: #ffffff;
-  --gray-99-fx: #ffffffe6;
-
-  --ac-1: var(--gray-20);
-  --ac-2: var(--gray-30);
-  --ac-3: var(--gray-20);
-  --ac-4: var(--gray-90);
-  --ac-5: var(--gray-80);
-  --ac-6: var(--gray-90);
-}
-
-:root[data-accent="mono"] {
-  --gray-10: #111111;
-  --gray-10-fx: #111111e6;
-  --gray-20: #1b1b1b;
-  --gray-20-fx: #1b1b1be6;
-  --gray-30: #2d2d2d;
-  --gray-40: #484848;
-  --gray-50: #6a6a6a;
-  --gray-60: #919191;
-  --gray-70: #b7b7b7;
-  --gray-80: #d9d9d9;
-  --gray-90: #f2f2f2;
-  --gray-90-fx: #f2f2f2e6;
-  --gray-99: #ffffff;
-  --gray-99-fx: #ffffffe6;
-
-  --ac-1: var(--gray-20);
-  --ac-2: var(--gray-30);
-  --ac-3: var(--gray-20);
-  --ac-4: var(--gray-90);
-  --ac-5: var(--gray-80);
-  --ac-6: var(--gray-90);
-}
-
 :root {
   color-scheme: light dark;
 
   /* Primitives */
-  --gray-10: #111111;
-  --gray-10-fx: #111111da;
-  --gray-10-fx-2: #11111110;
-  --gray-20: #1b1b1b;
-  --gray-20-fx: #1b1b1bda;
-  --gray-30: #2d2d2d;
-  --gray-40: #484848;
-  --gray-50: #6a6a6a;
-  --gray-60: #919191;
-  --gray-70: #b7b7b7;
-  --gray-80: #d9d9d9;
-  --gray-90: #f2f2f2;
-  --gray-90-fx: #f2f2f2da;
-  --gray-99: #ffffff;
-  --gray-99-fx: #ffffffda;
-  --gray-99-fx-2: #ffffff05;
-
-  --ac-1: var(--gray-20);
-  --ac-2: var(--gray-30);
-  --ac-3: var(--gray-20);
-  --ac-4: var(--gray-90);
-  --ac-5: var(--gray-80);
-  --ac-6: var(--gray-90);
+  --black-100: #0b0b0b;
+  --black-20: #0b0b0b14;
+  --white-100: #ffffff;
+  --white-20: #ffffff14;
 
   /* Surface tokens */
-  --background: light-dark(var(--gray-90), var(--gray-10));
-  --background-fx: light-dark(var(--gray-90-fx), var(--gray-10-fx));
-  --surface-lo: light-dark(var(--gray-10-fx-2), var(--gray-99-fx-2));
-  --surface-hi: light-dark(var(--gray-99), var(--gray-20));
-  --surface-hi-fx: light-dark(var(--gray-99-fx), var(--gray-20-fx));
-  --on-surface: light-dark(var(--gray-10), var(--gray-99));
-  --on-surface-var: light-dark(var(--gray-30), var(--gray-80));
-  --on-surface-var-2: light-dark(var(--gray-50), var(--gray-60));
-  --outline: light-dark(var(--gray-70), var(--gray-40));
-
-  /* Inverse tokens */
-  --inverse-background: light-dark(var(--gray-10), var(--gray-90));
-  --inverse-surface: light-dark(var(--gray-20), var(--gray-99));
-  --inverse-on-surface: light-dark(var(--gray-99), var(--gray-10));
-  --inverse-on-surface-var: light-dark(var(--gray-80), var(--gray-30));
-
-  /* Accent tokens */
-  --accent: light-dark(var(--ac-3), var(--ac-4));
-  --on-accent: light-dark(var(--ac-6), var(--ac-1));
-  --accent-container: light-dark(var(--ac-5), var(--ac-2));
+  --background: light-dark(var(--white-100), var(--black-100));
+  --on-surface: light-dark(var(--black-100), var(--white-100));
+  --on-surface-var: light-dark(var(--black-20), var(--black-20));
 
   /* Bezier curve */
   --bezier: cubic-bezier(0.25, 0.75, 0.5, 1);
+
+  background-color: var(--background);
+  color: var(--on-surface);
 }

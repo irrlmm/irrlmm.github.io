@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.hidden {
+  position: absolute;
+  left: -10000px;
+}
+
 ul {
   list-style: none;
 }

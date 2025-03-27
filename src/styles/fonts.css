@@ -1,69 +1,39 @@
-/* @import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"); */
-@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
-
 @font-face {
-  font-family: "mono";
-  src: url("/fonts/mono.woff2") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "gt";
-  font-weight: 400;
+  font-family: "gt-regular";
   src: url("/fonts/gt-reg.ttf") format("truetype");
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "gt";
-  font-weight: 700;
-  src: url("/fonts/gt-bold.ttf") format("ttf");
+  font-family: "gt-bold";
+  src: url("/fonts/gt-bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-md: 1.125rem;
-  --font-size-lg: 1.3125rem;
-  --font-size-xl: 1.75rem;
-  --font-size-2xl: 2.25rem;
-  --font-size-3xl: 3rem;
-  --font-size-4xl: 3.75rem;
-  --font-size-5xl: 4.5rem;
+  --unit-xs: 0.5rem;
+  --unit-s: 0.75rem;
+  --unit-m: 1rem;
+  --unit-l: 1.5rem;
+  --unit-xl: 2rem;
+  --unit-2xl: 4rem;
+  --unit-3xl: 6rem;
 
-  --line-height-tight: 1;
-  --line-height-normal: 1.33;
-  --line-height-loose: 1.6;
+  font-family: "gt-regular", monospace;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 
   -webkit-font-smoothing: antialiased;
 }
 
-html {
-  font-family: "gt", monospace;
-  font-size: 18px;
-  line-height: var(--line-height-normal);
-}
-
-@media (max-width: 768px) {
-  html {
-    font-size: 17px;
-  }
-
-  html {
-    font-size: 16px;
-  }
-}
-
 @media (max-width: 512px) {
-  html {
-    font-size: 15px;
+  :root {
+    font-size: 24px;
   }
 }
 
@@ -71,76 +41,9 @@ h1,
 h2,
 h3,
 h4,
-p,
-span {
-  margin: 0;
-  transition: color 0.2s var(--bezier);
-}
-
-/* html[data-font="byte"] {
-  font-family: "Tiny5", sans-serif;
-  font-size: 18px;
-  line-height: var(--line-height-tight);
-  letter-spacing: 0.03em;
-} */
-
-h1,
-h2,
-h3,
-h4 {
-  line-height: var(--line-height-tight);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-h1,
-h2,
-h3,
-h4,
-p {
-  text-align: center;
-}
-
-h1 {
-  font-size: var(--font-size-3xl);
-}
-
-h2 {
-  font-size: var(--font-size-2xl);
-}
-
-h3 {
-  font-size: var(--font-size-xl);
-}
-
-h4 {
-  font-size: var(--font-size-lg);
-}
-
-.body-s {
-  font-size: var(--font-size-base);
-}
-
-.body-m {
-  font-size: var(--font-size-md);
-}
-
-.body-l {
-  font-size: var(--font-size-lg);
-}
-
-.color-primary {
-  color: var(--on-surface);
-}
-
-.color-secondary {
-  color: var(--on-surface-var);
-}
-
-.color-tertiary {
-  color: var(--on-surface-var-2);
-}
-
-.color-accent {
-  color: var(--accent);
+h5,
+h6,
+strong {
+  font-family: "gt-bold", monospace;
+  font-weight: 500;
 }

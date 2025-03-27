@@ -1,3 +1,9 @@
+:root {
+  transition-duration: 0.15s;
+  transition-timing-function: var(--bezier);
+  /* transition-property: "background-color", "color"; */
+}
+
 @keyframes appear {
   0% {
     opacity: 0;
