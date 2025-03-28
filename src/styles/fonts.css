@@ -33,19 +33,13 @@
 
 @media (max-width: 512px) {
   :root {
-    font-size: 32px;
+    font-size: 24px;
   }
 }
 
 @media (max-width: 400px) {
   :root {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 360px) {
-  :root {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 
@@ -54,10 +48,8 @@ h2,
 h3,
 h4,
 h5,
-h6,
-strong {
+h6 {
   font-size: var(--unit-m);
-  font-family: "gt-bold", monospace;
   font-weight: 400;
 }
 
@@ -69,4 +61,19 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+p span {
+  position: relative;
+  background-color: transparent;
+  transition: background-color 0.1s var(--bezier);
+  transition-delay: 0.1s;
+}
+
+p span:hover {
+  background-color: var(--on-surface-var);
+}
+
+.font-bold {
+  font-family: "gt-bold";
 }

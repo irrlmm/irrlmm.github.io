@@ -1,7 +1,4 @@
 ---
-import { SVG_ARROW } from "../consts/svg";
-import Svg from "./Svg.astro";
-
 interface Props {
   values: {
     label: string;
@@ -13,23 +10,17 @@ interface Props {
 const { values } = Astro.props;
 ---
 
-<div class="col gap-16">
+<div class="col gap-xs">
   {
     values.map(({ label, value, href }) => {
       return (
-        <p class="body-m row gap-8">
-          <span class="flex-1 color-tertiary">{label}</span>
+        <p class="flex-1 row gap-xs">
+          <span class="flex-1">{label}</span>
 
-          <span class="flex-1 color-secondary">
+          <span class="flex-1">
             {href ? (
-              <a
-                class="row color-secondary gap-4"
-                href={href}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
+              <a href={href} rel="noopener noreferrer" target="_blank">
                 {value}
-                <Svg d={SVG_ARROW} />
               </a>
             ) : (
               value
@@ -43,28 +34,34 @@ const { values } = Astro.props;
 
 <style>
   p {
+    font-size: var(--unit-s);
     text-align: start;
-    animation: appear 0.33s var(--bezier) both;
-  }
-
-  p span:first-child {
-    text-transform: uppercase;
+    animation: appear 0.3s var(--bezier) both;
   }
 
   p:nth-child(1) {
-    animation-delay: 0.2s;
+    animation-delay: 0.3s;
   }
   p:nth-child(2) {
-    animation-delay: 0.22s;
+    animation-delay: 0.35s;
   }
   p:nth-child(3) {
-    animation-delay: 0.24s;
+    animation-delay: 0.4s;
   }
   p:nth-child(4) {
-    animation-delay: 0.26s;
+    animation-delay: 0.45s;
   }
-  p:nth-child(n + 5) {
-    animation-delay: 0.28s;
+  p:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  p:nth-child(6) {
+    animation-delay: 0.55s;
+  }
+  p:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  p:nth-child(n + 8) {
+    animation-delay: 0.65s;
   }
 
   a {

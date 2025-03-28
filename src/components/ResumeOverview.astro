@@ -1,19 +1,25 @@
 ---
 import Band from "./Band.astro";
 import TabDecor from "./TabDecor.astro";
+import Values from "./Values.astro";
 ---
 
-<div class="col flex-1 gap-m padding-m">
-  <h2>Case file</h2>
-
+<div id="file" class="col flex-1 gap-l padding-m">
   <TabDecor />
 
-  <ul class="col gap-xs">
+  <h2 class="font-bold">Overview file</h2>
+
+  <!-- <ul class="col gap-xs">
     {
       [
         { label: "Age", value: "27" },
         { label: "Experience", value: "8+ years" },
-        // { label: "Location", value: "Kuala Lumpur, Malaysia" },
+        {
+          label: "Working at",
+          value: "iMusician",
+          href: "https://imusician.pro",
+        },
+        { label: "Location", value: "Kuala Lumpur, Malaysia" },
         {
           label: "Dribbble",
           value: "irrlmm",
@@ -37,25 +43,40 @@ import TabDecor from "./TabDecor.astro";
         </li>
       ))
     }
-  </ul>
+  </ul> -->
 
-  <Band class="flex-1" />
+  <Values
+    values={[
+      { label: "Age", value: "27" },
+      // { label: "Experience", value: "8+ years" },
+      { label: "Location", value: "Kuala Lumpur, Malaysia" },
+      {
+        label: "Working at",
+        value: "iMusician",
+        href: "https://imusician.pro",
+      },
+      {
+        label: "Dribbble",
+        value: "irrlmm",
+        href: "https://dribbble.com/irrlmm",
+      },
+      {
+        label: "LinkedIn",
+        value: "Igor Lemeshkin",
+        href: "https://linkedin.com/irrlmm",
+      },
+    ]}
+  />
 
-  <p>
-    My career goal is to design products that make the world better — not
-    boring. Join a visionary team. Get paid well. Push boundaries with purpose.
-  </p>
-</div>
-
-<div class="row justify-between">
-  <a href="/work">My work</a>
-  <a href="/cv">My resume</a>
+  <a href="/cv">View more</a>
 </div>
 
 <style>
-  div:first-of-type {
+  div#file {
+    background-color: var(--background);
     border: solid 2px var(--on-surface);
-    border-radius: var(--unit-2xs);
+    border-radius: var(--unit-xs);
+    transition: all 0.15s var(--bezier);
   }
 
   div {
@@ -74,7 +95,6 @@ import TabDecor from "./TabDecor.astro";
   li span,
   li a {
     flex: 1;
-    text-align: left;
   }
 
   h4 {

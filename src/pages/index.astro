@@ -10,33 +10,40 @@ import getImage from "../helpers/getImage";
   <article class="col align-start">
     <Monogram />
 
-    <section class="col gap-m">
+    <section id="hero" class="col gap-m">
       <h1 class="hidden">Igor Lemeshkin</h1>
-      <h2 class="hidden">Senior product designer</h2>
+      <h2 class="hidden">Product designer</h2>
 
-      <p>Greetings.</p>
+      <!-- <p><strong>Greetings.</strong></p> -->
+
       <p>
-        I am
-        <Image
-          src={getImage("/src/assets/persons/irrlmm.png")()}
-          widths={[64, 128]}
-          layout="full-width"
-          width={32}
-          alt=""
-        />
-        <strong>Igor Lemeshkin</strong>, a <strong
-          >senior product designer</strong
-        >.
+        <span class="font-bold">Greetings.</span>
+        <span>
+          I am
+          <Image
+            src={getImage("/src/assets/persons/irrlmm.png")()}
+            widths={[128, 256]}
+            layout="full-width"
+            width={128}
+            loading="eager"
+            alt=""
+          />
+          Igor.</span
+        >
       </p>
 
       <p>
-        I design clear human interfaces with system thinking at the core. I
-        cover edge cases, ship clean UI, and stay close to dev.
+        <span>Senior Product Designer.</span>
+        <span>Working at intersection of design, code, and strategy. </span>
       </p>
 
       <p>
-        My approach is shaped by a dev background, a sharp eye for detail, and a
-        habit of leading collaboration.
+        <span> Curiosity-led.</span>
+        <span>Detail-obsessed.</span>
+        <span
+          >Shaped by systems thinking, UI engineering background, and habit of
+          leading collaboration.</span
+        >
       </p>
     </section>
 
@@ -49,13 +56,12 @@ import getImage from "../helpers/getImage";
 <style>
   article {
     width: 100%;
-    max-width: 576px;
+    max-width: calc(var(--unit-m) * 20);
     display: flex;
     flex-direction: column;
     text-align: justify;
     padding: var(--unit-2xl) 0;
     gap: var(--unit-2xl);
-    animation: page-appear 0.66s var(--bezier) 0.1s both;
   }
 
   p {
@@ -64,9 +70,15 @@ import getImage from "../helpers/getImage";
 
   img {
     width: var(--unit-m);
-    border-radius: 10%;
+    border-radius: 5%;
     vertical-align: middle;
     transform: translateY(calc(-0.1 * var(--unit-m)));
+    transition: all 0.15s var(--bezier);
+    transform-origin: center 57.5%;
+  }
+  img:hover {
+    transform: scale(2);
+    box-shadow: 0 0 0 2px var(--background);
   }
 
   section {

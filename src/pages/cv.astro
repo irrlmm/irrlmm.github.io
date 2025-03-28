@@ -9,8 +9,9 @@ import { MENU_ABOUT, MENU_CONTACT, MENU_WORK } from "../consts/ui/menu";
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import { getEntry } from "astro:content";
 import { getEntries } from "astro:content";
-import AnimatedLead from "../components/AnimatedLead.astro";
 import { LINK_DRIBBBLE, LINK_LINKEDIN } from "../consts/ui/links";
+import Monogram from "../components/Monogram.astro";
+import Band from "../components/Band.astro";
 
 const cv = await getEntry("page:cv", "cv");
 
@@ -38,16 +39,14 @@ const isBirthdayPassed =
 const fullYears = isBirthdayPassed ? age : age - 1;
 ---
 
-<MainLayout hasHeader schema={SCHEMA_PERSON_FULL}>
-  <article>
+<MainLayout schema={SCHEMA_PERSON_FULL}>
+  <article class="col align-start">
+    <Monogram />
+
     <section>
-      <div class="col gap-48">
-        <h1>{person.data.name}</h1>
+      <h1 class="hidden">CV / Resume</h1>
 
-        <AnimatedLead lines={about.data.lead} addSpaceBetween />
-      </div>
-
-      <Separator isDashed />
+      <h2>{person.data.name}</h2>
 
       <Values
         values={[
@@ -130,11 +129,12 @@ const fullYears = isBirthdayPassed ? age : age - 1;
 <style>
   article {
     width: 100%;
-    padding: 176px 32px;
+    max-width: calc(var(--unit-m) * 20);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 64px;
+    text-align: justify;
+    padding: var(--unit-2xl) 0;
+    gap: var(--unit-2xl);
   }
 
   .centered {

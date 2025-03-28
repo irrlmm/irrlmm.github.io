@@ -3,27 +3,34 @@
   left: -10000px;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .justify-start {
-  justify-content: start;
+  justify-content: flex-start;
 }
 .justify-center {
   justify-content: center;
 }
 .justify-end {
-  justify-content: end;
+  justify-content: flex-end;
 }
 .justify-between {
   justify-content: space-between;
 }
 
 .align-start {
-  align-items: start;
+  align-items: flex-start;
 }
 .align-end {
-  align-items: end;
+  align-items: flex-end;
 }
 .align-center {
   align-items: center;
+}
+.align-stretch {
+  align-items: stretch;
 }
 
 .row {

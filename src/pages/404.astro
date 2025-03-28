@@ -6,7 +6,7 @@ import { MENU_HOME, MENU_404 } from "../consts/ui/menu";
 import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<MainLayout hasHeader>
+<MainLayout>
   <div class="wrapper">
     <section class="col gap-32">
       <h1>404</h1>
@@ -30,7 +30,7 @@ import MainLayout from "../layouts/MainLayout.astro";
   }
 
   h1 {
-    font-size: var(--font-size-5xl);
+    font-size: var(--unit-2xl);
   }
 
   .decor-headline {
