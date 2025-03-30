@@ -13,12 +13,10 @@
       },
       {
         "label": "Career goals",
-        "value": "Design the kind of products that make the world better — not boring. Join a visionary team, get paid well, and push boundaries with purpose."
+        "value": "Join visionaries. Push limits with purpose. Mix physical and digital design. Earn well."
       }
     ],
-
     "jobs": ["im-design", "im-dev", "99sales", "outline", "uniyo"],
-
     "skills": [
       {
         "label": "UX Design",
@@ -49,7 +47,6 @@
         "value": "Agile, Scrum, Crystal"
       }
     ],
-
     "education": [
       {
         "label": "University",
@@ -95,8 +92,8 @@
             "value": "2017"
           },
           {
-            "label": "Description",
-            "value": "Chat roulette application project"
+            "label": "Product",
+            "value": "at-chat messenger"
           },
           {
             "label": "Status",

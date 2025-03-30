@@ -2,10 +2,10 @@
   color-scheme: light dark;
 
   /* Primitives */
-  --black-100: #0b0b0b;
-  --black-12: #0b0b0b1f;
-  --white-100: #ffffff;
-  --white-12: #ffffff1f;
+  --black-100: rgba(0, 0, 0, 1);
+  --black-12: rgba(0, 0, 0, 0.12);
+  --white-100: rgba(255, 255, 255, 1);
+  --white-12: rgba(255, 255, 255, 0.12);
 
   /* Surface tokens */
   --background: light-dark(var(--white-100), var(--black-100));
@@ -13,7 +13,7 @@
   --on-surface-var: light-dark(var(--black-12), var(--white-12));
 
   /** Decor overlay effect */
-  --pixel-grid-line: light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.5));
+  --pixel-grid-line: light-dark(#1642ff24, #00d0fa55);
 
   /** Accent tokens */
   --accent: light-dark(#1642ff, #00d0fa);

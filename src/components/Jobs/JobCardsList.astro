@@ -1,8 +1,5 @@
 ---
-import { SVG_CHEVRON_UP } from "../../consts/svg";
 import JobCard from "./JobCard.astro";
-import Svg from "../Svg.astro";
-import type { ReferenceDataEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -12,68 +9,6 @@ interface Props {
 const { jobs } = Astro.props;
 ---
 
-<div class="col align-center">
-  {
-    jobs.map((job, i) => (
-      <>
-        <JobCard {...job.data} />
-
-        {job.data.linkNext ? (
-          <div role="separator" class="separator-link">
-            <Svg d={SVG_CHEVRON_UP} />
-          </div>
-        ) : (
-          i < jobs.length - 1 && <div role="separator" class="separator" />
-        )}
-      </>
-    ))
-  }
-</div>
-
-<style>
-  @keyframes history-raise {
-    0% {
-      transform: translateY(6px);
-      filter: blur(1px);
-      opacity: 0;
-    }
-    25% {
-      transform: translateY(0px);
-      filter: blur(0px);
-      opacity: 1;
-    }
-    75% {
-      transform: translateY(0px);
-      filter: blur(0px);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-6px);
-      filter: blur(1px);
-      opacity: 0;
-    }
-  }
-
-  .separator {
-    height: 64px;
-  }
-
-  .separator-link {
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 16px 0;
-    border: solid 1px var(--outline);
-    animation: appear 0.66s var(--bezier) 0.4s both;
-  }
-
-  .separator-link svg {
-    width: 16px;
-    height: 16px;
-    stroke: var(--on-surface);
-    animation: history-raise 2s var(--bezier) both infinite;
-  }
-</style>
+<ul class="col gap-m">
+  {jobs.map((job, i) => <JobCard {...job.data} />)}
+</ul>

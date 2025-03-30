@@ -12,10 +12,19 @@ a {
   display: inline-flex;
   align-self: flex-start;
   color: var(--accent);
-  text-underline-offset: 8px;
-  text-decoration: none;
+  text-underline-offset: 6px;
   transition: color 0.15s var(--bezier), transform 0.15s var(--bezier);
 }
 a:hover {
+  /* background-color: var(--accent); */
+  /* color: var(--background); */
   transform: skewX(-12.5deg);
+}
+
+.card {
+  position: relative;
+  background-color: var(--background);
+  border: solid 2px var(--on-surface);
+  border-radius: var(--unit-xs);
+  transition: all 0.15s var(--bezier);
 }

@@ -13,47 +13,20 @@
 
 @keyframes decor-appear {
   0% {
-    opacity: 0;
-  }
-  25% {
     opacity: 1;
   }
   100% {
-    opacity: 0;
+    opacity: 0.15;
   }
 }
 
 @keyframes page-appear {
   0% {
     opacity: 0;
-    filter: blur(10px);
+    filter: blur(8px);
   }
   100% {
     opacity: 1;
-    filter: blur(0px);
-  }
-}
-
-@keyframes appear-with-blur {
-  0% {
-    opacity: 0;
-    filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-  }
-}
-
-@keyframes appear-with-scale {
-  0% {
-    opacity: 0;
-    transform: scale(0.98);
-    filter: blur(4px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
     filter: blur(0px);
   }
 }

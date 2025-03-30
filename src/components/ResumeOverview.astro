@@ -1,107 +1,36 @@
 ---
-import Band from "./Band.astro";
+import { getEntry } from "astro:content";
 import TabDecor from "./TabDecor.astro";
 import Values from "./Values.astro";
+import Band from "./Band.astro";
+
+const person = await getEntry("meta:person", "me");
+
+if (!person) {
+  throw Error("failed to load personal data!");
+}
+
+const { location, links, email } = person.data;
 ---
 
-<div id="file" class="col flex-1 gap-l padding-m">
-  <TabDecor />
-
-  <h2 class="font-bold">Overview file</h2>
-
-  <!-- <ul class="col gap-xs">
-    {
-      [
-        { label: "Age", value: "27" },
-        { label: "Experience", value: "8+ years" },
-        {
-          label: "Working at",
-          value: "iMusician",
-          href: "https://imusician.pro",
-        },
-        { label: "Location", value: "Kuala Lumpur, Malaysia" },
-        {
-          label: "Dribbble",
-          value: "irrlmm",
-          href: "https://dribbble.com/irrlmm",
-        },
-        {
-          label: "LinkedIn",
-          value: "Igor Lemeshkin",
-          href: "https://linkedin.com/irrlmm",
-        },
-      ].map((v) => (
-        <li class="row gap-s">
-          <h4>{v.label}</h4>
-          {v.href ? (
-            <a href={v.href} rel="noopener noreferrer" target="_blank">
-              {v.value}
-            </a>
-          ) : (
-            <span>{v.value}</span>
-          )}
-        </li>
-      ))
-    }
-  </ul> -->
+<div class="card col flex-1 gap-l padding-m">
+  <!-- <TabDecor /> -->
 
   <Values
     values={[
       { label: "Age", value: "27" },
-      // { label: "Experience", value: "8+ years" },
-      { label: "Location", value: "Kuala Lumpur, Malaysia" },
+      { label: "Location", value: `${location.city}, ${location.country}` },
       {
         label: "Working at",
         value: "iMusician",
         href: "https://imusician.pro",
       },
-      {
-        label: "Dribbble",
-        value: "irrlmm",
-        href: "https://dribbble.com/irrlmm",
-      },
-      {
-        label: "LinkedIn",
-        value: "Igor Lemeshkin",
-        href: "https://linkedin.com/irrlmm",
-      },
+      ...links,
     ]}
   />
-
-  <a href="/cv">View more</a>
 </div>
 
-<style>
-  div#file {
-    background-color: var(--background);
-    border: solid 2px var(--on-surface);
-    border-radius: var(--unit-xs);
-    transition: all 0.15s var(--bezier);
-  }
-
-  div {
-    position: relative;
-  }
-
-  h2,
-  li h4,
-  li span,
-  li a,
-  li p {
-    font-size: var(--unit-s);
-  }
-
-  li h4,
-  li span,
-  li a {
-    flex: 1;
-  }
-
-  h4 {
-    font-family: "gt-regular";
-  }
-
-  p {
-    font-size: var(--unit-s);
-  }
-</style>
+<div class="row justify-between padding-m">
+  <a href="/cv">View more</a>
+  <a href={email}>Contact me</a>
+</div>

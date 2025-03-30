@@ -56,8 +56,9 @@ const person = defineCollection({
     location: z.object({
       country: z.string(),
       city: z.string(),
-      flag: z.string(),
     }),
+    email: z.string(),
+    links: z.array(valueSchema),
   }),
 });
 

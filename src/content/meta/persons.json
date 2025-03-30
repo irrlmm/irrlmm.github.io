@@ -7,10 +7,21 @@
     "birthDate": "12 May 1997",
     "currentJob": "im-design",
     "location": {
-      "remote": true,
       "city": "Kuala Lumpur",
-      "country": "Malaysia",
-      "flag": "🇲🇾"
-    }
+      "country": "Malaysia"
+    },
+    "email": "mailto:igorlem@icloud.com",
+    "links": [
+      {
+        "label": "LinkedIn",
+        "value": "igorlem",
+        "href": "https://linkedin.com/in/igorlem"
+      },
+      {
+        "label": "Dribbble",
+        "value": "irrlmm",
+        "href": "https://dribbble.com/irrlmm"
+      }
+    ]
   }
 ]

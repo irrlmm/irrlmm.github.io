@@ -1,7 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import Svg from "../Svg.astro";
-import { SVG_ARROW } from "../../consts/svg";
 import { getEntry } from "astro:content";
 import type { ReferenceDataEntry } from "astro:content";
 import getImage from "../../helpers/getImage";
@@ -29,67 +27,41 @@ if (!company) {
 const logo = getImage(company.data.logo);
 ---
 
-<div class="card-header-wrapper">
-  <div class="card-header-fix"></div>
+<div class="card-header row align-end justify-between gap-s">
+  <div class="flex-1 col gap-s">
+    <span class="font-size-s">
+      {timeline}
+      {isCurrent && <span class="tag color-primary">Now</span>}
+    </span>
 
-  <div class="card-header row align-center justify-between gap-16 padding-32">
-    <div class="col flex-1 gap-8">
-      <p class="body-m color-tertiary">
-        {timeline}
-        {isCurrent && <span class="tag color-primary">Now</span>}
-      </p>
+    <div class="gap-xs">
+      <h3 class="font-size-m font-weight-bold">
+        {title}
+      </h3>
 
-      <h4>
-        {company.data.name} - {title}
-      </h4>
+      <span class="font-size-s">{company.data.name}</span>
     </div>
-
-    <a
-      class:list={[!company.data.href && "null"]}
-      href={company.data.href}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <Image
-        class="icon"
-        src={logo()}
-        width={42}
-        densities={[1.5, 2, 3]}
-        alt={`${company} logo`}
-        loading="eager"
-      />
-
-      {company.data.href && <Svg d={SVG_ARROW} />}
-    </a>
   </div>
+
+  <Image
+    class="icon"
+    src={logo()}
+    width={80}
+    widths={[128, 256]}
+    layout="fixed"
+    alt={`${company} logo`}
+    loading="eager"
+  />
 </div>
 
 <style>
-  p,
-  h4 {
-    text-align: start;
-  }
-
   .card-header-wrapper {
     z-index: 1;
     position: sticky;
     top: 16px;
-    border-radius: 0 0 32px 32px;
   }
 
   .card-header {
-    border-radius: 32px;
-    background-color: var(--surface-hi-fx);
-    backdrop-filter: blur(10px);
-    transition: background-color 0.2s var(--bezier);
-  }
-
-  .card-header-fix {
-    position: absolute;
-    top: -16px;
-    left: 0;
-    width: 100%;
-    height: calc(16px + 32px);
     background-color: var(--background);
     transition: background-color 0.2s var(--bezier);
   }
@@ -98,40 +70,12 @@ const logo = getImage(company.data.logo);
     color: var(--accent);
   }
 
-  a {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  a img {
-    border-radius: 9px;
+  img {
+    border-radius: var(--unit-2xs);
     outline-style: solid;
-    outline-width: 1px;
+    outline-width: 2px;
     outline-color: var(--outline);
-    outline-offset: 3px;
+    outline-offset: 4px;
     transition: all 0.2s var(--bezier);
-  }
-  a:hover img {
-    outline-color: var(--accent);
-  }
-
-  a.null:hover img {
-    outline-color: var(--outline);
-  }
-
-  a svg {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 8px;
-    height: 8px;
-    stroke: var(--on-surface-var-2);
-  }
-
-  a:hover svg {
-    transform: translate(2px, -2px);
-    stroke: var(--accent);
   }
 </style>

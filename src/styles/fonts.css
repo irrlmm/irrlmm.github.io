@@ -31,18 +31,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-@media (max-width: 512px) {
-  :root {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 400px) {
-  :root {
-    font-size: 20px;
-  }
-}
-
 h1,
 h2,
 h3,
@@ -63,17 +51,39 @@ p {
   margin: 0;
 }
 
-p span {
+p.text-highlight > span {
   position: relative;
   background-color: transparent;
   transition: background-color 0.1s var(--bezier);
   transition-delay: 0.1s;
 }
 
-p span:hover {
+p.text-highlight > span:hover {
   background-color: var(--on-surface-var);
 }
 
-.font-bold {
+.font-weight-bold {
   font-family: "gt-bold";
+}
+
+.font-size-2xs {
+  font-size: var(--unit-2xs);
+}
+.font-size-xs {
+  font-size: var(--unit-xs);
+}
+.font-size-s {
+  font-size: var(--unit-s);
+}
+.font-size-m {
+  font-size: var(--unit-m);
+}
+.font-size-l {
+  font-size: var(--unit-l);
+}
+.font-size-xl {
+  font-size: var(--unit-xl);
+}
+.font-size-2xl {
+  font-size: var(--unit-2xl);
 }

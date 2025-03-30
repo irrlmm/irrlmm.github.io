@@ -1,12 +1,12 @@
 ---
-import CardSeparator from "../CardSeparator.astro";
+import Band from "../Band.astro";
 import JobCardHeader from "./JobCardHeader.astro";
 import JobCardScope from "./JobCardScope.astro";
 
 const { company, title, description, timeline, scope, isCurrent } = Astro.props;
 ---
 
-<li class="card col">
+<li class="card col gap-s padding-m">
   <JobCardHeader
     timeline={timeline}
     company={company}
@@ -14,32 +14,13 @@ const { company, title, description, timeline, scope, isCurrent } = Astro.props;
     isCurrent={isCurrent}
   />
 
-  <div class="card-desc col align-center">
-    <p class="body-m color-secondary padding-32">{description}</p>
-  </div>
+  <Band />
 
-  <!-- <CardSeparator /> -->
+  <p class="font-size-s">{description}</p>
+
+  <Band />
 
   <JobCardScope scope={scope} />
 </li>
 
-<style>
-  .card {
-    transform-origin: top left;
-  }
-
-  .card {
-    border-radius: 32px;
-    background-color: var(--surface-hi);
-  }
-
-  .card-desc {
-    padding: 0 32px;
-  }
-
-  .card-desc p {
-    text-align: center;
-    background-color: var(--background);
-    border-radius: 16px;
-  }
-</style>
+<style></style>

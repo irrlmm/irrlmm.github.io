@@ -14,7 +14,7 @@ const { values } = Astro.props;
   {
     values.map(({ label, value, href }) => {
       return (
-        <p class="flex-1 row gap-xs">
+        <p class="row gap-xs font-size-s">
           <span class="flex-1">{label}</span>
 
           <span class="flex-1">
@@ -34,8 +34,6 @@ const { values } = Astro.props;
 
 <style>
   p {
-    font-size: var(--unit-s);
-    text-align: start;
     animation: appear 0.3s var(--bezier) both;
   }
 
@@ -62,28 +60,6 @@ const { values } = Astro.props;
   }
   p:nth-child(n + 8) {
     animation-delay: 0.65s;
-  }
-
-  a {
-    text-decoration: underline;
-    text-underline-offset: 6px;
-  }
-  a:hover {
-    color: var(--accent);
-  }
-
-  a svg {
-    width: 8px;
-    height: 8px;
-    stroke: var(--outline);
-  }
-  a:hover svg {
-    transform: translate(4px, -4px);
-    stroke: var(--accent);
-  }
-
-  p > * {
-    min-width: 200px;
   }
 
   @media (max-width: 512px) {

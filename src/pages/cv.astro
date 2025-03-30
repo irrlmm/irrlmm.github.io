@@ -11,7 +11,6 @@ import { getEntry } from "astro:content";
 import { getEntries } from "astro:content";
 import { LINK_DRIBBBLE, LINK_LINKEDIN } from "../consts/ui/links";
 import Monogram from "../components/Monogram.astro";
-import Band from "../components/Band.astro";
 
 const cv = await getEntry("page:cv", "cv");
 
@@ -44,39 +43,25 @@ const fullYears = isBirthdayPassed ? age : age - 1;
     <Monogram />
 
     <section>
-      <h1 class="hidden">CV / Resume</h1>
+      <div class="col">
+        <h1 class="font-bold">CV / Resume</h1>
 
-      <h2>{person.data.name}</h2>
+        <h2>{person.data.name}</h2>
+      </div>
 
       <Values
         values={[
-          { label: "Age", value: fullYears.toString() },
           {
             label: "Title",
             value:
               jobs.find((j) => j.id === person.data.currentJob.id)?.data
                 .title || "",
           },
+          { label: "Age", value: fullYears.toString() },
           ...cv.data.brief,
+          ...person.data.links,
         ]}
       />
-
-      <Values
-        values={[
-          {
-            label: LINK_LINKEDIN.label,
-            href: LINK_LINKEDIN.href,
-            value: "Igor Lemeshkin",
-          },
-          {
-            label: LINK_DRIBBBLE.label,
-            href: LINK_DRIBBBLE.href,
-            value: "irrlmm",
-          },
-        ]}
-      />
-
-      <Separator isDashed />
     </section>
 
     <section class="wide-section">
