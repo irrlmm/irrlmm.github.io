@@ -1,36 +1,33 @@
 ---
-import { getEntry } from "astro:content";
-import TabDecor from "./TabDecor.astro";
 import Values from "./Values.astro";
-import Band from "./Band.astro";
 
-const person = await getEntry("meta:person", "me");
-
-if (!person) {
-  throw Error("failed to load personal data!");
-}
-
-const { location, links, email } = person.data;
+const { values } = Astro.props;
 ---
 
-<div class="card col flex-1 gap-l padding-m">
-  <!-- <TabDecor /> -->
+<div class="col flex-1 gap-l padding-m">
+  <Values values={values} />
 
-  <Values
-    values={[
-      { label: "Age", value: "27" },
-      { label: "Location", value: `${location.city}, ${location.country}` },
-      {
-        label: "Working at",
-        value: "iMusician",
-        href: "https://imusician.pro",
-      },
-      ...links,
-    ]}
-  />
+  <a
+    href="/docs/Igor Lemeshkin CV.pdf"
+    rel="noopener noreferrer"
+    target="_blank">CV / Resume</a
+  >
 </div>
 
-<div class="row justify-between padding-m">
-  <a href="/cv">View more</a>
-  <a href={email}>Contact me</a>
-</div>
+<style>
+  div > a {
+    padding: var(--unit-xs);
+    border-radius: var(--unit-l);
+    color: var(--on-surface);
+    text-decoration: none;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px var(--on-surface);
+    width: 100%;
+  }
+  div > a:hover {
+    background-color: var(--on-surface);
+    color: var(--background);
+  }
+</style>

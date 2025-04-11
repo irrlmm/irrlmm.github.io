@@ -8,14 +8,27 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul>
-  {posts.map((post) => <PostCard {...post} />)}
-</ul>
+<section class="row flex-1">
+  <ul class="col gap-xs">
+    {posts.map((post) => <PostCard {...post} />)}
+  </ul>
+</section>
 
 <style>
+  section {
+    padding: 0 var(--unit-m);
+  }
+
   ul {
     display: grid;
-    gap: 8px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: calc(var(--unit-m) * 32);
+    align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    ul {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
   }
 </style>

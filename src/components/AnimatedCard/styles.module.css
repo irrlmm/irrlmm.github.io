@@ -1,0 +1,19 @@
+.card {
+  position: absolute;
+  display: flex;
+  width: calc(100% - 2 * var(--unit-m));
+  height: calc(100% - 2 * var(--unit-m));
+  padding: var(--unit-l);
+  border-radius: var(--unit-m);
+  background-color: var(--background);
+  box-shadow: inset 0 0 0 2px var(--on-surface);
+  transition: background-color 0.1s var(--bezier), box-shadow 0.1s var(--bezier);
+  will-change: filter, transform;
+}
+
+.draggable {
+  cursor: grab;
+}
+.draggable:active {
+  cursor: grabbing;
+}

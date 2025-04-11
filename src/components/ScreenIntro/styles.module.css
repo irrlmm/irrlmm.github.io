@@ -1,0 +1,49 @@
+.screen {
+  border: solid 2px var(--on-surface);
+  border-radius: var(--unit-m);
+  padding: var(--unit-m);
+  gap: var(--unit-m);
+  text-align: center;
+}
+
+.screen button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 256px;
+  padding: var(--unit-xs);
+  border-radius: var(--unit-l);
+  text-transform: uppercase;
+  border: solid 2px var(--on-surface);
+  background-color: transparent;
+  cursor: pointer;
+}
+.screen button:hover {
+  background-color: var(--on-surface);
+  color: var(--background);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--unit-xs);
+  border-radius: var(--unit-2xs);
+  background-color: var(--on-surface);
+}
+
+.iconWrapper > svg {
+  width: var(--unit-xl);
+  height: var(--unit-xl);
+  stroke: var(--background);
+}
+
+.chip {
+  padding: var(--unit-2xs);
+  border-radius: var(--unit-2xs);
+  background-color: var(--on-surface);
+  color: var(--background);
+  text-transform: uppercase;
+  font-size: var(--unit-s);
+}

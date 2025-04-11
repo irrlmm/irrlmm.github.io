@@ -4,6 +4,7 @@ interface Props {
     label: string;
     value: string;
     href?: string;
+    internal?: boolean;
   }[];
 }
 
@@ -12,18 +13,29 @@ const { values } = Astro.props;
 
 <div class="col gap-xs">
   {
-    values.map(({ label, value, href }) => {
+    values.map(({ label, value, href, internal }) => {
+      const arrayOfValues = value.split(" • ");
+
       return (
         <p class="row gap-xs font-size-s">
           <span class="flex-1">{label}</span>
 
           <span class="flex-1">
             {href ? (
-              <a href={href} rel="noopener noreferrer" target="_blank">
+              <a
+                href={href}
+                rel={!internal ? "noopener noreferrer" : undefined}
+                target={!internal ? "_blank" : undefined}
+              >
                 {value}
               </a>
             ) : (
-              value
+              arrayOfValues.map((val, i) => (
+                <span>
+                  {i !== 0 && <span class="color-tertiary"> • </span>}
+                  {val}
+                </span>
+              ))
             )}
           </span>
         </p>
@@ -34,7 +46,7 @@ const { values } = Astro.props;
 
 <style>
   p {
-    animation: appear 0.3s var(--bezier) both;
+    animation: appear 0.1s var(--bezier) both;
   }
 
   p:nth-child(1) {
@@ -60,6 +72,18 @@ const { values } = Astro.props;
   }
   p:nth-child(n + 8) {
     animation-delay: 0.65s;
+  }
+
+  p > span:nth-child(1) {
+    text-transform: uppercase;
+  }
+
+  a {
+    color: var(--on-surface);
+  }
+  a:hover {
+    color: var(--background);
+    background-color: var(--on-surface);
   }
 
   @media (max-width: 512px) {

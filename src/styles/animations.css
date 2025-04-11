@@ -11,12 +11,25 @@
   }
 }
 
+@keyframes appear-with-scale {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
 @keyframes decor-appear {
   0% {
     opacity: 1;
   }
   100% {
-    opacity: 0.15;
+    opacity: 0.1;
   }
 }
 

@@ -1,13 +1,6 @@
 @font-face {
-  font-family: "gt-regular";
-  src: url("/fonts/gt-reg.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "gt-bold";
-  src: url("/fonts/gt-bold.ttf") format("truetype");
+  font-family: "mono";
+  src: url("/fonts/mono.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -17,18 +10,31 @@
   --unit-2xs: 0.25rem;
   --unit-xs: 0.5rem;
   --unit-s: 0.75rem;
+  --unit-sm: 0.875rem;
   --unit-m: 1rem;
   --unit-l: 1.5rem;
   --unit-xl: 2rem;
   --unit-2xl: 4rem;
 
-  font-family: "gt-regular", monospace;
+  font-family: "mono", monospace;
   font-size: 32px;
-  line-height: 1.1;
-  letter-spacing: 0.015em;
-  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 0.012em;
 
   -webkit-font-smoothing: antialiased;
+  font-variant-ligatures: none;
+}
+
+@media (max-width: 800px) {
+  :root {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    font-size: 24px;
+  }
 }
 
 h1,
@@ -51,21 +57,6 @@ p {
   margin: 0;
 }
 
-p.text-highlight > span {
-  position: relative;
-  background-color: transparent;
-  transition: background-color 0.1s var(--bezier);
-  transition-delay: 0.1s;
-}
-
-p.text-highlight > span:hover {
-  background-color: var(--on-surface-var);
-}
-
-.font-weight-bold {
-  font-family: "gt-bold";
-}
-
 .font-size-2xs {
   font-size: var(--unit-2xs);
 }
@@ -86,4 +77,11 @@ p.text-highlight > span:hover {
 }
 .font-size-2xl {
   font-size: var(--unit-2xl);
+}
+
+.color-secondary {
+  color: var(--on-surface-var);
+}
+.color-tertiary {
+  color: var(--on-surface-var-2);
 }

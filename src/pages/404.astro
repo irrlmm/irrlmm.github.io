@@ -1,42 +1,65 @@
 ---
-import AnimatedLead from "../components/AnimatedLead.astro";
-import Menu from "../components/Menu/Menu.astro";
-import TitleWrapper from "../components/TitleWrapper.astro";
-import { MENU_HOME, MENU_404 } from "../consts/ui/menu";
+import Paragraph from "../components/Paragraph.astro";
+import Header from "../components/Header.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import Quiz from "../components/Quiz.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <MainLayout>
-  <div class="wrapper">
-    <section class="col gap-32">
-      <h1>404</h1>
+  <div>
+    <Header />
 
-      <AnimatedLead
-        lines={["The page you are looking for was not found.", "Start again."]}
+    <section class="col gap-l">
+      <h1>Four-Oh-Four</h1>
+
+      <Paragraph
+        text="This is a broken route... or not. Anyways, Rogi greets you."
       />
 
-      <Menu options={[MENU_HOME]} isList />
+      <Paragraph
+        text="You probably think: What Rogi? Why is everything green? What's that thing at the top? All answers below."
+      />
     </section>
+
+    <section>
+      <Quiz quiz={{ collection: "quiz", id: "rogi" }} />
+    </section>
+
+    <Footer name="Rogi ???" year={1997} />
   </div>
 </MainLayout>
 
 <style>
-  .wrapper {
+  div {
+    padding: var(--unit-2xl) 0;
     display: flex;
     flex-direction: column;
-    gap: 64px;
+    gap: var(--unit-2xl);
+  }
+
+  section {
     width: 100%;
-    max-width: 576px;
+    max-width: calc(var(--unit-m) * 22);
+    padding: 0 var(--unit-m);
   }
 
   h1 {
-    font-size: var(--unit-2xl);
+    font-size: var(--unit-xl);
+    line-height: 1;
   }
+</style>
 
-  .decor-headline {
-    font-size: calc(100vh / 4);
-    font-weight: 300;
-    letter-spacing: -0.04em;
-    color: var(--on-surface-var-2);
+<style is:global>
+  :root {
+    --background: #010501;
+    --on-surface: rgba(57, 255, 20, 1);
+    --on-surface-var: rgba(57, 255, 20, 0.6);
+    --on-surface-var-2: rgba(57, 255, 20, 0.2);
+
+    line-height: 1.33;
+    text-transform: uppercase;
+    text-align: justify;
+    letter-spacing: 0.03em;
   }
 </style>

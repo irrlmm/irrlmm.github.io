@@ -1,27 +1,7 @@
 .toolbar {
-  z-index: 1;
-  padding: 24px 24px 0;
-}
-
-.progress {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  height: 40px;
-  background-color: var(--background);
-  padding: 0 16px;
-  border-radius: 20px;
-}
-
-.iconWrapper {
-  position: relative;
-  width: 24px;
-  height: 24px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-}
-
-.iconWrapper svg {
-  position: absolute;
+  justify-content: space-between;
+  z-index: 1;
 }

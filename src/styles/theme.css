@@ -3,17 +3,20 @@
 
   /* Primitives */
   --black-100: rgba(0, 0, 0, 1);
+  --black-60: rgba(0, 0, 0, 0.6);
   --black-12: rgba(0, 0, 0, 0.12);
   --white-100: rgba(255, 255, 255, 1);
+  --white-60: rgba(255, 255, 255, 0.6);
   --white-12: rgba(255, 255, 255, 0.12);
 
   /* Surface tokens */
   --background: light-dark(var(--white-100), var(--black-100));
   --on-surface: light-dark(var(--black-100), var(--white-100));
-  --on-surface-var: light-dark(var(--black-12), var(--white-12));
+  --on-surface-var: light-dark(var(--black-60), var(--white-60));
+  --on-surface-var-2: light-dark(var(--black-12), var(--white-12));
 
   /** Decor overlay effect */
-  --pixel-grid-line: light-dark(#1642ff24, #00d0fa55);
+  --pixel-grid-line: var(--on-surface-var-2);
 
   /** Accent tokens */
   --accent: light-dark(#1642ff, #00d0fa);

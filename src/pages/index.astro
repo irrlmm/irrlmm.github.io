@@ -1,62 +1,92 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Monogram from "../components/Monogram.astro";
+import { getCollection } from "astro:content";
+import PostsList from "../components/Posts/PostsList.astro";
 import ResumeOverview from "../components/ResumeOverview.astro";
-import Image from "astro/components/Image.astro";
-import getImage from "../helpers/getImage";
+import FactStack from "../components/FactStack";
+import Belt from "../components/Belt";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import TestStack from "../components/TestStack";
+import { TEST_COLLABORATOR_TYPE } from "../consts/tests/collaboratorType";
+import { FACTS_INTRO } from "../consts/facts/introFacts";
+
+const posts = (await getCollection("work")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+if (!posts) {
+  throw Error("no posts!");
+}
 ---
 
 <MainLayout>
   <article class="col align-start">
-    <Monogram />
+    <Header />
 
-    <section id="hero" class="col gap-m">
-      <h1 class="hidden">Igor Lemeshkin</h1>
-      <h2 class="hidden">Product designer</h2>
+    <Hero />
 
-      <!-- <p><strong>Greetings.</strong></p> -->
-
-      <p class="text-highlight">
-        <span class="font-bold">Greetings.</span>
-        <span> I am Igor</span>
-        <Image
-          src={getImage("/src/assets/persons/irrlmm.png")()}
-          widths={[128, 256]}
-          layout="full-width"
-          width={128}
-          loading="eager"
-          alt=""
-        />
-      </p>
-
-      <p class="text-highlight">
-        <span>Senior Product Designer.</span>
-        <span>Working at intersection of design, code, and strategy. </span>
-      </p>
-
-      <p class="text-highlight">
-        <span> Curiosity-led.</span>
-        <span>Detail-obsessed.</span>
-        <span
-          >Shaped by systems thinking, UI engineering background, and habit of
-          leading collaboration.</span
-        >
-      </p>
+    <section>
+      <FactStack client:load facts={FACTS_INTRO} />
     </section>
 
-    <section class="col gap-m">
-      <ResumeOverview />
+    <Belt client:load text="Available for product design roles" />
+
+    <section>
+      <ResumeOverview
+        values={[
+          { label: "Experience", value: "8+ years" },
+          {
+            label: "Works at",
+            value: "iMusician",
+            href: "https://imusician.pro",
+          },
+          {
+            label: "Lore",
+            value: "/undefined",
+            href: "/undefined",
+            internal: true,
+          },
+          {
+            label: "LinkedIn",
+            value: "Igor L.",
+            href: "https://www.linkedin.com/in/irrlmm",
+          },
+          {
+            label: "Dribbble",
+            value: "irrlmm",
+            href: "https://www.dribbble.com/irrlmm",
+          },
+          {
+            label: "Email",
+            value: "igorlem@icloud.com",
+            href: "mailto:igorlem@icloud.com",
+          },
+        ]}
+      />
     </section>
+
+    <Belt client:load text="The work is mysterious and important" />
+
+    <PostsList posts={posts} />
+
+    <Belt client:load text="This page is not just about Igor" />
+
+    <section>
+      <TestStack client:load test={TEST_COLLABORATOR_TYPE} />
+    </section>
+
+    <Footer />
   </article>
 </MainLayout>
 
 <style>
   article {
     width: 100%;
-    max-width: calc(var(--unit-m) * 20);
     display: flex;
     flex-direction: column;
-    text-align: justify;
+    align-items: center;
     padding: var(--unit-2xl) 0;
     gap: var(--unit-2xl);
   }
@@ -65,20 +95,15 @@ import getImage from "../helpers/getImage";
     vertical-align: middle;
   }
 
-  img {
-    width: var(--unit-m);
-    border-radius: 5%;
-    vertical-align: middle;
-    transform: translateY(calc(-0.1 * var(--unit-m)));
-    transition: all 0.15s var(--bezier);
-    transform-origin: center 57.5%;
-  }
-  img:hover {
-    transform: scale(2);
-    box-shadow: 0 0 0 2px var(--background);
+  section {
+    display: flex;
+    width: 100%;
+    max-width: calc(var(--unit-m) * 22);
+    padding: 0 var(--unit-m);
   }
 
-  section {
-    align-self: stretch;
+  section.wide {
+    max-width: initial;
+    padding: 0;
   }
 </style>

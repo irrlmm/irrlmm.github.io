@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react";
-import StackProgressToolbar from "../StackProgressToolbar";
-import AnimatedQuestion from "./AnimatedQuestion";
-import { motion } from "framer-motion";
-
 import type { CollectionEntry } from "astro:content";
+
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+import StackProgressToolbar from "../StackProgressToolbar";
+import QuizItem from "./QuizItem";
+import QuizIntro from "../ScreenIntro";
+import QuizOutro from "./QuizOutro";
+
+import { SVG_GEM } from "../../consts/svg";
 
 import styles from "../CardStack/styles.module.css";
 import innerStyles from "./styles.module.css";
+import AnimatedCard from "../AnimatedCard";
 
 type Props = {
   data: CollectionEntry<"quiz">["data"];
 };
 
-const QuizStack: React.FC<Props> = ({ data: { questions, endMessages } }) => {
+const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
+  const [isIntroShown, setIsIntroShown] = useState(true);
+
   const [currentStep, setCurrentStep] = useState(0);
   const [rightCount, setRightCount] = useState(0);
-  const [wrongCount, setWrongCount] = useState(0);
+  const [shouldSwipe, setShouldSwipe] = useState(false);
 
   const [cardsShown, setCardsShown] = useState(questions.toReversed());
   const [hasViewedAll, setHasViewedAll] = useState(false);
@@ -26,89 +34,118 @@ const QuizStack: React.FC<Props> = ({ data: { questions, endMessages } }) => {
     }
   }, [currentStep]);
 
-  const nextQuestion = () => {
-    setCardsShown([...cardsShown.slice(0, -1)]);
-    setCurrentStep((s) => (s += 1));
-  };
-
   const handleClickRefresh = () => {
     setCardsShown(questions.toReversed());
     setCurrentStep(0);
     setRightCount(0);
-    setWrongCount(0);
+    setHasViewedAll(false);
+    setIsIntroShown(true);
   };
 
-  const handleRight = () => {
-    setRightCount((r) => (r += 1));
-    nextQuestion();
+  const handleSwipe = () => {
+    setShouldSwipe(false);
+    setCurrentStep((s) => (s += 1));
+    setCardsShown([...cardsShown.slice(0, -1)]);
   };
 
-  const handleWrong = () => {
-    setWrongCount((w) => (w += 1));
-    nextQuestion();
+  const handleCardClick = (isRight: boolean) => {
+    setShouldSwipe(true);
+    if (isRight) {
+      setRightCount((r) => (r += 1));
+    }
   };
-
-  const allPositiveCount = questions.filter((q) =>
-    q.options.some((o) => o.response.type === "positive")
-  ).length;
-
-  const completionPercent = Math.round((rightCount / allPositiveCount) * 100);
 
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      variants={{
+        hidden: {},
+        shown: {
+          transition: {
+            delayChildren: 0.5,
+          },
+        },
+      }}
+      initial="hidden"
+      animate="shown"
+    >
       <StackProgressToolbar
-        currentStep={currentStep}
-        totalSteps={questions.length}
-        hasViewedAll={hasViewedAll}
-        onClickRefresh={handleClickRefresh}
-        enableRefresh={cardsShown.length === 0}
-        gems={rightCount}
+        bars={[
+          {
+            progress: currentStep / questions.length,
+            text: `${currentStep} / ${questions.length}`,
+          },
+          {
+            icon: SVG_GEM,
+            text: rightCount.toString(),
+          },
+        ]}
+        refreshButtonProps={{
+          isShown: cardsShown.length === 0,
+          onClick: handleClickRefresh,
+        }}
       />
 
-      <div className={styles.container}>
-        {cardsShown.map((question, i) => (
-          <AnimatedQuestion
-            key={question.id}
-            index={cardsShown.length - 1 - i}
-            isActive={i === cardsShown.length - 1}
-            question={question}
-            onRight={handleRight}
-            onWrong={handleWrong}
-          />
-        ))}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0 },
+          shown: { opacity: 1 },
+        }}
+      >
+        <AnimatePresence mode="wait">
+          {isIntroShown && (
+            <QuizIntro
+              key="intro"
+              tag="quiz"
+              title={intro.title}
+              text={intro.text}
+              onClick={() => {
+                setIsIntroShown(false);
+              }}
+            />
+          )}
 
-        {cardsShown.length === 0 && (
-          <motion.div
-            className={innerStyles.resultWrapper}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <span className={innerStyles.resultText}>
-              {
-                endMessages[wrongCount === 0 ? "allCorrect" : "someCorrect"]
-                  .title
-              }
-            </span>
+          {!isIntroShown && cardsShown.length > 0 && (
+            <motion.div
+              key="cards"
+              className={styles.container}
+              variants={{
+                hidden: { opacity: 0 },
+                shown: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.033,
+                    staggerDirection: -1,
+                  },
+                },
+              }}
+            >
+              {cardsShown.map((card, i) => (
+                <AnimatedCard
+                  key={card.id}
+                  isDraggable={false}
+                  index={cardsShown.length - 1 - i}
+                  card={card}
+                  onSwipe={handleSwipe}
+                  onClick={handleCardClick}
+                  isRemovable={true}
+                  shouldSwipe={i === cardsShown.length - 1 && shouldSwipe}
+                  renderItem={QuizItem}
+                />
+              ))}
+            </motion.div>
+          )}
 
-            <span className={innerStyles.score}>{completionPercent}%</span>
-
-            <div className="col gap-16">
-              <span className={innerStyles.resultText}>
-                You earned {rightCount} 💎
-              </span>
-
-              <span className={innerStyles.resultText}>
-                {
-                  endMessages[wrongCount === 0 ? "allCorrect" : "someCorrect"]
-                    .text
-                }
-                <br />
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </div>
+          {!isIntroShown && cardsShown.length === 0 && (
+            <QuizOutro
+              outro={outro}
+              rightCount={rightCount}
+              questions={questions}
+            />
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
   );
 };
 

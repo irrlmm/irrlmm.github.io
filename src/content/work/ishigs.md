@@ -1,8 +1,8 @@
 ---
-  coverImage: /src/assets/ishigs/grid-test.svg
+  coverImage: /src/assets/ishigs/cover.png
   date: Mar 1 2025
   title: "Instant Mastering Instant Remake"
-  subtitle: "Rapid redesign of iMusician's mastering tool, optimizing usability and cost-efficiency in under one month"
+  subtitle: "Design a breakthrough app in ultra-limited time constraints"
   client: imusician
 
   overview: [

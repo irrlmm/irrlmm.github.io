@@ -7,14 +7,14 @@
     "birthDate": "12 May 1997",
     "currentJob": "im-design",
     "location": {
-      "city": "Kuala Lumpur",
-      "country": "Malaysia"
+      "city": "Da Nang",
+      "country": "Vietnam"
     },
-    "email": "mailto:igorlem@icloud.com",
+    "email": "igorlem@icloud.com",
     "links": [
       {
         "label": "LinkedIn",
-        "value": "igorlem",
+        "value": "Igor L.",
         "href": "https://linkedin.com/in/igorlem"
       },
       {

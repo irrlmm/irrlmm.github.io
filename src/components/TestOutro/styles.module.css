@@ -1,0 +1,32 @@
+.screen {
+  flex: 1;
+  border: solid 2px var(--on-surface);
+  border-radius: var(--unit-m);
+  padding: var(--unit-m);
+  gap: var(--unit-m);
+}
+
+.screen button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--unit-xs);
+  border-radius: var(--unit-l);
+  border: solid 2px var(--on-surface);
+  background-color: transparent;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--unit-xs);
+  border-radius: var(--unit-2xs);
+  background-color: var(--on-surface);
+}
+
+.iconWrapper > svg {
+  width: var(--unit-xl);
+  height: var(--unit-xl);
+  stroke: var(--background);
+}

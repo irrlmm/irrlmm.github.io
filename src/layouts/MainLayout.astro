@@ -1,6 +1,5 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
 import type { WithContext, Person, Article, CreativeWork } from "schema-dts";
 
 interface Props {
@@ -40,9 +39,8 @@ const { schema } = Astro.props;
     align-items: center;
     flex-direction: column;
     gap: 64px;
-    padding: 0 var(--unit-l);
-    animation: page-appear 0.5625s var(--bezier) both;
-    animation-delay: 0.1875s;
+    animation: page-appear 1.1s var(--bezier) both;
+    animation-delay: 0.1s;
   }
 
   #overlay {
@@ -64,19 +62,19 @@ const { schema } = Astro.props;
         rgba(0, 0, 0, 0) 50%,
         var(--pixel-grid-line) 50%
       );
-    background-size: 2px 2px;
-    animation: decor-appear 0.75s var(--bezier) both;
+    background-size: 4px 4px;
+    animation: decor-appear 1.2s var(--bezier) both;
   }
 
   @media (max-width: 512px) {
     main {
-      padding: 0 var(--unit-m);
+      /* padding: 0 var(--unit-m); */
     }
   }
 
   @media (max-width: 360px) {
     main {
-      padding: 0 var(--unit-s);
+      /* padding: 0 var(--unit-s); */
     }
   }
 </style>

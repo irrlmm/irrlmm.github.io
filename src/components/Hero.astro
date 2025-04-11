@@ -1,0 +1,28 @@
+---
+import Paragraph from "./Paragraph.astro";
+---
+
+<section class="col gap-m">
+  <h1 class="hidden">Igor Lemeshkin</h1>
+  <h2 class="hidden">Product designer</h2>
+
+  <Paragraph
+    text="Greetings. I am Igor"
+    inlineImageSrc="/src/assets/persons/irrlmm.png"
+  />
+
+  <Paragraph
+    text="Senior Product Designer. Working at intersection of design, code, and strategy."
+  />
+
+  <Paragraph
+    text={"Curiosity-led. Detail-obsessed. Shaped by systems thinking, UI engineering background, and habit of leading collaboration."}
+  />
+</section>
+
+<style>
+  section {
+    max-width: calc(var(--unit-m) * 22);
+    padding: 0 var(--unit-m);
+  }
+</style>

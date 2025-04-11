@@ -1,34 +1,24 @@
+import Svg from "../Svg";
 import styles from "./styles.module.css";
 
 export type Fact = {
   id: string;
-  title: string;
+  icon?: string;
   text: string;
-  tags?: string[];
 };
 
 type Props = {
   card: Fact;
-  isActive: boolean;
 };
 
-const FactItem: React.FC<Props> = ({
-  card: { text, title, tags },
-  isActive,
-}) => {
+const FactItem: React.FC<Props> = ({ card: { text, icon } }) => {
   return (
     <ul className={styles.fact}>
-      {tags && (
-        <li className="row gap-8">
-          {tags.map((tag, i) => (
-            <span key={i} className="tag body-s">
-              {tag}
-            </span>
-          ))}
-        </li>
+      {icon && (
+        <div className={styles.iconWrapper}>
+          <Svg d={icon} size="var(--unit-l)" />
+        </div>
       )}
-
-      <h4 className={styles.title}>{title}</h4>
 
       <p className={styles.text}>{text}</p>
     </ul>

@@ -19,5 +19,14 @@
   svg {
     width: calc(2 * var(--unit-m) * 0.75);
     height: var(--unit-m);
+    transition: fill 0.1s var(--bezier);
+  }
+
+  a {
+    transition: transform 0.1s var(--bezier);
+  }
+
+  a:hover {
+    transform: skewX(-15deg);
   }
 </style>

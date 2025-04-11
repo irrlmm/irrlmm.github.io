@@ -6,5 +6,5 @@ type Props = {
 };
 
 export default ({ facts }: Props) => (
-  <CardStack cards={facts} renderItem={FactItem} isLandscape />
+  <CardStack cards={facts} renderItem={FactItem} />
 );

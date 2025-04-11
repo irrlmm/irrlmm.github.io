@@ -2,6 +2,7 @@
 import { getEntry } from "astro:content";
 import QuizStack from "./QuizStack";
 import type { ReferenceDataEntry } from "astro:content";
+
 interface Props {
   quiz: ReferenceDataEntry<"quiz">;
 }
@@ -15,4 +16,4 @@ if (!q) {
 }
 ---
 
-<QuizStack client:idle data={q.data} />
+<QuizStack client:load data={q.data} />

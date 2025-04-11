@@ -94,7 +94,11 @@ const quiz = defineCollection({
     pattern: "**/*.{md,mdx,json}",
   }),
   schema: z.object({
-    endMessages: z.object({
+    intro: z.object({
+      title: z.string(),
+      text: z.string(),
+    }),
+    outro: z.object({
       allCorrect: z.object({
         title: z.string(),
         text: z.string(),
@@ -116,6 +120,53 @@ const quiz = defineCollection({
               title: z.string(),
               text: z.string(),
             }),
+          })
+        ),
+      })
+    ),
+  }),
+});
+
+const test = defineCollection({
+  loader: glob({
+    base: "./src/content/tests",
+    pattern: "**/*.{md,mdx,json}",
+  }),
+  schema: z.object({
+    intro: z.object({
+      title: z.string(),
+      text: z.string(),
+    }),
+    outro: z.object({
+      title: z.string(),
+      text: z.string(),
+    }),
+    typeStructure: z.array(
+      z.object({
+        id: z.string(),
+        label: z.string(),
+      })
+    ),
+    types: z.array(
+      z.object({
+        id: z.string(),
+        label: z.string(),
+        values: z.array(
+          z.object({
+            id: z.string(),
+            value: z.string(),
+          })
+        ),
+      })
+    ),
+    questions: z.array(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        answers: z.array(
+          z.object({
+            type: z.string(),
+            label: z.string(),
           })
         ),
       })
@@ -175,7 +226,7 @@ const cv = defineCollection({
   loader: file("./src/content/cv.json"),
   schema: z.object({
     person: reference("meta:person"),
-    brief: z.array(valueSchema),
+    brief: z.string(),
     skills: z.array(valueSchema),
     education: z.array(valueSchema),
     jobs: z.array(reference("meta:job")),
@@ -191,10 +242,11 @@ const cv = defineCollection({
 export const collections = {
   work,
   quiz,
-  "meta:tag": tag,
+  test,
   "meta:person": person,
   "meta:company": company,
-  "meta:job": job,
-  "page:cv": cv,
-  "page:about": about,
+  // "meta:tag": tag,
+  // "meta:job": job,
+  // "page:cv": cv,
+  // "page:about": about,
 };

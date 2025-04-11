@@ -1,0 +1,11 @@
+.wrapper {
+  width: 100%;
+  background-color: var(--on-surface);
+  overflow: hidden;
+}
+
+.wrapper span {
+  color: var(--background);
+  text-wrap: nowrap;
+  text-transform: uppercase;
+}

@@ -9,6 +9,14 @@ interface Props {
 const { jobs } = Astro.props;
 ---
 
-<ul class="col gap-m">
+<ul class="">
   {jobs.map((job, i) => <JobCard {...job.data} />)}
 </ul>
+
+<style>
+  ul {
+    display: grid;
+    gap: var(--unit-m);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+</style>

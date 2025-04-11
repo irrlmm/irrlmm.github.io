@@ -4,11 +4,12 @@ import { Image } from "astro:assets";
 import MainLayout from "../../layouts/MainLayout.astro";
 import WorkCard from "../../components/Work/WorkCard.astro";
 import Separator from "../../components/Separator.astro";
+import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import AnimatedLead from "../../components/AnimatedLead.astro";
 import Values from "../../components/Values.astro";
 import getImage from "../../helpers/getImage";
-import FactStackAstro from "../../components/FactStack/index.astro";
+import FactStack from "../../components/FactStack";
 
 export async function getStaticPaths() {
   const posts = await getCollection("work");
@@ -23,65 +24,72 @@ type Props = CollectionEntry<"work">;
 const post = Astro.props;
 ---
 
-<MainLayout hasHeader>
-  <Image
-    class="image"
-    widths={[1024, 1536, 2048]}
-    width="768"
-    layout="responsive"
-    loading="eager"
-    fit="contain"
-    src={getImage(post.data.coverImage)()}
-    alt={post.data.title}
-  />
+<MainLayout>
+  <article>
+    <Header />
 
-  <WorkCard data={post.data} />
+    <Image
+      class="image"
+      widths={[1024, 1536, 2048]}
+      width="768"
+      layout="responsive"
+      loading="eager"
+      fit="contain"
+      src={getImage(post.data.coverImage)()}
+      alt={post.data.title}
+    />
 
-  {
-    post.data.sections.map((s, i) => {
-      if (s.separator) {
-        return <Separator isDashed />;
-      }
+    <WorkCard data={post.data} />
 
-      if (s.image) {
+    {
+      post.data.sections.map((s, i) => {
+        if (s.separator) {
+          return <Separator isDashed />;
+        }
+
+        if (s.image) {
+          return (
+            <Image
+              class="image"
+              widths={[1024, 1536, 2048]}
+              width="768"
+              layout="responsive"
+              loading="eager"
+              fit="contain"
+              src={getImage(s.image)()}
+              alt={post.data.title}
+            />
+          );
+        }
+
         return (
-          <Image
-            class="image"
-            widths={[1024, 1536, 2048]}
-            width="768"
-            layout="responsive"
-            loading="eager"
-            fit="contain"
-            src={getImage(s.image)()}
-            alt={post.data.title}
-          />
+          <div class="wrapper">
+            <section class="col gap-40">
+              {s.title && <h2>{s.title}</h2>}
+
+              {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
+
+              {s.values && <Values values={s.values} />}
+
+              {s.facts && <FactStack facts={s.facts} />}
+            </section>
+          </div>
         );
-      }
-
-      return (
-        <div class="wrapper">
-          <section class="col gap-40">
-            {s.title && <h2>{s.title}</h2>}
-
-            {s.lines && <AnimatedLead lines={s.lines} addSpaceBetween />}
-
-            {s.values && <Values values={s.values} />}
-
-            {s.facts && <FactStackAstro facts={s.facts} />}
-          </section>
-        </div>
-      );
-    })
-  }
-
-  <div class="wrapper">
-    <Separator />
+      })
+    }
 
     <Footer />
-  </div>
+  </article>
 </MainLayout>
 
 <style>
+  article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--unit-2xl);
+    padding: var(--unit-2xl) 0;
+  }
+
   .image {
     animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
   }

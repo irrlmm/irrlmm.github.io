@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from "react";
-import AnimatedCard from "./AnimatedCard";
+import AnimatedCard, {
+  type GenericCard,
+  type GenericCardContent,
+} from "../AnimatedCard";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+
 import StackProgressToolbar from "../StackProgressToolbar";
+
 import styles from "./styles.module.css";
-
-type GenericCard<T> = T & {
-  id: string;
-};
-
-export type GenericCardContent<T> = {
-  card: T;
-  isActive: boolean;
-};
 
 type Props<T> = {
   cards: GenericCard<T>[];
   renderItem: React.FC<GenericCardContent<T>>;
-  isLandscape?: boolean;
 };
 
-const CardStack = <T,>({
-  cards,
-  renderItem: CardContent,
-  isLandscape,
-}: Props<T>) => {
+const CardStack = <T,>({ cards, renderItem: CardContent }: Props<T>) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [cardsShown, setCardsShown] = useState(cards.toReversed());
   const [shouldSwipe, setShouldSwipe] = useState(false);
-  const [hasViewedAll, setHasViewedAll] = useState(false);
-
-  useEffect(() => {
-    if (currentStep === cards.length && !hasViewedAll) {
-      setHasViewedAll(true);
-    }
-  }, [currentStep]);
 
   const handleSwipe = () => {
     setShouldSwipe(false);
@@ -49,33 +35,63 @@ const CardStack = <T,>({
   };
 
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      variants={{
+        hidden: {},
+        shown: {
+          transition: {
+            delayChildren: 0.5,
+          },
+        },
+      }}
+      initial="hidden"
+      animate="shown"
+    >
       <StackProgressToolbar
-        currentStep={currentStep}
-        totalSteps={cards.length}
-        hasViewedAll={hasViewedAll}
-        onClickRefresh={handleClickRefresh}
+        bars={[
+          {
+            progress: currentStep / cards.length,
+            text: `${currentStep} / ${cards.length}`,
+          },
+        ]}
+        forwardButtonProps={{
+          isShown: currentStep !== cards.length,
+          onClick: handleClickRefresh,
+        }}
+        refreshButtonProps={{
+          isShown: currentStep === cards.length,
+          onClick: handleClickRefresh,
+        }}
       />
 
-      <div
-        className={`${styles.container} ${
-          isLandscape ? styles.containerLandscape : undefined
-        }`}
+      <motion.div
+        className={styles.container}
+        variants={{
+          hidden: {
+            opacity: 0,
+          },
+          shown: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.033,
+              staggerDirection: -1,
+            },
+          },
+        }}
       >
         {cardsShown.map((card, i) => (
           <AnimatedCard
             key={card.id}
-            index={cardsShown.length - 1 - i}
-            isActive={i === cardsShown.length - 1}
-            onSwipeLeft={handleSwipe}
-            onSwipeRight={handleSwipe}
+            index={cardsShown.length - 1 - i} // reverse index so 0 is active
+            onSwipe={handleSwipe}
             card={card}
             renderItem={CardContent}
             shouldSwipe={i === cardsShown.length - 1 && shouldSwipe}
           />
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

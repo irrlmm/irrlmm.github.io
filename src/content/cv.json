@@ -2,20 +2,7 @@
   {
     "id": "cv",
     "person": "me",
-    "brief": [
-      {
-        "label": "Experience",
-        "value": "8+ years"
-      },
-      {
-        "label": "Industries",
-        "value": "Music Distribution, Finance, Fashion Tech, Social, Education"
-      },
-      {
-        "label": "Career goals",
-        "value": "Join visionaries. Push limits with purpose. Mix physical and digital design. Earn well."
-      }
-    ],
+    "brief": "8+ years of experience in product design and frontend development. Vast project scope: from analytics dashboards and innovative mestrics-driven solutions to rapid intuition-driven fireman. I get things done fast and with large positive impact. Knowing this much earned me a certified designer therapist degree because I am aquiained with traumas.",
     "jobs": ["im-design", "im-dev", "99sales", "outline", "uniyo"],
     "skills": [
       {

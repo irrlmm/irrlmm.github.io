@@ -1,10 +1,6 @@
 ---
-import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import Svg from "../Svg.astro";
-import { SVG_ARROW, SVG_CHEVRON_FWD } from "../../consts/svg";
-import moment from "moment";
 import getImage from "../../helpers/getImage";
 
 type Props = CollectionEntry<"work">;
@@ -17,76 +13,26 @@ const {
 const image = getImage(coverImage);
 ---
 
-<li>
-  <a href={`/work/${id}`} class="col gap-32">
-    <div class="row justify-between">
-      <span class="body-m color-secondary"
-        >{moment(date).format("DD MMM YYYY")}</span
-      >
-      <Svg d={SVG_ARROW} />
-    </div>
-
+<li class="row">
+  <a href={`/work/${id}`} class="card col padding-s gap-s">
     <Image src={image()} alt={title} layout="responsive" loading="eager" />
 
-    <div class="col gap-8">
+    <div class="flex-1 col gap-s">
       <h3>{title}</h3>
-      <p class="body-s color-secondary">{subtitle}</p>
+      <p class="font-size-s">{subtitle}</p>
     </div>
   </a>
 </li>
 
 <style>
-  li {
-    animation: appear-with-scale 0.5s var(--bezier) both;
-    transform-origin: top left;
-  }
-  li:nth-child(1) {
-    animation-delay: 0.2s;
-  }
-  li:nth-child(2) {
-    animation-delay: 0.25s;
-  }
-  li:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  li:nth-child(n + 4) {
-    animation-delay: 0.35s;
+  img {
+    z-index: 1;
+    aspect-ratio: 4/3;
+    border-radius: var(--unit-2xs);
   }
 
   a {
-    position: relative;
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    background-color: var(--surface-hi);
-    padding: 32px;
-    border-radius: 40px;
     text-decoration: none;
     color: var(--on-surface);
-  }
-  a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--on-surface);
-    opacity: 0;
-    border-radius: inherit;
-    transition: all 0.33s var(--bezier);
-  }
-  a:hover::before {
-    opacity: 0.03;
-  }
-  a:hover svg {
-    transform: translate(4px, -4px);
-  }
-
-  svg {
-  }
-
-  .col {
-    flex: 1;
   }
 </style>

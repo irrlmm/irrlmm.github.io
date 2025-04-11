@@ -11,20 +11,31 @@ ul {
 a {
   display: inline-flex;
   align-self: flex-start;
-  color: var(--accent);
-  text-underline-offset: 6px;
-  transition: color 0.15s var(--bezier), transform 0.15s var(--bezier);
-}
-a:hover {
-  /* background-color: var(--accent); */
-  /* color: var(--background); */
-  transform: skewX(-12.5deg);
+  text-underline-offset: 8px;
+  text-decoration-thickness: 2px;
+  transition: color 0.1s var(--bezier), background-color 0.1s var(--bezier);
 }
 
 .card {
   position: relative;
   background-color: var(--background);
   border: solid 2px var(--on-surface);
-  border-radius: var(--unit-xs);
+  border-radius: var(--unit-s);
   transition: all 0.15s var(--bezier);
+}
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: solid 2px var(--on-surface);
+  background-color: transparent;
+  color: solid 2px var(--on-surface);
+  cursor: pointer;
+  font-variant-ligatures: none;
+}
+button:hover {
+  background-color: var(--on-surface);
+  color: var(--background);
 }

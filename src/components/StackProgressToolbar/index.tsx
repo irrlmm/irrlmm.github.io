@@ -1,111 +1,59 @@
-import { motion } from "framer-motion";
-import { SVG_CHECK } from "../../consts/svg";
-import RefreshButton from "../RefreshButton";
+import { motion, AnimatePresence } from "framer-motion";
+
+import ToolbarButton from "../ToolbarButton";
+import ProgressBar, { type ProgressBarProps } from "../AnimatedProgressBar";
+
+import { SVG_FWD, SVG_REFRESH } from "../../consts/svg";
+
 import styles from "./styles.module.css";
 
 type Props = {
-  hasViewedAll: boolean;
-  currentStep: number;
-  totalSteps: number;
-  onClickRefresh: () => void | false;
-  enableRefresh?: boolean;
-  gems?: number | undefined;
+  bars: ProgressBarProps[];
+  forwardButtonProps?: any;
+  refreshButtonProps?: any;
 };
 
 const StackProgressToolbar: React.FC<Props> = ({
-  hasViewedAll,
-  currentStep,
-  totalSteps,
-  enableRefresh = true,
-  gems,
-  onClickRefresh,
+  bars,
+  forwardButtonProps,
+  refreshButtonProps,
 }) => {
-  const CIRCLE_RADIUS = 10;
-  const PATH_CIRCLE_LENGTH = 2 * Math.PI * CIRCLE_RADIUS;
-  const PATH_CHECK_LENGTH = 33.112;
-
   return (
-    <div
-      className={`${styles.toolbar} row gap-16 align-center justify-between`}
+    <motion.div
+      className={styles.toolbar}
+      variants={{
+        hidden: { opacity: 0 },
+        shown: { opacity: 1 },
+      }}
     >
-      <div className="row gap-16">
-        <div className={styles.progress}>
-          <div className={styles.iconWrapper}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              vectorEffect="non-scaling-stroke"
-            >
-              <motion.circle
-                cx="12"
-                cy="12"
-                r={CIRCLE_RADIUS}
-                stroke="var(--on-surface)"
-                animate={{
-                  opacity: hasViewedAll ? 0 : 0.2,
-                }}
-                strokeWidth={1.5}
-              ></motion.circle>
-
-              <motion.circle
-                cx="12"
-                animate={{
-                  opacity: hasViewedAll ? 0 : 1,
-                  strokeDashoffset:
-                    PATH_CIRCLE_LENGTH *
-                    ((totalSteps - currentStep) / totalSteps),
-                }}
-                cy="12"
-                r="10"
-                style={{ rotate: -90, transformOrigin: "center" }}
-                strokeWidth={1.5}
-                stroke="var(--on-surface)"
-                strokeDasharray={PATH_CIRCLE_LENGTH}
-              ></motion.circle>
-            </svg>
-
-            {hasViewedAll && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={20}
-                height={20}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="var(--accent)"
-              >
-                <motion.path
-                  d={SVG_CHECK}
-                  vectorEffect="non-scaling-stroke"
-                  animate={{
-                    strokeDashoffset: PATH_CHECK_LENGTH * 2,
-                  }}
-                  strokeDashoffset={PATH_CHECK_LENGTH}
-                  strokeDasharray={PATH_CHECK_LENGTH}
-                  strokeWidth={1.5}
-                  transition={{ delay: 0.2 }}
-                ></motion.path>
-              </svg>
-            )}
-          </div>
-
-          <span className="body-m color-secondary">
-            {currentStep} / {totalSteps}
-          </span>
-        </div>
-
-        {gems !== undefined && (
-          <div className={styles.progress}>
-            <span>💎</span>
-            <span className="body-m color-secondary">{gems}</span>
-          </div>
-        )}
+      <div className="row gap-l">
+        {bars.map((bar, i) => (
+          <ProgressBar key={i} {...bar} />
+        ))}
       </div>
 
-      <RefreshButton onClick={onClickRefresh} isEnabled={enableRefresh} />
-    </div>
+      <AnimatePresence mode="wait">
+        {refreshButtonProps && refreshButtonProps.isShown && (
+          <ToolbarButton
+            key="refresh"
+            onClick={refreshButtonProps.onClick}
+            icon={SVG_REFRESH}
+            whileHover={{ rotate: 22.5 }}
+            whileTap={{ rotate: 45 }}
+          />
+        )}
+
+        {forwardButtonProps && forwardButtonProps.isShown && (
+          <ToolbarButton
+            key="fwd"
+            onClick={forwardButtonProps.onClick}
+            icon={SVG_FWD}
+            whileHover={{ x: 3 }}
+            whileTap={{ x: 6 }}
+          />
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
