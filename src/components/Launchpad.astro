@@ -132,17 +132,12 @@ const { apps } = Astro.props;
     box-shadow: inset 0 0 0 4px var(--on-surface);
   }
 
-  a:hover svg {
-    box-shadow: 0 0 0 1px red;
-  }
-
   li:not([data-widget="true"]) > a {
-    border-radius: var(--unit-s);
     aspect-ratio: 1/1;
+    border-radius: var(--unit-s);
   }
   li[data-widget="true"] > a {
     border-radius: var(--unit-m);
-    /* border-radius: 16%; */
   }
 
   span {

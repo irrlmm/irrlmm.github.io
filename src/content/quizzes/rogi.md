@@ -2,7 +2,7 @@
 intro:
   {
     title: "Who is mysterious Rogi?",
-    text: "••••• •••• ••••••••• •••• •• ••• ••••• ••• ••••",
+    text: "••••• ••••••• •••• •• ••• ••••• ••• •••• •••• •• •••",
   }
 
 outro:
@@ -12,7 +12,7 @@ outro:
     someCorrect:
       {
         title: "All done! You scored:",
-        text: "Rogi is not leaving this place today.",
+        text: "Rogi is not leaving this place today",
       },
   }
 
@@ -29,7 +29,7 @@ questions:
               {
                 "type": "positive",
                 "title": "Correct",
-                "text": "Rogi is designer spirit trapped on this page.",
+                "text": "Rogi is an evil designer spirit trapped on this page.",
               },
           },
           {
@@ -45,7 +45,7 @@ questions:
     },
     {
       "id": "badboy",
-      "text": "Is Rogi an evil spirit?",
+      "text": "How evil is Rogi?",
       "options":
         [
           {
@@ -58,7 +58,7 @@ questions:
               },
           },
           {
-            "label": "Saint as Helvetica",
+            "label": "Mad as Chihuahua",
             "response":
               {
                 "type": "negative",
