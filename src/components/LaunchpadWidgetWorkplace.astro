@@ -1,12 +1,14 @@
 ---
 import { Image } from "astro:assets";
-// import { SVG_ARROW, SVG_STAR } from "../consts/svg";
-// import Svg from "./Svg";
 import getImage from "../helpers/getImage";
 import { getEntry } from "astro:content";
+import type { ReferenceDataEntry } from "astro:content";
 
 interface Props {
-  workplace: any;
+  workplace: {
+    company: ReferenceDataEntry<"meta:company">["id"];
+    lines: string[];
+  };
 }
 
 const { workplace } = Astro.props;
@@ -17,35 +19,49 @@ if (!company) {
 }
 ---
 
-<div class="col align-start justify-between">
-  <Image
-    src={getImage(company.data.logo)()}
-    loading="lazy"
-    alt="Company logo"
-    widths={[64, 128]}
-    layout="responsive"
-  />
+<div class="col align-start justify-between gap-2xs">
+  <div class="row gap-xs align-center">
+    <Image
+      src={getImage(company.data.logo)()}
+      loading="lazy"
+      alt="Company logo"
+      widths={[32, 64]}
+      layout="responsive"
+    />
 
-  <p class="col gap-2xs">
-    <span data-value="true">{workplace.experience}</span>
-    <span>@ {company.data.name}</span>
-  </p>
+    <span>{company.data.name}</span>
+  </div>
+
+  <ul>
+    {workplace.lines.map((p: string) => <li>{p}</li>)}
+  </ul>
 </div>
 
 <style>
-  div {
+  div.col {
     width: 100%;
     height: 100%;
     padding: 12.5%;
+    font-size: calc(var(--unit-s) * 0.8);
+    line-height: 1;
+  }
+  div:hover ul {
+    color: var(--on-surface-var);
   }
   img {
-    width: var(--unit-l);
+    width: var(--unit-m);
     border-radius: var(--unit-2xs);
   }
-  p {
-    font-size: var(--unit-s);
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--unit-2xs);
   }
-  p span[data-value="true"] {
-    font-size: var(--unit-m);
+  li {
+    transition: transform 0.1s var(--bezier);
+  }
+  li:hover {
+    color: var(--on-surface);
+    transform: translateX(4px);
   }
 </style>

@@ -1,10 +1,10 @@
 import type { Fact } from ".";
-import { SVG_INTERACTION, SVG_STAR } from "../svg";
+import { SVG_STAR, SVG_SWIPE } from "../svg";
 
 export const FACTS_INTRO: Fact[] = [
   {
     id: "intro",
-    icon: SVG_INTERACTION,
+    icon: SVG_SWIPE,
     text: "Swipe through. Each card is a hit of who I am.",
   },
   {

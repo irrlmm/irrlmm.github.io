@@ -15,7 +15,7 @@ type App = {
   widgetImage?: string;
   widgetWorkplace?: {
     company: string;
-    experience: string;
+    lines: string[];
   };
   widgetTheme?: boolean;
   badge?: string;
@@ -29,73 +29,66 @@ interface Props {
 const { apps } = Astro.props;
 ---
 
-<section>
-  <ul>
-    {
-      apps.map(
-        ({
-          link,
-          label,
-          icon,
-          widgetWorkplace,
-          widgetImage,
-          widgetTheme,
-          badge,
-          pos,
-        }) => (
-          <li
-            data-widget={!!widgetWorkplace || !!widgetImage || !!widgetTheme}
-            style={pos && `grid-area: ${pos}`}
+<ul>
+  {
+    apps.map(
+      ({
+        link,
+        label,
+        icon,
+        widgetWorkplace,
+        widgetImage,
+        widgetTheme,
+        badge,
+        pos,
+      }) => (
+        <li
+          data-widget={!!widgetWorkplace || !!widgetImage || !!widgetTheme}
+          style={pos && `grid-area: ${pos}`}
+        >
+          <a
+            href={link?.href}
+            rel={link?.external ? "noopener noreferrer" : undefined}
+            target={link?.external ? "_blank" : undefined}
           >
-            <a
-              href={link?.href}
-              rel={link?.external ? "noopener noreferrer" : undefined}
-              target={link?.external ? "_blank" : undefined}
-            >
-              {badge && <LaunchpadBadge value={badge} />}
+            {badge && <LaunchpadBadge value={badge} />}
 
-              {icon && <LaunchpadIcon icon={icon} />}
+            {icon && <LaunchpadIcon icon={icon} />}
 
-              {widgetWorkplace && (
-                <LaunchpadWidgetWorkspace workplace={widgetWorkplace} />
-              )}
+            {widgetWorkplace && (
+              <LaunchpadWidgetWorkspace workplace={widgetWorkplace} />
+            )}
 
-              {widgetImage && <LaunchpadWidgetImage image={widgetImage} />}
+            {/* {widgetImage && <LaunchpadWidgetImage image={widgetImage} />} */}
 
-              {widgetTheme && <LaunchpadWidgetTheme />}
+            {/* {widgetTheme && <LaunchpadWidgetTheme />} */}
 
-              <span>{label}</span>
-            </a>
-          </li>
-        )
+            <span>{label}</span>
+          </a>
+        </li>
       )
-    }
-  </ul>
-</section>
+    )
+  }
+</ul>
 
 <style>
-  section {
-    display: flex;
-  }
-
   ul {
     flex: 1;
     display: grid;
     justify-content: center;
-    /* grid-template-columns: repeat(4, 1fr); */
-    /* grid-template-rows: repeat(6, 1fr); */
-    /* aspect-ratio: 504/784; */
-    grid-template-columns: repeat(4, calc(var(--unit-m) * 3));
-    grid-template-rows: repeat(5, calc(var(--unit-m) * 3));
-    /* // */
-    /* grid-auto-rows: calc(var(--unit-m) * 3); */
-    gap: calc(var(--unit-m) * 2);
+    grid-template-columns: repeat(4, calc(var(--unit-m) * 3.25));
+    grid-auto-rows: calc(var(--unit-m) * 3.25);
+    gap: calc(var(--unit-m) * 1.5);
   }
 
   li {
     grid-column: span 1;
     grid-row: span 1;
     animation: appear-with-scale 0.2s var(--bezier) 0.2s both;
+  }
+  li:not([data-widget="true"]) {
+    padding: 0 var(--unit-2xs);
+    align-self: flex-end;
   }
   li[data-widget="true"] {
     grid-column: span 2;
@@ -128,8 +121,8 @@ const { apps } = Astro.props;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     color: var(--on-surface);
     box-shadow: inset 0 0 0 2px var(--on-surface);
@@ -139,19 +132,25 @@ const { apps } = Astro.props;
     box-shadow: inset 0 0 0 4px var(--on-surface);
   }
 
+  a:hover svg {
+    box-shadow: 0 0 0 1px red;
+  }
+
   li:not([data-widget="true"]) > a {
-    border-radius: var(--unit-s);
+    border-radius: 25%;
+    aspect-ratio: 1/1;
   }
   li[data-widget="true"] > a {
-    border-radius: var(--unit-m);
+    border-radius: var(--unit-l);
   }
 
   span {
     position: absolute;
     text-align: center;
     line-height: 1;
-    font-size: calc(var(--unit-s) * 0.8);
-    bottom: calc(-1 * calc(var(--unit-s) * 1.33));
+    font-size: calc(var(--unit-s) * 0.75);
+    font-weight: 500;
+    top: calc(100% + var(--unit-2xs));
     pointer-events: none;
     padding: var(--unit-3xs);
     border-radius: var(--unit-3xs);
@@ -161,23 +160,17 @@ const { apps } = Astro.props;
     color: var(--background);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 504px) {
     ul {
-      /* grid-template-columns: repeat(4, calc(var(--unit-m) * 2.5)); */
-      /* grid-auto-rows: calc(var(--unit-m) * 2.5); */
-      gap: calc(var(--unit-m) * 1.33);
+      /* 14,625 x / --unit-m */
+      grid-template-columns: repeat(4, calc(var(--unit-m) * 2.60625));
+      grid-auto-columns: calc(var(--unit-m) * 2.60625);
+      grid-auto-rows: calc(var(--unit-m) * 2.60625);
+      gap: calc(var(--unit-m) * 1.4);
     }
 
     span {
       font-size: calc(var(--unit-s) * 0.7);
-      bottom: calc(-1 * calc(var(--unit-s) * 1.125));
-    }
-  }
-
-  @media (max-width: 476px) {
-    ul {
-      grid-template-columns: repeat(4, calc(var(--unit-m) * 2.66));
-      grid-template-rows: repeat(5, calc(var(--unit-m) * 2.66));
     }
   }
 </style>

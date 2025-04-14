@@ -42,6 +42,12 @@
   flex-direction: column;
 }
 
+.gap-3xs {
+  gap: var(--unit-3xs);
+}
+.gap-2xs {
+  gap: var(--unit-2xs);
+}
 .gap-xs {
   gap: var(--unit-xs);
 }
