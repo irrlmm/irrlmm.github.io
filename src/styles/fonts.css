@@ -18,9 +18,9 @@
   --unit-2xl: 4rem;
 
   /* Launchpad vars */
-  --launchpad-s: 0.45rem;
+  --launchpad-s: 0.5rem;
   --launchpad-m: 0.6rem;
-  --launchpad-l: 0.75rem;
+  --launchpad-l: 0.7rem;
 
   font-family: "mono", monospace;
   font-size: 32px;

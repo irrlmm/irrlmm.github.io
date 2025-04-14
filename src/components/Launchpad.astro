@@ -163,11 +163,10 @@ const { apps } = Astro.props;
 
   @media (max-width: 504px) {
     ul {
-      /* 14,625 x / --unit-m */
-      grid-template-columns: repeat(4, calc(var(--unit-m) * 2.60625));
-      grid-auto-columns: calc(var(--unit-m) * 2.60625);
-      grid-auto-rows: calc(var(--unit-m) * 2.60625);
-      gap: calc(var(--unit-m) * 1.4);
+      grid-template-columns: repeat(4, calc(var(--unit-m) * 2.8));
+      grid-auto-columns: calc(var(--unit-m) * 2.8);
+      grid-auto-rows: calc(var(--unit-m) * 2.8);
+      gap: calc(var(--unit-m) * 1.1);
     }
 
     span {
