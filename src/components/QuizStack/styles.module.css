@@ -61,7 +61,13 @@
   font-size: var(--unit-s);
 }
 
-@media (max-width: 512px) {
+.score {
+  display: flex;
+  align-items: center;
+  font-size: var(--unit-l);
+}
+
+/* @media (max-width: 512px) {
   .cardContentWrapper {
     padding: 24px;
   }
@@ -77,4 +83,4 @@
   .cardContentWrapper p {
     font-size: 14px;
   }
-}
+} */

@@ -38,6 +38,6 @@ export const FACTS_INTRO: Fact[] = [
   {
     id: "outro",
     icon: SVG_STAR,
-    text: "Now you know a bit about me. If you meet Rogi, don't take him seriously, he's being dramatic.",
+    text: "Now you know a bit about me. If you meet Rogi, don't take him seriously, he likes drama.",
   },
 ];

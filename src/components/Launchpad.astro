@@ -1,0 +1,183 @@
+---
+import LaunchpadIcon from "./LaunchpadIcon.astro";
+import LaunchpadWidgetWorkspace from "./LaunchpadWidgetWorkplace.astro";
+import LaunchpadWidgetImage from "./LaunchpadWidgetImage.astro";
+import LaunchpadWidgetTheme from "./LaunchpadWidgetTheme.astro";
+import LaunchpadBadge from "./LaunchpadBadge.astro";
+
+type App = {
+  label: string;
+  link?: {
+    href: string;
+    external?: boolean;
+  };
+  icon?: { path?: string; text?: string };
+  widgetImage?: string;
+  widgetWorkplace?: {
+    company: string;
+    experience: string;
+  };
+  widgetTheme?: boolean;
+  badge?: string;
+  pos?: string;
+};
+
+interface Props {
+  apps: App[];
+}
+
+const { apps } = Astro.props;
+---
+
+<section>
+  <ul>
+    {
+      apps.map(
+        ({
+          link,
+          label,
+          icon,
+          widgetWorkplace,
+          widgetImage,
+          widgetTheme,
+          badge,
+          pos,
+        }) => (
+          <li
+            data-widget-large={
+              !!widgetWorkplace || !!widgetImage || !!widgetTheme
+            }
+            data-widget-small={!!widgetTheme}
+            style={pos && `grid-area: ${pos}`}
+          >
+            <a
+              href={link?.href}
+              rel={link?.external ? "noopener noreferrer" : undefined}
+              target={link?.external ? "_blank" : undefined}
+            >
+              {badge && <LaunchpadBadge value={badge} />}
+
+              {icon && <LaunchpadIcon icon={icon} />}
+
+              {widgetWorkplace && (
+                <LaunchpadWidgetWorkspace workplace={widgetWorkplace} />
+              )}
+
+              {widgetImage && <LaunchpadWidgetImage image={widgetImage} />}
+
+              {widgetTheme && <LaunchpadWidgetTheme />}
+
+              <span>{label}</span>
+            </a>
+          </li>
+        )
+      )
+    }
+  </ul>
+</section>
+
+<style>
+  section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: calc(var(--unit-m) * 20);
+    padding: 0 var(--unit-m);
+  }
+
+  ul {
+    /* flex: 1; */
+    display: grid;
+    justify-content: center;
+    /* grid-template-columns: repeat(4, 1fr); */
+    /* grid-template-rows: repeat(6, 1fr); */
+    /* aspect-ratio: 504/784; */
+    grid-template-columns: repeat(4, calc(var(--unit-m) * 3));
+    grid-template-rows: repeat(5, calc(var(--unit-m) * 3));
+    /* // */
+    /* grid-auto-rows: calc(var(--unit-m) * 3); */
+    gap: calc(var(--unit-m) * 2);
+  }
+
+  li {
+    grid-column: span 1;
+    grid-row: span 1;
+    animation: appear-with-scale 0.2s var(--bezier) 0.2s both;
+  }
+  li[data-widget-large="true"] {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  li[data-widget-small="true"] {
+    grid-column: span 2;
+  }
+  li:nth-child(2) {
+    animation-delay: calc(0.2s + 2 * 0.05s);
+  }
+  li:nth-child(3) {
+    animation-delay: calc(0.2s + 3 * 0.05s);
+  }
+  li:nth-child(4) {
+    animation-delay: calc(0.2s + 4 * 0.05s);
+  }
+  li:nth-child(5) {
+    animation-delay: calc(0.2s + 5 * 0.05s);
+  }
+  li:nth-child(6) {
+    animation-delay: calc(0.2s + 6 * 0.05s);
+  }
+  li:nth-child(7) {
+    animation-delay: calc(0.2s + 7 * 0.05s);
+  }
+  li:nth-child(n + 8) {
+    animation-delay: calc(0.2s + 8 * 0.05s);
+  }
+
+  a {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--on-surface);
+    box-shadow: inset 0 0 0 2px var(--on-surface);
+    transition: box-shadow 0.1s var(--bezier);
+  }
+  a:hover {
+    box-shadow: inset 0 0 0 4px var(--on-surface);
+  }
+
+  li:not([data-widget-large="true"]) > a,
+  li:not([data-widget-small="true"]) > a {
+    border-radius: var(--unit-s);
+  }
+  li[data-widget-large="true"] > a,
+  li[data-widget-small="true"] > a {
+    border-radius: var(--unit-m);
+  }
+
+  span {
+    position: absolute;
+    text-align: center;
+    line-height: 1;
+    font-size: calc(var(--unit-s) * 0.85);
+    bottom: calc(-1 * calc(var(--unit-s) * 0.85 + var(--unit-xs)));
+    pointer-events: none;
+    padding: var(--unit-3xs);
+    border-radius: var(--unit-3xs);
+  }
+  a:hover span {
+    background-color: var(--on-surface);
+    color: var(--background);
+  }
+
+  @media (max-width: 640px) {
+    ul {
+      /* grid-template-columns: repeat(4, calc(var(--unit-m) * 2.5)); */
+      /* grid-auto-rows: calc(var(--unit-m) * 2.5); */
+      /* grid-gap: var(--unit-l); */
+    }
+  }
+</style>

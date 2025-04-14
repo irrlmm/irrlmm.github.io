@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 import PostsList from "../components/Posts/PostsList.astro";
-import ResumeOverview from "../components/ResumeOverview.astro";
+import Launchpad from "../components/Launchpad.astro";
 import FactStack from "../components/FactStack";
 import Belt from "../components/Belt";
 import Hero from "../components/Hero.astro";
@@ -11,6 +11,7 @@ import Header from "../components/Header.astro";
 import TestStack from "../components/TestStack";
 import { TEST_COLLABORATOR_TYPE } from "../consts/tests/collaboratorType";
 import { FACTS_INTRO } from "../consts/facts/introFacts";
+import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -33,7 +34,61 @@ if (!posts) {
 
     <Belt client:load text="Available for product design roles" />
 
-    <section>
+    <Launchpad
+      apps={[
+        {
+          label: "Workplace",
+          link: { href: "https://app.imusician.pro", external: true },
+          widgetWorkplace: {
+            experience: "7+ yrs",
+            company: "imusician",
+          },
+          badge: "Bye-bye",
+        },
+        {
+          label: "Latest work",
+          link: {
+            href: "https://www.behance.net/gallery/223450275/Instant-Mastering-Instant-Remake",
+            external: true,
+          },
+          widgetImage: "/src/assets/ishigs/cover.png",
+          badge: "New",
+        },
+        {
+          label: "CV",
+          link: { href: "/docs/Igor Lemeshkin CV.pdf", external: true },
+          icon: { text: "CV" },
+        },
+        {
+          label: "LinkedIn",
+          link: { href: "https://www.linkedin.com/in/irrlmm", external: true },
+          icon: { text: "in" },
+        },
+        {
+          label: "Dribbble",
+          link: { href: "https://www.dribbble.com/irrlmm", external: true },
+          icon: { path: SVG_DRIBBBLE },
+        },
+        {
+          label: "Contact",
+          link: { href: "mailto:igorlem@icloud.com" },
+          icon: { path: SVG_MAIL },
+        },
+        {
+          label: "Rogi",
+          link: { href: "/undefined" },
+          icon: { path: SVG_KEY },
+          badge: "???",
+          pos: "5 / 1 / span 1 / span 1",
+        },
+        // {
+        //   label: "Theme",
+        //   widgetTheme: true,
+        // },
+      ]}
+    />
+
+    <!-- <section>
       <ResumeOverview
         values={[
           { label: "Experience", value: "8+ years" },
@@ -65,13 +120,13 @@ if (!posts) {
           },
         ]}
       />
-    </section>
+    </section> -->
+
+    <!-- <PostsList posts={posts} /> -->
+
+    <!-- <Belt client:load text="This page is not just about Igor" /> -->
 
     <Belt client:load text="The work is mysterious and important" />
-
-    <PostsList posts={posts} />
-
-    <Belt client:load text="This page is not just about Igor" />
 
     <section>
       <TestStack client:load test={TEST_COLLABORATOR_TYPE} />

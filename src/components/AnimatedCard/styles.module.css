@@ -1,8 +1,8 @@
 .card {
   position: absolute;
   display: flex;
-  width: calc(100% - 2 * var(--unit-m));
-  height: calc(100% - 2 * var(--unit-m));
+  width: calc(100% - 2 * var(--unit-s));
+  height: calc(100% - 2 * var(--unit-s));
   padding: var(--unit-l);
   border-radius: var(--unit-m);
   background-color: var(--background);

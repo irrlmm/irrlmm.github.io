@@ -1,0 +1,39 @@
+---
+interface Props {
+  value: string;
+}
+
+const { value } = Astro.props;
+---
+
+<div>
+  <span>{value}</span>
+</div>
+
+<style>
+  div {
+    position: absolute;
+    display: flex;
+    width: 1px;
+    height: 1px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    top: calc(-1 * var(--unit-2xs));
+    right: calc(-1 * var(--unit-2xs));
+  }
+
+  span {
+    padding: calc(var(--unit-sm) * 0.33);
+    font-size: calc(var(--unit-s) * 0.8);
+    border-radius: var(--unit-s);
+    line-height: 1;
+    text-transform: uppercase;
+    background-color: var(--on-surface);
+    color: var(--background);
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 0 0 4px var(--background);
+    animation: appear-with-scale 0.2s var(--bezier) 1s both;
+    transform-origin: bottom left;
+  }
+</style>

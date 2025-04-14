@@ -15,16 +15,15 @@
   align-items: center;
   justify-content: center;
   aspect-ratio: 4/3;
-  perspective: 1200px;
   font-size: var(--unit-sm);
 }
 
-@media (max-width: 512px) {
+@media (max-width: 476px) {
   .card {
     padding: var(--unit-s);
   }
 
   .container {
-    aspect-ratio: 3/4;
+    aspect-ratio: 4/5;
   }
 }

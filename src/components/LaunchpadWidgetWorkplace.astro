@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+// import { SVG_ARROW, SVG_STAR } from "../consts/svg";
+// import Svg from "./Svg";
+import getImage from "../helpers/getImage";
+import { getEntry } from "astro:content";
+
+interface Props {
+  workplace: any;
+}
+
+const { workplace } = Astro.props;
+
+const company = await getEntry("meta:company", workplace.company);
+if (!company) {
+  throw Error("Company entry not found!");
+}
+---
+
+<div class="col align-start justify-between padding-m">
+  <Image
+    src={getImage(company.data.logo)()}
+    loading="lazy"
+    alt="Company logo"
+    widths={[64, 128]}
+    layout="responsive"
+  />
+
+  <p class="col gap-2xs">
+    <span data-value="true">{workplace.experience}</span>
+    <span>@ {company.data.name}</span>
+  </p>
+</div>
+
+<style>
+  div {
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    width: var(--unit-l);
+    border-radius: var(--unit-2xs);
+  }
+  p {
+    font-size: var(--unit-s);
+  }
+  p span[data-value="true"] {
+    font-size: var(--unit-m);
+  }
+</style>

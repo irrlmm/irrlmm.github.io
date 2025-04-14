@@ -7,6 +7,7 @@
 }
 
 :root {
+  --unit-3xs: 0.125rem;
   --unit-2xs: 0.25rem;
   --unit-xs: 0.5rem;
   --unit-s: 0.75rem;
@@ -25,7 +26,7 @@
   font-variant-ligatures: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
   :root {
     font-size: 28px;
   }

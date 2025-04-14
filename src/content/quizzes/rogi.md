@@ -12,7 +12,7 @@ outro:
     someCorrect:
       {
         title: "All done! You scored:",
-        text: "But Rogi is not going to leave this place today.",
+        text: "Rogi is not leaving this place today.",
       },
   }
 
@@ -29,7 +29,7 @@ questions:
               {
                 "type": "positive",
                 "title": "Correct",
-                "text": "Rogi is an evil designer spirit trapped on this page.",
+                "text": "Rogi is designer spirit trapped on this page.",
               },
           },
           {
@@ -54,7 +54,7 @@ questions:
               {
                 "type": "positive",
                 "title": "Correct",
-                "text": "He downloads fonts without paying for them.",
+                "text": "He was captured by monotype police after using pirated fonts.",
               },
           },
           {
@@ -154,7 +154,7 @@ questions:
               {
                 "type": "negative",
                 "title": "Unauthorized Rogi output",
-                "text": "•• ••• ••••••• •• •••• •••••••• •••• •••• ••••• •• •••••••• •• ••• •••••• •• •••",
+                "text": "[cyphered] •• ••• Igor ••••••• •• •••• •••••••• •••• •••••••• •• ••• •••••• •• ••• /index •• irrlmm!",
               },
           },
         ],

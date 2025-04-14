@@ -8,7 +8,7 @@ import QuizItem from "./QuizItem";
 import QuizIntro from "../ScreenIntro";
 import QuizOutro from "./QuizOutro";
 
-import { SVG_GEM } from "../../consts/svg";
+import { SVG_KEY } from "../../consts/svg";
 
 import styles from "../CardStack/styles.module.css";
 import innerStyles from "./styles.module.css";
@@ -76,7 +76,7 @@ const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
             text: `${currentStep} / ${questions.length}`,
           },
           {
-            icon: SVG_GEM,
+            icon: SVG_KEY,
             text: rightCount.toString(),
           },
         ]}

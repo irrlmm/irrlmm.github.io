@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import {
+  delay,
   motion,
   useScroll,
   useSpring,
@@ -9,11 +10,9 @@ import {
 import styles from "./styles.module.css";
 
 const Belt = ({ text }: { text: string }) => {
-  const randomIncrement = Math.random() * 100;
-
   const TRANSITION_SPRING = { bounce: 0.025 };
 
-  const repeatArray = Array(8).fill(text);
+  const repeatArray = Array(10).fill(text);
 
   const target = useRef(null);
 
@@ -23,11 +22,7 @@ const Belt = ({ text }: { text: string }) => {
   });
   const velocity = useVelocity(scrollYProgress);
 
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0", `-${50 + randomIncrement}%`]
-  );
+  const x = useTransform(scrollYProgress, [0, 1], ["0", `-300%`]);
   const skewX = useTransform(velocity, [-0.33, 0.33], [15, -15]);
 
   const xSmoothed = useSpring(x, TRANSITION_SPRING);

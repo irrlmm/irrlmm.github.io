@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 
 import styles from "../CardStack/styles.module.css";
 import introStyles from "../ScreenIntro/styles.module.css";
-import innerStyles from "../ScreenIntro/styles.module.css";
+import innerStyles from "./styles.module.css";
+import Svg from "../Svg";
+import { SVG_KEY } from "../../consts/svg";
 
 type Props = {
   outro: any;
@@ -45,22 +47,17 @@ const ScreenOutro: React.FC<Props> = ({ outro, questions, rightCount }) => {
         }
       </span>
 
-      <span className={innerStyles.score}>{completionPercent}%</span>
+      <span className={innerStyles.score}>
+        {completionPercent}% / {rightCount}{" "}
+        <Svg d={SVG_KEY} strokeWidth={3} size="var(--unit-l)" />
+      </span>
 
-      <div className="col gap-16">
-        <span className={innerStyles.resultText}>
-          You earned {rightCount} 💎
-        </span>
-
-        <span className={innerStyles.resultText}>
-          {
-            outro[
-              rightCount === questions.length ? "allCorrect" : "someCorrect"
-            ].text
-          }
-          <br />
-        </span>
-      </div>
+      <span className={innerStyles.resultText}>
+        {
+          outro[rightCount === questions.length ? "allCorrect" : "someCorrect"]
+            .text
+        }
+      </span>
     </motion.div>
   );
 };
