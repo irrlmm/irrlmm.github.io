@@ -11,7 +11,6 @@ import QuizOutro from "./QuizOutro";
 import { SVG_KEY } from "../../consts/svg";
 
 import styles from "../CardStack/styles.module.css";
-import innerStyles from "./styles.module.css";
 import AnimatedCard from "../AnimatedCard";
 
 type Props = {
@@ -22,7 +21,7 @@ const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
   const [isIntroShown, setIsIntroShown] = useState(true);
 
   const [currentStep, setCurrentStep] = useState(0);
-  const [rightCount, setRightCount] = useState(0);
+  const [points, setPoints] = useState(0);
   const [shouldSwipe, setShouldSwipe] = useState(false);
 
   const [cardsShown, setCardsShown] = useState(questions.toReversed());
@@ -37,7 +36,7 @@ const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
   const handleClickRefresh = () => {
     setCardsShown(questions.toReversed());
     setCurrentStep(0);
-    setRightCount(0);
+    setPoints(0);
     setHasViewedAll(false);
     setIsIntroShown(true);
   };
@@ -48,11 +47,9 @@ const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
     setCardsShown([...cardsShown.slice(0, -1)]);
   };
 
-  const handleCardClick = (isRight: boolean) => {
+  const handleCardClick = (points: number) => {
     setShouldSwipe(true);
-    if (isRight) {
-      setRightCount((r) => (r += 1));
-    }
+    setPoints((p) => (p += points));
   };
 
   return (
@@ -77,7 +74,7 @@ const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
           },
           {
             icon: SVG_KEY,
-            text: rightCount.toString(),
+            text: points < 0 ? "0" : points.toString(),
           },
         ]}
         refreshButtonProps={{
@@ -137,11 +134,7 @@ const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
           )}
 
           {!isIntroShown && cardsShown.length === 0 && (
-            <QuizOutro
-              outro={outro}
-              rightCount={rightCount}
-              questions={questions}
-            />
+            <QuizOutro outro={outro} points={points} />
           )}
         </AnimatePresence>
       </motion.div>

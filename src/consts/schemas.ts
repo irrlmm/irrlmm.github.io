@@ -5,7 +5,7 @@ export const SCHEMA_PERSON_MINI: WithContext<Person> = {
   "@type": "Person",
   name: "Igor Lemeshkin",
   jobTitle: "Product Designer",
-  url: "https://irrlmm.github.io",
+  url: "https://irrlmm.me",
   sameAs: [
     "https://www.linkedin.com/in/irrlmm",
     "https://www.behance.net/irrlmm",
@@ -17,7 +17,7 @@ export const SCHEMA_PERSON_FULL: WithContext<Person> = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Igor Lemeshkin",
-  jobTitle: "Product Designer",
+  jobTitle: "Senior Product Designer",
   url: "https://irrlmm.github.io",
   sameAs: [
     "https://www.linkedin.com/in/irrlmm",
@@ -26,8 +26,8 @@ export const SCHEMA_PERSON_FULL: WithContext<Person> = {
   ],
   hasOccupation: {
     "@type": "Occupation",
-    name: "Lead Product Designer",
-    skills: ["UX/UI Design", "Design Systems"],
+    name: "Senior Product Designer",
+    skills: ["UX/UI Design", "Design Systems", "Product Design"],
   },
   worksFor: {
     "@type": "Organization",

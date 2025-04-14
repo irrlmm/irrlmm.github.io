@@ -21,6 +21,7 @@ import {
   SVG_MAIL,
   SVG_SWIPE,
 } from "../consts/svg";
+import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -31,7 +32,7 @@ if (!posts) {
 }
 ---
 
-<MainLayout>
+<MainLayout schema={SCHEMA_PERSON_FULL}>
   <article class="col align-start">
     <Header />
 
@@ -115,18 +116,18 @@ if (!posts) {
           },
           {
             id: "p1-a",
-            icon: SVG_GOAL_MATCH,
+            icon: SVG_DEFAULT,
             text: "1. Try making impact using minimum resources.",
+          },
+          {
+            id: "p2-a",
+            icon: SVG_DEFAULT,
+            text: "2. Be the real user of a product you are designing.",
           },
           // {
           //   id: "p1-b",
           //   text: "Solve one problem at a time. Write less code. Don't sit on single idea for too long. Use only necessary tools.",
           // },
-          {
-            id: "p2-a",
-            icon: SVG_ARROW,
-            text: "2. Become the user of a product you are designing.",
-          },
           {
             id: "p2-b",
             icon: SVG_DEFAULT,

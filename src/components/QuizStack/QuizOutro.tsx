@@ -1,18 +1,20 @@
 import { motion } from "framer-motion";
 
+import Svg from "../Svg";
+
+import { SVG_KEY } from "../../consts/svg";
+
 import styles from "../CardStack/styles.module.css";
 import introStyles from "../ScreenIntro/styles.module.css";
 import innerStyles from "./styles.module.css";
-import Svg from "../Svg";
-import { SVG_KEY } from "../../consts/svg";
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  outro: any;
-  rightCount: number;
-  questions: any[];
+  outro: CollectionEntry<"quiz">["data"]["outro"];
+  points: number;
 };
 
-const ScreenOutro: React.FC<Props> = ({ outro, questions, rightCount }) => {
+const ScreenOutro: React.FC<Props> = ({ outro, points }) => {
   const variants = {
     hidden: {
       opacity: 0,
@@ -26,11 +28,7 @@ const ScreenOutro: React.FC<Props> = ({ outro, questions, rightCount }) => {
     },
   };
 
-  const allPositiveCount = questions.filter((q) =>
-    q.options.some((o: any) => o.response.type === "positive")
-  ).length;
-
-  const completionPercent = Math.round((rightCount / allPositiveCount) * 100);
+  const completionPercent = Math.round((points / outro.winScore) * 100);
 
   return (
     <motion.div
@@ -41,22 +39,17 @@ const ScreenOutro: React.FC<Props> = ({ outro, questions, rightCount }) => {
       exit="hidden"
     >
       <span className={innerStyles.resultText}>
-        {
-          outro[rightCount === questions.length ? "allCorrect" : "someCorrect"]
-            .title
-        }
+        {outro[completionPercent === 100 ? "winner" : "loser"].title}
       </span>
 
       <span className={innerStyles.score}>
-        {completionPercent}% / {rightCount}{" "}
+        {completionPercent < 0 ? 0 : completionPercent}% /{" "}
+        {points < 0 ? 0 : points}{" "}
         <Svg d={SVG_KEY} strokeWidth={3} size="var(--unit-l)" />
       </span>
 
       <span className={innerStyles.resultText}>
-        {
-          outro[rightCount === questions.length ? "allCorrect" : "someCorrect"]
-            .text
-        }
+        {outro[completionPercent === 100 ? "winner" : "loser"].text}
       </span>
     </motion.div>
   );

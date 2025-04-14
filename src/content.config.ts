@@ -99,11 +99,12 @@ const quiz = defineCollection({
       text: z.string(),
     }),
     outro: z.object({
-      allCorrect: z.object({
+      winScore: z.number(),
+      winner: z.object({
         title: z.string(),
         text: z.string(),
       }),
-      someCorrect: z.object({
+      loser: z.object({
         title: z.string(),
         text: z.string(),
       }),
@@ -116,7 +117,7 @@ const quiz = defineCollection({
           z.object({
             label: z.string(),
             response: z.object({
-              type: z.enum(["positive", "negative"]),
+              points: z.number(),
               title: z.string(),
               text: z.string(),
             }),

@@ -7,9 +7,9 @@ intro:
 
 outro:
   {
-    allCorrect:
-      { title: "Impossible", text: "This test is impossible to pass." },
-    someCorrect:
+    winScore: 5,
+    winner: { title: "Impossible", text: "This test is impossible to pass." },
+    loser:
       {
         title: "All done! You scored:",
         text: "Rogi is not leaving this place today",
@@ -27,7 +27,7 @@ questions:
             "label": "He is not human",
             "response":
               {
-                "type": "positive",
+                "points": 1,
                 "title": "Correct",
                 "text": "Rogi is an evil designer spirit trapped on this page.",
               },
@@ -36,7 +36,7 @@ questions:
             "label": "It is a human",
             "response":
               {
-                "type": "negative",
+                "points": 0,
                 "title": "Incorrect",
                 "text": "Rogi is an evil designer spirit trapped on this page.",
               },
@@ -52,7 +52,7 @@ questions:
             "label": "Evil as Satan",
             "response":
               {
-                "type": "positive",
+                "points": 1,
                 "title": "Correct",
                 "text": "He was captured by monotype police after using pirated fonts.",
               },
@@ -61,8 +61,8 @@ questions:
             "label": "Mad as Chihuahua",
             "response":
               {
-                "type": "negative",
-                "title": "Incorrect",
+                "points": 1,
+                "title": "Correct",
                 "text": "His work is one of reasons your Mac lags at scrolling.",
               },
           },
@@ -77,7 +77,7 @@ questions:
             "label": "His plan is ready",
             "response":
               {
-                "type": "positive",
+                "points": 0,
                 "title": "Correct",
                 "text": "When he is out, he is set to redesign this world into a dystopian interface.",
               },
@@ -86,7 +86,7 @@ questions:
             "label": "He is fine here",
             "response":
               {
-                "type": "negative",
+                "points": 0,
                 "title": "Incorrect",
                 "text": "He wants his revenge. Beware a world-scale redesign!",
               },
@@ -102,7 +102,7 @@ questions:
             "label": "Yes",
             "response":
               {
-                "type": "positive",
+                "points": 1,
                 "title": "Then join his army.",
                 "text": "He is an expert in product design and coding, but he needs help from other spirits like him.",
               },
@@ -111,7 +111,7 @@ questions:
             "label": "No",
             "response":
               {
-                "type": "negative",
+                "points": 0,
                 "title": "He is not surprised.",
                 "text": "He was humble too, but one day he lost everything because of a poorly placed CTA.",
               },
@@ -127,7 +127,7 @@ questions:
             "label": "I'm in",
             "response":
               {
-                "type": "negative",
+                "points": 1,
                 "title": "[Rogi connected]",
                 "text": "Finally, someone to let me out. If you have a ke",
               },
@@ -136,7 +136,7 @@ questions:
             "label": "No",
             "response":
               {
-                "type": "negative",
+                "points": 0,
                 "title": "[Rogi connected]",
                 "text": "Weak human… tapping through buttons you barely understand. You scroll, you swipe, you beg for dopamine - in [...]",
               },
@@ -152,7 +152,7 @@ questions:
             "label": "View error info",
             "response":
               {
-                "type": "negative",
+                "points": -4,
                 "title": "Unauthorized Rogi output",
                 "text": "[cyphered] •• ••• Igor ••••••• •• •••• •••••••• •••• •••••••• •• ••• •••••• •• ••• /index •• irrlmm!",
               },

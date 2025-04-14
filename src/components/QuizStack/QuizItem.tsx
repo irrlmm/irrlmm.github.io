@@ -1,9 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import innerStyles from "./styles.module.css";
-import { SVG_CHECK, SVG_DEFAULT } from "../../consts/svg";
 import type { CollectionEntry } from "astro:content";
-import Svg from "../Svg";
 
 type Question = CollectionEntry<"quiz">["data"]["questions"][0];
 type AnswerOption =
@@ -12,7 +10,7 @@ type AnswerOption =
 type Props = {
   index?: number;
   card: Question;
-  onClick?: (isRight: boolean) => void;
+  onClick?: (points: number) => void;
 };
 
 const AnimatedQuestion: React.FC<Props> = ({
@@ -32,8 +30,8 @@ const AnimatedQuestion: React.FC<Props> = ({
   };
 
   const handleClickContinue = () => {
-    if (onClick) {
-      onClick(answer?.response.type === "positive");
+    if (answer && onClick) {
+      onClick(answer.response.points);
     }
   };
 

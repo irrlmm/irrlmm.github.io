@@ -17,15 +17,15 @@ export const FACTS_INTRO: Fact[] = [
   },
   {
     id: "impact",
-    text: "Yet products I have designed were not temporary. Each of them has grown, delivered value and pushed the business forward.",
+    text: "The products I have designed were not temporary. Each of them has grown, delivered value and pushed the business forward.",
   },
   {
     id: "engineer-1",
-    text: "One of keys to that is my tech knowledge. I come from UI engineering and I like collaborating with devs.",
+    text: "One of the keys to that is my tech knowledge. I come from UI engineering, and I work closely with developers.",
   },
   {
     id: "hobbies-1",
-    text: "We iterate quick, but nothing appears from thin air. Everything I do is based on my personal experience.",
+    text: "We iterate quickly, but nothing appears from thin air. Everything I do is drawn from experience.",
   },
   {
     id: "hobbies-2",
@@ -38,6 +38,6 @@ export const FACTS_INTRO: Fact[] = [
   {
     id: "outro",
     icon: SVG_STAR,
-    text: "Now you know a bit about me. If you meet Rogi, don't take him seriously, he likes drama.",
+    text: "Now you know a bit about me. The rest lives with Rogi, but he tends to exaggerate.",
   },
 ];
