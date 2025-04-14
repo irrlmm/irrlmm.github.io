@@ -59,7 +59,7 @@ const { apps } = Astro.props;
               <LaunchpadWidgetWorkspace workplace={widgetWorkplace} />
             )}
 
-            {/* {widgetImage && <LaunchpadWidgetImage image={widgetImage} />} */}
+            {widgetImage && <LaunchpadWidgetImage image={widgetImage} />}
 
             {/* {widgetTheme && <LaunchpadWidgetTheme />} */}
 
@@ -137,11 +137,12 @@ const { apps } = Astro.props;
   }
 
   li:not([data-widget="true"]) > a {
-    border-radius: 25%;
+    border-radius: var(--unit-s);
     aspect-ratio: 1/1;
   }
   li[data-widget="true"] > a {
-    border-radius: var(--unit-l);
+    border-radius: var(--unit-m);
+    /* border-radius: 16%; */
   }
 
   span {
@@ -170,7 +171,7 @@ const { apps } = Astro.props;
     }
 
     span {
-      font-size: calc(var(--unit-s) * 0.7);
+      font-size: var(--launchpad-s);
     }
   }
 </style>

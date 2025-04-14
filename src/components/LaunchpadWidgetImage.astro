@@ -14,7 +14,7 @@ const img = getImage(image);
 <div>
   <Image
     src={img()}
-    loading="eager"
+    loading="lazy"
     alt=""
     widths={[512, 1024]}
     layout="full-width"
@@ -30,6 +30,6 @@ const img = getImage(image);
 
   img {
     align-self: center;
-    border-radius: calc(var(--unit-l) - var(--unit-2xs));
+    border-radius: calc(var(--unit-m) - var(--unit-2xs));
   }
 </style>
