@@ -13,6 +13,7 @@ import { TEST_COLLABORATOR_TYPE } from "../consts/tests/collaboratorType";
 import { FACTS_INTRO } from "../consts/facts/introFacts";
 import {
   SVG_ARROW,
+  SVG_CV,
   SVG_DEFAULT,
   SVG_DRIBBBLE,
   SVG_GOAL_MATCH,
@@ -62,19 +63,24 @@ if (!posts) {
           widgetImage: "/src/assets/ishigs/cover.png",
         },
         {
-          label: "CV",
-          link: { href: "/docs/Igor Lemeshkin CV.pdf", external: true },
-          icon: { path: SVG_DEFAULT },
-        },
-        {
           label: "LinkedIn",
           link: { href: "https://www.linkedin.com/in/irrlmm", external: true },
-          icon: { path: SVG_DEFAULT },
+          icon: { text: "in" },
         },
         {
           label: "Concepts",
           link: { href: "https://www.dribbble.com/irrlmm", external: true },
           icon: { path: SVG_DRIBBBLE },
+        },
+        {
+          label: "Behance",
+          link: { href: "https://www.dribbble.com/irrlmm", external: true },
+          icon: { text: "Be" },
+        },
+        {
+          label: "CV",
+          link: { href: "/docs/Igor Lemeshkin CV.pdf", external: true },
+          icon: { path: SVG_CV },
         },
         {
           label: "Contact me",
@@ -87,52 +93,10 @@ if (!posts) {
           link: { href: "/undefined" },
           icon: { path: SVG_KEY },
           badge: "???",
-          pos: "5 / 2 / span 1 / span 1",
+          pos: "5 / 4 / span 1 / span 1",
         },
-        // {
-        //   label: "Theme",
-        //   widgetTheme: true,
-        // },
       ]}
     />
-
-    <!-- <section>
-      <ResumeOverview
-        values={[
-          { label: "Experience", value: "8+ years" },
-          {
-            label: "Works at",
-            value: "iMusician",
-            href: "https://imusician.pro",
-          },
-          {
-            label: "Lore",
-            value: "/undefined",
-            href: "/undefined",
-            internal: true,
-          },
-          {
-            label: "LinkedIn",
-            value: "Igor L.",
-            href: "https://www.linkedin.com/in/irrlmm",
-          },
-          {
-            label: "Dribbble",
-            value: "irrlmm",
-            href: "https://www.dribbble.com/irrlmm",
-          },
-          {
-            label: "Email",
-            value: "igorlem@icloud.com",
-            href: "mailto:igorlem@icloud.com",
-          },
-        ]}
-      />
-    </section> -->
-
-    <!-- <PostsList posts={posts} /> -->
-
-    <!-- <Belt client:load text="This page is not just about Igor" /> -->
 
     <Belt client:load text="The work is mysterious and important" />
 
