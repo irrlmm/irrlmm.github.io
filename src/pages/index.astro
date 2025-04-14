@@ -128,8 +128,32 @@ if (!posts) {
 
     <Belt client:load text="The work is mysterious and important" />
 
-    <section>
+    <!-- <section>
       <TestStack client:load test={TEST_COLLABORATOR_TYPE} />
+    </section> -->
+
+    <section>
+      <FactStack
+        client:load
+        facts={[
+          {
+            id: "intro",
+            text: "I want to share some of the design principles that shaped the way I think, work, and decide what matters.",
+          },
+          {
+            id: "p1",
+            text: "My number one design principle is to make impact using minimum resources.",
+          },
+          {
+            id: "p2",
+            text: "Less code. Less time. Quirks just enough. Less tools to make designs with.",
+          },
+          {
+            id: "oth",
+            text: "Otherwise a designer just sits and polishes a thing that might even not make sense.",
+          },
+        ]}
+      />
     </section>
 
     <Footer />

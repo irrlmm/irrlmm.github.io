@@ -44,10 +44,7 @@ const { apps } = Astro.props;
           pos,
         }) => (
           <li
-            data-widget-large={
-              !!widgetWorkplace || !!widgetImage || !!widgetTheme
-            }
-            data-widget-small={!!widgetTheme}
+            data-widget={!!widgetWorkplace || !!widgetImage || !!widgetTheme}
             style={pos && `grid-area: ${pos}`}
           >
             <a
@@ -79,14 +76,10 @@ const { apps } = Astro.props;
 <style>
   section {
     display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: calc(var(--unit-m) * 20);
-    padding: 0 var(--unit-m);
   }
 
   ul {
-    /* flex: 1; */
+    flex: 1;
     display: grid;
     justify-content: center;
     /* grid-template-columns: repeat(4, 1fr); */
@@ -104,12 +97,9 @@ const { apps } = Astro.props;
     grid-row: span 1;
     animation: appear-with-scale 0.2s var(--bezier) 0.2s both;
   }
-  li[data-widget-large="true"] {
+  li[data-widget="true"] {
     grid-column: span 2;
     grid-row: span 2;
-  }
-  li[data-widget-small="true"] {
-    grid-column: span 2;
   }
   li:nth-child(2) {
     animation-delay: calc(0.2s + 2 * 0.05s);
@@ -149,12 +139,10 @@ const { apps } = Astro.props;
     box-shadow: inset 0 0 0 4px var(--on-surface);
   }
 
-  li:not([data-widget-large="true"]) > a,
-  li:not([data-widget-small="true"]) > a {
+  li:not([data-widget="true"]) > a {
     border-radius: var(--unit-s);
   }
-  li[data-widget-large="true"] > a,
-  li[data-widget-small="true"] > a {
+  li[data-widget="true"] > a {
     border-radius: var(--unit-m);
   }
 
@@ -162,8 +150,8 @@ const { apps } = Astro.props;
     position: absolute;
     text-align: center;
     line-height: 1;
-    font-size: calc(var(--unit-s) * 0.85);
-    bottom: calc(-1 * calc(var(--unit-s) * 0.85 + var(--unit-xs)));
+    font-size: calc(var(--unit-s) * 0.8);
+    bottom: calc(-1 * calc(var(--unit-s) * 1.33));
     pointer-events: none;
     padding: var(--unit-3xs);
     border-radius: var(--unit-3xs);
@@ -177,7 +165,19 @@ const { apps } = Astro.props;
     ul {
       /* grid-template-columns: repeat(4, calc(var(--unit-m) * 2.5)); */
       /* grid-auto-rows: calc(var(--unit-m) * 2.5); */
-      /* grid-gap: var(--unit-l); */
+      gap: calc(var(--unit-m) * 1.33);
+    }
+
+    span {
+      font-size: calc(var(--unit-s) * 0.7);
+      bottom: calc(-1 * calc(var(--unit-s) * 1.125));
+    }
+  }
+
+  @media (max-width: 476px) {
+    ul {
+      grid-template-columns: repeat(4, calc(var(--unit-m) * 2.66));
+      grid-template-rows: repeat(5, calc(var(--unit-m) * 2.66));
     }
   }
 </style>

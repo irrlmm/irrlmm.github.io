@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import {
-  delay,
   motion,
   useScroll,
   useSpring,

@@ -1,9 +1,4 @@
-import {
-  animate,
-  useAnimation,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { animate, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const useSwipeCard = ({
