@@ -2,34 +2,29 @@
 import { Image } from "astro:assets";
 import getImage from "../helpers/getImage";
 import { getEntry } from "astro:content";
-import type { ReferenceDataEntry } from "astro:content";
 
 interface Props {
   workplace: {
-    company: ReferenceDataEntry<"meta:company">["id"];
+    company: string;
+    logo: string;
     lines: string[];
   };
 }
 
 const { workplace } = Astro.props;
-
-const company = await getEntry("meta:company", workplace.company);
-if (!company) {
-  throw Error("Company entry not found!");
-}
 ---
 
 <div class="col align-start justify-between gap-2xs">
   <div class="row gap-xs align-center">
     <Image
-      src={getImage(company.data.logo)()}
+      src={getImage(workplace.logo)()}
       loading="lazy"
       alt="Company logo"
       widths={[32, 64]}
       layout="responsive"
     />
 
-    <span>{company.data.name}</span>
+    <span>{workplace.company}</span>
   </div>
 
   <ul>

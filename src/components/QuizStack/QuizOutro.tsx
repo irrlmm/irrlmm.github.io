@@ -8,9 +8,10 @@ import styles from "../CardStack/styles.module.css";
 import introStyles from "../ScreenIntro/styles.module.css";
 import innerStyles from "./styles.module.css";
 import type { CollectionEntry } from "astro:content";
+import type { QUIZ_TYPE } from "../../consts/quizzes";
 
 type Props = {
-  outro: CollectionEntry<"quiz">["data"]["outro"];
+  outro: QUIZ_TYPE["outro"];
   points: number;
 };
 

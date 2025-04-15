@@ -6,22 +6,14 @@
     "avatar": "/src/assets/persons/irrlmm.png",
     "birthDate": "12 May 1997",
     "currentJob": "im-design",
-    "location": {
-      "city": "Da Nang",
-      "country": "Vietnam"
-    },
     "email": "igorlem@icloud.com",
-    "links": [
-      {
-        "label": "LinkedIn",
-        "value": "Igor L.",
-        "href": "https://linkedin.com/in/igorlem"
-      },
-      {
-        "label": "Dribbble",
-        "value": "irrlmm",
-        "href": "https://dribbble.com/irrlmm"
-      }
-    ]
+    "linkedin": {
+      "value": "Igor L.",
+      "href": "https://linkedin.com/in/igorlem"
+    },
+    "dribbble": {
+      "value": "irrlmm",
+      "href": "https://dribbble.com/irrlmm"
+    }
   }
 ]

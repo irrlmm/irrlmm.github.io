@@ -4,13 +4,14 @@ import { getCollection } from "astro:content";
 import Launchpad from "../components/Launchpad.astro";
 import FactStack from "../components/FactStack";
 import Belt from "../components/Belt";
-import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import FACTS_INTRO from "../consts/facts/intro";
 import FACTS_PRINCIPLES from "../consts/facts/principles";
 import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
+import { IRRLMM } from "../consts/meta";
+import Paragraph from "../components/Paragraph.astro";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -25,13 +26,20 @@ if (!posts) {
   <article class="col align-start">
     <Header />
 
-    <Hero />
+    <section class="col gap-m">
+      <h1 class="hidden">{IRRLMM.name}</h1>
+      <h2 class="hidden">{IRRLMM.title}</h2>
+
+      <Paragraph text="Greetings. I am Igor" inlineImageSrc={IRRLMM.avatar} />
+
+      {IRRLMM.bio.map((p) => <Paragraph text={p} />)}
+    </section>
 
     <section>
       <FactStack client:load facts={FACTS_INTRO} />
     </section>
 
-    <Belt client:load text="Available for product design roles" />
+    <Belt client:idle text="Available for product design roles" />
 
     <Launchpad
       apps={[
@@ -39,7 +47,8 @@ if (!posts) {
           label: "Workplace",
           link: { href: "https://app.imusician.pro", external: true },
           widgetWorkplace: {
-            company: "imusician",
+            company: "iMusician",
+            logo: "companies/imd.png",
             lines: ["7+ yrs", "Senior Product Designer", "ex UI Engineer"],
           },
           badge: "Finished",
@@ -50,21 +59,21 @@ if (!posts) {
             href: "https://www.behance.net/gallery/223450275/Instant-Mastering-Instant-Remake",
             external: true,
           },
-          widgetImage: "/src/assets/ishigs/cover.png",
+          widgetImage: "work/ishigs/cover.png",
         },
         {
           label: "LinkedIn",
-          link: { href: "https://www.linkedin.com/in/irrlmm", external: true },
+          link: { href: IRRLMM.links.linkedin, external: true },
           icon: { text: "in" },
         },
         {
           label: "Dribbble",
-          link: { href: "https://www.dribbble.com/irrlmm", external: true },
+          link: { href: IRRLMM.links.dribbble, external: true },
           icon: { path: SVG_DRIBBBLE },
         },
         {
           label: "Behance",
-          link: { href: "https://www.behance.net/irrlmm", external: true },
+          link: { href: IRRLMM.links.behance, external: true },
           icon: { text: "Be" },
         },
         {
@@ -74,25 +83,23 @@ if (!posts) {
         },
         {
           label: "Mail",
-          link: { href: "mailto:igorlem@icloud.com" },
+          link: { href: `mailto:${IRRLMM.email}` },
           icon: { path: SVG_MAIL },
           badge: "open",
-          // pos: "5 / 1",
         },
         {
           label: "Rogi",
           link: { href: "/undefined" },
           icon: { path: SVG_KEY },
           badge: "???",
-          // pos: "5 / 1",
         },
       ]}
     />
 
-    <Belt client:load text="The work is mysterious and important" />
+    <Belt client:idle text="The work is mysterious and important" />
 
     <section>
-      <FactStack client:load facts={FACTS_PRINCIPLES} />
+      <FactStack client:idle facts={FACTS_PRINCIPLES} />
     </section>
 
     <Footer />

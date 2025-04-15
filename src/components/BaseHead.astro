@@ -2,24 +2,15 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
-import { SITE_TITLE } from "../consts/meta";
+import { META } from "../consts/meta";
 import PostHog from "./PostHog.astro";
 
-interface Props {
-  title: string;
-  description: string;
-  image?: string;
-}
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 
 const isProd = import.meta.env.PROD;
 ---
 
 <!-- Global Metadata -->
-<>{isProd && <PostHog />}</>
 <meta charset="utf-8" />
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -31,7 +22,7 @@ const isProd = import.meta.env.PROD;
 <link
   rel="alternate"
   type="application/rss+xml"
-  title={SITE_TITLE}
+  title={META.title}
   href={new URL("rss.xml", Astro.site)}
 />
 
@@ -43,13 +34,18 @@ const isProd = import.meta.env.PROD;
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+<title>{META.title}</title>
+<meta name="title" content={META.title} />
+<meta name="description" content={META.description} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:site_name" content={META.title} />
+<meta property="og:title" content={META.title} />
+<meta property="og:description" content={META.description} />
+
+<!-- PostHog -->
+<>{isProd && <PostHog />}</>
+
+<!-- <meta property="og:image" content={new URL(image, Astro.url)} /> -->

@@ -1,4 +1,5 @@
 ---
+import { IRRLMM } from "../consts/meta";
 import Monogram from "./Monogram.astro";
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
   name?: string;
 }
 
-const { year = new Date(Date.now()).getFullYear(), name = "Igor Lemeshkin" } =
+const { year = new Date(Date.now()).getFullYear(), name = IRRLMM.name } =
   Astro.props;
 ---
 
