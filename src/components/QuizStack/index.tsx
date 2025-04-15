@@ -4,20 +4,21 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import StackProgressToolbar from "../StackProgressToolbar";
+import AnimatedCard from "../AnimatedCard";
 import QuizItem from "./QuizItem";
 import QuizIntro from "../ScreenIntro";
 import QuizOutro from "./QuizOutro";
 
+import type { QUIZ_TYPE } from "../../consts/quizzes";
 import { SVG_KEY } from "../../consts/svg";
 
 import styles from "../CardStack/styles.module.css";
-import AnimatedCard from "../AnimatedCard";
 
 type Props = {
-  data: CollectionEntry<"quiz">["data"];
+  quiz: QUIZ_TYPE;
 };
 
-const QuizStack: React.FC<Props> = ({ data: { intro, outro, questions } }) => {
+const QuizStack: React.FC<Props> = ({ quiz: { intro, outro, questions } }) => {
   const [isIntroShown, setIsIntroShown] = useState(true);
 
   const [currentStep, setCurrentStep] = useState(0);

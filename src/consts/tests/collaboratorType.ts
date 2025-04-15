@@ -4,7 +4,7 @@ import { SVG_GEM } from "../svg";
 export const TEST_COLLABORATOR_TYPE: TEST_SCHEMA = {
   intro: {
     icon: SVG_GEM,
-    title: "Let’s evaluate our alignment.",
+    title: "Let's evaluate our alignment.",
     text: "Sincerity is expected.",
   },
 

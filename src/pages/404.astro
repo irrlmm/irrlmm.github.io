@@ -2,8 +2,9 @@
 import Paragraph from "../components/Paragraph.astro";
 import Header from "../components/Header.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import Quiz from "../components/Quiz.astro";
 import Footer from "../components/Footer.astro";
+import QuizStack from "../components/QuizStack";
+import QUIZ_ROGI from "../consts/quizzes/rogi";
 ---
 
 <MainLayout>
@@ -23,7 +24,7 @@ import Footer from "../components/Footer.astro";
     </section>
 
     <section>
-      <Quiz quiz={{ collection: "quiz", id: "rogi" }} />
+      <QuizStack client:load quiz={QUIZ_ROGI} />
     </section>
 
     <Footer name="Rogi ???" year={1997} />
@@ -59,7 +60,7 @@ import Footer from "../components/Footer.astro";
 
     line-height: 1.1;
     text-transform: uppercase;
-    /* text-align: justify; */
+    text-align: justify;
     letter-spacing: 0.05em;
   }
 </style>

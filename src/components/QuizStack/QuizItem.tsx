@@ -1,11 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import innerStyles from "./styles.module.css";
-import type { CollectionEntry } from "astro:content";
+import type { QUIZ_TYPE } from "../../consts/quizzes";
 
-type Question = CollectionEntry<"quiz">["data"]["questions"][0];
-type AnswerOption =
-  CollectionEntry<"quiz">["data"]["questions"][0]["options"][0];
+type Question = QUIZ_TYPE["questions"][0];
+type AnswerOption = QUIZ_TYPE["questions"][0]["options"][0];
 
 type Props = {
   index?: number;
@@ -31,7 +30,7 @@ const AnimatedQuestion: React.FC<Props> = ({
 
   const handleClickContinue = () => {
     if (answer && onClick) {
-      onClick(answer.response.points);
+      onClick(answer.points);
     }
   };
 

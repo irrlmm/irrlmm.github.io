@@ -8,31 +8,31 @@ const FACTS_INTRO: Fact[] = [
     text: "Swipe through. Each card is a hit of who I am.",
   },
   {
-    id: "shaped",
+    id: "f1",
     text: "For nearly a decade, I was shaped by urgency, grounded in clarity, through function and dysfunction alike.",
   },
   {
-    id: "immunity",
+    id: "f2",
     text: "This made me immune to chaos, adaptable to any constraint, and I don't flinch under pressure.",
   },
   {
-    id: "impact",
+    id: "f3",
     text: "The products I have designed were not temporary. Each of them has grown, delivered value and pushed the business forward.",
   },
   {
-    id: "engineer-1",
+    id: "f4",
     text: "One of the keys to that is my tech knowledge. I come from UI engineering, and I work closely with developers.",
   },
   {
-    id: "hobbies-1",
+    id: "f5",
     text: "We iterate quickly, but nothing appears from thin air. Everything I do is drawn from experience.",
   },
   {
-    id: "hobbies-2",
+    id: "f6",
     text: "That experience comes from travel, photography, making music, and collecting curious tools and products.",
   },
   {
-    id: "hobbies-3",
+    id: "f7",
     text: "All fueled by 2 cups of filter coffee, a result of precise - yes - design process.",
   },
   {

@@ -8,17 +8,17 @@ const FACTS_PRINCIPLES: Fact[] = [
     text: "This is a stack of core design principles I stand by.",
   },
   {
-    id: "p1-a",
+    id: "p1",
     icon: SVG_DEFAULT,
     text: "1. Try making impact using minimum resources.",
   },
   {
-    id: "p2-a",
+    id: "p2",
     icon: SVG_DEFAULT,
     text: "2. Be the real user of a product you are designing.",
   },
   {
-    id: "p2-b",
+    id: "p3",
     icon: SVG_DEFAULT,
     text: "[WIP] More soon.",
   },
