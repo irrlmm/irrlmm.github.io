@@ -29,15 +29,18 @@ const FACTS_PRINCIPLES: Fact[] = [
   },
   {
     id: "p5",
-    text: "Ready for a final one?",
-  },
-  {
-    id: "p6",
-    text: "A good designer is basically a translator.",
+    icon: SVG_DEFAULT,
+    text: "Curate the feedback and translate it into decisions.",
   },
   {
     id: "p7",
-    text: " Yes, that's all.",
+    icon: SVG_DEFAULT,
+    text: "A product designer is a translator.",
+  },
+  {
+    id: "p8",
+    icon: SVG_DEFAULT,
+    text: "And only then, a designer.",
   },
 ];
 
