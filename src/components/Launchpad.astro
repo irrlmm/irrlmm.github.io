@@ -2,7 +2,6 @@
 import LaunchpadIcon from "./LaunchpadIcon.astro";
 import LaunchpadWidgetWorkspace from "./LaunchpadWidgetWorkplace.astro";
 import LaunchpadWidgetImage from "./LaunchpadWidgetImage.astro";
-import LaunchpadWidgetTheme from "./LaunchpadWidgetTheme.astro";
 import LaunchpadBadge from "./LaunchpadBadge.astro";
 
 type App = {
@@ -146,7 +145,7 @@ const { apps } = Astro.props;
     line-height: 1;
     font-size: calc(var(--unit-s) * 0.75);
     font-weight: 500;
-    top: calc(100% + var(--unit-2xs));
+    top: calc(100% + var(--unit-3xs));
     pointer-events: none;
     padding: var(--unit-3xs);
     border-radius: var(--unit-3xs);
@@ -156,10 +155,9 @@ const { apps } = Astro.props;
     color: var(--background);
   }
 
-  @media (max-width: 504px) {
+  @media (max-width: 512px) {
     ul {
       grid-template-columns: repeat(4, calc(var(--unit-m) * 2.8));
-      grid-auto-columns: calc(var(--unit-m) * 2.8);
       grid-auto-rows: calc(var(--unit-m) * 2.8);
       gap: calc(var(--unit-m) * 1.1);
     }

@@ -1,8 +1,8 @@
 .card {
   position: absolute;
   display: flex;
-  width: calc(100% - 2 * var(--unit-s));
-  height: calc(100% - 2 * var(--unit-s));
+  width: calc(100% - 2 * var(--unit-m));
+  height: calc(100% - 2 * var(--unit-m));
   padding: var(--unit-l);
   border-radius: var(--unit-m);
   background-color: var(--background);
@@ -16,4 +16,11 @@
 }
 .draggable:active {
   cursor: grabbing;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    width: calc(100% - 2 * var(--unit-xs));
+    height: calc(100% - 2 * var(--unit-xs));
+  }
 }

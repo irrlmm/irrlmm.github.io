@@ -66,21 +66,3 @@
   align-items: center;
   font-size: var(--unit-l);
 }
-
-/* @media (max-width: 512px) {
-  .cardContentWrapper {
-    padding: 24px;
-  }
-
-  .cardContentWrapper h3 {
-    font-size: 20px;
-  }
-
-  .cardContentWrapper button {
-    font-size: 16px;
-  }
-
-  .cardContentWrapper p {
-    font-size: 14px;
-  }
-} */
