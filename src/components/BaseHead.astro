@@ -15,7 +15,8 @@ const isProd = import.meta.env.PROD;
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href={META.favicon} />
+<link rel="apple-touch-icon" href={META.appleTouchIcon} />
 
 <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -44,8 +45,7 @@ const isProd = import.meta.env.PROD;
 <meta property="og:site_name" content={META.title} />
 <meta property="og:title" content={META.title} />
 <meta property="og:description" content={META.description} />
+<meta property="og:image" content={new URL(META.ogImage, Astro.url)} />
 
 <!-- PostHog -->
 <>{isProd && <PostHog />}</>
-
-<!-- <meta property="og:image" content={new URL(image, Astro.url)} /> -->

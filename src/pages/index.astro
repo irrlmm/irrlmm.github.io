@@ -12,6 +12,8 @@ import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import { IRRLMM } from "../consts/meta";
 import Paragraph from "../components/Paragraph.astro";
+import QuizStack from "../components/QuizStack";
+import QUIZ_ROGI from "../consts/quizzes/rogi";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -101,6 +103,10 @@ if (!posts) {
     <section>
       <FactStack client:idle facts={FACTS_PRINCIPLES} />
     </section>
+
+    <!-- <section>
+      <QuizStack client:idle quiz={QUIZ_ROGI} />
+    </section> -->
 
     <Footer />
   </article>
