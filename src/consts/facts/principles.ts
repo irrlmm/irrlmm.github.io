@@ -10,22 +10,35 @@ const FACTS_PRINCIPLES: Fact[] = [
   {
     id: "p1",
     icon: SVG_DEFAULT,
-    text: "1. Try making impact using minimum resources.",
+    text: "Try making impact using minimum resources.",
   },
   {
     id: "p2",
     icon: SVG_DEFAULT,
-    text: "2. Be the real user of a product you are designing.",
+    text: "Be the real user of a product you are designing.",
   },
   {
     id: "p3",
     icon: SVG_DEFAULT,
-    text: "[WIP] More soon.",
+    text: "Borrow from places that don't belong - and make it work better than expected.",
   },
-  // {
-  //   id: "p1-b",
-  //   text: "Solve one problem at a time. Write less code. Don't sit on single idea for too long. Use only necessary tools.",
-  // },
+  {
+    id: "p4",
+    icon: SVG_DEFAULT,
+    text: "Isolate to find your voice - then flip fully into collaboration.",
+  },
+  {
+    id: "p5",
+    text: "Ready for a final one?",
+  },
+  {
+    id: "p6",
+    text: "A good designer is basically a translator.",
+  },
+  {
+    id: "p7",
+    text: " Yes, that's all.",
+  },
 ];
 
 export default FACTS_PRINCIPLES;
