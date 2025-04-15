@@ -2,6 +2,7 @@ export const SITE_URL = "https://irrlmm.me";
 
 export const IRRLMM = {
   name: "Igor Lemeshkin",
+  title: "Senior Product Designer",
   bio: [
     "Senior Product Designer. Working at intersection of design, code, and strategy.",
     "Curiosity-led. Detail-obsessed. Shaped by systems thinking, UI engineering background, and habit of leading collaboration.",
