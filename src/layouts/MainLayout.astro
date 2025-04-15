@@ -38,7 +38,6 @@ const { schema } = Astro.props;
     width: 100%;
     align-items: center;
     flex-direction: column;
-    gap: 64px;
     animation: page-appear 1.1s var(--bezier) both;
     animation-delay: 0.1s;
   }
@@ -62,19 +61,7 @@ const { schema } = Astro.props;
         rgba(0, 0, 0, 0) 50%,
         var(--pixel-grid-line) 50%
       );
-    background-size: 4px 4px;
+    background-size: 2px 2px;
     animation: decor-appear 1.2s var(--bezier) both;
-  }
-
-  @media (max-width: 512px) {
-    main {
-      /* padding: 0 var(--unit-m); */
-    }
-  }
-
-  @media (max-width: 360px) {
-    main {
-      /* padding: 0 var(--unit-s); */
-    }
   }
 </style>

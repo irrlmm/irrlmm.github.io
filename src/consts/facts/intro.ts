@@ -1,7 +1,7 @@
 import type { Fact } from ".";
 import { SVG_STAR, SVG_SWIPE } from "../svg";
 
-export const FACTS_INTRO: Fact[] = [
+const FACTS_INTRO: Fact[] = [
   {
     id: "intro",
     icon: SVG_SWIPE,
@@ -41,3 +41,5 @@ export const FACTS_INTRO: Fact[] = [
     text: "Now you know a bit about me. The rest lives with Rogi, but he tends to exaggerate.",
   },
 ];
+
+export default FACTS_INTRO;

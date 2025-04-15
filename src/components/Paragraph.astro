@@ -70,8 +70,7 @@ const { text, inlineImageSrc } = Astro.props;
     border-radius: 5%;
     vertical-align: middle;
     transform: translateY(calc(-0.1 * var(--unit-m)));
-    transition: all 0.125s var(--bezier);
-    transform-origin: center 57.5%;
+    transition: transform 0.125s var(--bezier);
   }
   img:hover {
     transform: scale(3);

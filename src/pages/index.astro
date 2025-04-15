@@ -1,26 +1,15 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
-import PostsList from "../components/Posts/PostsList.astro";
 import Launchpad from "../components/Launchpad.astro";
 import FactStack from "../components/FactStack";
 import Belt from "../components/Belt";
 import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import TestStack from "../components/TestStack";
-import { TEST_COLLABORATOR_TYPE } from "../consts/tests/collaboratorType";
-import { FACTS_INTRO } from "../consts/facts/introFacts";
-import {
-  SVG_ARROW,
-  SVG_CV,
-  SVG_DEFAULT,
-  SVG_DRIBBBLE,
-  SVG_GOAL_MATCH,
-  SVG_KEY,
-  SVG_MAIL,
-  SVG_SWIPE,
-} from "../consts/svg";
+import FACTS_INTRO from "../consts/facts/intro";
+import FACTS_PRINCIPLES from "../consts/facts/principles";
+import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 
 const posts = (await getCollection("work")).sort(
@@ -53,7 +42,7 @@ if (!posts) {
             company: "imusician",
             lines: ["7+ yrs", "Senior Product Designer", "ex UI Engineer"],
           },
-          badge: "Bye-bye",
+          badge: "Finished",
         },
         {
           label: "Latest work",
@@ -84,57 +73,26 @@ if (!posts) {
           icon: { path: SVG_CV },
         },
         {
-          label: "Contact me",
+          label: "Mail",
           link: { href: "mailto:igorlem@icloud.com" },
           icon: { path: SVG_MAIL },
-          badge: "!!!",
+          badge: "open",
+          // pos: "5 / 1",
         },
         {
           label: "Rogi",
           link: { href: "/undefined" },
           icon: { path: SVG_KEY },
           badge: "???",
-          // pos: "5 / 4 / span 1 / span 1",
+          // pos: "5 / 1",
         },
       ]}
     />
 
     <Belt client:load text="The work is mysterious and important" />
 
-    <!-- <section>
-      <TestStack client:load test={TEST_COLLABORATOR_TYPE} />
-    </section> -->
-
     <section>
-      <FactStack
-        client:load
-        facts={[
-          {
-            id: "intro",
-            icon: SVG_SWIPE,
-            text: "This is a stack of core design principles I stand by.",
-          },
-          {
-            id: "p1-a",
-            icon: SVG_DEFAULT,
-            text: "1. Try making impact using minimum resources.",
-          },
-          {
-            id: "p2-a",
-            icon: SVG_DEFAULT,
-            text: "2. Be the real user of a product you are designing.",
-          },
-          // {
-          //   id: "p1-b",
-          //   text: "Solve one problem at a time. Write less code. Don't sit on single idea for too long. Use only necessary tools.",
-          // },
-          {
-            id: "p2-b",
-            icon: SVG_DEFAULT,
-            text: "[WIP] More soon.",
-          },
-        ]}
-      />
+      <FactStack client:load facts={FACTS_PRINCIPLES} />
     </section>
 
     <Footer />

@@ -31,20 +31,8 @@ const { apps } = Astro.props;
 <ul>
   {
     apps.map(
-      ({
-        link,
-        label,
-        icon,
-        widgetWorkplace,
-        widgetImage,
-        widgetTheme,
-        badge,
-        pos,
-      }) => (
-        <li
-          data-widget={!!widgetWorkplace || !!widgetImage || !!widgetTheme}
-          style={pos && `grid-area: ${pos}`}
-        >
+      ({ link, label, icon, widgetWorkplace, widgetImage, badge, pos }) => (
+        <li data-widget={!icon} style={pos && `grid-area: ${pos}`}>
           <a
             href={link?.href}
             rel={link?.external ? "noopener noreferrer" : undefined}
@@ -143,7 +131,7 @@ const { apps } = Astro.props;
     position: absolute;
     text-align: center;
     line-height: 1;
-    font-size: calc(var(--unit-s) * 0.75);
+    font-size: var(--launchpad-s);
     font-weight: 500;
     top: calc(100% + var(--unit-3xs));
     pointer-events: none;
@@ -160,10 +148,6 @@ const { apps } = Astro.props;
       grid-template-columns: repeat(4, calc(var(--unit-m) * 2.8));
       grid-auto-rows: calc(var(--unit-m) * 2.8);
       gap: calc(var(--unit-m) * 1.1);
-    }
-
-    span {
-      font-size: var(--launchpad-s);
     }
   }
 </style>
