@@ -1,5 +1,6 @@
+import type { Fact } from "../../consts/facts";
 import CardStack from "../CardStack";
-import FactItem, { type Fact } from "./FactItem";
+import FactItem from "./FactItem";
 
 type Props = {
   facts: Fact[];

@@ -3,12 +3,13 @@ import AnimatedCard, {
   type GenericCardContent,
 } from "../AnimatedCard";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import StackProgressToolbar from "../StackProgressToolbar";
 
 import styles from "./styles.module.css";
+import { SVG_GEM } from "../../consts/svg";
 
 type Props<T> = {
   cards: GenericCard<T>[];
@@ -17,8 +18,15 @@ type Props<T> = {
 
 const CardStack = <T,>({ cards, renderItem: CardContent }: Props<T>) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [hasViewed, setHasViewedAll] = useState(false);
   const [cardsShown, setCardsShown] = useState(cards.toReversed());
   const [shouldSwipe, setShouldSwipe] = useState(false);
+
+  useEffect(() => {
+    if (currentStep === cards.length) {
+      setHasViewedAll(true);
+    }
+  }, [currentStep]);
 
   const handleSwipe = () => {
     setShouldSwipe(false);
@@ -53,6 +61,10 @@ const CardStack = <T,>({ cards, renderItem: CardContent }: Props<T>) => {
           {
             progress: currentStep / cards.length,
             text: `${currentStep} / ${cards.length}`,
+          },
+          {
+            icon: SVG_GEM,
+            text: Number(hasViewed).toString(),
           },
         ]}
         forwardButtonProps={{

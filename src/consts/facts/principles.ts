@@ -1,7 +1,7 @@
 import type { Fact } from ".";
-import { SVG_SWIPE } from "../svg";
+import { SVG_GEM, SVG_SWIPE } from "../svg";
 
-const FACTS_PRINCIPLES: Fact[] = [
+const FACTS_STORY: Fact[] = [
   {
     id: "intro",
     icon: { path: SVG_SWIPE },
@@ -9,7 +9,7 @@ const FACTS_PRINCIPLES: Fact[] = [
   },
   {
     id: "first-ux",
-    icon: { text: "First Interface" },
+    icon: { text: "First interface" },
     text: "As a kid, I had a potty that played music when it worked. Might be where my love for product design started.",
   },
   {
@@ -19,7 +19,7 @@ const FACTS_PRINCIPLES: Fact[] = [
   },
   {
     id: "aqua",
-    icon: { text: "Aqua Fan" },
+    icon: { text: "Aqua fan" },
     text: "I used to overdo tables in my notebooks - replicating gloss effects of MacOS X 10.7 by hand. Yes, I was a weird kid.",
   },
   {
@@ -52,6 +52,11 @@ const FACTS_PRINCIPLES: Fact[] = [
     icon: { text: "Magnum opus" },
     text: "Seven years later, I'm a senior product designer - shaping everything from micro-flows to jumbo products.",
   },
+  {
+    id: "outro",
+    icon: { path: SVG_GEM },
+    text: "Now, I feel ready to take on more - with people who care. I think I'm made for this.",
+  },
 ];
 
-export default FACTS_PRINCIPLES;
+export default FACTS_STORY;

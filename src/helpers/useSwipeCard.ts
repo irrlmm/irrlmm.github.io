@@ -40,7 +40,11 @@ const useSwipeCard = ({
       scale: index > 4 ? 0.9 : 1 - index * 0.025,
       boxShadow: `0 0 0 2px ${index > 4 ? "transparent" : "var(--on-surface)"}`,
       opacity: isRemovable && shouldSwipe ? 0 : 1,
-      transition: { type: "spring", bounce: 0.15, duration: 0.3 },
+      transition: {
+        type: "spring",
+        bounce: 0.15,
+        duration: 0.3,
+      },
     },
   };
 
