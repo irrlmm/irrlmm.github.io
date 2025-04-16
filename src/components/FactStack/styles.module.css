@@ -27,3 +27,7 @@
 .text {
   color: var(--on-surface);
 }
+
+.iconText {
+  color: var(--background);
+}

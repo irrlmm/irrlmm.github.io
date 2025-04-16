@@ -1,5 +1,5 @@
 export type Fact = {
   id: string;
   text: string;
-  icon?: string;
+  icon?: { path?: string; text?: string };
 };

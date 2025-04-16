@@ -1,46 +1,56 @@
 import type { Fact } from ".";
-import { SVG_DEFAULT, SVG_SWIPE } from "../svg";
+import { SVG_SWIPE } from "../svg";
 
 const FACTS_PRINCIPLES: Fact[] = [
   {
     id: "intro",
-    icon: SVG_SWIPE,
-    text: "This is a stack of core design principles I stand by.",
+    icon: { path: SVG_SWIPE },
+    text: "Here's a stack of cards about how I ended up doing this for a living.",
   },
   {
-    id: "p1",
-    icon: SVG_DEFAULT,
-    text: "Try making impact using minimum resources.",
+    id: "first-ux",
+    icon: { text: "First Interface" },
+    text: "As a kid, I had a potty that played music when it worked. Might be where my love for product design started.",
   },
   {
-    id: "p2",
-    icon: SVG_DEFAULT,
-    text: "Be the real user of a product you are designing.",
+    id: "card-design",
+    icon: { text: "Plan A" },
+    text: "Later, I got obsessed with cars. Every notebook turned into a sketchbook (still happens sometimes).",
   },
   {
-    id: "p3",
-    icon: SVG_DEFAULT,
-    text: "Borrow from places that don't belong - and make it work better than expected.",
+    id: "aqua",
+    icon: { text: "Aqua Fan" },
+    text: "I used to overdo tables in my notebooks - replicating gloss effects of MacOS X 10.7 by hand. Yes, I was a weird kid.",
   },
   {
-    id: "p4",
-    icon: SVG_DEFAULT,
-    text: "Isolate to find your voice - then flip fully into collaboration.",
+    id: "c#",
+    icon: { text: "Shell designer" },
+    text: "At uni, I couldn't stand how basic everything was, so I built a C# shell to survive. I guess that counts as design.",
   },
   {
-    id: "p5",
-    icon: SVG_DEFAULT,
-    text: "Curate the feedback and translate it into decisions.",
+    id: "uniyo",
+    icon: { text: "Turning point" },
+    text: "At 20, I started coding well enough to earn my first work experience at a San Francisco startup.",
   },
   {
-    id: "p7",
-    icon: SVG_DEFAULT,
-    text: "A product designer is a translator.",
+    id: "sweet-spot",
+    icon: { text: "Sweet spot" },
+    text: "Even after landing a dev role, I kept choosing the designer seat at side projects and competitions.",
   },
   {
-    id: "p8",
-    icon: SVG_DEFAULT,
-    text: "And only then, a designer.",
+    id: "breakpoint",
+    icon: { text: "The breakpoint" },
+    text: "I joined iMusician as a frontend developer, but instantly jumped into shaping the growing platform.",
+  },
+  {
+    id: "results",
+    icon: { text: "UX wizardy" },
+    text: "That was a time when something innovative was made incidentally and became a strong UX foundation.",
+  },
+  {
+    id: "magnum-opus",
+    icon: { text: "Magnum opus" },
+    text: "Seven years later, I'm a senior product designer - shaping everything from micro-flows to jumbo products.",
   },
 ];
 

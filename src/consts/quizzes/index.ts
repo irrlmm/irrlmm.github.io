@@ -1,4 +1,4 @@
-export type QUIZ_TYPE = {
+export type Quiz = {
   intro: {
     title: string;
     text: string;

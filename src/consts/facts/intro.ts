@@ -1,10 +1,10 @@
 import type { Fact } from ".";
-import { SVG_STAR, SVG_SWIPE } from "../svg";
+import { SVG_GEM, SVG_STAR, SVG_SWIPE } from "../svg";
 
 const FACTS_INTRO: Fact[] = [
   {
     id: "intro",
-    icon: SVG_SWIPE,
+    icon: { path: SVG_SWIPE },
     text: "Swipe through. Each card is a hit of who I am.",
   },
   {
@@ -17,19 +17,19 @@ const FACTS_INTRO: Fact[] = [
   },
   {
     id: "f3",
-    text: "The products I have designed were not temporary. Each of them has grown, delivered value and pushed the business forward.",
+    text: "The products I have designed were built to last. Each one has grown, delivered value and pushed the business forward.",
   },
   {
     id: "f4",
-    text: "One of the keys to that is my tech knowledge. I come from UI engineering, and I work closely with developers.",
+    text: "One of the keys is my tech foundation. I started in UI engineering and still work closely with developers.",
   },
   {
     id: "f5",
-    text: "We iterate quickly, but nothing appears from thin air. Everything I do is drawn from experience.",
+    text: "We iterate quickly, but nothing appears out of thin air. Everything I do is drawn from experience.",
   },
   {
     id: "f6",
-    text: "That experience comes from travel, photography, making music, and collecting curious tools and products.",
+    text: "That experience comes from travel, photography, making music, and a lifelong habit of collecting curious products.",
   },
   {
     id: "f7",
@@ -37,7 +37,7 @@ const FACTS_INTRO: Fact[] = [
   },
   {
     id: "outro",
-    icon: SVG_STAR,
+    icon: { path: SVG_GEM },
     text: "Now you know a bit about me. The rest lives with Rogi, but he tends to exaggerate.",
   },
 ];

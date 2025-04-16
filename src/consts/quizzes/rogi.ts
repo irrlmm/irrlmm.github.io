@@ -1,6 +1,6 @@
-import type { QUIZ_TYPE } from ".";
+import type { Quiz } from ".";
 
-const QUIZ_ROGI: QUIZ_TYPE = {
+const QUIZ_ROGI: Quiz = {
   intro: {
     title: "Who is mysterious Rogi?",
     text: "••••• ••••••• •••• •• ••• ••••• ••• •••• •••• •• •••",
