@@ -5,7 +5,7 @@ const FACTS_INTRO: Fact[] = [
   {
     id: "intro",
     icon: { path: SVG_SWIPE },
-    text: "Swipe through. Each card is a hit of who I am.",
+    text: "Swipe/drag through. Each card is a hit of who I am.",
   },
   {
     id: "f1",
