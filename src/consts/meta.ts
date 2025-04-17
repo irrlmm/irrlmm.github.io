@@ -8,7 +8,7 @@ export const IRRLMM = {
     "Curiosity-led. Detail-obsessed. Shaped by systems thinking, UI engineering background, and habit of leading collaboration.",
   ],
   avatar: "persons/irrlmm.png",
-  email: "igorlem@icloud.com",
+  email: "hello@irrlmm.me",
   links: {
     linkedin: "https://linkedin.com/in/igorlem",
     dribbble: "https://dribbble.com/irrlmm",
