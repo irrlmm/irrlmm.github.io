@@ -17,7 +17,7 @@ export const IRRLMM = {
 };
 
 export const META = {
-  title: `${IRRLMM.name} | Product Design, Strategy & Dev Collaboration`,
+  title: `${IRRLMM.name} | Product Designer`,
   description:
     "Senior product designer focused on UX, UI engineering, and scalable digital experiences. Remote-ready for Europe, US, and global tech teams",
   ogImage: "/og-cover.png",
