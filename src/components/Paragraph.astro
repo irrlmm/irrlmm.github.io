@@ -34,6 +34,9 @@ const { text, inlineImageSrc } = Astro.props;
 </p>
 
 <style>
+  p {
+    text-wrap: pretty;
+  }
   p > * {
     animation: appear 0.1s var(--bezier) 0.2s both;
   }

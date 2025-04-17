@@ -20,7 +20,7 @@ const FACTS_STORY: Fact[] = [
   {
     id: "aqua",
     icon: { text: "Aqua fan" },
-    text: "I used to overdo tables in my notebooks - replicating gloss effects of MacOS X 10.7 by hand. Yes, I was a weird kid.",
+    text: "I used to overdo tables in my notebooks - replicating gloss effects of MacOS X by hand. Yes, I was a weird kid.",
   },
   {
     id: "c#",
