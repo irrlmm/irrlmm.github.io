@@ -1,20 +1,15 @@
 import type { Quiz } from ".";
 
 const QUIZ_ROGI: Quiz = {
+  id: "rogi",
+  winScore: 5,
   intro: {
     title: "Who is mysterious Rogi?",
     text: "••••• ••••••• •••• •• ••• ••••• ••• •••• •••• •• •••",
   },
   outro: {
-    winScore: 5,
-    winner: {
-      title: "Impossible",
-      text: "This test is impossible to pass.",
-    },
-    loser: {
-      title: "All done! You scored:",
-      text: "Rogi is not leaving this place today",
-    },
+    winnerText: "This test is impossible to pass.",
+    loserText: "Rogi is not leaving this place today",
   },
   questions: [
     {

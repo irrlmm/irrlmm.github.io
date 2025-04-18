@@ -1,33 +1,70 @@
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 import AnimatedCard, {
   type GenericCard,
   type GenericCardContent,
 } from "../AnimatedCard";
-
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
 import StackProgressToolbar from "../StackProgressToolbar";
 
-import styles from "./styles.module.css";
 import { SVG_GEM } from "../../consts/svg";
 
+import styles from "./styles.module.css";
+import trackEvent from "../../helpers/trackEvent";
+
 type Props<T> = {
+  id: string;
   cards: GenericCard<T>[];
   renderItem: React.FC<GenericCardContent<T>>;
 };
 
-const CardStack = <T,>({ cards, renderItem: CardContent }: Props<T>) => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [hasViewed, setHasViewedAll] = useState(false);
+const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
+  const [currentStep, setCurrentStep] = useState(0);
+
   const [cardsShown, setCardsShown] = useState(cards.toReversed());
   const [shouldSwipe, setShouldSwipe] = useState(false);
 
-  useEffect(() => {
-    if (currentStep === cards.length) {
-      setHasViewedAll(true);
-    }
-  }, [currentStep]);
+  const [completeCount, setCompleteCount] = useState(0);
+  const [replayCount, setReplayCount] = useState(0);
+  const [passedHalfway, setPassedHalfway] = useState(false);
 
+  const [_, setCardTimestamp] = useState<null | number>(null);
+
+  useEffect(() => {
+    if (!passedHalfway && currentStep > cards.length / 2) {
+      setPassedHalfway(() => {
+        trackEvent("site:quiz_halfway", { id });
+        return true;
+      });
+    }
+  }, [currentStep, passedHalfway]);
+
+  useEffect(() => {
+    if (replayCount === 0 && currentStep === 1) {
+      trackEvent("site:cardstack_started", { id });
+      setCardTimestamp(Date.now());
+    }
+
+    if (currentStep === cardsShown.length - 1) {
+      setCompleteCount((n) => {
+        trackEvent("site:cardstack_completed", { id, times_completed: n + 1 });
+        return n + 1;
+      });
+    }
+  }, [replayCount, currentStep]);
+
+  useEffect(() => {
+    if (completeCount > 0 && currentStep === 0) {
+      setReplayCount((n) => {
+        trackEvent("site:cardstack_replayed", { id, times_replayed: n + 1 });
+        return n + 1;
+      });
+    }
+  }, [completeCount, currentStep]);
+
+  //
+  // handles what happens after the card is swiped.
+  //
   const handleSwipe = () => {
     setShouldSwipe(false);
     setCardsShown([
@@ -35,9 +72,24 @@ const CardStack = <T,>({ cards, renderItem: CardContent }: Props<T>) => {
       ...cardsShown.slice(0, -1),
     ]);
 
-    setCurrentStep((s) => (s === cards.length ? 1 : (s += 1)));
+    setCurrentStep((s) => (s === cards.length - 1 ? 0 : (s += 1)));
+
+    setCardTimestamp((t) => {
+      const newTime = Date.now();
+      if (t !== null) {
+        trackEvent("site:cardstack_card_viewed", {
+          id,
+          card_id: cards[currentStep].id,
+          time_spent: newTime - t,
+        });
+      }
+      return newTime;
+    });
   };
 
+  //
+  // Tracking if user intends to replay the stack again
+  //
   const handleClickRefresh = () => {
     setShouldSwipe(true);
   };
@@ -59,20 +111,20 @@ const CardStack = <T,>({ cards, renderItem: CardContent }: Props<T>) => {
       <StackProgressToolbar
         bars={[
           {
-            progress: currentStep / cards.length,
-            text: `${currentStep} / ${cards.length}`,
+            progress: (currentStep + 1) / cards.length,
+            text: `${currentStep + 1} / ${cards.length}`,
           },
           {
             icon: SVG_GEM,
-            text: Number(hasViewed).toString(),
+            text: completeCount > 0 ? "1" : "0",
           },
         ]}
         forwardButtonProps={{
-          isShown: currentStep !== cards.length,
+          isShown: currentStep < cards.length - 1,
           onClick: handleClickRefresh,
         }}
         refreshButtonProps={{
-          isShown: currentStep === cards.length,
+          isShown: currentStep === cards.length - 1,
           onClick: handleClickRefresh,
         }}
       />

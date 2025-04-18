@@ -1,5 +1,3 @@
-import type { CollectionEntry } from "astro:content";
-
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -9,48 +7,93 @@ import QuizItem from "./QuizItem";
 import QuizIntro from "../ScreenIntro";
 import QuizOutro from "./QuizOutro";
 
-import type { QUIZ_TYPE } from "../../consts/quizzes";
+import type { Quiz } from "../../consts/quizzes";
 import { SVG_KEY } from "../../consts/svg";
 
 import styles from "../CardStack/styles.module.css";
+import trackEvent from "../../helpers/trackEvent";
 
 type Props = {
-  quiz: QUIZ_TYPE;
+  quiz: Quiz;
 };
 
-const QuizStack: React.FC<Props> = ({ quiz: { intro, outro, questions } }) => {
+const QuizStack: React.FC<Props> = ({ quiz }) => {
   const [isIntroShown, setIsIntroShown] = useState(true);
 
   const [currentStep, setCurrentStep] = useState(0);
   const [points, setPoints] = useState(0);
   const [shouldSwipe, setShouldSwipe] = useState(false);
 
-  const [cardsShown, setCardsShown] = useState(questions.toReversed());
-  const [hasViewedAll, setHasViewedAll] = useState(false);
+  const [cardsShown, setCardsShown] = useState(quiz.questions.toReversed());
+
+  const [_, setCompleteCount] = useState(0);
+  const [replayCount, setReplayCount] = useState(0);
+  const [passedHalfway, setPassedHalfway] = useState(false);
+
+  const [cardTimestamp, setCardTimestamp] = useState<null | number>(null);
 
   useEffect(() => {
-    if (currentStep === questions.length && !hasViewedAll) {
-      setHasViewedAll(true);
+    if (!isIntroShown && cardsShown.length === 0) {
+      setCompleteCount((n) => {
+        trackEvent("site:quiz_completed", {
+          id: quiz.id,
+          times_completed: n + 1,
+        });
+        return n + 1;
+      });
     }
-  }, [currentStep]);
+  }, [isIntroShown, cardsShown]);
+
+  useEffect(() => {
+    if (!passedHalfway && currentStep > cardsShown.length / 2) {
+      setPassedHalfway(() => {
+        trackEvent("site:quiz_halfway", { id: quiz.id });
+        return true;
+      });
+    }
+  }, [isIntroShown, passedHalfway, cardsShown]);
+
+  const handleBeginQuiz = () => {
+    setIsIntroShown(false);
+    setCurrentStep(0);
+    setCardTimestamp(Date.now());
+    if (replayCount === 0) {
+      trackEvent("site:quiz_started", { id: quiz.id });
+    }
+  };
 
   const handleClickRefresh = () => {
-    setCardsShown(questions.toReversed());
+    setCardsShown(quiz.questions.toReversed());
     setCurrentStep(0);
     setPoints(0);
-    setHasViewedAll(false);
-    setIsIntroShown(true);
+    setReplayCount((n) => {
+      trackEvent("site:quiz_replayed", {
+        id: quiz.id,
+        times_replayed: n + 1,
+      });
+      return n + 1;
+    });
+  };
+
+  const handleCardClick = (points: number) => {
+    setPoints((p) => {
+      if (cardTimestamp) {
+        trackEvent("site:quiz_card_answered", {
+          id: quiz.id,
+          card_id: quiz.questions[currentStep].id,
+          time_spent: Date.now() - cardTimestamp,
+        });
+      }
+      return p + points;
+    });
+    setShouldSwipe(true);
   };
 
   const handleSwipe = () => {
     setShouldSwipe(false);
     setCurrentStep((s) => (s += 1));
     setCardsShown([...cardsShown.slice(0, -1)]);
-  };
-
-  const handleCardClick = (points: number) => {
-    setShouldSwipe(true);
-    setPoints((p) => (p += points));
+    setCardTimestamp(Date.now());
   };
 
   return (
@@ -70,8 +113,8 @@ const QuizStack: React.FC<Props> = ({ quiz: { intro, outro, questions } }) => {
       <StackProgressToolbar
         bars={[
           {
-            progress: currentStep / questions.length,
-            text: `${currentStep} / ${questions.length}`,
+            progress: currentStep / quiz.questions.length,
+            text: `${currentStep} / ${quiz.questions.length}`,
           },
           {
             icon: SVG_KEY,
@@ -95,11 +138,9 @@ const QuizStack: React.FC<Props> = ({ quiz: { intro, outro, questions } }) => {
             <QuizIntro
               key="intro"
               tag="quiz"
-              title={intro.title}
-              text={intro.text}
-              onClick={() => {
-                setIsIntroShown(false);
-              }}
+              title={quiz.intro.title}
+              text={quiz.intro.text}
+              onClick={handleBeginQuiz}
             />
           )}
 
@@ -135,7 +176,11 @@ const QuizStack: React.FC<Props> = ({ quiz: { intro, outro, questions } }) => {
           )}
 
           {!isIntroShown && cardsShown.length === 0 && (
-            <QuizOutro outro={outro} points={points} />
+            <QuizOutro
+              points={points}
+              winScore={quiz.winScore}
+              outro={quiz.outro}
+            />
           )}
         </AnimatePresence>
       </motion.div>

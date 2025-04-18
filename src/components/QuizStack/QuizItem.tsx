@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import innerStyles from "./styles.module.css";
-import type { QUIZ_TYPE } from "../../consts/quizzes";
+import type { Quiz } from "../../consts/quizzes";
 
-type Question = QUIZ_TYPE["questions"][0];
-type AnswerOption = QUIZ_TYPE["questions"][0]["options"][0];
+type Question = Quiz["questions"][0];
+type AnswerOption = Quiz["questions"][0]["options"][0];
 
 type Props = {
   index?: number;

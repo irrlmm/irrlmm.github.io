@@ -7,15 +7,15 @@ import { SVG_KEY } from "../../consts/svg";
 import styles from "../CardStack/styles.module.css";
 import introStyles from "../ScreenIntro/styles.module.css";
 import innerStyles from "./styles.module.css";
-import type { CollectionEntry } from "astro:content";
-import type { QUIZ_TYPE } from "../../consts/quizzes";
+import type { Quiz } from "../../consts/quizzes";
 
 type Props = {
-  outro: QUIZ_TYPE["outro"];
   points: number;
+  winScore: Quiz["winScore"];
+  outro: Quiz["outro"];
 };
 
-const ScreenOutro: React.FC<Props> = ({ outro, points }) => {
+const ScreenOutro: React.FC<Props> = ({ points, winScore, outro }) => {
   const variants = {
     hidden: {
       opacity: 0,
@@ -29,7 +29,7 @@ const ScreenOutro: React.FC<Props> = ({ outro, points }) => {
     },
   };
 
-  const completionPercent = Math.round((points / outro.winScore) * 100);
+  const completionPercent = Math.round((points / winScore) * 100);
 
   return (
     <motion.div
@@ -39,10 +39,7 @@ const ScreenOutro: React.FC<Props> = ({ outro, points }) => {
       animate="shown"
       exit="hidden"
     >
-      <span className={innerStyles.resultText}>
-        {outro[completionPercent === 100 ? "winner" : "loser"].title}
-      </span>
-
+      <span className={innerStyles.resultText}>Session ended</span>
       <span className={innerStyles.score}>
         {completionPercent < 0 ? 0 : completionPercent}% /{" "}
         {points < 0 ? 0 : points}{" "}
@@ -50,7 +47,7 @@ const ScreenOutro: React.FC<Props> = ({ outro, points }) => {
       </span>
 
       <span className={innerStyles.resultText}>
-        {outro[completionPercent === 100 ? "winner" : "loser"].text}
+        {outro[completionPercent === 100 ? "winnerText" : "loserText"]}
       </span>
     </motion.div>
   );

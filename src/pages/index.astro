@@ -1,17 +1,22 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
+
+import MainLayout from "../layouts/MainLayout.astro";
+
 import Launchpad from "../components/Launchpad.astro";
 import FactStack from "../components/FactStack";
 import Belt from "../components/Belt";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import FACTS_INTRO from "../consts/facts/intro";
-import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
-import { SCHEMA_PERSON_FULL } from "../consts/schemas";
-import { IRRLMM } from "../consts/meta";
 import Paragraph from "../components/Paragraph.astro";
-import FACTS_STORY from "../consts/facts/principles";
+
+import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
+
+import { SCHEMA_PERSON_FULL } from "../consts/schemas";
+
+import { IRRLMM } from "../consts/meta";
+import FACTS_INTRO from "../consts/facts/intro";
+import FACTS_JOURNEY from "../consts/facts/journey";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -23,7 +28,7 @@ if (!posts) {
 ---
 
 <MainLayout schema={SCHEMA_PERSON_FULL}>
-  <article class="col align-start">
+  <article class="col">
     <Header />
 
     <section class="col gap-m">
@@ -39,7 +44,7 @@ if (!posts) {
       <FactStack client:load facts={FACTS_INTRO} />
     </section>
 
-    <Belt client:idle text="Available for product design roles" />
+    <Belt client:load text="Available for product design roles" />
 
     <Launchpad
       apps={[
@@ -47,8 +52,8 @@ if (!posts) {
           label: "Workplace",
           link: { href: "https://app.imusician.pro", external: true },
           widgetWorkplace: {
-            company: "iMusician",
             logo: "companies/imd.png",
+            company: "iMusician",
             lines: ["7+ yrs", "Senior Product Designer", "ex UI Engineer"],
           },
           badge: "Finished",
@@ -97,10 +102,10 @@ if (!posts) {
       ]}
     />
 
-    <Belt client:idle text="The work is mysterious and important" />
+    <Belt client:load text="The work is mysterious and important" />
 
     <section>
-      <FactStack client:idle facts={FACTS_STORY} />
+      <FactStack client:load facts={FACTS_JOURNEY} />
     </section>
 
     <Footer />

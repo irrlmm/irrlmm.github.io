@@ -1,18 +1,13 @@
 export type Quiz = {
+  id: string;
+  winScore: number;
   intro: {
     title: string;
     text: string;
   };
   outro: {
-    winScore: number;
-    winner: {
-      title: string;
-      text: string;
-    };
-    loser: {
-      title: string;
-      text: string;
-    };
+    winnerText: string;
+    loserText: string;
   };
   questions: {
     id: string;
