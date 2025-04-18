@@ -4,8 +4,8 @@ export const IRRLMM = {
   name: "Igor Lemeshkin",
   title: "Senior Product Designer",
   bio: [
-    "Senior Product Designer. Working at intersection of design, code, and strategy.",
-    "Curiosity-led. Detail-obsessed. Shaped by systems thinking, UI engineering background, and habit of leading collaboration.",
+    "Product Designer. I connect user experience, frontend development, and product strategy.",
+    "From tiny tools to scalable SaaS platforms, I build digital systems that move fast, endure pressure, and create real-world impact.",
   ],
   avatar: "persons/irrlmm.png",
   email: "hello@irrlmm.me",
