@@ -46,8 +46,8 @@ const Belt = ({ text }: { text: string }) => {
         className="row gap-xl padding-s"
         style={{ x: xSmoothed, skewX: skewXSmoothed }}
       >
-        {repeatArray.map((line) => (
-          <span>{line}</span>
+        {repeatArray.map((line, i) => (
+          <span key={`line-${i}`}>{line}</span>
         ))}
       </motion.div>
     </motion.div>
