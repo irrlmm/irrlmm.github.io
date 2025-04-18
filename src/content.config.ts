@@ -11,23 +11,23 @@ const work = defineCollection({
     coverImage: z.string(),
     date: z.coerce.date(),
     title: z.string(),
-    sections: z.array(
-      z.object({
-        title: z.optional(z.string()),
-        lines: z.optional(z.array(z.string())),
-        values: z.optional(
-          z.array(
-            z.object({
-              label: z.string(),
-              value: z.string(),
-              href: z.optional(z.string()),
-            })
-          )
-        ),
-        image: z.optional(z.string()),
-        separator: z.optional(z.boolean()),
-      })
-    ),
+    // sections: z.array(
+    //   z.object({
+    //     title: z.optional(z.string()),
+    //     lines: z.optional(z.array(z.string())),
+    //     values: z.optional(
+    //       z.array(
+    //         z.object({
+    //           label: z.string(),
+    //           value: z.string(),
+    //           href: z.optional(z.string()),
+    //         })
+    //       )
+    //     ),
+    //     image: z.optional(z.string()),
+    //     separator: z.optional(z.boolean()),
+    //   })
+    // ),
   }),
 });
 

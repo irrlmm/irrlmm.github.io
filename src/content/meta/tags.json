@@ -1,9 +1,0 @@
-[
-  { "id": "process", "label": "Process" },
-  { "id": "research", "label": "Research" },
-  { "id": "ui", "label": "UI" },
-  { "id": "ux", "label": "UX" },
-  { "id": "quest", "label": "Quest" },
-  { "id": "cards", "label": "Facts" },
-  { "id": "skills", "label": "Skills" }
-]
