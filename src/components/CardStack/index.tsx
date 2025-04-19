@@ -114,10 +114,6 @@ const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
             progress: (currentStep + 1) / cards.length,
             text: `${currentStep + 1} / ${cards.length}`,
           },
-          {
-            icon: SVG_GEM,
-            text: completeCount > 0 ? "1" : "0",
-          },
         ]}
         forwardButtonProps={{
           isShown: currentStep < cards.length - 1,
