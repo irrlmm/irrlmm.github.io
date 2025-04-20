@@ -1,0 +1,70 @@
+.productEyeCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding: var(--unit-l);
+  color: var(--white-100);
+}
+
+.productEyeCard > .cornerDecor {
+  position: absolute;
+  width: var(--unit-2xs);
+  height: var(--unit-2xs);
+  background-color: var(--on-surface);
+}
+
+.productEyeCard > .cornerDecor:nth-of-type(1) {
+  top: 0;
+  left: 0;
+}
+.productEyeCard > .cornerDecor:nth-of-type(2) {
+  top: 0;
+  right: 0;
+}
+.productEyeCard > .cornerDecor:nth-of-type(3) {
+  bottom: 0;
+  right: 0;
+}
+.productEyeCard > .cornerDecor:nth-of-type(4) {
+  bottom: 0;
+  left: 0;
+}
+
+.rec {
+  width: var(--unit-s);
+  height: var(--unit-s);
+  border-radius: 50%;
+  background-color: var(--white-100);
+}
+
+.productEyeCard h2 {
+  line-height: 1;
+  font-size: var(--unit-s);
+  text-transform: uppercase;
+}
+
+.productEyeCard ul {
+  font-size: var(--unit-xs);
+}
+
+.blackMirror {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  font-size: var(--unit-xs);
+}
+
+.header {
+  /* background-color: var(--on-surface); */
+  /* color: var(--background); */
+  display: flex;
+  gap: var(--unit-xs);
+}

@@ -7,6 +7,7 @@ export type GenericCardContent<T> = {
   index?: number;
   isDraggable?: boolean;
   onClick?: (payload: any) => void;
+  trackMeta?: any;
 };
 
 import React from "react";
@@ -25,6 +26,7 @@ type Props<T> = {
   shouldSwipe: boolean;
   onSwipe: () => void;
   onClick?: (payload: any) => void;
+  trackMeta?: any;
 };
 
 const AnimatedCard = <T,>({
@@ -36,6 +38,7 @@ const AnimatedCard = <T,>({
   isRemovable = false,
   shouldSwipe,
   onClick,
+  trackMeta,
 }: Props<T>) => {
   const { variants, style, isConstrained, handleDrag, handleDragEnd } =
     useSwipeCard({ index, shouldSwipe, onSwipe, isRemovable });
@@ -55,7 +58,12 @@ const AnimatedCard = <T,>({
       dragElastic={{ top: 0.25, bottom: 0.25, left: 1, right: 1 }}
       style={style}
     >
-      <CardContent card={card} index={index} onClick={onClick} />
+      <CardContent
+        card={card}
+        index={index}
+        onClick={onClick}
+        trackMeta={trackMeta}
+      />
     </motion.div>
   );
 };

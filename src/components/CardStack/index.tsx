@@ -7,8 +7,6 @@ import AnimatedCard, {
 } from "../AnimatedCard";
 import StackProgressToolbar from "../StackProgressToolbar";
 
-import { SVG_GEM } from "../../consts/svg";
-
 import styles from "./styles.module.css";
 import trackEvent from "../../helpers/trackEvent";
 
@@ -21,6 +19,7 @@ type Props<T> = {
 const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
 
+  const [started, setStarted] = useState(false);
   const [cardsShown, setCardsShown] = useState(cards.toReversed());
   const [shouldSwipe, setShouldSwipe] = useState(false);
 
@@ -28,12 +27,12 @@ const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
   const [replayCount, setReplayCount] = useState(0);
   const [passedHalfway, setPassedHalfway] = useState(false);
 
-  const [_, setCardTimestamp] = useState<null | number>(null);
+  const [cardTimestamp, setCardTimestamp] = useState<null | number>(null);
 
   useEffect(() => {
     if (!passedHalfway && currentStep > cards.length / 2) {
       setPassedHalfway(() => {
-        trackEvent("site:quiz_halfway", { id });
+        trackEvent("site:cardstack_halfway", { id });
         return true;
       });
     }
@@ -41,7 +40,10 @@ const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
 
   useEffect(() => {
     if (replayCount === 0 && currentStep === 1) {
-      trackEvent("site:cardstack_started", { id });
+      setStarted(() => {
+        trackEvent("site:cardstack_started", { id });
+        return true;
+      });
       setCardTimestamp(Date.now());
     }
 
@@ -148,6 +150,13 @@ const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
             card={card}
             renderItem={CardContent}
             shouldSwipe={i === cardsShown.length - 1 && shouldSwipe}
+            trackMeta={{
+              started,
+              replayCount,
+              passedHalfway,
+              completeCount,
+              cardTimestamp,
+            }}
           />
         ))}
       </motion.div>

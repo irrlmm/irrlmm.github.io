@@ -1,0 +1,43 @@
+.caseStudyCard {
+  flex: 1;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: var(--unit-m);
+  justify-content: space-between;
+}
+
+.caseStudyCard h2 {
+  background-color: var(--on-surface);
+  color: var(--background);
+  line-height: 1;
+  font-size: var(--unit-s);
+  border-radius: 2px;
+}
+
+.caseStudyCard p {
+  font-size: var(--unit-l);
+  line-height: 1;
+}
+
+.caseStudyCard a {
+  width: 100%;
+  font-size: var(--unit-sm);
+  border-radius: var(--unit-l);
+  padding: var(--unit-xs) var(--unit-s);
+  border: solid 2px var(--on-surface);
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: var(--on-surface);
+}
+
+.caseStudyCard a:hover {
+  background-color: var(--on-surface);
+  color: var(--background);
+}
+
+.caseStudyCard a:hover {
+  background-color: var(--on-surface);
+  color: var(--background);
+}

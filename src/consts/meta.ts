@@ -5,7 +5,7 @@ export const IRRLMM = {
   title: "Senior Product Designer",
   bio: [
     "Product Designer. I connect user experience, frontend development, and product strategy.",
-    "From tiny tools to scalable SaaS platforms, I build digital systems that move fast, endure pressure, and create real-world impact.",
+    "From tiny tools to scalable SaaS platforms, I build digital systems that move fast, endure pressure, and create real impact.",
   ],
   avatar: "persons/irrlmm.png",
   email: "hello@irrlmm.me",
