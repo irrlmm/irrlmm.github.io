@@ -1,0 +1,20 @@
+.button {
+  width: 100%;
+  font-size: var(--unit-sm);
+  border-radius: var(--unit-l);
+  padding: var(--unit-xs) var(--unit-s);
+  border: solid 2px var(--on-surface);
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: var(--on-surface);
+}
+
+.button:hover {
+  background-color: var(--on-surface);
+  color: var(--background);
+}
+
+.button:hover svg {
+  stroke: var(--background);
+}

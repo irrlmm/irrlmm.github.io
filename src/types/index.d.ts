@@ -23,4 +23,54 @@ declare global {
       capture: (id: EventId, props: EventProps) => void;
     };
   }
+
+  namespace UI {
+    type Link = {
+      href: string;
+      label: string;
+      external?: boolean;
+    };
+
+    type Icon = {
+      path?: string;
+      text?: string;
+    };
+
+    namespace Card {
+      interface Generic {
+        id: string;
+      }
+
+      interface Fact extends Generic {
+        type?: "fact";
+        title?: string;
+        icon?: UI.Icon;
+        text: string;
+      }
+
+      interface CaseStudy extends Generic {
+        type: "case-study";
+        title: string;
+        link: UI.Link;
+      }
+
+      interface ReleaseNote extends Generic {
+        type: "release-note";
+        version: string;
+        title: string;
+        link: UI.Link;
+      }
+
+      interface ProductEye extends Generic {
+        type: "product-eye";
+        title: string;
+        text: string;
+      }
+    }
+
+    type CardStack<T> = {
+      id: string;
+      cards: Array<T>;
+    };
+  }
 }

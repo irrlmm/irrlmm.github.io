@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-import AnimatedCard, {
-  type GenericCard,
-  type GenericCardContent,
-} from "../AnimatedCard";
+import AnimatedCard, { type GenericCardContent } from "../AnimatedCard";
 import StackProgressToolbar from "../StackProgressToolbar";
 
-import styles from "./styles.module.css";
 import trackEvent from "../../helpers/trackEvent";
+
+import styles from "./styles.module.css";
+
+type GenericCard<T> = UI.Card.Generic & T;
 
 type Props<T> = {
   id: string;
   cards: GenericCard<T>[];
   renderItem: React.FC<GenericCardContent<T>>;
+  transformProgressBarText?: (props: any) => string;
 };
 
-const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
+const CardStack = <T,>({
+  id,
+  cards,
+  renderItem: CardContent,
+  transformProgressBarText,
+}: Props<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const [started, setStarted] = useState(false);
@@ -114,7 +120,13 @@ const CardStack = <T,>({ id, cards, renderItem: CardContent }: Props<T>) => {
         bars={[
           {
             progress: (currentStep + 1) / cards.length,
-            text: `${currentStep + 1} / ${cards.length}`,
+            text: transformProgressBarText
+              ? transformProgressBarText({
+                  index: currentStep,
+                  cardLength: cards.length,
+                  card: cards[currentStep],
+                })
+              : `${currentStep + 1} / ${cards.length}`,
           },
         ]}
         forwardButtonProps={{

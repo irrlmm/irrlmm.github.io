@@ -7,14 +7,12 @@ import { SVG_CHECK } from "../../consts/svg";
 import styles from "./styles.module.css";
 
 export type ProgressBarProps = {
-  progressType?: "circle" | "block";
   progress?: number; // 0...1
   icon?: string;
   text: string;
 };
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
-  progressType = "circle",
   progress = null,
   icon = null,
   text,
@@ -40,7 +38,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
         shown: { opacity: 1, transition: { delayChildren: 0.33 } },
       }}
     >
-      {progress !== null && progressType === "circle" && (
+      {progress !== null && (
         <div className={styles.iconWrapper}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -95,32 +93,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
             ></motion.path>
           </svg>
         </div>
-      )}
-
-      {progress !== null && progressType === "block" && (
-        <motion.div
-          className={styles.progressBar}
-          variants={{
-            hidden: {
-              opacity: 0,
-            },
-            shown: {
-              opacity: progress > 0 ? 1 : 0.2,
-            },
-          }}
-        >
-          <motion.div
-            className={styles.progressBarFill}
-            variants={{
-              hidden: {
-                scaleY: 0,
-              },
-              shown: {
-                scaleY: progress,
-              },
-            }}
-          ></motion.div>
-        </motion.div>
       )}
 
       {icon !== null && <Svg d={icon} size="var(--unit-l)" />}

@@ -82,7 +82,7 @@ const BlackMirror: React.FC<Props> = ({
 
         /* cam-style dull grey + wobble */
         /* darker baseline grey (reduce from 0.40 to 0.25) */
-        float grey = 0.4 + uAmp * n;
+        float grey = 0.15 + uAmp * n;
 
         gl_FragColor = vec4(vec3(grey), 1.0);
       }`;

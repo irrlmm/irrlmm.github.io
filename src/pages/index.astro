@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import MainLayout from "../layouts/MainLayout.astro";
 
 import Launchpad from "../components/Launchpad.astro";
-import FactStack from "../components/FactStack";
+import FactStack from "../components/IntroStack";
 import Belt from "../components/Belt";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -28,7 +28,7 @@ if (!posts) {
 ---
 
 <MainLayout schema={SCHEMA_PERSON_FULL}>
-  <article class="col">
+  <div class="col">
     <Header />
 
     <section class="col gap-m">
@@ -109,11 +109,11 @@ if (!posts) {
     </section>
 
     <Footer />
-  </article>
+  </div>
 </MainLayout>
 
 <style>
-  article {
+  div {
     width: 100%;
     display: flex;
     flex-direction: column;

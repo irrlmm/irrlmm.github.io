@@ -9,7 +9,7 @@ import styles from "./styles.module.css";
 
 type Props = {
   index?: number;
-  card: Fact;
+  card: UI.Card.ProductEye;
   trackMeta?: any;
 };
 
@@ -49,29 +49,29 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
       ))}
 
       <BlackMirror
-        pixelBlocks={4}
-        noiseFps={2}
-        amplitude={0.1}
+        pixelBlocks={100}
+        // noiseFps={10}
+        // amplitude={0.1}
         className={styles.blackMirror}
       />
 
       <div className="col gap-s">
         <div className={styles.header}>
-          <h2 className="flex-1">{card.payload.title}</h2>
-
           <motion.div
             className={styles.rec}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
-              duration: 1,
+              duration: 0.4,
               repeat: Infinity,
               repeatType: "mirror",
             }}
           />
+
+          <h2 className="flex-1">{card.title}</h2>
         </div>
 
-        <p className={styles.text}>{card.payload.text}</p>
+        <p className={styles.text}>{card.text}</p>
       </div>
 
       {trackMeta && (
