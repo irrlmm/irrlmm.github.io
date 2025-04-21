@@ -20,6 +20,10 @@
   font-size: var(--unit-s);
 }
 
+.fact p {
+  margin-bottom: auto;
+}
+
 .lines {
   display: flex;
   flex-direction: column;
