@@ -20,8 +20,13 @@ const AnimatedLinkButton: React.FC<Props> = ({ label, href, external }) => {
       className={styles.button}
       href={href}
       whileHover="hover"
-      whileTap="hover"
-      onPointerDownCapture={(e) => e.stopPropagation()}
+      whileTap="pressed"
+      variants={{
+        pressed: {
+          scale: 0.98,
+        },
+      }}
+      // onPointerDownCapture={(e) => e.stopPropagation()}
       rel={external ? "noopener noreferrer" : undefined}
       target={external ? "_blank" : undefined}
     >
@@ -29,12 +34,10 @@ const AnimatedLinkButton: React.FC<Props> = ({ label, href, external }) => {
 
       <SvgAnimated
         variants={{
-          hover: {
-            x: 4,
-            y: -4,
-          },
+          hover: { x: 4, y: -4 },
+          pressed: { x: 4, y: -4 },
         }}
-        transition={{ duration: 0.1 }}
+        transition={{ duration: 0.15 }}
         d={SVG_ARROW}
       />
     </motion.a>

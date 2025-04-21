@@ -55,10 +55,6 @@ import RELEASE_NOTES from "../consts/release-notes";
     line-height: 1;
   }
 
-  p {
-    vertical-align: middle;
-  }
-
   section {
     display: flex;
     width: 100%;
@@ -77,14 +73,15 @@ import RELEASE_NOTES from "../consts/release-notes";
     font-size: var(--unit-m);
   }
 
-  li span,
-  li p {
-    font-size: var(--unit-s);
-  }
-
   li span {
+    font-size: var(--unit-s);
     align-self: flex-start;
     background-color: var(--on-surface);
     color: var(--background);
+  }
+
+  li p {
+    text-wrap: balance;
+    font-size: var(--unit-s);
   }
 </style>

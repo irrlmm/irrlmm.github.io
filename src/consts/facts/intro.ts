@@ -1,5 +1,5 @@
 import RELEASE_NOTES from "../release-notes";
-import { SVG_SWIPE } from "../svg";
+import { SVG_SWIPE, SVG_V60 } from "../svg";
 
 const FACTS_INTRO: UI.CardStack<
   UI.Card.Fact | UI.Card.CaseStudy | UI.Card.ProductEye | UI.Card.ReleaseNote
@@ -20,8 +20,13 @@ const FACTS_INTRO: UI.CardStack<
       id: "product-eye",
       type: "product-eye",
       title: "Rogi is watching",
-      text: "IGOR FEEDS ME FRESH USER DATA AND I IMPROVE THIS PAGE EVERY NIGHT",
+      text: "Fresh user signals received. Page optimization ongoing.",
     },
+    // {
+    //   id: "f7",
+    //   icon: { path: SVG_V60 },
+    //   text: "Making filter coffee is a design process — balancing precision, flow, and timing.",
+    // },
     {
       id: "release-note",
       type: "release-note",
@@ -32,11 +37,11 @@ const FACTS_INTRO: UI.CardStack<
         label: "View changelog",
       },
     },
-    {
-      id: "intro",
-      icon: { path: SVG_SWIPE },
-      text: "Swipe/drag through. Each card is a hit of who I am.",
-    },
+    // {
+    //   id: "intro",
+    //   icon: { path: SVG_SWIPE },
+    //   text: "Swipe/drag through. Each card is a hit of who I am.",
+    // },
     // {
     //   id: "f1",
     //   payload: {
@@ -71,12 +76,6 @@ const FACTS_INTRO: UI.CardStack<
     //   id: "f6",
     //   payload: {
     //     text: "That experience comes from travel, photography, making music, and a lifelong habit of collecting curious products.",
-    //   },
-    // },
-    // {
-    //   id: "f7",
-    //   payload: {
-    //     text: "All fueled by 2 cups of filter coffee, a result of precise - yes - design process.",
     //   },
     // },
     // {

@@ -6,6 +6,7 @@
   position: relative;
   padding: var(--unit-sm);
   color: var(--white-100);
+  text-transform: uppercase;
 }
 
 .productEyeCard > .cornerDecor {

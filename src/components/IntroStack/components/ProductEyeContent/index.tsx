@@ -1,5 +1,3 @@
-import type { Fact } from "../../../../consts/facts";
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -48,12 +46,7 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
         <div key={i} className={styles.cornerDecor} />
       ))}
 
-      <BlackMirror
-        pixelBlocks={100}
-        // noiseFps={10}
-        // amplitude={0.1}
-        className={styles.blackMirror}
-      />
+      <BlackMirror pixelBlocks={75} className={styles.blackMirror} />
 
       <div className="col gap-s">
         <div className={styles.header}>
