@@ -32,7 +32,7 @@ const STACK_INTRO: UI.CardStack<
         "Maximum impact can be achieved with minimum resources",
         "Perfect timing beats perfect polish",
         "Loops should never feel like traps",
-        "[ROGI] Portal opened at /undefined. Find it. Fast.",
+        "[ROGI] Portal opened at /undefined. Find it. Quick!",
       ],
     },
 
