@@ -8,15 +8,17 @@ type Props = {
   card: UI.Card.Facts;
 };
 
+function getRandomIndex<T>(array: T[]): number {
+  return Math.floor(Math.random() * array.length);
+}
+
 const PunchlineContent: React.FC<Props> = ({ index, card }) => {
-  const [randomIndex, setRandomIndex] = useState(
-    Math.floor(Math.random() * card.lines.length)
-  );
+  const [randomIndex, setRandomIndex] = useState(getRandomIndex(card.lines));
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     if (index === 0) {
-      setRandomIndex(Math.floor(Math.random() * card.lines.length));
+      setRandomIndex(getRandomIndex(card.lines));
     }
   }, [index]);
 
@@ -24,9 +26,9 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
     if (isRefreshing) {
       setTimeout(() => {
         setRandomIndex((prevIndex) => {
-          let nextIndex = Math.floor(Math.random() * card.lines.length);
+          let nextIndex = getRandomIndex(card.lines);
           while (prevIndex === nextIndex) {
-            nextIndex = Math.floor(Math.random() * card.lines.length);
+            nextIndex = getRandomIndex(card.lines);
           }
           return nextIndex;
         });
@@ -57,6 +59,7 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
 
         {index === 0 && !isRefreshing && (
           <motion.span
+            key={randomIndex}
             variants={{
               hidden: {},
               shown: {
@@ -102,7 +105,7 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
         onClick={refreshWisdom}
         whileTap={{ scale: 0.98 }}
       >
-        Another
+        Next
       </motion.button>
     </div>
   );
