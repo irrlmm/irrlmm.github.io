@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import MainLayout from "../layouts/MainLayout.astro";
 
 import Launchpad from "../components/Launchpad.astro";
-import FactStack from "../components/IntroStack";
+import IntroStack from "../components/IntroStack";
 import Belt from "../components/Belt";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -15,8 +15,8 @@ import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 
 import { IRRLMM } from "../consts/meta";
-import FACTS_INTRO from "../consts/facts/intro";
-import FACTS_JOURNEY from "../consts/facts/journey";
+import STACK_INTRO from "../consts/stacks/intro";
+import STACK_JOURNEY from "../consts/stacks/journey";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -35,13 +35,13 @@ if (!posts) {
       <h1 class="hidden">{IRRLMM.name}</h1>
       <h2 class="hidden">{IRRLMM.title}</h2>
 
-      <Paragraph text="Greetings. I'm Igor" inlineImageSrc={IRRLMM.avatar} />
+      <Paragraph text="Hello. I'm Igor" inlineImageSrc={IRRLMM.avatar} />
 
       {IRRLMM.bio.map((p) => <Paragraph text={p} />)}
     </section>
 
     <section>
-      <FactStack client:load facts={FACTS_INTRO} />
+      <IntroStack client:load stack={STACK_INTRO} shuffle={true} />
     </section>
 
     <Belt client:load text="Available for product design roles" />
@@ -105,7 +105,7 @@ if (!posts) {
     <Belt client:load text="The work is mysterious and important" />
 
     <section>
-      <FactStack client:load facts={FACTS_JOURNEY} />
+      <IntroStack client:load stack={STACK_JOURNEY} />
     </section>
 
     <Footer />

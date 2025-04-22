@@ -53,6 +53,7 @@ import RELEASE_NOTES from "../consts/release-notes";
   h1 {
     font-size: var(--unit-l);
     line-height: 1;
+    animation: appear 0.15s var(--bezier) 0.2s both;
   }
 
   section {
@@ -67,6 +68,16 @@ import RELEASE_NOTES from "../consts/release-notes";
 
   li {
     position: relative;
+    animation: appear 0.15s var(--bezier) 0.3s both;
+  }
+  li:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+  li:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  li:nth-child(n + 4) {
+    animation-delay: 0.45s;
   }
 
   h2 {

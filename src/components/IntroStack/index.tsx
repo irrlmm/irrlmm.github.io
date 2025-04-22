@@ -2,11 +2,29 @@ import CardStack from "../CardStack";
 import ContentRenderer from "./ContentRenderer";
 
 type Props = {
-  facts: UI.CardStack<
-    UI.Card.Fact | UI.Card.CaseStudy | UI.Card.ProductEye | UI.Card.ReleaseNote
+  stack: UI.CardStack<
+    | UI.Card.Fact
+    | UI.Card.Facts
+    | UI.Card.CaseStudy
+    | UI.Card.ProductEye
+    | UI.Card.ReleaseNote
   >;
+  shuffle?: boolean;
 };
 
-export default ({ facts }: Props) => (
-  <CardStack id={facts.id} cards={facts.cards} renderItem={ContentRenderer} />
-);
+function shuffleArray<T>(array: T[]): T[] {
+  return array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
+export default ({ stack, shuffle }: Props) => {
+  return (
+    <CardStack
+      id={stack.id}
+      cards={shuffle ? shuffleArray(stack.cards) : stack.cards}
+      renderItem={ContentRenderer}
+    />
+  );
+};

@@ -12,12 +12,12 @@ type Props = {
 };
 
 const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
-  const [timeSpent, setTimeSpent] = useState(0);
+  const [timeSpent, setTimeSpent] = useState<number | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (index === 0) {
+    if (index === 0 && trackMeta.cardTimestamp) {
       interval = setInterval(() => {
         setTimeSpent(Date.now() - trackMeta.cardTimestamp);
       }, 125); // update every half second
@@ -28,15 +28,16 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
     };
   }, [index, trackMeta]);
 
-  const timeElapsed = Number((timeSpent / 1000).toFixed(2));
+  const timeElapsed = timeSpent ? Number((timeSpent / 1000).toFixed(2)) : null;
 
   const eventDetails = [
     { label: "stack_started", value: trackMeta.started.toString() },
-    // { label: "completed_halfway", value: trackMeta.passedHalfway.toString() },
     { label: "times_completed", value: trackMeta.completeCount.toString() },
     {
       label: "card_time",
-      value: `${timeElapsed > 10 ? "> 10" : timeElapsed}s`,
+      value: `${
+        timeElapsed === null ? "--" : timeElapsed > 10 ? "> 10" : timeElapsed
+      }s`,
     },
   ];
 

@@ -68,16 +68,8 @@ const useSwipeCard = ({
   };
 
   const handleDragEnd = () => {
-    if (Math.abs(v.current) > 200 || Math.abs(x.get()) > 200) {
-      swipeAway(
-        Math.abs(v.current) > 200
-          ? v.current > 0
-            ? 1
-            : -1
-          : x.get() > 0
-          ? 1
-          : -1
-      );
+    if (Math.abs(v.current) > 1000 || Math.abs(x.get()) > 176) {
+      swipeAway(v.current > 0 && x.get() > 0 ? 1 : -1);
     }
   };
 

@@ -1,5 +1,7 @@
+import { memo } from "react";
 import CaseStudyContent from "./components/CaseStudyContent";
 import ProductEyeContent from "./components/ProductEyeContent";
+import PunchlineContent from "./components/PunchlineContent";
 import ReleaseNoteContent from "./components/ReleaseNoteContent";
 import TextContent from "./components/TextContent";
 
@@ -7,6 +9,7 @@ type Props = {
   index?: number;
   card:
     | UI.Card.Fact
+    | UI.Card.Facts
     | UI.Card.CaseStudy
     | UI.Card.ProductEye
     | UI.Card.ReleaseNote;
@@ -30,10 +33,13 @@ const ContentRenderer: React.FC<Props> = (props) => {
     case "release-note":
       return <ReleaseNoteContent card={props.card} />;
 
+    case "facts":
+      return <PunchlineContent index={props.index} card={props.card} />;
+
     case "fact":
     default:
       return <TextContent card={props.card} />;
   }
 };
 
-export default ContentRenderer;
+export default memo(ContentRenderer);

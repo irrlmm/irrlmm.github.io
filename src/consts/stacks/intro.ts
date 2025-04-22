@@ -1,8 +1,9 @@
-import RELEASE_NOTES from "../release-notes";
-import { SVG_SWIPE, SVG_V60 } from "../svg";
-
-const FACTS_INTRO: UI.CardStack<
-  UI.Card.Fact | UI.Card.CaseStudy | UI.Card.ProductEye | UI.Card.ReleaseNote
+const STACK_INTRO: UI.CardStack<
+  | UI.Card.Fact
+  | UI.Card.CaseStudy
+  | UI.Card.ProductEye
+  | UI.Card.ReleaseNote
+  | UI.Card.Facts
 > = {
   id: "facts-intro",
   cards: [
@@ -22,26 +23,38 @@ const FACTS_INTRO: UI.CardStack<
       title: "Rogi is watching",
       text: "Fresh user signals received. Page optimization ongoing.",
     },
+    {
+      id: "punchline",
+      type: "facts",
+      title: "Daily Wisdom",
+      lines: [
+        "A designer's ego is even more fragile than the product",
+        "Always curate the feedback",
+        "Try making maximum impact with minimum resources",
+        "Perfect timing beats perfect polish",
+        "If a system needs explaining, it needs redesigning",
+        "Good products save time. Great products create time",
+        "Loops should never feel like traps",
+      ],
+    },
+
     // {
     //   id: "f7",
     //   icon: { path: SVG_V60 },
     //   text: "Making filter coffee is a design process — balancing precision, flow, and timing.",
     // },
-    {
-      id: "release-note",
-      type: "release-note",
-      version: RELEASE_NOTES[0].version,
-      title: RELEASE_NOTES[0].title,
-      link: {
-        href: "/changelog",
-        label: "View changelog",
-      },
-    },
+
     // {
-    //   id: "intro",
-    //   icon: { path: SVG_SWIPE },
-    //   text: "Swipe/drag through. Each card is a hit of who I am.",
+    //   id: "release-note",
+    //   type: "release-note",
+    //   version: RELEASE_NOTES[0].version,
+    //   title: RELEASE_NOTES[0].title,
+    //   link: {
+    //     href: "/changelog",
+    //     label: "View changelog",
+    //   },
     // },
+
     // {
     //   id: "f1",
     //   payload: {
@@ -88,4 +101,4 @@ const FACTS_INTRO: UI.CardStack<
   ],
 };
 
-export default FACTS_INTRO;
+export default STACK_INTRO;

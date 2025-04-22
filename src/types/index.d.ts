@@ -42,10 +42,16 @@ declare global {
       }
 
       interface Fact extends Generic {
-        type?: "fact";
+        type: "fact";
         title?: string;
         icon?: UI.Icon;
         text: string;
+      }
+
+      interface Facts extends Generic {
+        type: "facts";
+        title?: string;
+        lines: string[];
       }
 
       interface CaseStudy extends Generic {
