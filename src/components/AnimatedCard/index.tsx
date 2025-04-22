@@ -49,7 +49,7 @@ const AnimatedCard = <T,>({
       variants={variants}
       drag={isDraggable && index === 0 ? "x" : false}
       onDrag={isDraggable ? handleDrag : undefined}
-      dragDirectionLock={true}
+      // dragDirectionLock={true}
       onDragEnd={isDraggable ? handleDragEnd : undefined}
       dragConstraints={
         isConstrained && { left: 0, right: 0, top: 0, bottom: 0 }
