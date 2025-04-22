@@ -29,12 +29,10 @@ const STACK_INTRO: UI.CardStack<
       title: "Daily Wisdom",
       lines: [
         "A designer's ego is even more fragile than the product",
-        "Always curate the feedback",
-        "Try making maximum impact with minimum resources",
+        "Maximum impact can be achieved with minimum resources",
         "Perfect timing beats perfect polish",
-        "If a system needs explaining, it needs redesigning",
-        "Good products save time. Great products create time",
         "Loops should never feel like traps",
+        "[ROGI] Portal opened at /undefined. Find it. Fast.",
       ],
     },
 
