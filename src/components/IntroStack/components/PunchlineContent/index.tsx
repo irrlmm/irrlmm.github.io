@@ -104,7 +104,7 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
         onClick={refreshWisdom}
         whileTap={{ scale: 0.98 }}
       >
-        Next
+        New wisdom
       </motion.button>
     </div>
   );
