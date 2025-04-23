@@ -8,40 +8,38 @@ type Props = {
   card: UI.Card.Facts;
 };
 
-function getRandomIndex<T>(array: T[]): number {
-  return Math.floor(Math.random() * array.length);
-}
-
 const PunchlineContent: React.FC<Props> = ({ index, card }) => {
-  const [randomIndex, setRandomIndex] = useState(getRandomIndex(card.lines));
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     if (index === 0) {
-      setRandomIndex(getRandomIndex(card.lines));
     }
   }, [index]);
 
   useEffect(() => {
     if (isRefreshing) {
       setTimeout(() => {
-        setRandomIndex((prevIndex) => {
-          let nextIndex = getRandomIndex(card.lines);
-          while (prevIndex === nextIndex) {
-            nextIndex = getRandomIndex(card.lines);
-          }
-          return nextIndex;
-        });
+        setNextLineIndex();
         setIsRefreshing(false);
-      }, 750);
+      }, 500);
     }
   }, [isRefreshing]);
+
+  const setNextLineIndex = () => {
+    setCurrentLineIndex((i) => {
+      if (i !== card.lines.length - 1) {
+        return i + 1;
+      }
+      return 0;
+    });
+  };
 
   const refreshWisdom = () => {
     setIsRefreshing(true);
   };
 
-  const words = card.lines[randomIndex].split(" ");
+  const words = card.lines[currentLineIndex].split(" ");
 
   return (
     <div className={styles.card}>
@@ -59,11 +57,11 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
 
         {index === 0 && !isRefreshing && (
           <motion.span
-            key={randomIndex}
+            key={currentLineIndex}
             variants={{
               hidden: {},
               shown: {
-                transition: { delayChildren: 0.33, staggerChildren: 0.066 },
+                transition: { delayChildren: 0.25, staggerChildren: 0.066 },
               },
             }}
             initial="hidden"
