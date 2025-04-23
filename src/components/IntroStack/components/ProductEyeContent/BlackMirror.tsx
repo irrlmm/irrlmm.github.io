@@ -81,8 +81,23 @@ const BlackMirror: React.FC<Props> = ({
         float n  = mix(nA, nB, blend);   // linear interpolation
 
         /* cam-style dull grey + wobble */
-        /* darker baseline grey (reduce from 0.40 to 0.25) */
-        float grey = 0.15 + uAmp * n;
+        float grey = 0.05 + uAmp * n;
+
+        // Chaotic, large sea-wave overlay
+        // Low-frequency base waves
+        float w1 = sin((vUV.x * 0.25) + uTime * 0.05);
+        float w2 = sin((vUV.y * 0.25) - uTime * 0.05);
+        float w3 = sin(((vUV.x + vUV.y) * 1.0) + uTime * 0.4);
+
+        // Mid-frequency turbulence
+        float t1 = sin((vUV.x * 12.0 + vUV.y * 8.0) + uTime * 2.5) * 0.25;
+        float t2 = sin((vUV.y * 10.0 - vUV.x * 6.0) - uTime * 3.2) * 0.25;
+
+        // Combine waves and turbulence
+        float waveMix = (w1 + w2 + w3) * 0.25 + (t1 - t2) * 0.3;
+        
+        // Apply overlay
+        grey += waveMix * 0.5;
 
         gl_FragColor = vec4(vec3(grey), 1.0);
       }`;
