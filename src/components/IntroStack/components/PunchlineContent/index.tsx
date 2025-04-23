@@ -14,6 +14,7 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
 
   useEffect(() => {
     if (index === 0) {
+      setNextLineIndex();
     }
   }, [index]);
 
