@@ -30,7 +30,7 @@ const useSwipeCard = ({
       y: 0,
       filter: `blur(${index > 4 ? 8 : 2 * index}px)`,
       scale: index > 4 ? 0.9 : 1 - index * 0.025,
-      boxShadow: `0 0 0 2px var(--on-surface)`,
+      boxShadow: `inset 0 0 0 2px var(--on-surface)`,
       opacity: 0,
     },
     shown: {
@@ -38,7 +38,9 @@ const useSwipeCard = ({
       y: baseY,
       filter: `blur(${index > 4 ? 8 : 2 * index}px)`,
       scale: index > 4 ? 0.9 : 1 - index * 0.025,
-      boxShadow: `0 0 0 2px ${index > 4 ? "transparent" : "var(--on-surface)"}`,
+      boxShadow: `inset 0 0 0 2px ${
+        index > 4 ? "transparent" : "var(--on-surface)"
+      }`,
       opacity: isRemovable && shouldSwipe ? 0 : 1,
       transition: {
         type: "spring",
