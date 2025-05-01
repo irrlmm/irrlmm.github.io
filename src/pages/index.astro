@@ -17,6 +17,7 @@ import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import { IRRLMM } from "../consts/meta";
 import STACK_INTRO from "../consts/stacks/intro";
 import STACK_JOURNEY from "../consts/stacks/journey";
+// import JumboCardStack from "../components/JumboCardStack";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -35,7 +36,10 @@ if (!posts) {
       <h1 class="hidden">{IRRLMM.name}</h1>
       <h2 class="hidden">{IRRLMM.title}</h2>
 
-      <Paragraph text="Hello. I'm Igor" inlineImageSrc={IRRLMM.avatar} />
+      <Paragraph
+        text={`Hello. I'm ${IRRLMM.name.split(" ")[0]}`}
+        inlineImageSrc={IRRLMM.avatar}
+      />
 
       {IRRLMM.bio.map((p) => <Paragraph text={p} />)}
     </section>
@@ -44,7 +48,7 @@ if (!posts) {
       <IntroStack client:load stack={STACK_INTRO} shuffle={true} />
     </section>
 
-    <Belt client:load text="Available for product design roles" />
+    <Belt client:load text="Available for prod. design / engineering roles" />
 
     <Launchpad
       apps={[
@@ -56,7 +60,7 @@ if (!posts) {
             company: "iMusician",
             lines: ["7+ yrs", "Senior Product Designer", "ex UI Engineer"],
           },
-          badge: "Finished",
+          badge: "bye-bye",
         },
         {
           label: "Latest work",
@@ -90,7 +94,6 @@ if (!posts) {
           label: "Contact",
           link: { href: `mailto:${IRRLMM.email}` },
           icon: { path: SVG_MAIL },
-          badge: "open",
         },
         {
           label: "Rogi",
@@ -101,6 +104,11 @@ if (!posts) {
         },
       ]}
     />
+
+    <!-- <JumboCardStack
+      client:load
+      data={[{ id: "work-1" }, { id: "work-2" }, { id: "work-3" }]}
+    /> -->
 
     <Belt client:load text="The work is mysterious and important" />
 

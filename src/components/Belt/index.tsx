@@ -21,7 +21,7 @@ const Belt = ({ text }: { text: string }) => {
   });
   const velocity = useVelocity(scrollYProgress);
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0", `-300%`]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0", `-400%`]);
   const skewX = useTransform(velocity, [-0.33, 0.33], [15, -15]);
 
   const xSmoothed = useSpring(x, TRANSITION_SPRING);
