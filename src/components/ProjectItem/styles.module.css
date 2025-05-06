@@ -8,7 +8,7 @@
 .infoCol {
   flex: 1;
   position: sticky;
-  top: var(--unit-2xl);
+  top: var(--unit-xl);
   display: flex;
   flex-direction: column;
   gap: var(--unit-l);

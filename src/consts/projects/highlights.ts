@@ -2,7 +2,9 @@ import imdHome from "../../assets/work/imd/home.png";
 import imdSidewindows from "../../assets/work/imd/sidewindow.png";
 import imdCheckout from "../../assets/work/imd/checkout.png";
 
-import imdDesignSystem from "../../assets/work/imd/design-system.png";
+import imdDSCover from "../../assets/work/imd-ds/cover.png";
+import imdDSVars from "../../assets/work/imd-ds/variables.png";
+import imdDSFields from "../../assets/work/imd-ds/fields.png";
 
 import ishigsEmpty from "../../assets/work/ishigs/empty.png";
 import ishigsModal from "../../assets/work/ishigs/modal-large.png";
@@ -14,8 +16,6 @@ import mbuxMenuScheme from "../../assets/work/mbux/menu-scheme.png";
 
 import ap0 from "../../assets/work/artist-hub/ap-0.png";
 import apPages from "../../assets/work/artist-hub/ap-pages.png";
-import apEditor from "../../assets/work/artist-hub/ap-editor.png";
-import rp1 from "../../assets/work/artist-hub/rp-1.png";
 import rp2 from "../../assets/work/artist-hub/rp-2.png";
 
 const PROJECTS_HIGHLIGHTS: UI.Project[] = [
@@ -59,7 +59,12 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       "Started as a code-only Storybook collection in our frontend monorepo.",
       "Later evolved in Figma empowering anyone be a designer and rapidly craft prototypes at any resolution.",
     ],
-    imgs: [imdDesignSystem],
+    imgs: [imdDSCover, imdDSVars, imdDSFields],
+    link: {
+      label: "Case study",
+      href: "https://www.behance.net/gallery/224724459/iMusician-Building-Scalable-Design-System",
+      external: true,
+    },
   },
   {
     id: "imd:artist-hub",
@@ -70,7 +75,7 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       "iMusician's Artist Hub is a series of website generators for artist profiles and release pages, designed for 1-click setup, customization and smart data aggregation.",
       "Powered by market research and user insights, built for visibility and growth.",
     ],
-    imgs: [ap0, apPages, apEditor, rp1, rp2],
+    imgs: [ap0, apPages, rp2],
   },
   {
     id: "others",

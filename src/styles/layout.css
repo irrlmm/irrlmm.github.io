@@ -32,6 +32,9 @@
 .align-stretch {
   align-items: stretch;
 }
+.align-baseline {
+  align-items: baseline;
+}
 
 .row {
   display: flex;

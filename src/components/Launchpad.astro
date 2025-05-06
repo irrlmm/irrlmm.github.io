@@ -2,6 +2,7 @@
 import LaunchpadIcon from "./LaunchpadIcon.astro";
 import LaunchpadWidgetWorkspace from "./LaunchpadWidgetWorkplace.astro";
 import LaunchpadWidgetImage from "./LaunchpadWidgetImage.astro";
+import LaunchpadWidget from "./LaunchpadWidget.astro";
 import LaunchpadBadge from "./LaunchpadBadge.astro";
 
 type App = {
@@ -17,6 +18,7 @@ type App = {
     logo: string;
     lines: string[];
   };
+  widget?: { value: string };
   widgetTheme?: boolean;
   badge?: string;
   pos?: string;
@@ -32,7 +34,16 @@ const { apps } = Astro.props;
 <ul>
   {
     apps.map(
-      ({ link, label, icon, widgetWorkplace, widgetImage, badge, pos }) => (
+      ({
+        link,
+        label,
+        icon,
+        widgetWorkplace,
+        widgetImage,
+        widget,
+        badge,
+        pos,
+      }) => (
         <li data-widget={!icon} style={pos && `grid-area: ${pos}`}>
           <a
             href={link?.href}
@@ -42,6 +53,8 @@ const { apps } = Astro.props;
             {badge && <LaunchpadBadge value={badge} />}
 
             {icon && <LaunchpadIcon icon={icon} />}
+
+            {widget && <LaunchpadWidget value={widget.value} />}
 
             {widgetWorkplace && (
               <LaunchpadWidgetWorkspace workplace={widgetWorkplace} />
