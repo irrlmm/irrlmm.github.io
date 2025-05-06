@@ -7,12 +7,11 @@ import { SVG_KEY } from "../../consts/svg";
 import styles from "../CardStack/styles.module.css";
 import introStyles from "../ScreenIntro/styles.module.css";
 import innerStyles from "./styles.module.css";
-import type { Quiz } from "../../consts/quizzes";
 
 type Props = {
   points: number;
-  winScore: Quiz["winScore"];
-  outro: Quiz["outro"];
+  winScore: UI.Quiz.Game["winScore"];
+  outro: UI.Quiz.Game["outro"];
 };
 
 const ScreenOutro: React.FC<Props> = ({ points, winScore, outro }) => {

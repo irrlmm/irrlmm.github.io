@@ -12,7 +12,7 @@ const useSwipeCard = ({
   shouldSwipe?: boolean;
   isRemovable?: boolean;
 }) => {
-  const baseX = (index <= 4 ? index : 4) * -1 * 24;
+  const baseX = (index < 4 ? index : 4) * -1 * 24;
   const baseY = Math.abs(baseX) / 2;
 
   const [isConstrained, setIsConstrained] = useState(true);

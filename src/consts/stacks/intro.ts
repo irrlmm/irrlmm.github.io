@@ -1,3 +1,6 @@
+import RELEASE_NOTES from "../release-notes";
+import { SVG_STAR } from "../svg";
+
 const STACK_INTRO: UI.CardStack<
   | UI.Card.Fact
   | UI.Card.CaseStudy
@@ -10,18 +13,12 @@ const STACK_INTRO: UI.CardStack<
     {
       id: "case-study-test",
       type: "case-study",
-      title: "Instant Mastering: Instant Remake",
+      title: "iMusician: AI Music Mastering Tool",
       link: {
         label: "Read now",
         href: "https://www.behance.net/gallery/223450275/Instant-Mastering-Instant-Remake",
         external: true,
       },
-    },
-    {
-      id: "product-eye",
-      type: "product-eye",
-      title: "Rogi is watching",
-      text: "Fresh user signals received. Page optimization ongoing.",
     },
     {
       id: "punchline",
@@ -35,22 +32,33 @@ const STACK_INTRO: UI.CardStack<
         "[ROGI] Portal opened at /undefined. Find it. Quick!",
       ],
     },
+    {
+      id: "me:adaptive",
+      type: "fact",
+      icon: { path: SVG_STAR },
+      text: "I bring founder energy with scaler speed, fixer grit, and orchestrator flow, shifting as needed",
+    },
+    {
+      id: "product-eye",
+      type: "product-eye",
+      title: "Watchdog mode",
+      text: "This website uses PostHog",
+    },
+    {
+      id: "release-note",
+      type: "release-note",
+      version: RELEASE_NOTES[0].version,
+      title: RELEASE_NOTES[0].title,
+      link: {
+        href: "/changelog",
+        label: "View changelog",
+      },
+    },
 
     // {
     //   id: "f7",
     //   icon: { path: SVG_V60 },
     //   text: "Making filter coffee is a design process — balancing precision, flow, and timing.",
-    // },
-
-    // {
-    //   id: "release-note",
-    //   type: "release-note",
-    //   version: RELEASE_NOTES[0].version,
-    //   title: RELEASE_NOTES[0].title,
-    //   link: {
-    //     href: "/changelog",
-    //     label: "View changelog",
-    //   },
     // },
 
     // {

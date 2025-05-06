@@ -7,14 +7,13 @@ import QuizItem from "./QuizItem";
 import QuizIntro from "../ScreenIntro";
 import QuizOutro from "./QuizOutro";
 
-import type { Quiz } from "../../consts/quizzes";
 import { SVG_KEY } from "../../consts/svg";
 
 import styles from "../CardStack/styles.module.css";
 import trackEvent from "../../helpers/trackEvent";
 
 type Props = {
-  quiz: Quiz;
+  quiz: UI.Quiz.Game;
 };
 
 const QuizStack: React.FC<Props> = ({ quiz }) => {

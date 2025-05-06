@@ -8,16 +8,16 @@ import IntroStack from "../components/IntroStack";
 import Belt from "../components/Belt";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import Paragraph from "../components/Paragraph.astro";
-
-import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
-
-import { SCHEMA_PERSON_FULL } from "../consts/schemas";
+import AnimatedParagraph from "../components/AnimatedParagraph";
+import SectionProjects from "../components/SectionProjects.astro";
 
 import { IRRLMM } from "../consts/meta";
 import STACK_INTRO from "../consts/stacks/intro";
 import STACK_JOURNEY from "../consts/stacks/journey";
-// import JumboCardStack from "../components/JumboCardStack";
+import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
+
+import { SCHEMA_PERSON_FULL } from "../consts/schemas";
+import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -32,44 +32,28 @@ if (!posts) {
   <div class="col">
     <Header />
 
-    <section class="col gap-m">
+    <section class="col gap-s">
       <h1 class="hidden">{IRRLMM.name}</h1>
       <h2 class="hidden">{IRRLMM.title}</h2>
 
-      <Paragraph
-        text={`Hello. I'm ${IRRLMM.name.split(" ")[0]}`}
-        inlineImageSrc={IRRLMM.avatar}
+      <AnimatedParagraph
+        client:load
+        lines={[`Hello. I'm ${IRRLMM.name.split(" ")[0]}.`, ...IRRLMM.bio]}
       />
-
-      {IRRLMM.bio.map((p) => <Paragraph text={p} />)}
     </section>
 
     <section>
-      <IntroStack client:load stack={STACK_INTRO} shuffle={true} />
+      <IntroStack client:load stack={STACK_INTRO} />
     </section>
+
+    <Belt client:load text="The work is mysterious and important" />
+
+    <SectionProjects projects={PROJECTS_HIGHLIGHTS} />
 
     <Belt client:load text="Available for product design roles" />
 
     <Launchpad
       apps={[
-        {
-          label: "My magnum opus",
-          link: { href: "https://app.imusician.pro", external: true },
-          widgetWorkplace: {
-            logo: "companies/imd.png",
-            company: "iMusician",
-            lines: ["7+ yrs", "Senior Product Designer", "ex UI Engineer"],
-          },
-          badge: "bye-bye",
-        },
-        {
-          label: "Latest work",
-          link: {
-            href: "https://www.behance.net/gallery/223450275/Instant-Mastering-Instant-Remake",
-            external: true,
-          },
-          widgetImage: "work/ishigs/cover.png",
-        },
         {
           label: "LinkedIn",
           link: { href: IRRLMM.links.linkedin, external: true },
@@ -100,21 +84,9 @@ if (!posts) {
           link: { href: "/undefined" },
           icon: { path: SVG_KEY },
           badge: "???",
-          pos: "5 / 4",
         },
       ]}
     />
-
-    <!-- <JumboCardStack
-      client:load
-      data={[{ id: "work-1" }, { id: "work-2" }, { id: "work-3" }]}
-    /> -->
-
-    <Belt client:load text="The work is mysterious and important" />
-
-    <section>
-      <IntroStack client:load stack={STACK_JOURNEY} />
-    </section>
 
     <Footer />
   </div>

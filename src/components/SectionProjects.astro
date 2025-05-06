@@ -1,0 +1,45 @@
+---
+import Project from "./Project.astro";
+
+interface Props {
+  projects: {
+    title: string;
+    timeline?: string;
+    role?: string;
+    chips?: string[];
+    lines: string[];
+    imgs: ImageMetadata[];
+    link?: UI.Link;
+  }[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section>
+  <h2 class="hidden">Work</h2>
+
+  <div class="col gap-2xl">
+    {
+      projects.map((p) => (
+        <Project
+          title={p.title}
+          timeline={p.timeline}
+          lines={p.lines}
+          chips={p.chips}
+          imgs={p.imgs}
+          link={p.link}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+</style>

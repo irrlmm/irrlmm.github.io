@@ -8,6 +8,7 @@ type Props = {
     | UI.Card.CaseStudy
     | UI.Card.ProductEye
     | UI.Card.ReleaseNote
+    | UI.Card.Survey
   >;
   shuffle?: boolean;
 };
@@ -21,10 +22,6 @@ function shuffleArray<T>(array: T[]): T[] {
 
 export default ({ stack, shuffle }: Props) => {
   return (
-    <CardStack
-      id={stack.id}
-      cards={shuffle ? shuffleArray(stack.cards) : stack.cards}
-      renderItem={ContentRenderer}
-    />
+    <CardStack id={stack.id} cards={stack.cards} renderItem={ContentRenderer} />
   );
 };

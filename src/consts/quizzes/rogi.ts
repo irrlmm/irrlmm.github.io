@@ -1,6 +1,4 @@
-import type { Quiz } from ".";
-
-const QUIZ_ROGI: Quiz = {
+const QUIZ_ROGI: UI.Quiz.Game = {
   id: "rogi",
   winScore: 5,
   intro: {

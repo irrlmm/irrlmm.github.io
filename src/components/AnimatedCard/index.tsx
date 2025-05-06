@@ -1,11 +1,9 @@
-type GenericCard<T> = UI.Card.Generic & T;
-
 export type GenericCardContent<T> = {
-  card: GenericCard<T>;
   index?: number;
+  card: T;
   isDraggable?: boolean;
-  onClick?: (card: GenericCard<T>, payload: any) => void;
-  trackMeta?: any;
+  onClick?: (payload: any) => void;
+  trackMeta?: object;
 };
 
 import React from "react";
@@ -16,15 +14,15 @@ import useSwipeCard from "../../helpers/useSwipeCard";
 import styles from "./styles.module.css";
 
 type Props<T> = {
-  card: GenericCard<T>;
+  card: T;
   index: number;
   renderItem: React.FC<GenericCardContent<T>>;
   isRemovable?: boolean;
   isDraggable?: boolean;
   shouldSwipe: boolean;
   onSwipe: () => void;
-  onClick?: (card: T, payload: any) => void;
-  trackMeta?: any;
+  onClick?: (payload: any) => void;
+  trackMeta?: object;
 };
 
 const AnimatedCard = <T,>({
@@ -49,7 +47,6 @@ const AnimatedCard = <T,>({
       variants={variants}
       drag={isDraggable && index === 0 ? "x" : false}
       onDrag={isDraggable ? handleDrag : undefined}
-      // dragDirectionLock={true}
       onDragEnd={isDraggable ? handleDragEnd : undefined}
       dragConstraints={
         isConstrained && { left: 0, right: 0, top: 0, bottom: 0 }

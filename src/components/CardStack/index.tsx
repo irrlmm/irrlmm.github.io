@@ -8,7 +8,7 @@ import trackEvent from "../../helpers/trackEvent";
 
 import styles from "./styles.module.css";
 
-type GenericCard<T> = UI.Card.Generic & T;
+type GenericCard<T> = Identifiable & T;
 
 type Props<T> = {
   id: string;

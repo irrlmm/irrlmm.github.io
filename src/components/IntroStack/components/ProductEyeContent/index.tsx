@@ -20,7 +20,7 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
     if (index === 0 && trackMeta.cardTimestamp) {
       interval = setInterval(() => {
         setTimeSpent(Date.now() - trackMeta.cardTimestamp);
-      }, 125); // update every half second
+      }, 125);
     }
 
     return () => {
@@ -47,7 +47,7 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
         <div key={i} className={styles.cornerDecor} />
       ))}
 
-      <BlackMirror pixelBlocks={66} className={styles.blackMirror} />
+      <BlackMirror pixelBlocks={50} className={styles.blackMirror} />
 
       <div className="col gap-s">
         <div className={styles.header}>

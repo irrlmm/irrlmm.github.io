@@ -21,27 +21,14 @@ const Belt = ({ text }: { text: string }) => {
   });
   const velocity = useVelocity(scrollYProgress);
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0", `-400%`]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0", `-100%`]);
   const skewX = useTransform(velocity, [-0.33, 0.33], [15, -15]);
 
   const xSmoothed = useSpring(x, TRANSITION_SPRING);
   const skewXSmoothed = useSpring(skewX, TRANSITION_SPRING);
 
   return (
-    <motion.div
-      role="separator"
-      className={styles.wrapper}
-      variants={{
-        hidden: { opacity: 0, scaleY: 0 },
-        shown: {
-          opacity: 1,
-          scaleY: 1,
-          transition: { delay: 0.33, bounce: 0.1, duration: 0.15 },
-        },
-      }}
-      initial="hidden"
-      animate="shown"
-    >
+    <motion.div ref={target} role="separator" className={styles.wrapper}>
       <motion.div
         className="row gap-xl padding-s"
         style={{ x: xSmoothed, skewX: skewXSmoothed }}

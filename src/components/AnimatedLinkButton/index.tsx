@@ -1,8 +1,8 @@
-import { motion, useDragControls } from "framer-motion";
+import { motion } from "framer-motion";
 
-import Svg from "../../../Svg";
+import Svg from "../Svg";
 
-import { SVG_ARROW } from "../../../../consts/svg";
+import { SVG_ARROW } from "../../consts/svg";
 
 import styles from "./styles.module.css";
 
@@ -26,7 +26,6 @@ const AnimatedLinkButton: React.FC<Props> = ({ label, href, external }) => {
           scale: 0.98,
         },
       }}
-      // onPointerDownCapture={(e) => e.stopPropagation()}
       rel={external ? "noopener noreferrer" : undefined}
       target={external ? "_blank" : undefined}
     >

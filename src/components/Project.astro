@@ -1,0 +1,42 @@
+---
+import { getImage } from "astro:assets";
+
+import ProjectItem from "./ProjectItem";
+
+interface Props {
+  title: string;
+  timeline?: string;
+  chips?: string[];
+  lines: string[];
+  imgs: ImageMetadata[];
+  link?: UI.Link;
+}
+
+const { title, timeline, lines, chips, link, imgs } = Astro.props;
+
+// Preload and optimize all images at build time
+const pictureData = await Promise.all(
+  imgs.map((src) =>
+    getImage({
+      src,
+      format: "webp",
+      width: 2048,
+    })
+  )
+);
+
+// Extract just the optimized URL string from each image object
+const optimizedSrcs = pictureData.map((image) => ({
+  src: image.src,
+}));
+---
+
+<ProjectItem
+  client:load
+  title={title}
+  timeline={timeline}
+  lines={lines}
+  chips={chips}
+  link={link}
+  imgSrcs={optimizedSrcs}
+/>

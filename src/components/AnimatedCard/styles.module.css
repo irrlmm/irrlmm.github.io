@@ -8,6 +8,7 @@
   background-color: var(--background);
   box-shadow: inset 0 0 0 2px var(--on-surface);
   transition: background-color 0.1s var(--bezier), box-shadow 0.1s var(--bezier);
+  overflow: hidden;
   will-change: filter, transform;
 }
 

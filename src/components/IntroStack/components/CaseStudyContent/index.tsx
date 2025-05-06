@@ -1,4 +1,4 @@
-import AnimatedLinkButton from "../AnimatedLinkButton";
+import AnimatedLinkButton from "../../../AnimatedLinkButton";
 
 import styles from "./styles.module.css";
 

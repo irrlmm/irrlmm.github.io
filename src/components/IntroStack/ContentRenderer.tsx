@@ -4,6 +4,7 @@ import ProductEyeContent from "./components/ProductEyeContent";
 import PunchlineContent from "./components/PunchlineContent";
 import ReleaseNoteContent from "./components/ReleaseNoteContent";
 import TextContent from "./components/TextContent";
+import SurveyContent from "./components/SurveyContent";
 
 type Props = {
   index?: number;
@@ -12,6 +13,7 @@ type Props = {
     | UI.Card.Facts
     | UI.Card.CaseStudy
     | UI.Card.ProductEye
+    | UI.Card.Survey
     | UI.Card.ReleaseNote;
   trackMeta?: any;
 };
@@ -35,6 +37,9 @@ const ContentRenderer: React.FC<Props> = (props) => {
 
     case "facts":
       return <PunchlineContent index={props.index} card={props.card} />;
+
+    case "survey":
+      return <SurveyContent card={props.card} />;
 
     case "fact":
     default:
