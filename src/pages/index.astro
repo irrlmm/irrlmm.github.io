@@ -17,7 +17,13 @@ import STACK_JOURNEY from "../consts/stacks/journey";
 import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
 
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
-import { SVG_CV, SVG_DRIBBBLE, SVG_KEY, SVG_MAIL } from "../consts/svg";
+import {
+  SVG_CODE,
+  SVG_CV,
+  SVG_DRIBBBLE,
+  SVG_KEY,
+  SVG_MAIL,
+} from "../consts/svg";
 // import FACTS_JOURNEY from "../consts/stacks/journey";
 
 const posts = (await getCollection("work")).sort(
@@ -79,6 +85,11 @@ if (!posts) {
           label: "Behance",
           link: { href: IRRLMM.links.behance, external: true },
           icon: { text: "Be" },
+        },
+        {
+          label: "Github",
+          link: { href: IRRLMM.links.github, external: true },
+          icon: { path: SVG_CODE },
         },
         {
           label: "CV",

@@ -14,6 +14,7 @@ export const IRRLMM = {
     linkedin: "https://linkedin.com/in/igorlem",
     dribbble: "https://dribbble.com/irrlmm",
     behance: "https://behance.com/irrlmm",
+    github: "https://github.com/irrlmm",
   },
 };
 
