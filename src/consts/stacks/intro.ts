@@ -1,5 +1,5 @@
 import RELEASE_NOTES from "../release-notes";
-import { SVG_STAR } from "../svg";
+import { SVG_GEM } from "../svg";
 
 const STACK_INTRO: UI.CardStack<
   | UI.Card.Fact
@@ -35,14 +35,14 @@ const STACK_INTRO: UI.CardStack<
     {
       id: "me:adaptive",
       type: "fact",
-      icon: { path: SVG_STAR },
-      text: "I bring founder energy with scaler speed, fixer grit, and orchestrator flow, shifting as needed",
+      icon: { path: SVG_GEM },
+      text: "I bring founder energy with scaler speed, fixer grit, and orchestrator flow, shifting as needed.",
     },
     {
       id: "product-eye",
       type: "product-eye",
-      title: "Watchdog mode",
-      text: "This website uses PostHog",
+      title: "Rogi is watching",
+      text: "Fresh user signals received. Page optimization ongoing.",
     },
     {
       id: "release-note",
