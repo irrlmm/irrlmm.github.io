@@ -13,12 +13,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
   {
     version: "1.1",
     title: "Updated intro card stack",
-    text: "Users were skimming too quick, so I dropped boring text content cards and replaced them with more fun and interactive content.",
-  },
-  {
-    version: "1.0.1",
-    title: "Metrics tracking improvements",
-    text: "Card stack refactoring",
+    text: "Users were not reading text cards in the intro, so I replaced them with more interactive content like a latest case study card and fun WebGL animation.",
   },
   {
     version: "1.0",
