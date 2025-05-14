@@ -36,7 +36,7 @@ const AnimatedLinkButton: React.FC<Props> = ({ label, href, external }) => {
           hover: { x: 4, y: -4 },
           pressed: { x: 4, y: -4 },
         }}
-        transition={{ duration: 0.15 }}
+        transition={{ duration: 0.125, bounce: 0 }}
         d={SVG_ARROW}
       />
     </motion.a>

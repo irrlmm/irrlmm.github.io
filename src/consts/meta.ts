@@ -5,8 +5,25 @@ export const IRRLMM = {
   title: "Senior Product Designer with an engineering background",
   bio: [
     "Senior Product Designer with an engineering background.",
-    "I've led. Built. Designed. Coded. Shipped.",
-    "And still obsessed.",
+    // {
+    //   type: "experience-picker",
+    //   text: "I'm",
+    //   actions: [
+    //     {
+    //       id: "building",
+    //       label: "Building",
+    //       objects: [{ id: "design-system", label: "Design systems" }],
+    //     },
+    //     {
+    //       id: "leading",
+    //       label: "Leading",
+    //       objects: [{ id: "saas", label: "SaaS platform design" }],
+    //     },
+    //   ],
+    // },
+    "I'm leading. Building. Designing. Coding. Shipping.", // TODO: make a drop-down options list...
+    "Obsessed with craft and bringing purpose to this chaotic world.",
+    // "I've led feature launches. Built design systems. Designed SaaS platforms. Shipped mobile apps and websites. Even coded.",
   ],
   avatar: "persons/irrlmm.png",
   email: "hello@irrlmm.me",

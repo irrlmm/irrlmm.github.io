@@ -37,6 +37,7 @@ const RefreshButton: React.FC<Props> = ({
         hover: whileHover,
         tap: whileTap,
       }}
+      transition={{ duration: 0.15, bounce: 0 }}
     />
   </motion.button>
 );

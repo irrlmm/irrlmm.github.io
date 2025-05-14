@@ -62,7 +62,7 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
             variants={{
               hidden: {},
               shown: {
-                transition: { delayChildren: 0.25, staggerChildren: 0.03 },
+                transition: { delayChildren: 0.25, staggerChildren: 0.04 },
               },
             }}
             initial="hidden"
@@ -76,7 +76,7 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
                   shown: {
                     opacity: 1,
                     display: "inline",
-                    transition: { duration: 0.15 },
+                    transition: { duration: 0.1 },
                   },
                 }}
               >

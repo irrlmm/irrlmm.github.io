@@ -6,19 +6,19 @@ type ReleaseNote = {
 
 const RELEASE_NOTES: ReleaseNote[] = [
   {
-    version: "1.2.10",
+    version: "1.2.11",
     title: "Major content update",
-    text: "As I checked session recordings, I noticed that people still want to know more about me. So I added the Portfolio section with card stacks. Apart from that, I updated the lead text component by making it motion-enhanced. The bug in Belt is also fixed. Updated CV.",
+    text: "Added a Portfolio section with card stacks since people were curious to learn more. The lead text is now motion-enhanced. Fixed the Belt bug. Updated the CV.",
   },
   {
     version: "1.1",
     title: "Updated intro card stack",
-    text: "Users were not reading text cards in the intro, so I replaced them with more interactive content like a latest case study card and fun WebGL animation.",
+    text: "Users weren't reading the boring intro text cards, so I swapped them for more interactive content: a latest case study card and a WebGL animation.",
   },
   {
     version: "1.0",
     title: "Initial version",
-    text: "Introducing my personal website - made with Astro, React and (Framer) Motion. Built around beautiful card stacks and interactive storytelling. Visual language defined. More fun to come...",
+    text: "Introduced my personal website — made with Astro, React, and (Framer) Motion. Built around beautiful card stacks and interactive storytelling. Visual language defined. More fun to come...",
   },
 ];
 
