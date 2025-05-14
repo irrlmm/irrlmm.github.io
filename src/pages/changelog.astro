@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
 import RELEASE_NOTES from "../consts/release-notes";
+import AnimatedParagraph from "../components/AnimatedParagraph";
 ---
 
 <MainLayout>
@@ -29,7 +30,12 @@ import RELEASE_NOTES from "../consts/release-notes";
                 <h2>{releaseNote.title}</h2>
               </div>
 
-              <p>{releaseNote.text}</p>
+              {/* <p>{releaseNote.text}</p> */}
+              <AnimatedParagraph
+                client:load
+                size="s"
+                lines={[releaseNote.text]}
+              />
             </li>
           ))
         }

@@ -26,7 +26,7 @@ const useSwipeCard = ({
 
   const variants = {
     hidden: {
-      x: baseX + 64,
+      x: 8,
       y: 0,
       filter: `blur(${index > 4 ? 8 : 2 * index}px)`,
       scale: index > 4 ? 0.9 : 1 - index * 0.025,
@@ -44,7 +44,7 @@ const useSwipeCard = ({
       opacity: isRemovable && shouldSwipe ? 0 : 1,
       transition: {
         type: "spring",
-        bounce: 0.15,
+        bounce: 0,
         duration: 0.3,
       },
     },
