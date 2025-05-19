@@ -6,7 +6,7 @@ type ReleaseNote = {
 
 const RELEASE_NOTES: ReleaseNote[] = [
   {
-    version: "1.2.12",
+    version: "1.2.13",
     title: "Major content update",
     text: "Added a Portfolio section with card stacks since people were curious to learn more. The lead text is now motion-enhanced. Fixed the Belt bug. Updated the CV.",
   },
