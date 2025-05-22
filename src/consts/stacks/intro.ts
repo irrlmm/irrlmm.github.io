@@ -25,7 +25,6 @@ const STACK_INTRO: UI.CardStack<
       type: "facts",
       title: "Daily Wisdom",
       lines: [
-        "A designer's ego is even more fragile than the product",
         "Maximum impact can be achieved with minimum resources",
         "Perfect timing beats perfect polish",
         "Loops should never feel like traps",
