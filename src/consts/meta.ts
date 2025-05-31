@@ -2,9 +2,9 @@ export const SITE_URL = "https://irrlmm.me";
 
 export const IRRLMM = {
   name: "Igor Lemeshkin",
-  title: "Senior Product Designer with an engineering background",
+  title: "Product Designer and Creative Developer",
   bio: [
-    "Senior Product Designer with an engineering background.",
+    "I'm a product designer and creative developer.",
     // {
     //   type: "experience-picker",
     //   text: "I'm",
@@ -36,9 +36,9 @@ export const IRRLMM = {
 };
 
 export const META = {
-  title: `${IRRLMM.name} | Product Designer`,
+  title: `${IRRLMM.name}`,
   description:
-    "Senior Product Designer with an engineering background building novel digital experiences. Remote-ready for Europe, US, and global tech teams",
+    "Product designer and creative developer building novel digital experiences. Remote-ready for Europe, US, and global tech teams",
   ogImage: "/og-cover.png",
   favicon: "/favicon.svg",
   appleTouchIcon: "/apple-touch-icon.png",
