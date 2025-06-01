@@ -1,0 +1,23 @@
+.card {
+  /* position: sticky; */
+  /* bottom: var(--unit-l); */
+  width: 95%;
+  aspect-ratio: 4/3;
+  will-change: filter, opacity, transform;
+  background-color: var(--background);
+  border: solid 2px var(--on-surface);
+  border-radius: var(--unit-l);
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    aspect-ratio: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .card {
+    aspect-ratio: 3/4;
+  }
+}

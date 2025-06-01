@@ -1,20 +1,10 @@
 ---
-import { getCollection } from "astro:content";
-
-import MainLayout from "../layouts/MainLayout.astro";
-
 import Launchpad from "../components/Launchpad.astro";
-import IntroStack from "../components/IntroStack";
-import Belt from "../components/Belt";
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import AnimatedParagraph from "../components/AnimatedParagraph";
-import SectionProjects from "../components/SectionProjects.astro";
 
 import { IRRLMM } from "../consts/meta";
-import STACK_INTRO from "../consts/stacks/intro";
-import STACK_JOURNEY from "../consts/stacks/journey";
-import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
+
+import myImage from "../assets/persons/irrlmm.png";
 
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import {
@@ -24,22 +14,27 @@ import {
   SVG_KEY,
   SVG_MAIL,
 } from "../consts/svg";
+import NewLayout from "../layouts/NewLayout.astro";
+import Stack from "../components/Stack";
+import { getImage } from "astro:assets";
 // import FACTS_JOURNEY from "../consts/stacks/journey";
 
-const posts = (await getCollection("work")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+const imageSrc = await Promise.resolve(
+  getImage({
+    src: myImage,
+    format: "webp",
+    quality: 99,
+    width: 2566,
+  })
 );
-
-if (!posts) {
-  throw Error("no posts!");
-}
 ---
 
-<MainLayout schema={SCHEMA_PERSON_FULL}>
-  <div class="col">
-    <Header />
+<NewLayout schema={SCHEMA_PERSON_FULL}>
+  <!-- <div class="col"> -->
 
-    <section class="col gap-s">
+  <Stack client:load src={imageSrc.src} />
+
+  <!-- <section class="col gap-s">
       <h1 class="hidden">{IRRLMM.name}</h1>
       <h2 class="hidden">{IRRLMM.title}</h2>
 
@@ -47,91 +42,92 @@ if (!posts) {
         client:load
         lines={[`Hello. I'm ${IRRLMM.name.split(" ")[0]}.`, ...IRRLMM.bio]}
       />
-    </section>
+    </section> -->
 
-    <section>
+  <!-- <section>
       <IntroStack client:load stack={STACK_INTRO} />
-    </section>
+    </section> -->
 
-    <Belt client:load text="The work is mysterious and important" />
+  <!-- <Belt client:load text="The work is mysterious and important" /> -->
 
-    <SectionProjects projects={PROJECTS_HIGHLIGHTS} />
+  <!-- <SectionProjects projects={PROJECTS_HIGHLIGHTS} /> -->
 
-    <Belt client:load text="Available for product design roles" />
+  <!-- <Belt client:load text="Available for product design roles" /> -->
 
-    <!-- <section>
+  <!-- <section>
       <IntroStack client:load stack={FACTS_JOURNEY} />
     </section> -->
 
-    <Launchpad
-      apps={[
-        // {
-        //   label: "Experience",
-        //   widget: {
-        //     value: "8 yrs",
-        //   },
-        // },
-        {
-          label: "LinkedIn",
-          link: { href: IRRLMM.links.linkedin, external: true },
-          icon: { text: "in" },
-        },
-        {
-          label: "Dribbble",
-          link: { href: IRRLMM.links.dribbble, external: true },
-          icon: { path: SVG_DRIBBBLE },
-        },
-        {
-          label: "Behance",
-          link: { href: IRRLMM.links.behance, external: true },
-          icon: { text: "Be" },
-        },
-        {
-          label: "Github",
-          link: { href: IRRLMM.links.github, external: true },
-          icon: { path: SVG_CODE },
-        },
-        {
-          label: "CV",
-          link: { href: "/docs/Igor Lemeshkin CV.pdf", external: true },
-          icon: { path: SVG_CV },
-        },
-        {
-          label: "Contact",
-          link: { href: `mailto:${IRRLMM.email}` },
-          icon: { path: SVG_MAIL },
-        },
-        {
-          label: "Rogi",
-          link: { href: "/undefined" },
-          icon: { path: SVG_KEY },
-          badge: "???",
-        },
-      ]}
-    />
+  <Launchpad
+    apps={[
+      // {
+      //   label: "Experience",
+      //   widget: {
+      //     value: "8 yrs",
+      //   },
+      // },
+      {
+        label: "LinkedIn",
+        link: { href: IRRLMM.links.linkedin, external: true },
+        icon: { text: "in" },
+      },
+      {
+        label: "Dribbble",
+        link: { href: IRRLMM.links.dribbble, external: true },
+        icon: { path: SVG_DRIBBBLE },
+      },
+      {
+        label: "Behance",
+        link: { href: IRRLMM.links.behance, external: true },
+        icon: { text: "Be" },
+      },
+      {
+        label: "Github",
+        link: { href: IRRLMM.links.github, external: true },
+        icon: { path: SVG_CODE },
+      },
+      {
+        label: "CV",
+        link: { href: "/docs/Igor Lemeshkin CV.pdf", external: true },
+        icon: { path: SVG_CV },
+      },
+      {
+        label: "Contact",
+        link: { href: `mailto:${IRRLMM.email}` },
+        icon: { path: SVG_MAIL },
+      },
+      {
+        label: "Rogi",
+        link: { href: "/undefined" },
+        icon: { path: SVG_KEY },
+        badge: "???",
+      },
+    ]}
+  />
 
-    <Footer />
-  </div>
-</MainLayout>
+  <Footer />
+  <!-- </div> -->
+  <!-- </div> -->
+</NewLayout>
 
 <style>
-  div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: var(--unit-2xl) 0;
-    gap: var(--unit-2xl);
-  }
+  /* div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: var(--unit-2xl) 0;
+      gap: var(--unit-2xl);
+    } */
 
-  p {
-    vertical-align: middle;
-  }
+  /* p {
+      vertical-align: middle;
+    } */
 
-  section {
-    display: flex;
-    width: 100%;
-    max-width: calc(var(--unit-m) * 22);
-    padding: 0 var(--unit-m);
-  }
+  /* section {
+      display: flex;
+      width: 100%;
+      max-width: calc(var(--unit-m) * 22);
+      padding: 0 var(--unit-m);
+    } */
 </style>

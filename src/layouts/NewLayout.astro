@@ -1,0 +1,46 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import type { WithContext, Person, Article, CreativeWork } from "schema-dts";
+import Header from "../components/Header.astro";
+
+interface Props {
+  schema?: WithContext<Person | Article | CreativeWork>;
+}
+
+const { schema } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="Title" description="Description" />
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--unit-2xl) var(--unit-m);
+  }
+
+  main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+</style>

@@ -3,7 +3,7 @@
   src: url("/fonts/mono.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
@@ -24,8 +24,8 @@
 
   font-family: "mono", monospace;
   font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  line-height: 1;
+  /* letter-spacing: 0.01em; */
 
   -webkit-font-smoothing: antialiased;
   font-variant-ligatures: none;

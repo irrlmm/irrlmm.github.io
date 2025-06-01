@@ -28,7 +28,11 @@ const { year = new Date(Date.now()).getFullYear(), name = IRRLMM.name } =
   <div class="row justify-between align-center">
     <Monogram />
 
-    <span class="font-size-s">{name} © {year}</span>
+    <div class="col gap-s align-end font-size-s">
+      <span>{name} © {year}</span>
+
+      <a>v2.0.1</a>
+    </div>
   </div>
 </footer>
 
@@ -39,7 +43,6 @@ const { year = new Date(Date.now()).getFullYear(), name = IRRLMM.name } =
     gap: var(--unit-2xl);
     width: 100%;
     max-width: calc(var(--unit-m) * 22);
-    padding: 0 var(--unit-m);
   }
 
   svg {

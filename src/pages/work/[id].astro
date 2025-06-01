@@ -1,10 +1,12 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import MainLayout from "../../layouts/MainLayout.astro";
+import NewLayout from "../../layouts/NewLayout.astro";
 import Footer from "../../components/Footer.astro";
-import { Image } from "astro:assets";
-import getImage from "../../helpers/getImageMetadata";
+// import { Image } from "astro:assets";
+// import getImage from "../../helpers/getImageMetadata";
 import Header from "../../components/Header.astro";
+import { render } from "astro:content";
+import moment from "moment";
 
 export async function getStaticPaths() {
   const posts = await getCollection("work");
@@ -17,21 +19,27 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"work">;
 
 const post = Astro.props;
+
+const { Content } = await render(post);
 ---
 
-<MainLayout>
+<NewLayout>
   <article>
     <Header />
 
-    <!-- <Image
-      src={getImage(post.data.coverImage)()}
-      widths={[1280, 2560]}
-      alt={post.data.title}
-      layout="full-width"
-    /> -->
+    <section>
+      <div id="chip">
+        {post.data.type} • {moment(post.data.date).format("YYYY")}
+      </div>
+      <h1>{post.data.title}</h1>
+      <!-- <p>{post.data.}</p> -->
+    </section>
+
+    <Content />
+
     <Footer />
   </article>
-</MainLayout>
+</NewLayout>
 
 <style>
   article {
@@ -43,15 +51,27 @@ const post = Astro.props;
     padding: var(--unit-2xl) 0;
   }
 
-  .image {
-    animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
-  }
-
-  .wrapper {
+  section {
     display: flex;
     flex-direction: column;
-    gap: 64px;
     width: 100%;
-    max-width: 640px;
+    max-width: calc(var(--unit-m) * 22);
+    gap: var(--unit-m);
+    align-items: flex-start;
+  }
+
+  section #chip {
+    display: flex;
+    background-color: var(--on-surface);
+    color: var(--background);
+    font-size: var(--unit-s);
+    padding: var(--unit-3xs);
+    border-radius: var(--unit-3xs);
+    text-transform: capitalize;
+  }
+
+  section h1 {
+    font-size: var(--unit-xl);
+    line-height: 1;
   }
 </style>
