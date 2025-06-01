@@ -17,6 +17,7 @@ import {
 import NewLayout from "../layouts/NewLayout.astro";
 import Stack from "../components/Stack";
 import { getImage } from "astro:assets";
+import RELEASE_NOTES from "../consts/release-notes";
 // import FACTS_JOURNEY from "../consts/stacks/journey";
 
 const imageSrc = await Promise.resolve(
@@ -101,6 +102,11 @@ const imageSrc = await Promise.resolve(
         link: { href: "/undefined" },
         icon: { path: SVG_KEY },
         badge: "???",
+      },
+      {
+        label: "Changelog",
+        link: { href: "/changelog" },
+        icon: { text: `v${RELEASE_NOTES[0].version.substring(0, 3)}` },
       },
     ]}
   />

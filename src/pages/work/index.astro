@@ -12,27 +12,23 @@ console.log(allPosts);
 ---
 
 <NewLayout>
-  <article class="col">
-    <Header />
+  <section>
+    <h1>Archive</h1>
+  </section>
 
-    <section>
-      <h1>Archive</h1>
-    </section>
+  <section>
+    <ul class="col gap-2xl">
+      {
+        allPosts.map((post, i) => (
+          <li class="col gap-s">
+            {/* <div class="col gap-3xs">{post.frontmatter.title}</div> */}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
-    <section>
-      <ul class="col gap-2xl">
-        {
-          allPosts.map((post, i) => (
-            <li class="col gap-s">
-              {/* <div class="col gap-3xs">{post.frontmatter.title}</div> */}
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <Footer />
-  </article>
+  <Footer />
 </NewLayout>
 
 <style>

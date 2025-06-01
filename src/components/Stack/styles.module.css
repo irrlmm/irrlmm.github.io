@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   max-width: calc(var(--unit-m) * 22);
-  gap: var(--unit-xl);
+  gap: var(--unit-l);
   margin-top: var(--unit-2xl);
 }
 
@@ -34,4 +34,19 @@
   height: 100%;
   top: 0;
   left: 0;
+}
+
+.punchlineWrapper {
+  padding: var(--unit-l);
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.punchlineWrapper p {
+  /* background-color: var(--on-surface); */
+  flex: 1;
+  border-radius: var(--unit-s);
+  padding: var(--unit-m);
+  /* color: var(--background); */
 }

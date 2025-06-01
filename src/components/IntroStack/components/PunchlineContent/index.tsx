@@ -1,4 +1,4 @@
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import styles from "./styles.module.css";
@@ -8,22 +8,16 @@ type Props = {
   card: UI.Card.Facts;
 };
 
-const PunchlineContent: React.FC<Props> = ({ index, card }) => {
+const PunchlineContent: React.FC<Props> = ({ card }) => {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
-
-  useEffect(() => {
-    if (index === 0) {
-      setNextLineIndex();
-    }
-  }, [index]);
 
   useEffect(() => {
     if (isRefreshing) {
       setTimeout(() => {
         setNextLineIndex();
         setIsRefreshing(false);
-      }, 500);
+      }, 100);
     }
   }, [isRefreshing]);
 
@@ -44,25 +38,25 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
 
   return (
     <div className={styles.card}>
-      <h3>{card.title}</h3>
+      {/* <h3>{card.title}</h3> */}
 
       <p className={styles.text}>
         {isRefreshing && (
           <span style={{ display: "block" }}>
             {"> "}
-            <span className="color-secondary">wisdom --next</span>
+            <span className="color-secondary">devdesc --next</span>
           </span>
         )}
 
         {"> "}
 
-        {index === 0 && !isRefreshing && (
+        {!isRefreshing && (
           <motion.span
             key={currentLineIndex}
             variants={{
               hidden: {},
               shown: {
-                transition: { delayChildren: 0.25, staggerChildren: 0.04 },
+                transition: { delayChildren: 0.1, staggerChildren: 0.04 },
               },
             }}
             initial="hidden"
@@ -104,7 +98,7 @@ const PunchlineContent: React.FC<Props> = ({ index, card }) => {
         onClick={refreshWisdom}
         whileTap={{ scale: 0.98 }}
       >
-        New wisdom
+        Next
       </motion.button>
     </div>
   );

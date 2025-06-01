@@ -28,18 +28,18 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
     };
   }, [index, trackMeta]);
 
-  const timeElapsed = timeSpent ? Number((timeSpent / 1000).toFixed(2)) : null;
+  // const timeElapsed = timeSpent ? Number((timeSpent / 1000).toFixed(2)) : null;
 
-  const eventDetails = [
-    { label: "stack_started", value: trackMeta.started.toString() },
-    { label: "times_completed", value: trackMeta.completeCount.toString() },
-    {
-      label: "card_time",
-      value: `${
-        timeElapsed === null ? "--" : timeElapsed > 10 ? "> 10" : timeElapsed
-      }s`,
-    },
-  ];
+  // const eventDetails = [
+  //   { label: "stack_started", value: trackMeta.started.toString() },
+  //   { label: "times_completed", value: trackMeta.completeCount.toString() },
+  //   {
+  //     label: "card_time",
+  //     value: `${
+  //       timeElapsed === null ? "--" : timeElapsed > 10 ? "> 10" : timeElapsed
+  //     }s`,
+  //   },
+  // ];
 
   return (
     <div className={styles.productEyeCard}>
@@ -70,12 +70,12 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
 
       {trackMeta && (
         <ul className="col gap-xs">
-          {eventDetails.map(({ label, value }) => (
+          {/* {eventDetails.map(({ label, value }) => (
             <li key={label} className="row gap-xs">
               <span className="flex-1">{label}</span>
               <span className="flex-1">{value}</span>
             </li>
-          ))}
+          ))} */}
         </ul>
       )}
     </div>

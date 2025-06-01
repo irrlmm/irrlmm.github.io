@@ -11,14 +11,10 @@ import { useRef } from "react";
 import styles from "./styles.module.css";
 
 type Props = {
-  src?: string;
-  index: number;
-  zIndex: number;
-  rotation: number;
   content: React.JSX.Element;
 };
 
-const Card: React.FC<Props> = ({ src, rotation, content: Content }) => {
+const Card: React.FC<Props> = ({ content: Content }) => {
   const target = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -28,8 +24,9 @@ const Card: React.FC<Props> = ({ src, rotation, content: Content }) => {
 
   const rotate = useTransform(
     scrollYProgress,
-    [0, 1],
-    [rotation, rotation * -1]
+    [0, 0.3, 0.7, 1],
+    [5, 0, 0, -1],
+    { clamp: false }
   );
 
   const rotateSpring = useSpring(rotate, { bounce: 0.05, visualDuration: 0.2 });
@@ -69,15 +66,6 @@ const Card: React.FC<Props> = ({ src, rotation, content: Content }) => {
       }}
       transition={{ type: "spring", visualDuration: 0.33, bounce: 0.2 }}
     >
-      {src && (
-        <img
-          className={styles.image}
-          src={src}
-          loading="lazy"
-          decoding="async"
-          alt=""
-        />
-      )}
       {Content}
     </motion.div>
   );
