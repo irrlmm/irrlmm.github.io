@@ -2,6 +2,7 @@
   width: 100%;
   background-color: var(--on-surface);
   overflow: hidden;
+  margin: var(--unit-2xl) 0;
 }
 
 .wrapper span {

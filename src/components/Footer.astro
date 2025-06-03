@@ -1,6 +1,7 @@
 ---
 import { IRRLMM } from "../consts/meta";
 import Monogram from "./Monogram.astro";
+import LineSeparator from "./LineSeparator.astro";
 
 interface Props {
   year?: number;
@@ -12,18 +13,7 @@ const { year = new Date(Date.now()).getFullYear(), name = IRRLMM.name } =
 ---
 
 <footer>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="8"
-    height="8"
-    viewBox="0 0 8 8"
-    fill="none"
-    stroke="var(--on-surface)"
-    stroke-width={2}
-    preserveAspectRatio="none"
-  >
-    <line x1="0" y1="4" x2="8" y2="4"></line>
-  </svg>
+  <LineSeparator />
 
   <div class="row justify-between align-center">
     <Monogram />
@@ -38,10 +28,8 @@ const { year = new Date(Date.now()).getFullYear(), name = IRRLMM.name } =
     flex-direction: column;
     gap: var(--unit-2xl);
     width: 100%;
-    max-width: calc(var(--unit-m) * 22);
-  }
-
-  svg {
-    width: 100%;
+    padding: 0 var(--unit-l);
+    max-width: calc(var(--unit-m) * 22 + var(--unit-l) * 2);
+    margin-top: var(--unit-2xl);
   }
 </style>

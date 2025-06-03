@@ -77,8 +77,8 @@ const { apps } = Astro.props;
     flex: 1;
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(4, calc(var(--unit-m) * 3.25));
-    grid-auto-rows: calc(var(--unit-m) * 3.25);
+    grid-template-columns: repeat(4, calc(var(--unit-m) * 3.5));
+    grid-auto-rows: calc(var(--unit-m) * 3.5);
     gap: calc(var(--unit-m) * 1.5);
   }
 
@@ -135,7 +135,7 @@ const { apps } = Astro.props;
 
   li:not([data-widget="true"]) > a {
     aspect-ratio: 1/1;
-    border-radius: var(--unit-s);
+    border-radius: 25%;
   }
   li[data-widget="true"] > a {
     border-radius: var(--unit-m);

@@ -6,6 +6,11 @@ type ReleaseNote = {
 
 const RELEASE_NOTES: ReleaseNote[] = [
   {
+    version: "2.0a",
+    title: "First big redesign",
+    text: "From bold and weird to boutique chic. Added case studies template and invested into case studies. I am also planning to post articles and share my vision.",
+  },
+  {
     version: "1.2.13",
     title: "Major content update",
     text: "Added a Portfolio section with card stacks since people were curious to learn more. The lead text is now motion-enhanced. Fixed the Belt bug. Updated the CV.",

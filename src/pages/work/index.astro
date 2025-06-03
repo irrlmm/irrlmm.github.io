@@ -1,50 +1,30 @@
 ---
 import NewLayout from "../../layouts/NewLayout.astro";
-
-import Footer from "../../components/Footer.astro";
-import Header from "../../components/Header.astro";
-
-const allPosts = Object.values(
-  import.meta.glob("./content/*.mdx", { eager: true })
-);
-
-console.log(allPosts);
+import WorkList from "../../components/WorkList.astro";
 ---
 
 <NewLayout>
-  <section>
-    <h1>Archive</h1>
-  </section>
+  <h1>Work archive</h1>
 
-  <section>
-    <ul class="col gap-2xl">
-      {
-        allPosts.map((post, i) => (
-          <li class="col gap-s">
-            {/* <div class="col gap-3xs">{post.frontmatter.title}</div> */}
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <Footer />
+  <WorkList />
 </NewLayout>
 
 <style>
-  article {
+  h1 {
+    width: 100%;
+    max-width: calc(var(--unit-m) * 22 + var(--unit-l) * 2);
+    padding: 0 var(--unit-l);
+    font-size: var(--unit-l);
+    margin-bottom: var(--unit-xl);
+  }
+
+  section {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: var(--unit-2xl) 0;
-    gap: var(--unit-2xl);
   }
 
   h1 {
     font-size: var(--unit-l);
-    line-height: 1;
-    animation: appear 0.15s var(--bezier) 0.2s both;
   }
 
   section {
@@ -55,20 +35,6 @@ console.log(allPosts);
   }
 
   ul {
-  }
-
-  li {
-    position: relative;
-    animation: appear 0.15s var(--bezier) 0.3s both;
-  }
-  li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  li:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-  li:nth-child(n + 4) {
-    animation-delay: 0.45s;
   }
 
   h2 {

@@ -44,7 +44,7 @@ const PunchlineContent: React.FC<Props> = ({ card }) => {
         {isRefreshing && (
           <span style={{ display: "block" }}>
             {"> "}
-            <span className="color-secondary">devdesc --next</span>
+            <span className="color-secondary">--next</span>
           </span>
         )}
 

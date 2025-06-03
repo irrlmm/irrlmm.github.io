@@ -1,50 +1,43 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
 import RELEASE_NOTES from "../consts/release-notes";
 import AnimatedParagraph from "../components/AnimatedParagraph";
+import NewLayout from "../layouts/NewLayout.astro";
 ---
 
-<MainLayout>
-  <article class="col">
-    <Header />
+<NewLayout>
+  <section>
+    <h1>Changelog</h1>
+  </section>
 
-    <section>
-      <h1>Changelog</h1>
-    </section>
+  <section>
+    <ul class="col gap-2xl">
+      {
+        RELEASE_NOTES.map((releaseNote, i) => (
+          <li class="col gap-s">
+            <div class="col gap-3xs">
+              <span>
+                v{releaseNote.version}
+                {i === 0 ? " • Current" : null}
+              </span>
 
-    <section>
-      <ul class="col gap-2xl">
-        {
-          RELEASE_NOTES.map((releaseNote, i) => (
-            <li class="col gap-s">
-              <div class="col gap-3xs">
-                <span>
-                  v{releaseNote.version}
-                  {i === 0 ? " • Current" : null}
-                </span>
+              <h2>{releaseNote.title}</h2>
+            </div>
 
-                <h2>{releaseNote.title}</h2>
-              </div>
-
-              {/* <p>{releaseNote.text}</p> */}
-              <AnimatedParagraph
-                client:load
-                size="s"
-                lines={[releaseNote.text]}
-              />
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <Footer />
-  </article>
-</MainLayout>
+            {/* <p>{releaseNote.text}</p> */}
+            <AnimatedParagraph
+              client:load
+              size="s"
+              lines={[releaseNote.text]}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</NewLayout>
 
 <style>
   article {

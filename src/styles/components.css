@@ -11,11 +11,10 @@ ul {
 a {
   display: inline-flex;
   align-self: flex-start;
-  text-underline-offset: 8px;
-  text-decoration-thickness: 2px;
-  transition: color 0.1s var(--bezier), background-color 0.1s var(--bezier);
+  text-decoration: none;
 }
 
+/* 
 .card {
   position: relative;
   background-color: var(--background);
@@ -38,4 +37,4 @@ button {
 button:hover {
   background-color: var(--on-surface);
   color: var(--background);
-}
+} */

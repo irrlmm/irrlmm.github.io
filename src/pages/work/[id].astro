@@ -4,7 +4,6 @@ import NewLayout from "../../layouts/NewLayout.astro";
 import Footer from "../../components/Footer.astro";
 // import { Image } from "astro:assets";
 // import getImage from "../../helpers/getImageMetadata";
-import Header from "../../components/Header.astro";
 import { render } from "astro:content";
 import moment from "moment";
 
@@ -25,19 +24,14 @@ const { Content } = await render(post);
 
 <NewLayout>
   <article>
-    <Header />
-
     <section>
       <div id="chip">
         {post.data.type} • {moment(post.data.date).format("YYYY")}
       </div>
       <h1>{post.data.title}</h1>
-      <!-- <p>{post.data.}</p> -->
     </section>
 
     <Content />
-
-    <Footer />
   </article>
 </NewLayout>
 
@@ -48,7 +42,6 @@ const { Content } = await render(post);
     align-items: center;
     flex-direction: column;
     gap: var(--unit-2xl);
-    padding: var(--unit-2xl) 0;
   }
 
   section {

@@ -1,0 +1,73 @@
+---
+import LineSeparator from "./LineSeparator.astro";
+import WorkItem from "./WorkItem.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 0 } = Astro.props;
+
+const posts = await getCollection("work");
+
+const sortedPosts = posts.sort((a, b) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+const displayedPosts = limit ? sortedPosts.slice(0, limit) : sortedPosts;
+---
+
+<section class="col gap-xl">
+  <div class="row gap-m font-size-s color-secondary">
+    <span class="flex-1">Project</span>
+    <span>Year</span>
+  </div>
+
+  <ul class="col gap-m">
+    {
+      displayedPosts.map(({ id, data: { title, description, date } }) => (
+        <WorkItem
+          title={title}
+          description={description}
+          date={date}
+          slug={id}
+        />
+      ))
+    }
+  </ul>
+
+  {limit !== 0 && <LineSeparator />}
+
+  {
+    limit !== 0 && (
+      <a href="/work">
+        <span>View all projects</span> <span>{`(${sortedPosts.length})`}</span>
+      </a>
+    )
+  }
+</section>
+
+<style>
+  section {
+    width: 100%;
+    max-width: calc(var(--unit-m) * 22 + var(--unit-l) * 2);
+    padding: 0 var(--unit-l);
+  }
+
+  a {
+    gap: var(--unit-xs);
+    border: solid 2px var(--on-surface);
+    height: var(--unit-xl);
+    align-items: center;
+    padding: 0 var(--unit-m);
+    border-radius: var(--unit-m);
+    /* font-size: var(--unit-s); */
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a span:nth-of-type(2) {
+    opacity: 0.5;
+  }
+</style>

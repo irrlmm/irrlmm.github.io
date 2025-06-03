@@ -18,55 +18,31 @@ import NewLayout from "../layouts/NewLayout.astro";
 import Stack from "../components/Stack";
 import { getImage } from "astro:assets";
 import RELEASE_NOTES from "../consts/release-notes";
-// import FACTS_JOURNEY from "../consts/stacks/journey";
+import WorkList from "../components/WorkList.astro";
+import Belt from "../components/Belt";
+import { getCollection } from "astro:content";
 
 const imageSrc = await Promise.resolve(
   getImage({
     src: myImage,
     format: "webp",
-    quality: 99,
-    width: 2566,
+    quality: 95,
+    width: 1440,
   })
 );
 ---
 
 <NewLayout schema={SCHEMA_PERSON_FULL}>
-  <!-- <div class="col"> -->
-
   <Stack client:load src={imageSrc.src} />
 
-  <!-- <section class="col gap-s">
-      <h1 class="hidden">{IRRLMM.name}</h1>
-      <h2 class="hidden">{IRRLMM.title}</h2>
+  <h2>Recent work</h2>
 
-      <AnimatedParagraph
-        client:load
-        lines={[`Hello. I'm ${IRRLMM.name.split(" ")[0]}.`, ...IRRLMM.bio]}
-      />
-    </section> -->
+  <WorkList limit={3} />
 
-  <!-- <section>
-      <IntroStack client:load stack={STACK_INTRO} />
-    </section> -->
-
-  <!-- <Belt client:load text="The work is mysterious and important" /> -->
-
-  <!-- <SectionProjects projects={PROJECTS_HIGHLIGHTS} /> -->
-
-  <!-- <Belt client:load text="Available for product design roles" /> -->
-
-  <!-- <section>
-      <IntroStack client:load stack={FACTS_JOURNEY} />
-    </section> -->
+  <Belt client:load text="Open for remote work opportutities" />
 
   <Launchpad
     apps={[
-      // {
-      //   label: "Experience",
-      //   widget: {
-      //     value: "8 yrs",
-      //   },
-      // },
       {
         label: "LinkedIn",
         link: { href: IRRLMM.links.linkedin, external: true },
@@ -93,7 +69,7 @@ const imageSrc = await Promise.resolve(
         icon: { path: SVG_CV },
       },
       {
-        label: "Contact",
+        label: "Email",
         link: { href: `mailto:${IRRLMM.email}` },
         icon: { path: SVG_MAIL },
       },
@@ -110,30 +86,15 @@ const imageSrc = await Promise.resolve(
       },
     ]}
   />
-
-  <Footer />
-  <!-- </div> -->
-  <!-- </div> -->
 </NewLayout>
 
 <style>
-  /* div {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--unit-2xl) 0;
-      gap: var(--unit-2xl);
-    } */
-
-  /* p {
-      vertical-align: middle;
-    } */
-
-  /* section {
-      display: flex;
-      width: 100%;
-      max-width: calc(var(--unit-m) * 22);
-      padding: 0 var(--unit-m);
-    } */
+  h2 {
+    width: 100%;
+    max-width: calc(var(--unit-m) * 22 + var(--unit-l) * 2);
+    padding: 0 var(--unit-l);
+    font-size: var(--unit-l);
+    margin-top: var(--unit-2xl);
+    margin-bottom: var(--unit-xl);
+  }
 </style>

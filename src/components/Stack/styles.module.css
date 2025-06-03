@@ -3,37 +3,10 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: calc(var(--unit-m) * 22);
+  max-width: calc((var(--unit-m) * 22) + (var(--unit-m) * 2));
+  padding: 0 var(--unit-m);
   gap: var(--unit-l);
-  margin-top: var(--unit-2xl);
-}
-
-.introWrapper {
-  position: relative;
-  padding: var(--unit-l);
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.introWrapper p {
-  background-color: var(--black-100);
-  color: var(--white-100);
-  padding: var(--unit-3xs);
-  border-radius: var(--unit-3xs);
-}
-
-.image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  perspective: 4200px;
 }
 
 .punchlineWrapper {
@@ -44,9 +17,7 @@
 }
 
 .punchlineWrapper p {
-  /* background-color: var(--on-surface); */
   flex: 1;
   border-radius: var(--unit-s);
   padding: var(--unit-m);
-  /* color: var(--background); */
 }
