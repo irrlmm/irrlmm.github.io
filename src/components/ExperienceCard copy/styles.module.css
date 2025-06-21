@@ -5,12 +5,6 @@
   padding: var(--unit-l);
 }
 
-.competencesHeader {
-  display: flex;
-  flex-direction: column;
-  gap: var(--unit-xs);
-}
-
 .separator {
   height: 2px;
   background-color: var(--on-surface);

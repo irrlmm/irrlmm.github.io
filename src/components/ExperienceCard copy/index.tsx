@@ -12,21 +12,25 @@ import { useRef } from "react";
 
 type Props = {};
 
-const COMPETENCES = [
+const EXPERIENCE = [
   {
-    icon: SVG_DESIGN_SYSTEM,
-    label: "Design systems",
-    description: "A key to ensure rapid product scalability",
+    year: "2017",
+    company: "Uniyo",
+    position: "Founding Mobile Engineer",
   },
   {
-    icon: SVG_UI,
-    label: "Handcrafted UIs",
-    description: "Sexy and usable",
+    year: "2018",
+    company: "iMusician",
+    position: "UI Engineer",
   },
-  { icon: SVG_GOAL_MATCH, label: "Goals", description: "Sexy and usable" },
+  {
+    year: "2020",
+    company: "iMusician",
+    position: "Senior Product Designer",
+  },
 ];
 
-const CompetencesCard: React.FC<Props> = ({}) => {
+const ExperienceCard: React.FC<Props> = ({}) => {
   const target = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -45,18 +49,15 @@ const CompetencesCard: React.FC<Props> = ({}) => {
         className={styles.competencesCard}
         style={{ y, scale }}
       >
-        <div className={styles.competencesHeader}>
-          <h2>My competences</h2>
-
-          <div className={styles.separator} />
-        </div>
-
         <ul className={styles.competencesList}>
-          {COMPETENCES.map((c) => (
-            <li className={styles.competenceItem} key={c.label}>
-              <h3 className={styles.competenceYear}>{c.label}</h3>
+          {EXPERIENCE.map((c) => (
+            <li className={styles.competenceItem} key={c.year}>
+              <h3 className={styles.competenceYear}>{c.year}</h3>
 
-              <p>{c.description}</p>
+              <p>
+                {c.position}{" "}
+                <span className="color-secondary">@ {c.company}</span>
+              </p>
             </li>
           ))}
         </ul>
@@ -68,4 +69,4 @@ const CompetencesCard: React.FC<Props> = ({}) => {
   );
 };
 
-export default CompetencesCard;
+export default ExperienceCard;

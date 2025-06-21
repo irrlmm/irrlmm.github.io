@@ -1,9 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import NewLayout from "../../layouts/NewLayout.astro";
-import Footer from "../../components/Footer.astro";
-// import { Image } from "astro:assets";
-// import getImage from "../../helpers/getImageMetadata";
+import { Image } from "astro:assets";
+import getImageMetadata from "../../helpers/getImageMetadata";
 import { render } from "astro:content";
 import moment from "moment";
 
@@ -26,10 +25,67 @@ const { Content } = await render(post);
   <article>
     <section>
       <div id="chip">
-        {post.data.type} • {moment(post.data.date).format("YYYY")}
+        Case study • {moment(post.data.date).format("YYYY")}
       </div>
       <h1>{post.data.title}</h1>
+      <p>
+        {
+          post.data.longDescription.map((l, i) => (
+            <span>
+              {l}
+              {i < post.data.longDescription.length - 1 && (
+                <>
+                  <br />
+                  <br />
+                </>
+              )}
+            </span>
+          ))
+        }
+      </p>
     </section>
+
+    {
+      post.data.sections.map((s) => {
+        if (s.title || s.text) {
+          return (
+            <section>
+              {s.title && <h2>{s.title}</h2>}
+
+              {s.text && (
+                <p>
+                  {s.text.map((line, i) => (
+                    <span>
+                      {line}
+                      {i < s.text.length - 1 && (
+                        <>
+                          <br />
+                          <br />
+                        </>
+                      )}
+                    </span>
+                  ))}
+                </p>
+              )}
+            </section>
+          );
+        }
+
+        if (s.image) {
+          return (
+            <section class="wide">
+              <Image
+                src={getImageMetadata(s.image.src)()}
+                alt={""}
+                width={2566}
+                layout="responsive"
+                loading="lazy"
+              />
+            </section>
+          );
+        }
+      })
+    }
 
     <Content />
   </article>
@@ -37,7 +93,7 @@ const { Content } = await render(post);
 
 <style>
   article {
-    flex: 1;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -48,9 +104,19 @@ const { Content } = await render(post);
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: calc(var(--unit-m) * 22);
-    gap: var(--unit-m);
+    max-width: calc(var(--unit-m) * 22 + var(--unit-l) * 2);
+    gap: var(--unit-l);
+    padding: 0 var(--unit-l);
     align-items: flex-start;
+  }
+
+  section.wide {
+    max-width: none;
+    padding: 0;
+  }
+
+  section.wide img {
+    width: 100%;
   }
 
   section #chip {
@@ -60,11 +126,25 @@ const { Content } = await render(post);
     font-size: var(--unit-s);
     padding: var(--unit-3xs);
     border-radius: var(--unit-3xs);
-    text-transform: capitalize;
   }
 
-  section h1 {
-    font-size: var(--unit-xl);
+  h1,
+  h2 {
     line-height: 1;
+  }
+
+  h1 {
+    font-size: var(--unit-xl);
+  }
+
+  h2 {
+    font-size: var(--unit-l);
+  }
+
+  p {
+    font-size: var(--unit-s);
+    line-height: 1.2;
+    color: var(--on-surface-var);
+    text-rendering: balanced;
   }
 </style>

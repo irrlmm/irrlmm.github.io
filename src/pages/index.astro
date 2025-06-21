@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 
 import { IRRLMM } from "../consts/meta";
 
-import myImage from "../assets/persons/irrlmm.png";
+import myImage from "../assets/persons/irrlmm.jpg";
 
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import {
@@ -20,7 +20,6 @@ import { getImage } from "astro:assets";
 import RELEASE_NOTES from "../consts/release-notes";
 import WorkList from "../components/WorkList.astro";
 import Belt from "../components/Belt";
-import { getCollection } from "astro:content";
 
 const imageSrc = await Promise.resolve(
   getImage({
@@ -39,7 +38,7 @@ const imageSrc = await Promise.resolve(
 
   <WorkList limit={3} />
 
-  <Belt client:load text="Open for remote work opportutities" />
+  <Belt client:load text="Available for product design roles" />
 
   <Launchpad
     apps={[

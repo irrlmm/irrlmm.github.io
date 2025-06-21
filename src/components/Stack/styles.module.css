@@ -6,7 +6,7 @@
   max-width: calc((var(--unit-m) * 22) + (var(--unit-m) * 2));
   padding: 0 var(--unit-m);
   gap: var(--unit-l);
-  perspective: 4200px;
+  perspective: 5000px;
 }
 
 .punchlineWrapper {

@@ -16,7 +16,7 @@
   color: var(--white-100);
   padding: var(--unit-3xs);
   border-radius: var(--unit-3xs);
-  font-size: var(--unit-l);
+  font-size: var(--unit-m);
 }
 
 .heroCard p {

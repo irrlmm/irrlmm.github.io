@@ -5,6 +5,7 @@ import Card from "../Card";
 import styles from "./styles.module.css";
 import HeroCard from "../HeroCard";
 import CompetencesCard from "../CompetencesCard";
+import ExperienceCard from "../ExperienceCard";
 
 type Props = {
   src: string;
@@ -13,9 +14,8 @@ type Props = {
 const Stack: React.FC<Props> = ({ src }) => {
   const items: React.JSX.Element[] = [
     <HeroCard src={src} />,
-    <CompetencesCard />,
-    <HeroCard src={src} />,
-    // <HeroCard src={src} />, // TODO: about me page
+    // <CompetencesCard />,
+    <ExperienceCard />,
   ];
 
   return (
