@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+
+import MainLayout from "../layouts/MainLayout.astro";
+
+import Launchpad from "../components/Launchpad.astro";
+import IntroStack from "../components/IntroStack";
+import Belt from "../components/Belt";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import AnimatedParagraph from "../components/AnimatedParagraph";
+import SectionProjects from "../components/SectionProjects.astro";
+
+import { IRRLMM } from "../consts/meta";
+import STACK_INTRO from "../consts/stacks/intro";
+import STACK_JOURNEY from "../consts/stacks/journey";
+import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
+
+import { SCHEMA_PERSON_FULL } from "../consts/schemas";
+import {
+  SVG_CODE,
+  SVG_CV,
+  SVG_DRIBBBLE,
+  SVG_KEY,
+  SVG_MAIL,
+} from "../consts/svg";
+import PixelGlassCorner from "../components/PixelGlassCorner.astro";
+// import FACTS_JOURNEY from "../consts/stacks/journey";
+
+const posts = (await getCollection("work")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+if (!posts) {
+  throw Error("no posts!");
+}
+---
+
+<html lang="en">
+  <head>
+    
+  </head>
+
+  <body>
+    <main>
+      <div class="wrapper">
+        <div class="container">
+          <PixelGlassCorner r={32} style={{ position: 'absolute', top: 0, left: 0 }} />
+          <PixelGlassCorner r={32} style={{ position: 'absolute', top: 0, left: 0 }} />
+          <PixelGlassCorner r={32} style={{ position: 'absolute', top: 0, left: 0 }} />
+          <PixelGlassCorner r={32} style={{ position: 'absolute', top: 0, left: 0 }} />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 700px;
+    padding: 0 20px;
+    border: 1px solid #6470F7;
+    background-color: #0B0D1B;
+    box-sizing: border-box;
+  }
+</style>

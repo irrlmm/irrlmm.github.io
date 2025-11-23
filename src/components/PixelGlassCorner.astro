@@ -1,0 +1,25 @@
+---
+
+function beveledCornerPath(n: number): string {
+  let d = `M0 0 H${n}`;
+  for (let i = 1; i <= n; i++) {
+    d += ` V${i} H${n - i}`;
+  }
+  d += ' Z';
+  return d;
+}
+
+const { r = 16, style, fill } = Astro.props;
+
+---
+
+<svg
+  width={r}
+  height={r}
+  viewBox={`0 0 ${r} ${r}`}
+  style={style}
+  fill={fill}
+  xmlns="http://www.w3.org/2000/svg"
+>
+    <path d={beveledCornerPath(r)}></path>
+</svg>
