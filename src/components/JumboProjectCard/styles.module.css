@@ -1,8 +1,10 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   position: relative;
   perspective: 1000px;
   perspective-origin: center;
+  gap: var(--unit-xs);
 }
 
 .card {

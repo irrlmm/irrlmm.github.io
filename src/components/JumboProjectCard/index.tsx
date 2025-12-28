@@ -9,9 +9,9 @@ import {
 
 import styles from "./styles.module.css";
 
-type Props = { src: string };
+type Props = { src: string, chip?: string };
 
-const JumboProjectCard: React.FC<Props> = ({ src }) => {
+const JumboProjectCard: React.FC<Props> = ({ src, chip }) => {
   const target = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -34,28 +34,30 @@ const JumboProjectCard: React.FC<Props> = ({ src }) => {
   const filter = useTransform(blurRounded, (v) => `blur(${v}px)`);
 
   // overlay effects
-  const overlayLightOpacity = useTransform(rotateX, [15, 0], [1, 0], { clamp: true });
-  const overlayLightTranslateY = useTransform(
-    rotateX,
-    [15, 0],
-    [-256, 0],
-    { clamp: true }
-  );
+  const overlayLightOpacity = useTransform(rotateX, [15, 0], [1, 0], {
+    clamp: true,
+  });
+  const overlayLightTranslateY = useTransform(rotateX, [15, 0], [-256, 0], {
+    clamp: true,
+  });
 
-  const overlayDarkOpacity = useTransform(rotateX, [0, -15], [0, 1], { clamp: true });
+  const overlayDarkOpacity = useTransform(rotateX, [0, -15], [0, 1], {
+    clamp: true,
+  });
   const overlayDarkTranslateY = useTransform(rotateX, [0, -15], [0, 256], {
     clamp: true,
   });
 
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      ref={target}
+      style={{ scale, filter }}
+    >
       <motion.div
-        ref={target}
         className={styles.card}
         style={{
           rotateX,
-          scale: scaleAnimated,
-          filter,
         }}
       >
         <img
@@ -82,7 +84,9 @@ const JumboProjectCard: React.FC<Props> = ({ src }) => {
           }}
         ></motion.div>
       </motion.div>
-    </div>
+
+      {chip && <p className="font-size-xs">{chip}</p>}
+    </motion.div>
   );
 };
 
