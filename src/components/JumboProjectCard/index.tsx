@@ -21,12 +21,9 @@ const JumboProjectCard: React.FC<Props> = ({ src }) => {
 
   const velocity = useVelocity(scrollYProgress);
 
-  const velAnim = useSpring(velocity, { bounce: 0.5 });
+  const velAnim = useSpring(velocity, { bounce: 0.6, stiffness: 200 });
 
   const rotateX = useTransform(velAnim, [-10, 0, 10], [15, 0, -15]);
-
-  const opacity = useTransform(rotateX, [15, 0, -15], [1, 0, 1]);
-  const translateY = useTransform(rotateX, [15, 0, -15], [-256, 0, 256]);
 
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
   const scaleAnimated = useSpring(scale, { bounce: 0.2 });
@@ -35,6 +32,20 @@ const JumboProjectCard: React.FC<Props> = ({ src }) => {
   const blurRounded = useTransform(blur, (v) => v.toFixed(2));
 
   const filter = useTransform(blurRounded, (v) => `blur(${v}px)`);
+
+  // overlay effects
+  const overlayLightOpacity = useTransform(rotateX, [15, 0], [1, 0], { clamp: true });
+  const overlayLightTranslateY = useTransform(
+    rotateX,
+    [15, 0],
+    [-256, 0],
+    { clamp: true }
+  );
+
+  const overlayDarkOpacity = useTransform(rotateX, [0, -15], [0, 1], { clamp: true });
+  const overlayDarkTranslateY = useTransform(rotateX, [0, -15], [0, 256], {
+    clamp: true,
+  });
 
   return (
     <div className={styles.wrapper}>
@@ -56,8 +67,19 @@ const JumboProjectCard: React.FC<Props> = ({ src }) => {
         />
 
         <motion.div
-          style={{ translateY, opacity }}
-          className={styles.overlay}
+          className={styles["overlay-light"]}
+          style={{
+            translateY: overlayLightTranslateY,
+            opacity: overlayLightOpacity,
+          }}
+        ></motion.div>
+
+        <motion.div
+          className={styles["overlay-dark"]}
+          style={{
+            translateY: overlayDarkTranslateY,
+            opacity: overlayDarkOpacity,
+          }}
         ></motion.div>
       </motion.div>
     </div>

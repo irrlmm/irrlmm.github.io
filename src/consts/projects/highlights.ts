@@ -36,9 +36,8 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
     ],
     imgs: [imdHome, imdSidewindows, imdCheckout, imdAuth],
     link: {
-      label: "Website",
-      href: `https://app.imusician.pro`,
-      external: true,
+      label: "View",
+      href: "/work",
     },
   },
   {
@@ -58,9 +57,9 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       ishigsModal,
     ],
     link: {
-      label: "Case study",
-      href: "https://www.behance.net/gallery/223450275/iMusician-AI-Music-Mastering-Tool",
-      external: true,
+      label: "View",
+      href: "/work",
+      // external: true,
     },
   },
   {
@@ -74,9 +73,8 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
     ],
     imgs: [imdDSCover, imdDSVars, imdDSFields],
     link: {
-      label: "Case study",
-      href: "https://www.behance.net/gallery/224724459/iMusician-Building-Scalable-Design-System",
-      external: true,
+      label: "View",
+      href: "/work",
     },
   },
   {

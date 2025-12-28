@@ -6,9 +6,9 @@ import Monogram from "./Monogram.astro";
   <Monogram />
 
   <nav class="row gap-s">
-    <a>Work</a>
+    <a href="/work">Work</a>
     <span class="color-tertiary">|</span>
-    <a>Contact</a>
+    <a href="mailto:hello@irrlmm.me">Contact</a>
   </nav>
 </header>
 
@@ -20,7 +20,13 @@ import Monogram from "./Monogram.astro";
     padding: 0 var(--unit-m);
   }
 
-  nav > a {
+  a {
     font-size: var(--unit-sm);
+    color: var(--on-surface);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--on-surface-var);
   }
 </style>
