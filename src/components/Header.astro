@@ -2,8 +2,14 @@
 import Monogram from "./Monogram.astro";
 ---
 
-<header>
+<header class="row align-center justify-between">
   <Monogram />
+
+  <nav class="row gap-s">
+    <a>Work</a>
+    <span class="color-tertiary">|</span>
+    <a>Contact</a>
+  </nav>
 </header>
 
 <style>
@@ -12,5 +18,9 @@ import Monogram from "./Monogram.astro";
     display: flex;
     max-width: calc(var(--unit-m) * 22);
     padding: 0 var(--unit-m);
+  }
+
+  nav > a {
+    font-size: var(--unit-sm);
   }
 </style>

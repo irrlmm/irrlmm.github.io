@@ -3,6 +3,7 @@
   align-items: flex-start;
   gap: var(--unit-2xl);
   padding: 0 var(--unit-xl);
+
 }
 
 .infoCol {

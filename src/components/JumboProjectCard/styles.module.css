@@ -18,8 +18,24 @@
   border-radius: calc(var(--unit-m) - var(--unit-s));
 }
 
-/* @media (max-width: 1280px) {
-  .card {
-    top: var(--unit-m);
-  }
-} */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(256, 256, 256, 0),
+    rgba(256, 256, 256, 1.0) 33%,
+    rgba(256, 256, 256, 0.5) 66%,
+    rgba(256, 256, 256, 0.0)
+  );
+  pointer-events: none;
+}
+
+.wrapper {
+  position: relative;
+  perspective: 1000px;
+  perspective-origin: center;
+}

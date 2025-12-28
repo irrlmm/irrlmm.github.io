@@ -1,29 +1,29 @@
 ---
 import { getCollection } from "astro:content";
 
-import MainLayout from "../layouts/MainLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
-import Launchpad from "../components/Launchpad.astro";
-import IntroStack from "../components/IntroStack";
-import Belt from "../components/Belt";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import AnimatedParagraph from "../components/AnimatedParagraph";
-import SectionProjects from "../components/SectionProjects.astro";
+// import Launchpad from "../components/Launchpad.astro";
+// import IntroStack from "../components/IntroStack";
+// import Belt from "../components/Belt";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+// import AnimatedParagraph from "../components/AnimatedParagraph";
+// import SectionProjects from "../components/SectionProjects.astro";
 
-import { IRRLMM } from "../consts/meta";
-import STACK_INTRO from "../consts/stacks/intro";
-import STACK_JOURNEY from "../consts/stacks/journey";
-import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
+// import { IRRLMM } from "../consts/meta";
+// import STACK_INTRO from "../consts/stacks/intro";
+// import STACK_JOURNEY from "../consts/stacks/journey";
+// import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
 
-import { SCHEMA_PERSON_FULL } from "../consts/schemas";
+import { SCHEMA_PERSON_FULL } from "../../consts/schemas";
 import {
   SVG_CODE,
   SVG_CV,
   SVG_DRIBBBLE,
   SVG_KEY,
   SVG_MAIL,
-} from "../consts/svg";
+} from "../../consts/svg";
 // import FACTS_JOURNEY from "../consts/stacks/journey";
 
 const posts = (await getCollection("work")).sort(
@@ -39,7 +39,7 @@ if (!posts) {
   <div class="col">
     <Header />
 
-    <section class="col gap-s">
+    <!-- <section class="col gap-s">
       <h1 class="hidden">{IRRLMM.name}</h1>
       <h2 class="hidden">{IRRLMM.title}</h2>
 
@@ -59,19 +59,18 @@ if (!posts) {
 
     <Belt client:load text="Available for product design roles" />
 
-    <!-- <section>
+    <section>
       <IntroStack client:load stack={FACTS_JOURNEY} />
-    </section> -->
+    </section>
 
     <Launchpad
       apps={[
-        {
-          label: "Case studies",
-          widget: {
-            value: "[x]",
-          },
-          badge: "new"
-        },
+        // {
+        //   label: "Experience",
+        //   widget: {
+        //     value: "8 yrs",
+        //   },
+        // },
         {
           label: "LinkedIn",
           link: { href: IRRLMM.links.linkedin, external: true },
@@ -109,7 +108,7 @@ if (!posts) {
           badge: "???",
         },
       ]}
-    />
+    /> -->
 
     <Footer />
   </div>

@@ -78,8 +78,6 @@ const ProjectItem: React.FC<Props> = ({
         {imgSrcs.map(({ src }, i) => (
           <JumboProjectCard
             key={src}
-            index={i}
-            stackIndex={imgSrcs.length - 1 - i}
             src={src}
           />
         ))}
