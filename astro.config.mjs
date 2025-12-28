@@ -12,6 +12,6 @@ export default defineConfig({
   site: SITE_URL,
   integrations: [react(), mdx(), sitemap(), favicons()],
   experimental: {
-    responsiveImages: true,
+    // responsiveImages: true,
   },
 });

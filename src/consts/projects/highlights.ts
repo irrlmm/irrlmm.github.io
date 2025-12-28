@@ -32,7 +32,7 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
     timeline: "2017-2025",
     lines: [
       "Music distribution is boring. No one had unlocked its true potential - until we tried.",
-      "I challenged the status quo, leading product design (and frontend before that) to turn a simple tool into a SaaS powerhouse for modern musicians.",
+      "I challenged the status quo, directing product design to turn a simple tool into a SaaS powerhouse for modern musicians.",
     ],
     imgs: [imdHome, imdSidewindows, imdCheckout, imdAuth],
     link: {
