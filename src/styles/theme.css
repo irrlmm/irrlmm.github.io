@@ -3,17 +3,17 @@
 
   /* Primitives */
   --black-100: rgba(0, 0, 0, 1);
-  --black-80: rgba(0, 0, 0, 0.8);
-  --black-33: rgba(0, 0, 0, 0.33);
+  --black-90: rgba(0, 0, 0, 0.9);
+  --black-15: rgba(0, 0, 0, 0.15);
   --white-100: rgba(255, 255, 255, 1);
   --white-80: rgba(255, 255, 255, 0.8);
-  --white-33: rgba(255, 255, 255, 0.33);
+  --white-25: rgba(255, 255, 255, 0.25);
 
   /* Surface tokens */
   --background: light-dark(var(--white-100), var(--black-100));
   --on-surface: light-dark(var(--black-100), var(--white-100));
-  --on-surface-var: light-dark(var(--black-80), var(--white-80));
-  --on-surface-var-2: light-dark(var(--black-33), var(--white-33));
+  --on-surface-var: light-dark(var(--black-90), var(--white-80));
+  --on-surface-var-2: light-dark(var(--black-15), var(--white-25));
 
   /** Decor overlay effect */
   --pixel-grid-line: var(--on-surface-var-2);

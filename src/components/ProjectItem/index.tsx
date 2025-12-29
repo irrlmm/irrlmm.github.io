@@ -44,13 +44,11 @@ const ProjectItem: React.FC<Props> = ({
             <h3>{title}</h3>
           </div>
 
-          <div className="col gap-s">
+          <div className="col gap-s color-secondary">
             {lines.map((l, i) => (
-              <Fragment key={`line-${i}`}>
-                <p className={styles.text}>{l}</p>
-
-                {i !== lines.length - 1}
-              </Fragment>
+              <p key={`line-${i}`} className={styles.text}>
+                {l}
+              </p>
             ))}
           </div>
         </div>
