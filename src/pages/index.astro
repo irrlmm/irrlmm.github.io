@@ -16,8 +16,6 @@ import STACK_INTRO from "../consts/stacks/intro";
 import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
 import RELEASE_NOTES from "../consts/release-notes";
 
-import avatar from "../assets/persons/irrlmm.png"
-
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import {
   SVG_CODE,
@@ -63,9 +61,9 @@ if (!posts) {
     <Launchpad
       apps={[
         {
-          label: "About me",
+          label: "This is me",
           widget: {
-            image: avatar,
+            imageSrc: "persons/irrlmm.png",
           },
           badge: "new",
           link: { href: "/about" },
@@ -73,7 +71,7 @@ if (!posts) {
         {
           label: "Case studies",
           widget: {
-            value: "[x]",
+            value: "[soon]",
           },
           badge: "new",
           link: { href: "/work" },
@@ -85,7 +83,7 @@ if (!posts) {
         //   },
         //   badge: "new",
         //   link: { href: "/services" },
-        //   pos: "span 1 / span 4" 
+        //   pos: "span 1 / span 4"
         // },
         {
           label: "LinkedIn",

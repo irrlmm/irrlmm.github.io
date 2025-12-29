@@ -106,9 +106,12 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       // ap0,
       {
         src: apPages,
-        chip: "Artist Pages are made using visual editor integrated into iMusician ecosystem.",
+        chip: "Artist Page • A WYSIWYG editor and website publishing platform for musicians to showcase their work, bio, tour dates, and merch.",
       },
-      { src: rp2, chip: "Release Page" },
+      {
+        src: rp2,
+        chip: "Release Page • A music release hub with pre-save, streaming links, and social sharing to maximize reach and engagement.",
+      },
     ],
   },
   {

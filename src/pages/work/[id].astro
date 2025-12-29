@@ -6,6 +6,10 @@ import { Image } from "astro:assets";
 import getImage from "../../helpers/getImageMetadata";
 import Header from "../../components/Header.astro";
 import ShakingCards from "../../components/ShakingCards.astro";
+import moment from "moment";
+import Launchpad from "../../components/Launchpad.astro";
+import { IRRLMM } from "../../consts/meta";
+import { SVG_CV, SVG_DRIBBBLE, SVG_MAIL } from "../../consts/svg";
 
 export async function getStaticPaths() {
   const posts = await getCollection("work");
@@ -24,32 +28,86 @@ const post = Astro.props;
   <article>
     <Header />
 
-    <Image
-      src={getImage(post.data.coverImage)()}
-      widths={[1280, 2560]}
-      alt={post.data.title}
-      loading="eager"
-      layout="fixed"
-    />
+    <div class="hero wrapper col gap-xl">
+      <span class="font-size-s"
+        >{post.data.type} • {moment(post.data.date).format("MMMM Do YYYY")}
+      </span>
 
-    <h1>{post.data.title}</h1>
-    <span>{post.data.date}</span>
-    <span>{post.data.intro}</span>
+      <h1>{post.data.title}</h1>
+
+      <p class="font-size-s">{post.data.intro}</p>
+    </div>
 
     {
       post.data.sections.map((section) => (
         <>
-          <h2>{section.title}</h2>
-          {section.images && <ShakingCards imgs={section.images} />}
+          <div class="wrapper col gap-m">
+            <h2>{section.title}</h2>
+
+            {section.lines &&
+              section.lines.map((line) => (
+                <p class="font-size-s color-secondary">{line}</p>
+              ))}
+
+            {/* {section.links && (
+              <Launchpad
+                apps={section.links.map((link) => ({
+                  label: link.label,
+                  widget: {
+                    imageSrc: "persons/irrlmm.png",
+                  },
+                  link: { href: link.href, external: link.external },
+                  pos: "span 2 / span 4",
+                }))}
+              />
+            )} */}
+          </div>
+
+          <div class="wrapper-extended">
+            {section.images && <ShakingCards imgs={section.images} />}
+          </div>
         </>
       ))
     }
+
+    <!-- <Belt client:load text="Contact me" /> -->
+
+    <Launchpad
+      apps={[
+        {
+          label: "LinkedIn",
+          link: { href: IRRLMM.links.linkedin, external: true },
+          icon: { text: "in" },
+        },
+        {
+          label: "Contact",
+          link: { href: `mailto:${IRRLMM.email}` },
+          icon: { path: SVG_MAIL },
+        },
+        {
+          label: "CV",
+          link: { href: "/docs/Igor Lemeshkin CV.pdf", external: true },
+          icon: { path: SVG_CV },
+        },
+        {
+          label: "Dribbble",
+          link: { href: IRRLMM.links.dribbble, external: true },
+          icon: { path: SVG_DRIBBBLE },
+        },
+      ]}
+    />
 
     <Footer />
   </article>
 </MainLayout>
 
 <style>
+  h1 {
+    font-size: var(--unit-xl);
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
   article {
     flex: 1;
     display: flex;
@@ -60,15 +118,34 @@ const post = Astro.props;
   }
 
   article > img {
-    width: 100%;
+    flex: 1;
     animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
+  }
+
+  .hero {
+  }
+  .hero > span {
+    width: fit-content;
+    background-color: var(--on-surface);
+    color: var(--background);
+    padding: 0 var(--unit-3xs);
+    border-radius: var(--unit-3xs);
+  }
+
+  p {
+    color: var(--on-surface-var);
   }
 
   .wrapper {
     display: flex;
     flex-direction: column;
-    gap: 64px;
     width: 100%;
-    max-width: 640px;
+    max-width: calc(var(--unit-m) * 22);
+    padding: 0 var(--unit-m);
+  }
+
+  .wrapper-extended {
+    max-width: calc(var(--unit-m) * 32);
+    padding: 0 var(--unit-m);
   }
 </style>

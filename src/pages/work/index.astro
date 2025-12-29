@@ -40,14 +40,18 @@ if (!posts) {
   <div class="col">
     <Header />
 
-    {
+    <section>
+      <h1>Work [coming soon]</h1>
+    </section>
+
+    <!-- {
       posts.map((post) => (
         <a href={`/work/${post.id}`}>
           <h2>{post.data.title}</h2>
           <p>{post.data.intro}</p>
         </a>
       ))
-    }
+    } -->
 
     <!-- <section class="col gap-s">
       <h1 class="hidden">{IRRLMM.name}</h1>
@@ -134,8 +138,10 @@ if (!posts) {
     gap: var(--unit-2xl);
   }
 
-  p {
-    vertical-align: middle;
+  h1 {
+    font-size: var(--unit-l);
+    line-height: 1;
+    animation: appear 0.15s var(--bezier) 0.2s both;
   }
 
   section {
