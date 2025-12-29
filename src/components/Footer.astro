@@ -7,7 +7,7 @@ interface Props {
   name?: string;
 }
 
-const { year = new Date(Date.now()).getFullYear(), name = IRRLMM.name } =
+const { year = new Date(Date.now()).getFullYear().toString().slice(2, 4), name = IRRLMM.name } =
   Astro.props;
 ---
 
@@ -28,7 +28,7 @@ const { year = new Date(Date.now()).getFullYear(), name = IRRLMM.name } =
   <div class="row justify-between align-center">
     <Monogram />
 
-    <span class="font-size-s">{name} © {year}</span>
+    <span class="font-size-s">{name} © 2025-{year}</span>
   </div>
 </footer>
 

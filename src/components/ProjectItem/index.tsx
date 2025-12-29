@@ -1,27 +1,25 @@
 import { Fragment, useRef } from "react";
 import { useScroll, motion } from "framer-motion";
 
-import JumboProjectCard from "../JumboProjectCard";
+import AnimatedLinkButton from "../AnimatedLinkButton";
+import ShakingCardsGallery from "../ShakingCardsGallery";
 
 import styles from "./styles.module.css";
-import AnimatedLinkButton from "../AnimatedLinkButton";
 
 type Props = {
   title: string;
   timeline?: string;
-  chips?: string[];
   lines: string[];
   link?: UI.Link;
-  imgSrcs: { src: string }[];
+  content: { imgSrc: string; chip?: string; logo?: string }[];
 };
 
 const ProjectItem: React.FC<Props> = ({
   title,
   timeline,
   lines,
-  chips,
   link,
-  imgSrcs,
+  content,
 }) => {
   const target = useRef<HTMLDivElement>(null);
 
@@ -55,14 +53,6 @@ const ProjectItem: React.FC<Props> = ({
               </Fragment>
             ))}
           </div>
-
-          {chips && (
-            <div className={styles.chipsWrapper}>
-              {chips.map((c) => (
-                <span className={styles.chip}>{c}</span>
-              ))}
-            </div>
-          )}
         </div>
 
         {link && (
@@ -74,14 +64,7 @@ const ProjectItem: React.FC<Props> = ({
         )}
       </div>
 
-      <div className={styles.cardsCol}>
-        {imgSrcs.map(({ src }, i) => (
-          <JumboProjectCard
-            key={src}
-            src={src}
-          />
-        ))}
-      </div>
+      <ShakingCardsGallery content={content} cardClassName={styles.jumboCard} />
     </div>
   );
 };

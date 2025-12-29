@@ -28,7 +28,7 @@ export const IRRLMM = {
   avatar: "persons/irrlmm.png",
   email: "hello@irrlmm.me",
   links: {
-    linkedin: "https://linkedin.com/in/igorlem",
+    linkedin: "https://linkedin.com/in/irrlmm",
     dribbble: "https://dribbble.com/irrlmm",
     behance: "https://behance.com/irrlmm",
     github: "https://github.com/irrlmm",

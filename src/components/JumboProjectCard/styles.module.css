@@ -1,33 +1,72 @@
 .wrapper {
+  width: 100%;
+  max-width: calc(32 * var(--unit-m));
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
-  perspective: 1000px;
+  perspective: 1600px;
   perspective-origin: center;
-  gap: var(--unit-xs);
+  gap: var(--unit-2xs);
+  scroll-snap-align: center;
+}
+
+.card-wrapper {
+  position: relative;
+  display: flex;
+  aspect-ratio: 16/10;
+  width: 100%;
+  transform-style: preserve-3d;
 }
 
 .card {
-  flex: 1;
   width: 100%;
-  top: var(--unit-xl);
+  height: 100%;
   border-radius: var(--unit-m);
-  background-color: var(--background);
   border: solid 2px var(--on-surface);
-  padding: var(--unit-2xs);
   overflow: hidden;
+  padding: var(--unit-3xs);
 }
 
 .image {
   width: 100%;
   height: 100%;
-  aspect-ratio: 16/10;
   object-fit: cover;
   object-position: center;
-  border-radius: calc(var(--unit-m) - var(--unit-2xs));
+  border-radius: calc(var(--unit-m) - var(--unit-3xs));
 }
 
-.overlay-light, .overlay-dark {
+.logo {
+  position: absolute;
+  bottom: var(--unit-l);
+  left: var(--unit-l);
+  width: calc(2 * var(--unit-m));
+  height: calc(2 * var(--unit-m));
+  border-radius: 50%;
+  background-color: var(--on-surface);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.caption {
+  background-color: var(--on-surface);
+  color: var(--background);
+  font-size: var(--unit-xs);
+  max-width: calc(16 * var(--unit-m));
+  text-align: center;
+  padding: var(--unit-3xs) var(--unit-2xs);
+  border-radius: var(--unit-3xs);
+}
+
+.overlay-light,
+.overlay-dark {
   position: absolute;
   top: 0;
   left: 0;
@@ -36,24 +75,28 @@
   background: linear-gradient(
     to bottom,
     rgba(256, 256, 256, 0),
-    rgba(256, 256, 256, 1.0) 20%,
-    rgba(256, 256, 256, 0.5) 40%,
-    rgba(256, 256, 256, 0.0)
+    rgba(256, 256, 256, 0.5) 25%,
+    rgba(256, 256, 256, 0.1) 50%,
+    rgba(256, 256, 256, 0)
   );
   pointer-events: none;
 }
 
 .overlay-light {
-  mix-blend-mode: plus-lighter;
+  mix-blend-mode: screen;
 }
 
 .overlay-dark {
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 1.0) 60%,
-    rgba(0, 0, 0, 0.8) 90%,
-    rgba(0, 0, 0, 0.0)
+    rgba(0, 0, 0, 0.8) 100%
   );
   mix-blend-mode: multiply;
+}
+
+@media (max-width: 1280px) {
+  .wrapper {
+    perspective-origin: center center;
+  }
 }

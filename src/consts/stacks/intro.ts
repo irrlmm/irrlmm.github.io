@@ -53,56 +53,6 @@ const STACK_INTRO: UI.CardStack<
         label: "View changelog",
       },
     },
-
-    // {
-    //   id: "f7",
-    //   icon: { path: SVG_V60 },
-    //   text: "Making filter coffee is a design process — balancing precision, flow, and timing.",
-    // },
-
-    // {
-    //   id: "f1",
-    //   payload: {
-    //     text: "For nearly a decade, I was shaped by urgency, grounded in clarity, through function and dysfunction alike.",
-    //   },
-    // },
-    // {
-    //   id: "f2",
-    //   payload: {
-    //     text: "This made me immune to chaos, adaptable to any constraint, and I don't flinch under pressure.",
-    //   },
-    // },
-    // {
-    //   id: "f3",
-    //   payload: {
-    //     text: "The products I have designed were built to last. Each one has grown, delivered value and pushed the business forward.",
-    //   },
-    // },
-    // {
-    //   id: "f4",
-    //   payload: {
-    //     text: "One of the keys is my tech foundation. I started in UI engineering and still work closely with developers.",
-    //   },
-    // },
-    // {
-    //   id: "f5",
-    //   payload: {
-    //     text: "We iterate quickly, but nothing appears out of thin air. Everything I do is drawn from experience.",
-    //   },
-    // },
-    // {
-    //   id: "f6",
-    //   payload: {
-    //     text: "That experience comes from travel, photography, making music, and a lifelong habit of collecting curious products.",
-    //   },
-    // },
-    // {
-    //   id: "outro",
-    //   payload: {
-    //     icon: { path: SVG_GEM },
-    //     text: "Now you know a bit about me. The rest lives with Rogi, but he tends to exaggerate.",
-    //   },
-    // },
   ],
 };
 

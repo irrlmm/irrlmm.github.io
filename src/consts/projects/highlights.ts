@@ -23,6 +23,8 @@ import mbuxMenuScheme from "../../assets/work/mbux/menu-scheme.png";
 
 import cofefi from "../../assets/work/cofefi/cofefi.png";
 
+import logoImd from "../../assets/companies/99sales.png";
+
 import camera from "../../assets/work/camera-app/cover.png";
 
 const PROJECTS_HIGHLIGHTS: UI.Project[] = [
@@ -34,7 +36,17 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       "Music distribution is boring. No one had unlocked its true potential - until we tried.",
       "I challenged the status quo, directing product design to turn a simple tool into a SaaS powerhouse for modern musicians.",
     ],
-    imgs: [imdHome, imdSidewindows, imdCheckout, imdAuth],
+    imgs: [
+      {
+        src: imdHome,
+        chip: "Home screen dashboard",
+      },
+      { src: imdSidewindows, chip: "Music library management" },
+      {
+        src: imdCheckout,
+        chip: "Reworked checkout experience increased successful payments by ~7% and reduced churn through clearer pricing, trusted payment methods, and simpler payment management.",
+      },
+    ],
     link: {
       label: "View",
       href: "/work",
@@ -50,11 +62,10 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       "Result: focused, minimal, industry-standard-setting app with amazing sound output.",
     ],
     imgs: [
-      ishigsPrompt,
-      ishigsComponents,
-      ishigsTracks,
-      ishigsEmpty,
-      ishigsModal,
+      { src: ishigsTracks, chip: "Tracks" },
+      // { src: ishigsPrompt, chip: "Prompt" },
+      { src: ishigsEmpty, chip: "Empty" },
+      { src: ishigsModal, chip: "Modal" },
     ],
     link: {
       label: "View",
@@ -71,7 +82,12 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       "Started as a code-only Storybook collection in our frontend monorepo.",
       "Later evolved in Figma empowering anyone be a designer and rapidly craft prototypes at any resolution.",
     ],
-    imgs: [imdDSCover, imdDSVars, imdDSFields],
+    imgs: [
+      { src: imdDSCover, chip: "Cover" },
+      // { src: imdDSVars, chip: "Variables" },
+      { src: imdDSFields, chip: "Fields" },
+      { src: ishigsComponents, chip: "Components" },
+    ],
     link: {
       label: "View",
       href: "/work",
@@ -86,7 +102,14 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       "iMusician's Artist Hub is a series of website generators for artist profiles and release pages, designed for 1-click setup, customization and smart data aggregation.",
       "Powered by market research and user insights, built for visibility and growth.",
     ],
-    imgs: [ap0, apPages, rp2],
+    imgs: [
+      // ap0,
+      {
+        src: apPages,
+        chip: "Artist Pages are made using visual editor integrated into iMusician ecosystem.",
+      },
+      { src: rp2, chip: "Release Page" },
+    ],
   },
   {
     id: "others",
@@ -97,7 +120,17 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
       "Recently researched automotive HMI systems, learning Blender and real-time rendering to prototype infotainment UIs.",
       "I'd love to work on an automotive project someday.",
     ],
-    imgs: [cofefi, camera, mbuxHome, mbuxMenu, mbuxMenuScheme],
+    imgs: [
+      { src: cofefi, chip: "Specialty coffee recipes app • iOS" },
+      { src: camera, chip: "Film Camera App • iOS & Android" },
+      {
+        src: mbuxHome,
+        chip: "Mercedes-Benz Cockpit Dashboard concept • Linux-based vehicle OS ",
+        logo: logoImd,
+      },
+      // { src: mbuxMenu, chip: "MBUX Menu" },
+      // { src: mbuxMenuScheme, chip: "Mercedes-Benz Cockpit Menu Scheme • Vehicle UX exploration • Midjourney & Figma" },
+    ],
   },
 ];
 

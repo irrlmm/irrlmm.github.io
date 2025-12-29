@@ -1,0 +1,28 @@
+---
+import getImageMetadata from "../helpers/getImageMetadata";
+
+import ShakingCardsGallery from "./ShakingCardsGallery";
+
+type Props = {
+  imgs: { src: string; chip?: string }[];
+};
+
+const { imgs } = Astro.props;
+
+const pictureData = await Promise.all(
+  imgs.map(({ src, chip }) =>
+    getImageMetadata(src)().then((img) => ({
+      img: img.default,
+      chip,
+    }))
+  )
+);
+
+// Extract just the optimized URL string from each image object
+const optimizedSrcs = pictureData.map((data) => ({
+  imgSrc: data.img.src,
+  chip: data.chip,
+}));
+---
+
+<ShakingCardsGallery client:load content={optimizedSrcs} />

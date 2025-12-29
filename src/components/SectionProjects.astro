@@ -6,9 +6,8 @@ interface Props {
     title: string;
     timeline?: string;
     role?: string;
-    chips?: string[];
     lines: string[];
-    imgs: ImageMetadata[];
+    imgs: { src: ImageMetadata; chip?: string; logo?: ImageMetadata }[];
     link?: UI.Link;
   }[];
 }
@@ -26,7 +25,6 @@ const { projects } = Astro.props;
           title={p.title}
           timeline={p.timeline}
           lines={p.lines}
-          chips={p.chips}
           imgs={p.imgs}
           link={p.link}
         />

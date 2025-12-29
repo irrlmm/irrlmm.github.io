@@ -1,4 +1,4 @@
-import CardStack from "../CardStack";
+import CardStack from "../SwipeCardStack";
 import ContentRenderer from "./ContentRenderer";
 
 type Props = {

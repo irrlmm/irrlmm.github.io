@@ -1,9 +1,7 @@
 ---
 import LaunchpadIcon from "./LaunchpadIcon.astro";
-import LaunchpadWidgetWorkspace from "./LaunchpadWidgetWorkplace.astro";
-import LaunchpadWidgetImage from "./LaunchpadWidgetImage.astro";
-import LaunchpadWidget from "./LaunchpadWidget.astro";
 import LaunchpadBadge from "./LaunchpadBadge.astro";
+import { Image } from "astro:assets";
 
 type App = {
   label: string;
@@ -12,14 +10,13 @@ type App = {
     external?: boolean;
   };
   icon?: { path?: string; text?: string };
-  widgetImage?: string;
+  widgetImage?: ImageMetadata;
   widgetWorkplace?: {
     company: string;
     logo: string;
     lines: string[];
   };
-  widget?: { value: string };
-  widgetTheme?: boolean;
+  widget?: { value?: string; image?: ImageMetadata };
   badge?: string;
   pos?: string;
 };
@@ -33,42 +30,35 @@ const { apps } = Astro.props;
 
 <ul>
   {
-    apps.map(
-      ({
-        link,
-        label,
-        icon,
-        widgetWorkplace,
-        widgetImage,
-        widget,
-        badge,
-        pos,
-      }) => (
-        <li data-widget={!icon} style={pos && `grid-area: ${pos}`}>
-          <a
-            href={link?.href}
-            rel={link?.external ? "noopener noreferrer" : undefined}
-            target={link?.external ? "_blank" : undefined}
-          >
-            {badge && <LaunchpadBadge value={badge} />}
+    apps.map(({ link, label, icon, widget, badge, pos }) => (
+      <li data-widget={!!widget} style={pos && `grid-area: ${pos}`}>
+        <a
+          href={link?.href}
+          rel={link?.external ? "noopener noreferrer" : undefined}
+          target={link?.external ? "_blank" : undefined}
+        >
+          {badge && <LaunchpadBadge value={badge} />}
 
-            {icon && <LaunchpadIcon icon={icon} />}
+          {icon && <LaunchpadIcon icon={icon} />}
 
-            {widget && <LaunchpadWidget value={widget.value} />}
+          {widget && widget.value && (
+            <div class="value">
+              <span class="font-size-l">{widget.value}</span>
+            </div>
+          )}
 
-            {widgetWorkplace && (
-              <LaunchpadWidgetWorkspace workplace={widgetWorkplace} />
-            )}
+          {widget && widget.image && (
+            <Image
+              src={widget.image}
+              alt="Igor's portrait in black and white"
+              width={512}
+            />
+          )}
 
-            {widgetImage && <LaunchpadWidgetImage image={widgetImage} />}
-
-            {/* {widgetTheme && <LaunchpadWidgetTheme />} */}
-
-            <span>{label}</span>
-          </a>
-        </li>
-      )
-    )
+          <span>{label}</span>
+        </a>
+      </li>
+    ))
   }
 </ul>
 
@@ -128,6 +118,7 @@ const { apps } = Astro.props;
     color: var(--on-surface);
     box-shadow: inset 0 0 0 2px var(--on-surface);
     transition: box-shadow 0.1s var(--bezier);
+    padding: var(--unit-2xs);
   }
   a:hover {
     box-shadow: inset 0 0 0 4px var(--on-surface);
@@ -141,7 +132,15 @@ const { apps } = Astro.props;
     border-radius: var(--unit-m);
   }
 
-  span {
+  .value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--unit-2xs);
+  }
+
+  a > span {
     position: absolute;
     text-align: center;
     line-height: 1;
@@ -152,9 +151,15 @@ const { apps } = Astro.props;
     padding: var(--unit-3xs);
     border-radius: var(--unit-3xs);
   }
-  a:hover span {
+  a:hover > span {
     background-color: var(--on-surface);
     color: var(--background);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--unit-m) - var(--unit-2xs));
   }
 
   @media (max-width: 512px) {

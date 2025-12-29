@@ -33,7 +33,7 @@ declare global {
       title: string;
       timeline?: string;
       lines: string[];
-      imgs: ImageMetadata[];
+      imgs: { src: ImageMetadata; chip?: string; logo?: ImageMetadata }[];
       link?: UI.Link;
     }
 

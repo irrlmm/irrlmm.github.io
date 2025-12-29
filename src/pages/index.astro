@@ -13,8 +13,10 @@ import SectionProjects from "../components/SectionProjects.astro";
 
 import { IRRLMM } from "../consts/meta";
 import STACK_INTRO from "../consts/stacks/intro";
-import STACK_JOURNEY from "../consts/stacks/journey";
 import PROJECTS_HIGHLIGHTS from "../consts/projects/highlights";
+import RELEASE_NOTES from "../consts/release-notes";
+
+import avatar from "../assets/persons/irrlmm.png"
 
 import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import {
@@ -24,7 +26,6 @@ import {
   SVG_KEY,
   SVG_MAIL,
 } from "../consts/svg";
-// import FACTS_JOURNEY from "../consts/stacks/journey";
 
 const posts = (await getCollection("work")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -59,19 +60,33 @@ if (!posts) {
 
     <Belt client:load text="Available for product design roles" />
 
-    <!-- <section>
-      <IntroStack client:load stack={FACTS_JOURNEY} />
-    </section> -->
-
     <Launchpad
       apps={[
+        {
+          label: "About me",
+          widget: {
+            image: avatar,
+          },
+          badge: "new",
+          link: { href: "/about" },
+        },
         {
           label: "Case studies",
           widget: {
             value: "[x]",
           },
-          badge: "new"
+          badge: "new",
+          link: { href: "/work" },
         },
+        // {
+        //   label: "Services",
+        //   widget: {
+        //     value: "[x]",
+        //   },
+        //   badge: "new",
+        //   link: { href: "/services" },
+        //   pos: "span 1 / span 4" 
+        // },
         {
           label: "LinkedIn",
           link: { href: IRRLMM.links.linkedin, external: true },
@@ -107,6 +122,11 @@ if (!posts) {
           link: { href: "/undefined" },
           icon: { path: SVG_KEY },
           badge: "???",
+        },
+        {
+          label: "Changelog",
+          link: { href: "/changelog" },
+          icon: { text: RELEASE_NOTES[0].version },
         },
       ]}
     />

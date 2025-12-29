@@ -24,6 +24,7 @@ import {
   SVG_KEY,
   SVG_MAIL,
 } from "../../consts/svg";
+import AnimatedLinkButton from "../../components/AnimatedLinkButton";
 // import FACTS_JOURNEY from "../consts/stacks/journey";
 
 const posts = (await getCollection("work")).sort(
@@ -38,6 +39,15 @@ if (!posts) {
 <MainLayout schema={SCHEMA_PERSON_FULL}>
   <div class="col">
     <Header />
+
+    {
+      posts.map((post) => (
+        <a href={`/work/${post.id}`}>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.intro}</p>
+        </a>
+      ))
+    }
 
     <!-- <section class="col gap-s">
       <h1 class="hidden">{IRRLMM.name}</h1>

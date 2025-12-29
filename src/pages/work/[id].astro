@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import { Image } from "astro:assets";
 import getImage from "../../helpers/getImageMetadata";
 import Header from "../../components/Header.astro";
+import ShakingCards from "../../components/ShakingCards.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("work");
@@ -23,12 +24,27 @@ const post = Astro.props;
   <article>
     <Header />
 
-    <!-- <Image
+    <Image
       src={getImage(post.data.coverImage)()}
       widths={[1280, 2560]}
       alt={post.data.title}
-      layout="full-width"
-    /> -->
+      loading="eager"
+      layout="fixed"
+    />
+
+    <h1>{post.data.title}</h1>
+    <span>{post.data.date}</span>
+    <span>{post.data.intro}</span>
+
+    {
+      post.data.sections.map((section) => (
+        <>
+          <h2>{section.title}</h2>
+          {section.images && <ShakingCards imgs={section.images} />}
+        </>
+      ))
+    }
+
     <Footer />
   </article>
 </MainLayout>
@@ -43,7 +59,8 @@ const post = Astro.props;
     padding: var(--unit-2xl) 0;
   }
 
-  .image {
+  article > img {
+    width: 100%;
     animation: appear-with-scale 0.66s var(--bezier) 0.1s both;
   }
 

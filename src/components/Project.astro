@@ -6,29 +6,32 @@ import ProjectItem from "./ProjectItem";
 interface Props {
   title: string;
   timeline?: string;
-  chips?: string[];
   lines: string[];
-  imgs: ImageMetadata[];
+  imgs: { src: ImageMetadata; chip?: string; logo?: ImageMetadata }[];
   link?: UI.Link;
 }
 
-const { title, timeline, lines, chips, link, imgs } = Astro.props;
+const { title, timeline, lines, link, imgs } = Astro.props;
 
 // Preload and optimize all images at build time
 const pictureData = await Promise.all(
-  imgs.map((src) =>
+  imgs.map(({ src, ...rest }) =>
     getImage({
       src,
       format: "webp",
       quality: 99,
       width: 2566,
-    })
+    }).then((optimizedImage) => ({
+      imgSrc: optimizedImage.src,
+      ...rest,
+    }))
   )
 );
 
 // Extract just the optimized URL string from each image object
-const optimizedSrcs = pictureData.map((image) => ({
-  src: image.src,
+const optimizedSrcs = pictureData.map((data) => ({
+  imgSrc: data.imgSrc,
+  chip: data.chip,
 }));
 ---
 
@@ -37,7 +40,6 @@ const optimizedSrcs = pictureData.map((image) => ({
   title={title}
   timeline={timeline}
   lines={lines}
-  chips={chips}
   link={link}
-  imgSrcs={optimizedSrcs}
+  content={optimizedSrcs}
 />
