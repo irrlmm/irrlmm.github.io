@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { motion } from "framer-motion";
 
-import styles from "../CardStack/styles.module.css";
+import styles from "../SwipeCardStack/styles.module.css";
 import innerStyles from "./styles.module.css";
 
 type Props = {

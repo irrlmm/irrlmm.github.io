@@ -9,7 +9,7 @@ import QuizOutro from "./QuizOutro";
 
 import { SVG_KEY } from "../../consts/svg";
 
-import styles from "../CardStack/styles.module.css";
+import styles from "../SwipeCardStack/styles.module.css";
 import trackEvent from "../../helpers/trackEvent";
 
 type Props = {

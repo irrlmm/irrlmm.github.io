@@ -4,7 +4,7 @@ import Svg from "../Svg";
 
 import { SVG_KEY } from "../../consts/svg";
 
-import styles from "../CardStack/styles.module.css";
+import styles from "../SwipeCardStack/styles.module.css";
 import introStyles from "../ScreenIntro/styles.module.css";
 import innerStyles from "./styles.module.css";
 
