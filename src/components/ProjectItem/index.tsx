@@ -41,6 +41,7 @@ const ProjectItem: React.FC<Props> = ({
 
           <div className="col gap-2xs align-start">
             {timeline && <span className={styles.timeline}>{timeline}</span>}
+
             <h3>{title}</h3>
           </div>
 

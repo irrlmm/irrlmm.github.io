@@ -47,7 +47,7 @@ const ProductEyeContent: React.FC<Props> = ({ index, card, trackMeta }) => {
         <div key={i} className={styles.cornerDecor} />
       ))}
 
-      <BlackMirror pixelBlocks={50} className={styles.blackMirror} />
+      <BlackMirror className={styles.blackMirror} />
 
       <div className="col gap-s">
         <div className={styles.header}>

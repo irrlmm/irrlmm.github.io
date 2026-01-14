@@ -38,15 +38,14 @@ const JumboProjectCard: React.FC<Props> = ({ src, chip, logo, className }) => {
   const scaleAnimated = useSpring(scale, { bounce: 0.2 });
 
   const blur = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [4, 0, 0, 4]);
-  const blurRounded = useTransform(blur, (v) => v.toFixed(2));
 
-  const filter = useTransform(blurRounded, (v) => `blur(${v}px)`);
+  const filter = useTransform(blur, (v) => `blur(${v.toFixed(2)}px)`);
 
   // overlay effects
   const overlayLightOpacity = useTransform(
     rotateXCard,
     [15, 8, 0, -8, -15],
-    [1, 0.33, 0, 0.15, 0]
+    [0.75, 0.25, 0, 0.05, 0]
   );
   const overlayLightTranslateY = useTransform(
     rotateXCard,
@@ -58,7 +57,7 @@ const JumboProjectCard: React.FC<Props> = ({ src, chip, logo, className }) => {
     (v) => `${v}%`
   );
 
-  const overlayDarkOpacity = useTransform(rotateXCard, [0, -45], [0, 1]);
+  const overlayDarkOpacity = useTransform(rotateXCard, [0, -15], [0, 1]);
 
   return (
     <motion.div

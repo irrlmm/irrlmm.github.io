@@ -25,7 +25,7 @@
   background-color: var(--on-surface);
   color: var(--background);
   font-size: var(--unit-s);
-  padding: 0 2px;
+  padding: 0 var(--unit-2xs);
 }
 
 .progressWrapper {
@@ -47,7 +47,7 @@
 }
 
 .jumboCard {
-  perspective-origin: 30% center;
+  perspective-origin: 30% 30%;
 }
 
 @media (max-width: 1280px) {
