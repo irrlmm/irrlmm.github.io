@@ -1,6 +1,6 @@
 // reedsy
 import reedsyCover from "../../assets/work/reedsy/cover.png";
-import reedsySpider from "../../assets/work/reedsy/spider.png";
+import reedsyViz from "../../assets/work/reedsy/spider.png";
 import reedsyNoir from "../../assets/work/reedsy/noir.png";
 
 // instant mastering
@@ -31,7 +31,7 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
         chip: "I led design of AI-assisted writing features that demonstrated early 2-month retention uplift in closed testing.",
       },
       {
-        src: reedsySpider,
+        src: reedsyViz,
         chip: "Copilot is writer-first AI with zero slop, using helpful visualizations, NLP analysis and contextual LLM search to support real writing.",
       },
       {
