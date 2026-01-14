@@ -17,6 +17,9 @@ const work = defineCollection({
       z.object({
         title: z.optional(z.string()),
         lines: z.optional(z.array(z.string())),
+        smallImages: z.optional(
+          z.array(z.object({ src: z.string(), chip: z.optional(z.string()) }))
+        ),
         images: z.optional(
           z.array(z.object({ src: z.string(), chip: z.optional(z.string()) }))
         ),

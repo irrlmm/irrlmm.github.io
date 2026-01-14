@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Fragment } from "react/jsx-runtime";
+
 import styles from "./styles.module.css";
 
 type Line =
@@ -22,6 +23,7 @@ type Props = {
 const AnimatedParagraph: React.FC<Props> = ({ lines, size = "m" }) => {
   return (
     <motion.p
+      className={styles.paragraph}
       variants={{
         hidden: {},
         shown: { transition: { delayChildren: 0.25, staggerChildren: 0.15 } },

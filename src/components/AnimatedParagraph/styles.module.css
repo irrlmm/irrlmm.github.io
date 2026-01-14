@@ -1,2 +1,4 @@
-.experiencePicker {
+.paragraph {
+  color: var(--on-surface);
+  line-height: 1.1;
 }

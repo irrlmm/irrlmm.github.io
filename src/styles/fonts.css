@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: "zero" on;
 }
 
 :root {
@@ -24,11 +25,14 @@
 
   font-family: "mono", monospace;
   font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
 
   -webkit-font-smoothing: antialiased;
   font-variant-ligatures: none;
+}
+
+p {
+  line-height: 1.4;
+  letter-spacing: 0;
 }
 
 @media (max-width: 1024px) {
@@ -50,6 +54,7 @@ h4,
 h5,
 h6 {
   font-size: var(--unit-m);
+  line-height: 1.2;
   font-weight: 400;
 }
 

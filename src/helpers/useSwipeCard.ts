@@ -44,8 +44,9 @@ const useSwipeCard = ({
       opacity: isRemovable && shouldSwipe ? 0 : 1,
       transition: {
         type: "spring",
-        bounce: 0,
-        duration: 0.3,
+        bounce: 0.1,
+        stiffness: 300,
+        damping: 20,
       },
     },
   };

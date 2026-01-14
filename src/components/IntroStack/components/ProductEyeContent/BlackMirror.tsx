@@ -13,7 +13,7 @@ type Props = {
 };
 
 const BlackMirror: React.FC<Props> = ({
-  pixelBlocks = 50,
+  pixelBlocks = 33,
   amplitude = 0.25,
   noiseFps = 15,
   className,
