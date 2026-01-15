@@ -11,13 +11,23 @@
   gap: var(--unit-s);
   border-bottom: solid 2px var(--on-surface);
   padding-bottom: var(--unit-m);
-  text-transform: uppercase;
 }
 
 .header h2,
 .header h3 {
   line-height: 1;
   font-size: var(--unit-s);
+}
+
+.header h2 {
+  text-transform: uppercase;
+}
+
+.header h3 {
+  color: var(--background);
+  background-color: var(--on-surface);
+  padding: var(--unit-3xs) var(--unit-2xs);
+  border-radius: var(--unit-3xs);
 }
 
 .fact p {
