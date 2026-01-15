@@ -32,10 +32,10 @@ const STACK_INTRO: UI.CardStack<
       ],
     },
     {
-      id: "me:adaptive",
+      id: "me",
       type: "fact",
       icon: { path: SVG_GEM },
-      text: "I bring founder energy with scaler speed, fixer grit, and orchestrator flow, shifting as needed.",
+      text: "I approach design with founder-level ownership and focus design on making products valuable and sustainable.",
     },
     {
       id: "product-eye",

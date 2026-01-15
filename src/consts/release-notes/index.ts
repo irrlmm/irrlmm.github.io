@@ -8,7 +8,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
   {
     version: "2.0.a",
     title: "Case studies",
-    text: "Revamped the entire website with a new 'Work' section showcasing recent projects and case studies. Added the header for easier navigation.",
+    text: "Refreshed highlights. Revamped the entire website with a new 'Work' section showcasing recent projects and case studies. Added the header for easier navigation.",
   },
   {
     version: "1.3.2",
