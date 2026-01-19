@@ -1,3 +1,4 @@
+import { IRRLMM } from "../meta";
 import RELEASE_NOTES from "../release-notes";
 import { SVG_GEM } from "../svg";
 
@@ -11,12 +12,12 @@ const STACK_INTRO: UI.CardStack<
   id: "facts-intro",
   cards: [
     {
-      id: "case-study-test",
+      id: "portfolio",
       type: "case-study",
-      title: "iMusician: AI Music Mastering Tool",
+      title: "Skim through my new portfolio",
       link: {
-        label: "Read now",
-        href: "https://www.behance.net/gallery/223450275/Instant-Mastering-Instant-Remake",
+        label: "To Figma Slides",
+        href: IRRLMM.links.portfolio,
         external: true,
       },
     },

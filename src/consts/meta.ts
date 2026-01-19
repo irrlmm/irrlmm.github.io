@@ -5,22 +5,6 @@ export const IRRLMM = {
   title: "Product Designer and Creative Developer",
   bio: [
     "I'm a product designer and creative developer.",
-    // {
-    //   type: "experience-picker",
-    //   text: "I'm",
-    //   actions: [
-    //     {
-    //       id: "building",
-    //       label: "Building",
-    //       objects: [{ id: "design-system", label: "Design systems" }],
-    //     },
-    //     {
-    //       id: "leading",
-    //       label: "Leading",
-    //       objects: [{ id: "saas", label: "SaaS platform design" }],
-    //     },
-    //   ],
-    // },
     "I'm leading. Building. Designing. Coding. Shipping.", // TODO: make a drop-down options list...
     "Obsessed with craft and bringing purpose to this chaotic world.",
     // "I've led feature launches. Built design systems. Designed SaaS platforms. Shipped mobile apps and websites. Even coded.",
@@ -31,6 +15,8 @@ export const IRRLMM = {
     linkedin: "https://linkedin.com/in/irrlmm",
     dribbble: "https://dribbble.com/irrlmm",
     behance: "https://behance.com/irrlmm",
+    portfolio:
+      "https://www.figma.com/deck/tnPFgqabFQjxFZdKURTlda/Igor-Lemeshkin---Portfolio-S",
     github: "https://github.com/irrlmm",
   },
 };

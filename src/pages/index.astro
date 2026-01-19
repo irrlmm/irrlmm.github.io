@@ -23,6 +23,7 @@ import {
   SVG_DRIBBBLE,
   SVG_KEY,
   SVG_MAIL,
+  SVG_PLAYBACK,
 } from "../consts/svg";
 
 const posts = (await getCollection("work")).sort(
@@ -96,9 +97,9 @@ if (!posts) {
           icon: { path: SVG_DRIBBBLE },
         },
         {
-          label: "Behance",
-          link: { href: IRRLMM.links.behance, external: true },
-          icon: { text: "Be" },
+          label: "Portfolio",
+          link: { href: IRRLMM.links.portfolio, external: true },
+          icon: { path: SVG_PLAYBACK },
         },
         {
           label: "Github",
