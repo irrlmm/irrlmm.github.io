@@ -62,7 +62,7 @@ if (!posts) {
     <Launchpad
       apps={[
         {
-          label: "This is me",
+          label: "About me",
           widget: {
             imageSrc: "persons/irrlmm.png",
           },
@@ -77,15 +77,6 @@ if (!posts) {
           badge: "new",
           link: { href: "/work" },
         },
-        // {
-        //   label: "Services",
-        //   widget: {
-        //     value: "[x]",
-        //   },
-        //   badge: "new",
-        //   link: { href: "/services" },
-        //   pos: "span 1 / span 4"
-        // },
         {
           label: "LinkedIn",
           link: { href: IRRLMM.links.linkedin, external: true },
@@ -100,6 +91,7 @@ if (!posts) {
           label: "Portfolio",
           link: { href: IRRLMM.links.portfolio, external: true },
           icon: { path: SVG_PLAYBACK },
+          badge: "new",
         },
         {
           label: "Github",
