@@ -10,7 +10,7 @@ const CaseStudyContent: React.FC<Props> = ({ card: { title, link } }) => {
   return (
     <div className={styles.caseStudyCard}>
       <div className="col gap-m">
-        <h2>Case study</h2>
+        <h2>NEW</h2>
         <p>{title}</p>
       </div>
 
