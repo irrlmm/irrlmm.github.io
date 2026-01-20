@@ -7,6 +7,19 @@ import QuizStack from "../components/QuizStack";
 import QUIZ_ROGI from "../consts/quizzes/rogi";
 ---
 
+<style is:global>
+  :root {
+    --background: #010501;
+    --on-surface: rgba(57, 255, 20, 1);
+    --on-surface-var: rgba(57, 255, 20, 0.6);
+    --on-surface-var-2: rgba(57, 255, 20, 0.2);
+
+    text-transform: uppercase;
+    text-align: justify;
+    letter-spacing: 0.05em;
+  }
+</style>
+
 <MainLayout>
   <div class="wrapper">
     <Header />
@@ -30,19 +43,6 @@ import QUIZ_ROGI from "../consts/quizzes/rogi";
     <Footer name="Rogi ???" year={1997} />
   </div>
 </MainLayout>
-
-<style is:global>
-  :root {
-    --background: #010501;
-    --on-surface: rgba(57, 255, 20, 1);
-    --on-surface-var: rgba(57, 255, 20, 0.6);
-    --on-surface-var-2: rgba(57, 255, 20, 0.2);
-
-    text-transform: uppercase;
-    text-align: justify;
-    letter-spacing: 0.05em;
-  }
-</style>
 
 <style>
   .wrapper {
