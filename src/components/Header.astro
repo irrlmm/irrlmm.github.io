@@ -1,12 +1,15 @@
 ---
 import Monogram from "./Monogram.astro";
+import { IRRLMM } from "../consts/meta";
 ---
 
 <header class="row align-center justify-between">
   <Monogram />
 
   <nav class="row gap-s">
-    <a href="/work">Work</a>
+    <a href={IRRLMM.links.portfolio} target="_blank" rel="noopener noreferrer"
+      >Work</a
+    >
     <span class="color-tertiary">|</span>
     <a href="mailto:hello@irrlmm.me">Contact</a>
   </nav>
