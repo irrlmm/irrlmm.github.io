@@ -66,16 +66,22 @@ if (!posts) {
           widget: {
             imageSrc: "persons/irrlmm.png",
           },
-          badge: "new",
+          badge: "soon",
           link: { href: "/about" },
         },
         {
           label: "Case studies",
           widget: {
-            value: "[soon]",
+            loading: true,
           },
-          badge: "new",
+          badge: "soon",
           link: { href: "/work" },
+        },
+        {
+          label: "Portfolio",
+          link: { href: IRRLMM.links.portfolio, external: true },
+          icon: { path: SVG_PLAYBACK },
+          badge: "new",
         },
         {
           label: "LinkedIn",
@@ -86,12 +92,6 @@ if (!posts) {
           label: "Dribbble",
           link: { href: IRRLMM.links.dribbble, external: true },
           icon: { path: SVG_DRIBBBLE },
-        },
-        {
-          label: "Portfolio",
-          link: { href: IRRLMM.links.portfolio, external: true },
-          icon: { path: SVG_PLAYBACK },
-          badge: "new",
         },
         {
           label: "Github",

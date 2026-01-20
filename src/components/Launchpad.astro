@@ -17,7 +17,7 @@ type App = {
     logo: string;
     lines: string[];
   };
-  widget?: { value?: string; imageSrc?: string };
+  widget?: { value?: string; imageSrc?: string; loading?: boolean };
   badge?: string;
   pos?: string;
 };
@@ -41,6 +41,16 @@ const { apps } = Astro.props;
           {badge && <LaunchpadBadge value={badge} />}
 
           {icon && <LaunchpadIcon icon={icon} />}
+
+          {widget && widget.loading && (
+            <div class="value">
+              <span
+                class="font-size-l ascii-spinner"
+                role="status"
+                aria-label="Loading"
+              />
+            </div>
+          )}
 
           {widget && widget.value && (
             <div class="value">
@@ -139,6 +149,33 @@ const { apps } = Astro.props;
     align-items: center;
     justify-content: center;
     gap: var(--unit-2xs);
+  }
+
+  .ascii-spinner {
+    display: inline-block;
+    width: 1ch;
+  }
+  .ascii-spinner::before {
+    content: "/";
+    animation: ascii-spin 0.5s steps(1) infinite;
+  }
+
+  @keyframes ascii-spin {
+    0% {
+      content: "/";
+    }
+    25% {
+      content: "-";
+    }
+    50% {
+      content: "\\";
+    }
+    75% {
+      content: "|";
+    }
+    100% {
+      content: "/";
+    }
   }
 
   a > span {
