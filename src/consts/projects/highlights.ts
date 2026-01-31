@@ -22,7 +22,7 @@ const PROJECTS_HIGHLIGHTS: UI.Project[] = [
     title: "Reedsy Studio: Narrative Copilot",
     timeline: "2026",
     lines: [
-      "AI-powered narrative copilot for book authors, focused on editorial-level analysis rather than generation.",
+      "AI-powered narrative copilot for book authors, focused on editorial-level analysis rather than text generation.",
       "For 6 months, I drove discovery, product vision, and high-fidelity prototyping as consulting Lead Product Designer.",
     ],
     imgs: [
