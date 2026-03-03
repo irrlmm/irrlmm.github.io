@@ -7,6 +7,7 @@ import CardWork from "../CardWork";
 import SectionWorkTabs from "../SectionWorkTabs/SectionWorkTabs";
 
 import styles from "./styles.module.css";
+import type { LightningEffectInput } from "../../helpers/stackedImageLightShadow";
 
 type WorkCollectionWithOrgInfo = CollectionEntry<"work"> & {
   data: CollectionEntry<"work">["data"] & {
@@ -22,6 +23,11 @@ type FilterType = "all" | CollectionType;
 
 type Props = {
   items: CollectionEntryType[];
+};
+
+export const cardLightningEffectConfig: LightningEffectInput = {
+  tilt: 12.5,
+  lightEffectIntensity: 0.5,
 };
 
 const SectionWork: React.FC<Props> = ({ items }) => {

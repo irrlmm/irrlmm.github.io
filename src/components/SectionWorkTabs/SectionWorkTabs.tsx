@@ -25,29 +25,23 @@ const SectionWorkTabs = <T extends string>({
             aria-selected={isSelected}
             className={styles.chip}
             animate={isSelected ? "selected" : "default"}
-            whileHover="hovered"
             whileTap="pressed"
             variants={{
               default: {
                 backgroundColor: "transparent",
                 color: "var(--on-surface)",
-                border: "solid var(--line) var(--on-surface)",
-              },
-              hovered: {
-                scale: 1.05,
               },
               pressed: {
-                scale: 0.95,
+                scale: 0.975,
               },
               selected: {
                 backgroundColor: "var(--on-surface)",
                 color: "var(--background)",
-                border: "none",
               },
             }}
             onClick={() => onSelect(type)}
           >
-            <span className="overline-m">{type}</span>
+            <span className="overline-s">{type}</span>
           </motion.button>
         );
       })}

@@ -1,27 +1,27 @@
 import type { CollectionEntry } from "astro:content";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import moment from "moment";
 
-import getAverageImageColor from "../../helpers/getAverageImageColor";
 import { useStackedImageLightShadowTransforms } from "../../helpers/stackedImageLightShadow";
 
 import styles from "./styles.module.css";
+import { cardLightningEffectConfig } from "../SectionWork";
 
 type Props = {
   item: CollectionEntry<"blog">;
 };
 
-const WorkItem: React.FC<Props> = ({ item }) => {
+const CardArticle: React.FC<Props> = ({ item }) => {
   const {
     wrapperRef,
     wrapperStyle,
     containerStyle,
-    highlightStyle,
     shadowStyle,
     handlePointerMove,
     handlePointerLeave,
-  } = useStackedImageLightShadowTransforms<HTMLAnchorElement>({});
+  } = useStackedImageLightShadowTransforms<HTMLAnchorElement>(
+    cardLightningEffectConfig,
+  );
 
   const layerVariants = {
     idle: { translateZ: 0 },
@@ -50,39 +50,23 @@ const WorkItem: React.FC<Props> = ({ item }) => {
       variants={{ hover: { scale: 1.025 }, tap: { scale: 0.975 } }}
       transition={layerTransition}
     >
-      <motion.div
-        className={styles.container}
-        style={{
-          ...containerStyle,
-          backgroundImage: `url(${item.data.coverImage})`,
-        }}
-      >
+      <motion.div className={styles.container} style={containerStyle}>
         <motion.div
           className={styles.content}
           transition={layerTransition}
           variants={layerVariants}
         >
-          <motion.div
-            className={styles.orgLogo}
-            style={{ backgroundImage: `url(${item.data.orgImage})` }}
-          />
+          <h3 className="overline-s">{item.data.title}</h3>
 
-          <motion.div className={styles.item} variants={layerVariants}>
-            <span className="overline-xs">{item.data.orgName}</span>
-
-            <h3 className="overline-s">{item.data.title}</h3>
-
-            <span className="overline-xs">
-              {moment(item.data.date).toNow(true)} ago
-            </span>
-          </motion.div>
+          <span className="overline-xs">
+            {moment(item.data.date).toNow(true)} ago
+          </span>
         </motion.div>
 
         <motion.div className={styles.overlay} style={shadowStyle} />
-        <motion.div className={styles.overlay} style={highlightStyle} />
       </motion.div>
     </motion.a>
   );
 };
 
-export default WorkItem;
+export default CardArticle;

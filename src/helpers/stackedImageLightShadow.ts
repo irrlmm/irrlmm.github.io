@@ -3,6 +3,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
+  type MotionValue,
 } from "framer-motion";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { SPRING_CONFIG } from "./motion";
@@ -22,13 +23,12 @@ type LightShadowCalculationResult = {
   shadowIntensity: number;
 };
 
-type UseStackedImageLightShadowTransformsInput = {
+export type LightningEffectInput = {
   tilt?: number;
   lightPoint?: [number, number];
   mixShadowColor?: string;
   lightEffectIntensity?: number;
   defaultPerspective?: number;
-  dynamicContainerShadow?: boolean;
 };
 
 const HIGHLIGHT_FALLOFF_CURVE = 5;
@@ -40,40 +40,167 @@ const DEFAULT_LIGHT_POINT: [number, number] = [0.33, 0.125];
 const DEFAULT_LIGHT_EFFECT_INTENSITY = 0.33;
 const DEFAULT_PERSPECTIVE = 1600;
 const PERSPECTIVE_MULTIPLIER = 2;
+const SHADOW_TRAVEL = 16;
 
-const parseColorToRgb = (color?: string) => {
-  if (!color) return { r: 0, g: 0, b: 0 };
+type UseHighlightLayerInput = {
+  lightX: number;
+  lightY: number;
+  maxTilt: number;
+  animatedTiltX: MotionValue<number>;
+  animatedTiltY: MotionValue<number>;
+  highlightIntensity: MotionValue<number>;
+};
 
-  const trimmed = color.trim().toLowerCase();
-  const rgbMatch = trimmed.match(
-    /^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})/,
+const useHighlightLayerTransforms = ({
+  lightX,
+  lightY,
+  maxTilt,
+  animatedTiltX,
+  animatedTiltY,
+  highlightIntensity,
+}: UseHighlightLayerInput) => {
+  const lightBaseX = lightX * 100;
+  const lightBaseY = lightY * 100;
+
+  const highlightCenterX = useTransform(
+    animatedTiltY,
+    [-maxTilt, maxTilt],
+    [
+      `${lightBaseX + LIGHT_POSITION_TRAVEL}%`,
+      `${lightBaseX - LIGHT_POSITION_TRAVEL}%`,
+    ],
   );
-  if (rgbMatch) {
-    return {
-      r: Math.min(255, Number(rgbMatch[1])),
-      g: Math.min(255, Number(rgbMatch[2])),
-      b: Math.min(255, Number(rgbMatch[3])),
-    };
-  }
 
-  const hex = trimmed.replace("#", "");
-  if (hex.length === 3) {
-    return {
-      r: parseInt(hex[0] + hex[0], 16),
-      g: parseInt(hex[1] + hex[1], 16),
-      b: parseInt(hex[2] + hex[2], 16),
-    };
-  }
+  const highlightCenterY = useTransform(
+    animatedTiltX,
+    [-maxTilt, maxTilt],
+    [
+      `${lightBaseY - LIGHT_POSITION_TRAVEL}%`,
+      `${lightBaseY + LIGHT_POSITION_TRAVEL}%`,
+    ],
+  );
 
-  if (hex.length === 6) {
-    return {
-      r: parseInt(hex.slice(0, 2), 16),
-      g: parseInt(hex.slice(2, 4), 16),
-      b: parseInt(hex.slice(4, 6), 16),
-    };
-  }
+  const highlightOpacity = useSpring(highlightIntensity, SPRING_CONFIG);
+  const highlightGradient = useMotionTemplate`radial-gradient(
+    circle at ${highlightCenterX} ${highlightCenterY},
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  )`;
 
-  return { r: 0, g: 0, b: 0 };
+  return {
+    highlightOpacity,
+    highlightGradient,
+  };
+};
+
+type UseShadowLayerInput = {
+  lightX: number;
+  lightY: number;
+  maxTilt: number;
+  animatedTiltX: MotionValue<number>;
+  animatedTiltY: MotionValue<number>;
+  shadowIntensity: MotionValue<number>;
+};
+
+const useShadowLayerTransforms = ({
+  lightX,
+  lightY,
+  maxTilt,
+  animatedTiltX,
+  animatedTiltY,
+  shadowIntensity,
+}: UseShadowLayerInput) => {
+  const shadowBaseX = lightX * 100;
+  const shadowBaseY = lightY * 100;
+
+  const shadowOpacity = useSpring(shadowIntensity, SPRING_CONFIG);
+  const shadowCenterX = useTransform(
+    animatedTiltY,
+    [-maxTilt, maxTilt],
+    [
+      `${shadowBaseX + SHADOW_POSITION_TRAVEL}%`,
+      `${shadowBaseX - SHADOW_POSITION_TRAVEL}%`,
+    ],
+  );
+  const shadowCenterY = useTransform(
+    animatedTiltX,
+    [-maxTilt, maxTilt],
+    [
+      `${shadowBaseY - SHADOW_POSITION_TRAVEL}%`,
+      `${shadowBaseY + SHADOW_POSITION_TRAVEL}%`,
+    ],
+  );
+
+  const shadowInnerStop = useTransform(shadowOpacity, [0, 1], ["0%", "50%"]);
+  const shadowOuterStop = useTransform(shadowOpacity, [0, 1], ["100%", "100%"]);
+  const shadowGradient = useMotionTemplate`radial-gradient(
+    circle at ${shadowCenterX} ${shadowCenterY},
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) ${shadowInnerStop},
+    rgba(0, 0, 0, 1) ${shadowOuterStop}
+  )`;
+
+  return {
+    shadowOpacity,
+    shadowGradient,
+  };
+};
+
+type UseBoxShadowLayerInput = {
+  lightX: number;
+  lightY: number;
+  maxTilt: number;
+  animatedTiltX: MotionValue<number>;
+  animatedTiltY: MotionValue<number>;
+  highlightOpacity: MotionValue<number>;
+  lightEffectIntensity: number;
+  mixShadowColor?: string;
+};
+
+const useBoxShadowLayerTransforms = ({
+  lightX,
+  lightY,
+  maxTilt,
+  animatedTiltX,
+  animatedTiltY,
+  highlightOpacity,
+  lightEffectIntensity,
+  mixShadowColor,
+}: UseBoxShadowLayerInput) => {
+  const resolvedShadowMixColor = mixShadowColor?.trim() || "rgba(0, 0, 0, 0)";
+
+  const shadowBaseOffsetX = (0.5 - lightX) * SHADOW_TRAVEL;
+  const shadowBaseOffsetY = (0.5 - lightY) * SHADOW_TRAVEL;
+  const shadowOffsetX = useTransform(
+    animatedTiltY,
+    [-maxTilt, maxTilt],
+    [shadowBaseOffsetX + SHADOW_TRAVEL, shadowBaseOffsetX - SHADOW_TRAVEL],
+  );
+  const shadowOffsetY = useTransform(
+    animatedTiltX,
+    [-maxTilt, maxTilt],
+    [shadowBaseOffsetY - SHADOW_TRAVEL, shadowBaseOffsetY + SHADOW_TRAVEL],
+  );
+  const shadowBlur = useTransform(
+    highlightOpacity,
+    [0, 1],
+    [8 + lightEffectIntensity * 24, 8 + lightEffectIntensity * 8],
+  );
+  const shadowAlpha = useTransform(
+    highlightOpacity,
+    [0, 1],
+    [0.1 + lightEffectIntensity * 0.2, 0.2 + lightEffectIntensity * 1],
+  );
+
+  const boxShadow = useMotionTemplate`
+    inset 0 0 0 var(--line) var(--outline),
+    ${shadowBaseOffsetX}px ${shadowBaseOffsetY}px ${8 + lightEffectIntensity * 24}px -8px color-mix(in srgb, ${resolvedShadowMixColor} ${10 + 90 * lightEffectIntensity}%, transparent),
+    ${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px -2px rgba(0, 0, 0, ${shadowAlpha})
+  `;
+
+  return {
+    boxShadow,
+  };
 };
 
 export const calculateStackedImageLightShadow = ({
@@ -106,11 +233,11 @@ export const useStackedImageLightShadowTransforms = <
 >({
   tilt,
   lightPoint,
-  mixShadowColor = "rgba(0, 0, 0, 0.1)",
+  mixShadowColor,
   lightEffectIntensity = DEFAULT_LIGHT_EFFECT_INTENSITY,
   defaultPerspective = DEFAULT_PERSPECTIVE,
-}: UseStackedImageLightShadowTransformsInput) => {
-  const resolvedTilt = tilt ?? DEFAULT_TILT;
+}: LightningEffectInput) => {
+  const maxTilt = tilt ?? DEFAULT_TILT;
   const resolvedLightPoint = lightPoint ?? DEFAULT_LIGHT_POINT;
 
   const [lightX, lightY] = resolvedLightPoint;
@@ -120,8 +247,8 @@ export const useStackedImageLightShadowTransforms = <
   const [elementPerspective, setElementPerspective] =
     useState(defaultPerspective);
 
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
   const highlightIntensity = useMotionValue(0);
   const shadowIntensity = useMotionValue(0);
 
@@ -145,91 +272,35 @@ export const useStackedImageLightShadowTransforms = <
     return () => observer.disconnect();
   }, [defaultPerspective]);
 
-  // Gradient centers are in CSS % space (0-100), so lightPoint maps directly.
-  const lightBaseX = lightX * 100;
-  const lightBaseY = lightY * 100;
-  const shadowBaseX = lightX * 100;
-  const shadowBaseY = lightY * 100;
+  const animatedTiltX = useSpring(tiltX, SPRING_CONFIG);
+  const animatedTiltY = useSpring(tiltY, SPRING_CONFIG);
 
-  const tiltX = useSpring(rotateX, SPRING_CONFIG);
-  const tiltY = useSpring(rotateY, SPRING_CONFIG);
-
-  const highlightCenterX = useTransform(
-    tiltY,
-    [-resolvedTilt, resolvedTilt],
-    [
-      `${lightBaseX + LIGHT_POSITION_TRAVEL}%`,
-      `${lightBaseX - LIGHT_POSITION_TRAVEL}%`,
-    ],
-  );
-
-  const highlightCenterY = useTransform(
-    tiltX,
-    [-resolvedTilt, resolvedTilt],
-    [
-      `${lightBaseY - LIGHT_POSITION_TRAVEL}%`,
-      `${lightBaseY + LIGHT_POSITION_TRAVEL}%`,
-    ],
-  );
-
-  const highlightOpacity = useSpring(highlightIntensity, SPRING_CONFIG);
-  const shadowOpacity = useSpring(shadowIntensity, SPRING_CONFIG);
-  const shadowMixColor = parseColorToRgb(mixShadowColor);
-
-  const highlightGradient = useMotionTemplate`radial-gradient(
-    circle at ${highlightCenterX} ${highlightCenterY},
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  )`;
-
-  const shadowCenterX = useTransform(
-    tiltY,
-    [-resolvedTilt, resolvedTilt],
-    [
-      `${shadowBaseX + SHADOW_POSITION_TRAVEL}%`,
-      `${shadowBaseX - SHADOW_POSITION_TRAVEL}%`,
-    ],
-  );
-  const shadowCenterY = useTransform(
-    tiltX,
-    [-resolvedTilt, resolvedTilt],
-    [
-      `${shadowBaseY - SHADOW_POSITION_TRAVEL}%`,
-      `${shadowBaseY + SHADOW_POSITION_TRAVEL}%`,
-    ],
-  );
-
-  const shadowInnerStop = useTransform(shadowOpacity, [0, 1], ["0%", "50%"]);
-  const shadowOuterStop = useTransform(shadowOpacity, [0, 1], ["100%", "100%"]);
-  const shadowGradient = useMotionTemplate`radial-gradient(
-    circle at ${shadowCenterX} ${shadowCenterY},
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) ${shadowInnerStop},
-    rgba(0, 0, 0, 1) ${shadowOuterStop}
-  )`;
-
-  const SHADOW_TRAVEL = 16;
-
-  const shadowBaseOffsetX = (0.5 - lightX) * SHADOW_TRAVEL;
-  const shadowBaseOffsetY = (0.5 - lightY) * SHADOW_TRAVEL;
-  const shadowOffsetX = useTransform(
-    tiltY,
-    [-resolvedTilt, resolvedTilt],
-    [shadowBaseOffsetX + SHADOW_TRAVEL, shadowBaseOffsetX - SHADOW_TRAVEL],
-  );
-  const shadowOffsetY = useTransform(
-    tiltX,
-    [-resolvedTilt, resolvedTilt],
-    [shadowBaseOffsetY - SHADOW_TRAVEL, shadowBaseOffsetY + SHADOW_TRAVEL],
-  );
-  const shadowBlur = useTransform(highlightOpacity, [0, 1], [8, 16]);
-  const shadowAlpha = useTransform(highlightOpacity, [0, 1], [0.2, 1]);
-
-  const dynamicContainerBoxShadow = useMotionTemplate`
-    inset 0 0 0 var(--line) var(--outline),
-    ${shadowBaseOffsetX}px ${shadowBaseOffsetY}px 16px -8px rgba(${shadowMixColor.r}, ${shadowMixColor.g}, ${shadowMixColor.b}, 0.66),
-    ${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px -2px rgba(0, 0, 0, ${shadowAlpha})
-  `;
+  const { highlightOpacity, highlightGradient } = useHighlightLayerTransforms({
+    lightX,
+    lightY,
+    maxTilt,
+    animatedTiltX,
+    animatedTiltY,
+    highlightIntensity,
+  });
+  const { shadowOpacity, shadowGradient } = useShadowLayerTransforms({
+    lightX,
+    lightY,
+    maxTilt,
+    animatedTiltX,
+    animatedTiltY,
+    shadowIntensity,
+  });
+  const { boxShadow } = useBoxShadowLayerTransforms({
+    lightX,
+    lightY,
+    maxTilt,
+    animatedTiltX,
+    animatedTiltY,
+    highlightOpacity,
+    lightEffectIntensity,
+    mixShadowColor,
+  });
 
   const handlePointerMove = (event: PointerEvent<T>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -243,20 +314,20 @@ export const useStackedImageLightShadowTransforms = <
     } = calculateStackedImageLightShadow({
       normalizedX: x,
       normalizedY: y,
-      tilt: resolvedTilt,
+      tilt: maxTilt,
       lightPoint: resolvedLightPoint,
       lightEffectIntensity,
     });
 
-    rotateY.set(nextRotateY);
-    rotateX.set(nextRotateX);
+    tiltY.set(nextRotateY);
+    tiltX.set(nextRotateX);
     highlightIntensity.set(nextHighlightIntensity);
     shadowIntensity.set(nextShadowIntensity);
   };
 
   const handlePointerLeave = () => {
-    rotateX.set(0);
-    rotateY.set(0);
+    tiltX.set(0);
+    tiltY.set(0);
     highlightIntensity.set(0);
     shadowIntensity.set(0);
   };
@@ -268,9 +339,9 @@ export const useStackedImageLightShadowTransforms = <
     },
     elementPerspective,
     containerStyle: {
-      rotateX: tiltX,
-      rotateY: tiltY,
-      boxShadow: dynamicContainerBoxShadow,
+      rotateX: animatedTiltX,
+      rotateY: animatedTiltY,
+      boxShadow,
     },
     highlightStyle: {
       background: highlightGradient,

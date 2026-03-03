@@ -26,7 +26,17 @@ const work = defineCollection({
     title: z.string(),
     coverImage: z.string(),
     org: reference("orgs"),
-    tags: z.array(z.enum(["design system", "growth", "onboarding", "revenue"])),
+    tags: z.array(
+      z.enum([
+        "design system",
+        "growth",
+        "onboarding",
+        "revenue",
+        "concept",
+        "task completion",
+        "ai",
+      ]),
+    ),
     date: z.coerce.date(),
   }),
 });

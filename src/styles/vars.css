@@ -5,21 +5,23 @@
   --gray-920: #e8e8e8;
   --gray-160: #282828;
   --gray-80: #181818;
+  --gray-50: #0d0d0d;
   --gray-30: #0b0b0b;
-  /** Alpha variants for surface overlay */
-  --gray-970-20: color-mix(var(--gray-970) 20%, transparent);
-  --gray-970-05: color-mix(var(--gray-970) 5%, transparent);
-  --gray-30-40: color-mix(var(--gray-30) 40%, transparent);
-  --gray-30-05: color-mix(var(--gray-30) 5%, transparent);
 
-  /* Color surface tokens */
+  /* Color tokens */
   --background: light-dark(var(--gray-970), var(--gray-30));
   --surface: light-dark(var(--gray-1000), var(--gray-80));
+  --surface-dim: light-dark(var(--gray-920), var(--gray-50));
   --on-surface: light-dark(var(--gray-30), var(--gray-970));
-  --on-surface-overlay: light-dark(var(--gray-30-05), var(--gray-970-05));
-  --inverse-surface: light-dark(var(--gray-30), var(--gray-970));
-  --inverse-on-surface: light-dark(var(--gray-970), var(--gray-30));
-  --outline: light-dark(var(--gray-30-40), var(--gray-970-20));
+
+  /** Alpha color tokens */
+  --outline: color-mix(var(--on-surface) 25%, transparent);
+  --on-surface-overlay: color-mix(var(--on-surface) 5%, transparent);
+
+  /* Inverse theme tokens */
+  --inverse-surface: var(--on-surface);
+  --inverse-on-surface: var(--background);
+
   --pixel-grid-line: light-dark(rgba(0, 0, 0, 1), rgba(255, 255, 255, 0.5));
 
   /* Line */

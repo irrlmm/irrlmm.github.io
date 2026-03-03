@@ -1,0 +1,26 @@
+.wrapper {
+  color: var(--on-surface);
+  text-decoration: none;
+}
+
+.container {
+  position: relative;
+  background-color: var(--surface-dim);
+  aspect-ratio: 4/3;
+  padding: 1.5rem;
+  border-radius: var(--br-card);
+  transition: background-color 0.2s var(--bezier);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.container span {
+  opacity: 0.6;
+}

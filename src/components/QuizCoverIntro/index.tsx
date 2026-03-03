@@ -1,26 +1,26 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 
+import parentStyles from "../QuizStack/styles.module.css";
 import styles from "./styles.module.css";
-import { coverVariants } from ".";
+import { coverVariants } from "../QuizStack";
 
 type Props = {
-  tag: string;
   title: string;
   text: string;
   onClick: () => void;
 };
 
-const QuizIntro: FC<Props> = ({ tag, title, text, onClick }) => {
+const QuizCoverIntro: FC<Props> = ({ title, text, onClick }) => {
   return (
     <motion.div
-      className={`${styles.container} ${styles.screen}`}
+      className={`${parentStyles.container} ${styles.cover}`}
       variants={coverVariants}
       initial="hidden"
       animate="shown"
       exit="hidden"
     >
-      <span className="eyebrow overline-s">{tag}</span>
+      <span className="eyebrow overline-l">Quiz</span>
 
       <div className="col gap-xs">
         <h3>{title}</h3>
@@ -32,4 +32,4 @@ const QuizIntro: FC<Props> = ({ tag, title, text, onClick }) => {
   );
 };
 
-export default QuizIntro;
+export default QuizCoverIntro;

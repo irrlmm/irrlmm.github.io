@@ -1,27 +1,18 @@
 .filters {
   z-index: 1;
-  top: 2rem;
+  top: 4rem;
   position: sticky;
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.25rem;
   width: fit-content;
-  border-radius: 1rem;
-  background-color: var(--surface);
-  backdrop-filter: blur(1rem);
 }
 
 .chip {
-  appearance: none;
-  border: 1px solid var(--outline);
-  background: transparent;
-  color: var(--text);
-  border-radius: 999px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.5rem;
+  border-radius: 1.5rem;
+  padding: 0.5rem 0.75rem;
   cursor: pointer;
+  border: solid var(--line) var(--on-surface);
 }

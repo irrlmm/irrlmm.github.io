@@ -16,7 +16,7 @@
   padding: 1rem 0.25rem 0.25rem;
   border-radius: var(--br-card);
   transform-style: preserve-3d;
-  will-change: transform;
+  will-change: transform, box-shadow;
 }
 
 .content {
@@ -27,6 +27,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  will-change: transform, box-shadow;
 }
 
 .container,
@@ -45,6 +46,8 @@
   text-align: center;
   background-color: color-mix(var(--surface) 98%, transparent);
   box-shadow: 0 0 0 var(--line) var(--outline);
+  overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 .item span {

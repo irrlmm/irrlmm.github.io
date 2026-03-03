@@ -1,23 +1,21 @@
 ---
-import QuizStack from "../components/QuizStack";
-import QUIZ_ROGI from "../consts/quizzes/rogi";
+import { getEntry, render } from "astro:content";
+
 import Layout from "../layouts/Layout.astro";
+
+const page = await getEntry("pages", "404");
+
+if (!page) {
+  throw Error("index page not found!");
+}
+
+const { Content } = await render(page);
 ---
 
 <Layout
   head={{ title: "404 | ROGI ???", description: "You are lost in the woods" }}
 >
-  <h1>Four-oh-four</h1>
-
-  <p>
-    This is a broken route... or not. Anyways, Rogi greets you.<br />
-    You probably think: What Rogi? Why is everything green? What's that thing at the
-    top?
-    <br />
-    All answers below.
-  </p>
-
-  <QuizStack quiz={QUIZ_ROGI} client:load />
+  <Content />
 </Layout>
 
 <style is:global>
@@ -26,8 +24,7 @@ import Layout from "../layouts/Layout.astro";
     --surface: #010501;
     --on-surface: #96fc00;
     --on-surface-overlay: #96fc0008;
-    --inverse-surface: rgba(57, 255, 20, 1);
-    --inverse-on-surface: #010501;
+    --outline: var(--on-surface);
     --pixel-grid-line: rgba(57, 255, 20, 1);
     text-align: justify;
     letter-spacing: 0.05em;

@@ -1,12 +1,11 @@
 import type { CollectionEntry } from "astro:content";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import moment from "moment";
 
-import getAverageImageColor from "../../helpers/getAverageImageColor";
 import { useStackedImageLightShadowTransforms } from "../../helpers/stackedImageLightShadow";
 
 import styles from "./styles.module.css";
+import { cardLightningEffectConfig } from "../SectionWork";
 
 type Props = {
   item: CollectionEntry<"work"> & {
@@ -18,28 +17,7 @@ type Props = {
   };
 };
 
-const WorkItem: React.FC<Props> = ({ item }) => {
-  const [coverShadowColor, setCoverShadowColor] = useState(
-    item.data.coverImageColor,
-  );
-
-  useEffect(() => {
-    let isCancelled = false;
-
-    const loadColor = async () => {
-      const averageColor = await getAverageImageColor(item.data.coverImage);
-      if (!isCancelled) {
-        setCoverShadowColor(averageColor);
-      }
-    };
-
-    loadColor();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [item.data.coverImage]);
-
+const CardWork: React.FC<Props> = ({ item }) => {
   const {
     wrapperRef,
     wrapperStyle,
@@ -49,8 +27,8 @@ const WorkItem: React.FC<Props> = ({ item }) => {
     handlePointerMove,
     handlePointerLeave,
   } = useStackedImageLightShadowTransforms<HTMLAnchorElement>({
-    mixShadowColor: coverShadowColor,
-    lightEffectIntensity: 0.8,
+    ...cardLightningEffectConfig,
+    mixShadowColor: item.data.coverImageColor,
   });
 
   const layerVariants = {
@@ -102,9 +80,7 @@ const WorkItem: React.FC<Props> = ({ item }) => {
 
             <h3 className="overline-s">{item.data.title}</h3>
 
-            <span className="overline-xs">
-              {moment(item.data.date).toNow(true)} ago
-            </span>
+            <span className="overline-xs">{item.data.tags.join(", ")}</span>
           </motion.div>
         </motion.div>
 
@@ -115,4 +91,4 @@ const WorkItem: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default WorkItem;
+export default CardWork;

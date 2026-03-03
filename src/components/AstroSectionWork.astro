@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import getOptimizedImage from "../helpers/getOptimizedImage";
+import getAverageImageColorServer from "../helpers/getAverageImageColorServer";
 
 import SectionWork from "./SectionWork";
 
@@ -17,25 +18,16 @@ const optimizedWork = await Promise.all(
         getOptimizedImage(item.data.coverImage, 1024),
         getOptimizedImage(orgEntry.data.img, 512),
       ]);
-
-      // const coverImageAssetPath = path.join(
-      //   process.cwd(),
-      //   "assets",
-      //   item.data.coverImage.replace(/^\//, ""),
-      // );
-      // const coverImageColor = await getAverageColor(coverImageAssetPath);
-      // console.log(
-      //   `Average color for ${item.data.coverImage}:`,
-      //   coverImageColor.hex,
-      // );
+      const coverImageColor = await getAverageImageColorServer(
+        item.data.coverImage,
+      );
 
       return {
         ...item,
         data: {
           ...item.data,
           coverImage: optimizedCoverImage.src,
-          // coverImageColor: coverImageColor.hex,
-          coverImageColor: "black",
+          coverImageColor,
           orgImage: optimizedOrgImage.src,
           orgName,
         },

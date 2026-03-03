@@ -8,7 +8,7 @@ import {
 
 import StackProgressToolbar from "../StackProgressToolbar";
 import QuizCard from "../QuizCard";
-import QuizIntro from "./QuizIntro";
+import QuizCoverIntro from "../QuizCoverIntro";
 import QuizOutro from "./QuizOutro";
 
 import { SVG_KEY } from "../../consts/svg";
@@ -174,9 +174,8 @@ const QuizStack: React.FC<Props> = ({ quiz }) => {
 
         <AnimatePresence mode="wait" presenceAffectsLayout>
           {isIntroShown && (
-            <QuizIntro
+            <QuizCoverIntro
               key="intro"
-              tag="quiz"
               title={quiz.intro.title}
               text={quiz.intro.text}
               onClick={handleBeginQuiz}

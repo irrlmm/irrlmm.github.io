@@ -1,0 +1,18 @@
+.cover {
+  gap: 1rem;
+  text-align: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 16rem;
+  padding: var(--unit-xs);
+  border-radius: var(--unit-l);
+  text-transform: uppercase;
+  border: solid var(--line) var(--on-surface);
+  background-color: transparent;
+  cursor: pointer;
+}
