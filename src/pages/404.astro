@@ -12,9 +12,7 @@ if (!page) {
 const { Content } = await render(page);
 ---
 
-<Layout
-  head={{ title: "404 | ROGI ???", description: "You are lost in the woods" }}
->
+<Layout head={{ title: page.data.title, description: page.data.description }}>
   <Content />
 </Layout>
 
