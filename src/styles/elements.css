@@ -1,0 +1,166 @@
+:root {
+  font-family: "mono", monospace;
+  -webkit-font-smoothing: antialiased;
+  font-variant-ligatures: none;
+}
+
+/* line height cap mod for precise centering */
+
+.lh-capped {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+/* Element styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+hr {
+  margin: 0;
+}
+
+/* Header styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  max-width: 40rem;
+}
+
+h1 {
+  font-size: var(--text-h1);
+  margin-top: 6rem;
+}
+h2 {
+  font-size: var(--text-h2);
+  margin-top: 4.5rem;
+}
+h3 {
+  font-size: var(--text-h3);
+  margin-top: 3em;
+}
+
+/* Paragraph */
+p,
+ul {
+  text-wrap: balance;
+  line-height: 1.5rem;
+  max-width: 40rem;
+}
+
+p {
+}
+
+p,
+ul,
+.label {
+  font-family: "mono", monospace;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: var(--text-m);
+}
+
+p,
+ul:not(.ui-list) {
+  opacity: 0.9;
+  margin-top: 1.5rem;
+}
+
+p,
+ul {
+}
+
+ul {
+  list-style-type: "• ";
+  padding-inline-start: 1rem;
+}
+
+/* Label */
+
+.label {
+  line-height: 1.25em;
+  text-transform: none;
+}
+
+/* Outline */
+
+hr {
+  max-width: 40rem;
+  margin-top: 8rem;
+  border: none;
+  height: var(--line);
+  background-color: var(--outline);
+}
+
+/* Overline text styles */
+
+.overline-xs,
+.overline-s,
+.overline-m,
+.overline-l {
+  font-family: "mono", monospace;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.overline-xs {
+  font-size: var(--text-xs);
+}
+.overline-s {
+  font-size: var(--text-s);
+}
+.overline-m {
+  font-size: var(--text-m);
+}
+.overline-l {
+  font-size: var(--text-l);
+}
+
+/* Links */
+
+p a,
+ul a,
+ol a {
+  color: var(--on-surface);
+}
+
+p a,
+ul:not(.ui-list) a,
+ol:not(.ui-list) a {
+  text-underline-offset: 0.25em;
+  opacity: 0.7;
+}
+
+p a:hover,
+ul:not(.ui-list) a:hover,
+ol:not(.ui-list) a:hover {
+  opacity: 0.5;
+}
+
+/* Eyebrow */
+
+.eyebrow {
+  padding: 0.5rem;
+  border-radius: var(--br-square);
+  background-color: var(--inverse-surface);
+  color: var(--inverse-on-surface);
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}

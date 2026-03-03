@@ -20,8 +20,8 @@ const RefreshButton: React.FC<Props> = ({
   <motion.button
     className={styles.toolbarButton}
     variants={{
-      hidden: { opacity: 0, filter: "blur(8.0px)" },
-      shown: { opacity: 1, filter: "blur(0.0px)" },
+      hidden: { opacity: 0, filter: "blur(0.5rem)" },
+      shown: { opacity: 1, filter: "blur(0rem)" },
     }}
     initial="hidden"
     animate="shown"
@@ -32,7 +32,7 @@ const RefreshButton: React.FC<Props> = ({
   >
     <MotionSvg
       d={icon}
-      size={24}
+      size="1.5rem"
       variants={{
         hover: whileHover,
         tap: whileTap,

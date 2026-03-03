@@ -1,0 +1,48 @@
+---
+import "../styles/global.css";
+import { META } from "../consts/meta";
+import PostHog from "./PostHog.astro";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const isProd = import.meta.env.PROD;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<link rel="icon" type="image/svg+xml" href={META.favicon} />
+<link rel="apple-touch-icon" href={META.appleTouchIcon} />
+
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={META.title}
+  href={new URL("rss.xml", Astro.site)}
+/>
+
+<meta name="generator" content={Astro.generator} />
+
+<meta name="theme-color" content="#111111" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{META.title}</title>
+<meta name="description" content={META.description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content={META.title} />
+<meta property="og:title" content={META.title} />
+<meta property="og:description" content={META.description} />
+<meta property="og:image" content={new URL(META.ogImage, Astro.url)} />
+
+<!-- PostHog -->
+<>{isProd && <PostHog />}</>

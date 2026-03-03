@@ -1,0 +1,57 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import moment from "moment";
+import Layout from "../../layouts/Layout.astro";
+import Eyebrow from "../../components/Eyebrow.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+
+const { Content, remarkPluginFrontmatter } = await render(post);
+---
+
+<Layout
+  head={{
+    title: `${post.data.title} - an post by Igor Lemeshkin`,
+    description: "",
+  }}
+  footerItems={[
+    {
+      label: "Art",
+      value: ` ${post.id}`,
+    },
+    { label: "Upd", value: `${moment(post.data.date).format("DD MMM YYYY")}` },
+    { label: "Words", value: remarkPluginFrontmatter.words },
+  ]}
+>
+  <article class="prose">
+    <h1>{post.data.title}</h1>
+
+    <div
+      class="row"
+      style={{
+        gap: "var(--line)",
+        alignItems: "flex-start",
+        marginTop: "1rem",
+        marginBottom: "3rem",
+      }}
+    >
+      {
+        [remarkPluginFrontmatter.readingTime.text].map((item) => (
+          <Eyebrow items={[item]} />
+        ))
+      }
+    </div>
+
+    <Content />
+  </article>
+</Layout>

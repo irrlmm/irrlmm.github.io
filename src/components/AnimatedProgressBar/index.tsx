@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 
-import Svg from "../Svg";
-
 import AnimatedCircle from "../AnimatedCircle";
+import Svg from "../Svg";
 
 export type ProgressBarProps = {
   progress?: number; // 0...1
@@ -24,9 +23,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   >
     {progress !== null && <AnimatedCircle progress={progress} />}
 
-    {icon !== null && <Svg d={icon} size="var(--unit-l)" />}
+    {icon !== null && <Svg d={icon} size="1.5rem" />}
 
-    <span className="font-size-s">{text}</span>
+    <span className="overline-l">{text}</span>
   </motion.div>
 );
 

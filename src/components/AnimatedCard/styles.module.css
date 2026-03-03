@@ -1,13 +1,12 @@
 .card {
   position: absolute;
   display: flex;
-  width: calc(100% - 2 * var(--unit-s));
-  height: calc(100% - 2 * var(--unit-s));
-  padding: var(--unit-l);
+  width: 50%;
+  height: 50%;
+  padding: 2rem;
   border-radius: var(--unit-m);
   background-color: var(--background);
-  box-shadow: inset 0 0 0 2px var(--on-surface);
-  transition: background-color 0.1s var(--bezier), box-shadow 0.1s var(--bezier);
+  border: solid var(--line) var(--on-surface);
   overflow: hidden;
   will-change: filter, transform;
 }
@@ -19,9 +18,7 @@
   cursor: grabbing;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .card {
-    width: calc(100% - 2 * var(--unit-xs));
-    height: calc(100% - 2 * var(--unit-xs));
   }
 }

@@ -1,35 +1,71 @@
 ---
-import Monogram from "./Monogram.astro";
 import { IRRLMM } from "../consts/meta";
+import ThemeSwitch from "./ThemeSwitch.astro";
+
+type Props = {
+  breadcrumb?: UI.Link;
+};
+
+const { breadcrumb } = Astro.props;
+const pathname = Astro.url.pathname;
+const segments = pathname.split("/").filter(Boolean);
+const root = segments[0];
+
+const routeLinks: Record<string, UI.Link> = {
+  work: { label: "Work", href: "/work" },
+  blog: { label: "Blog", href: "/blog" },
+  about: { label: "About", href: "/about" },
+};
+
+const resolvedBreadcrumb =
+  breadcrumb ?? (segments.length > 1 && root ? routeLinks[root] : undefined);
 ---
 
-<header class="row align-center justify-between">
-  <Monogram />
+<header class="overline-l">
+  <div>
+    <a href="/">
+      <span class="lh-capped">{IRRLMM.name}</span>
+    </a>
+    {
+      resolvedBreadcrumb && (
+        <>
+          <span class="dash lh-capped">/</span>
 
-  <nav class="row gap-s">
-    <a href={IRRLMM.links.portfolio} target="_blank" rel="noopener noreferrer"
-      >Work</a
-    >
-    <span class="color-tertiary">|</span>
-    <a href="mailto:hello@irrlmm.me">Contact</a>
-  </nav>
+          <a href={resolvedBreadcrumb.href}>
+            <span class="lh-capped">{resolvedBreadcrumb.label}</span>
+          </a>
+        </>
+      )
+    }
+  </div>
+
+  <ThemeSwitch />
 </header>
 
 <style>
   header {
     width: 100%;
+    max-width: 40rem;
     display: flex;
-    max-width: calc(var(--unit-m) * 22);
-    padding: 0 var(--unit-m);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  header > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   a {
-    font-size: var(--unit-sm);
+    display: inline-flex;
     color: var(--on-surface);
     text-decoration: none;
+    height: 2.5rem;
+    align-items: center;
   }
 
-  a:hover {
-    color: var(--on-surface-var);
+  .dash {
+    opacity: 0.2;
   }
 </style>

@@ -1,0 +1,52 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import getOptimizedImage from "../helpers/getOptimizedImage";
+
+import SectionWork from "./SectionWork";
+
+const blog = await getCollection("blog");
+const work = await getCollection("work");
+
+const optimizedWork = await Promise.all(
+  work.map(async (item) => {
+    const orgEntry = await getEntry(item.data.org);
+    const orgName = orgEntry?.data.name;
+
+    try {
+      const [optimizedCoverImage, optimizedOrgImage] = await Promise.all([
+        getOptimizedImage(item.data.coverImage, 1024),
+        getOptimizedImage(orgEntry.data.img, 512),
+      ]);
+
+      // const coverImageAssetPath = path.join(
+      //   process.cwd(),
+      //   "assets",
+      //   item.data.coverImage.replace(/^\//, ""),
+      // );
+      // const coverImageColor = await getAverageColor(coverImageAssetPath);
+      // console.log(
+      //   `Average color for ${item.data.coverImage}:`,
+      //   coverImageColor.hex,
+      // );
+
+      return {
+        ...item,
+        data: {
+          ...item.data,
+          coverImage: optimizedCoverImage.src,
+          // coverImageColor: coverImageColor.hex,
+          coverImageColor: "black",
+          orgImage: optimizedOrgImage.src,
+          orgName,
+        },
+      };
+    } catch (error) {
+      throw new Error(`Failed to optimize images for work item: ${item.id}`, {
+        cause: error,
+      });
+    }
+  }),
+);
+---
+
+<SectionWork items={[...blog, ...optimizedWork]} client:load />

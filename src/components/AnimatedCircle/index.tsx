@@ -9,10 +9,11 @@ export type ProgressBarProps = {
 };
 
 const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
-  const CIRCLE_SIZE = 48;
+  const CIRCLE_SIZE = 40;
   const ICON_SIZE = 24;
-  const STROKE_WIDTH = 2;
-  const CIRCLE_RADIUS = CIRCLE_SIZE / 2 - STROKE_WIDTH / 2;
+  const CIRCLE_STROKE_WIDTH = 1;
+  const ICON_STROKE_WIDTH = 1.5;
+  const CIRCLE_RADIUS = CIRCLE_SIZE / 2 - CIRCLE_STROKE_WIDTH / 2;
   const CIRCLE_CP = CIRCLE_SIZE / 2;
 
   const CIRCLE_PATH_LENGTH = 2 * Math.PI * CIRCLE_RADIUS;
@@ -35,8 +36,9 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           cx={CIRCLE_CP}
           cy={CIRCLE_CP}
           r={CIRCLE_RADIUS}
-          stroke="var(--on-surface-var-2)"
-          strokeWidth={STROKE_WIDTH}
+          stroke="var(--on-surface)"
+          opacity={0.2}
+          strokeWidth={CIRCLE_STROKE_WIDTH}
         ></motion.circle>
 
         <motion.circle
@@ -44,7 +46,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           cy={CIRCLE_CP}
           r={CIRCLE_RADIUS}
           stroke="var(--on-surface)"
-          strokeWidth={STROKE_WIDTH}
+          strokeWidth={CIRCLE_STROKE_WIDTH}
           strokeDasharray={CIRCLE_PATH_LENGTH}
           variants={{
             hidden: { strokeDashoffset: CIRCLE_PATH_LENGTH },
@@ -72,7 +74,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
               strokeDashoffset: progress === 1 ? 0 : CHECK_PATH_LENGTH,
             },
           }}
-          strokeWidth={STROKE_WIDTH}
+          strokeWidth={ICON_STROKE_WIDTH}
           strokeDasharray={CHECK_PATH_LENGTH}
         ></motion.path>
       </svg>

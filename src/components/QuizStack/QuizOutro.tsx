@@ -4,9 +4,8 @@ import Svg from "../Svg";
 
 import { SVG_KEY } from "../../consts/svg";
 
-import styles from "../SwipeCardStack/styles.module.css";
-import introStyles from "../ScreenIntro/styles.module.css";
-import innerStyles from "./styles.module.css";
+import styles from "./styles.module.css";
+import { coverVariants } from ".";
 
 type Props = {
   points: number;
@@ -15,37 +14,24 @@ type Props = {
 };
 
 const ScreenOutro: React.FC<Props> = ({ points, winScore, outro }) => {
-  const variants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.98,
-      filter: "blur(8px)",
-    },
-    shown: {
-      opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-    },
-  };
-
   const completionPercent = Math.round((points / winScore) * 100);
 
   return (
     <motion.div
-      className={`${styles.container} ${introStyles.screen}`}
-      variants={variants}
+      className={`${styles.container} ${styles.screen}`}
+      variants={coverVariants}
       initial="hidden"
       animate="shown"
       exit="hidden"
     >
-      <span className={innerStyles.resultText}>Session ended</span>
-      <span className={innerStyles.score}>
+      <span className={styles.resultText}>Session ended</span>
+      <span className={styles.score}>
         {completionPercent < 0 ? 0 : completionPercent}% /{" "}
         {points < 0 ? 0 : points}{" "}
         <Svg d={SVG_KEY} strokeWidth={3} size="var(--unit-l)" />
       </span>
 
-      <span className={innerStyles.resultText}>
+      <span className={styles.resultText}>
         {outro[completionPercent === 100 ? "winnerText" : "loserText"]}
       </span>
     </motion.div>

@@ -1,0 +1,37 @@
+---
+type Props = {
+  title: string;
+  link?: string;
+};
+
+const { title, link } = Astro.props;
+---
+
+<div>
+  <h4 class="overline-l">{title}</h4>
+
+  <a href={link} class="wrapper">
+    {link && <span class="overline-l">View all</span>}
+  </a>
+</div>
+
+<style>
+  div {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    margin-bottom: 1em;
+  }
+
+  a {
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.2s var(--bezier);
+  }
+
+  a:hover {
+    opacity: 1;
+  }
+</style>

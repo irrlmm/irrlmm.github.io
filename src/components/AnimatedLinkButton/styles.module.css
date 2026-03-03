@@ -3,7 +3,7 @@
   font-size: var(--unit-sm);
   border-radius: var(--unit-l);
   padding: var(--unit-xs) var(--unit-s);
-  border: solid 2px var(--on-surface);
+  border: solid 0.125rem var(--on-surface);
   justify-content: space-between;
   align-items: center;
   text-decoration: none;

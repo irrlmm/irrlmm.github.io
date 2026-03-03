@@ -25,7 +25,7 @@ const Svg: React.FC<Props> = ({ d, size, stroke, strokeWidth, ...rest }) => (
     <path
       d={d || SVG_DEFAULT}
       vectorEffect="non-scaling-stroke"
-      strokeWidth={strokeWidth || 2}
+      strokeWidth={strokeWidth || 1.5}
     ></path>
   </svg>
 );

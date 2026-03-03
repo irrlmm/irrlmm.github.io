@@ -1,0 +1,56 @@
+:root {
+  /* Color primitives */
+  --gray-1000: #ffffff;
+  --gray-970: #f6f6f6;
+  --gray-920: #e8e8e8;
+  --gray-160: #282828;
+  --gray-80: #181818;
+  --gray-30: #0b0b0b;
+  /** Alpha variants for surface overlay */
+  --gray-970-20: color-mix(var(--gray-970) 20%, transparent);
+  --gray-970-05: color-mix(var(--gray-970) 5%, transparent);
+  --gray-30-40: color-mix(var(--gray-30) 40%, transparent);
+  --gray-30-05: color-mix(var(--gray-30) 5%, transparent);
+
+  /* Color surface tokens */
+  --background: light-dark(var(--gray-970), var(--gray-30));
+  --surface: light-dark(var(--gray-1000), var(--gray-80));
+  --on-surface: light-dark(var(--gray-30), var(--gray-970));
+  --on-surface-overlay: light-dark(var(--gray-30-05), var(--gray-970-05));
+  --inverse-surface: light-dark(var(--gray-30), var(--gray-970));
+  --inverse-on-surface: light-dark(var(--gray-970), var(--gray-30));
+  --outline: light-dark(var(--gray-30-40), var(--gray-970-20));
+  --pixel-grid-line: light-dark(rgba(0, 0, 0, 1), rgba(255, 255, 255, 0.5));
+
+  /* Line */
+  --line: 1px;
+
+  /* Card border radius */
+  --br-ui-list-default: 1rem 1rem 1px 1px;
+  --br-ui-list-hover: 2rem 2rem 1px 1px;
+  --br-card: 2rem;
+  --br-square: 2px;
+
+  /* Base unit scale */
+  --unit: 0.5rem;
+
+  /* Legacy unit aliases */
+  --unit-3xs: calc(var(--unit) * 0.25);
+  --unit-2xs: calc(var(--unit) * 0.5);
+  --unit-xs: calc(var(--unit) * 1);
+  --unit-s: calc(var(--unit) * 2);
+  --unit-sm: 0.875rem;
+  --unit-m: calc(var(--unit) * 4);
+  --unit-l: calc(var(--unit) * 6);
+  --unit-xl: calc(var(--unit) * 8);
+  --unit-2xl: calc(var(--unit) * 12);
+
+  /* Text */
+  --text-xs: 0.625rem;
+  --text-s: 0.875rem;
+  --text-m: 1rem;
+  --text-l: 1.125rem;
+  --text-h3: 1.5rem;
+  --text-h2: 2.5rem;
+  --text-h1: 3.5rem;
+}

@@ -1,0 +1,103 @@
+---
+type Props = {
+  id: string;
+  title: string;
+  date: Date;
+};
+
+const { id, title, date } = Astro.props;
+
+const postDate = new Date(date);
+const dateTime = postDate.toISOString();
+
+function formatUtcAbsolute(date: Date, includeYear: boolean) {
+  const month = date.toLocaleString("en-US", {
+    month: "short",
+    timeZone: "UTC",
+  });
+  const base = `${month} ${date.getUTCDate()}`;
+  return includeYear ? `${base} ${date.getUTCFullYear()}` : base;
+}
+
+const formattedDate = formatUtcAbsolute(postDate, true);
+---
+
+<a href={`/blog/${id}`}>
+  <li>
+    <span class="label lh-capped">{title}</span>
+
+    <time class="label lh-capped" datetime={dateTime} data-smart-date>
+      {formattedDate}
+    </time>
+  </li>
+</a>
+
+<style>
+  li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background);
+    height: 4rem;
+    padding: 0 1.25rem;
+    border-radius: var(--br-ui-list-default);
+    transition:
+      border-radius 0.2s var(--bezier),
+      background-color 0.2s var(--bezier);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover li {
+    border-radius: var(--br-ui-list-hover);
+    background-color: var(--surface);
+  }
+
+  time {
+    opacity: 0.6;
+  }
+</style>
+
+<script>
+  const DAY_MS = 86_400_000;
+
+  const dayNumberUtc = (date: Date) =>
+    Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) /
+    DAY_MS;
+
+  const formatUtcAbsolute = (date: Date, includeYear: boolean) => {
+    const month = date.toLocaleString("en-US", {
+      month: "short",
+      timeZone: "UTC",
+    });
+    const base = `${month} ${date.getUTCDate()}`;
+    return includeYear ? `${base} ${date.getUTCFullYear()}` : base;
+  };
+
+  const formatUtcSmartDate = (date: Date) => {
+    const now = new Date();
+    const diffDays = dayNumberUtc(now) - dayNumberUtc(date);
+
+    if (diffDays === 0) return "today";
+    if (diffDays === 1) return "yesterday";
+    if (diffDays >= 2 && diffDays <= 7) return "last week";
+    if (date.getUTCFullYear() === now.getUTCFullYear())
+      return formatUtcAbsolute(date, false);
+    return formatUtcAbsolute(date, true);
+  };
+
+  for (const el of document.querySelectorAll<HTMLTimeElement>(
+    "time[data-smart-date]",
+  )) {
+    const value = el.dateTime || el.getAttribute("datetime");
+    if (!value) continue;
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) continue;
+
+    el.textContent = formatUtcSmartDate(date);
+  }
+</script>

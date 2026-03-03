@@ -15,7 +15,7 @@ const QUIZ_ROGI: UI.Quiz.Game = {
       text: "Who is Rogi?",
       options: [
         {
-          label: "He is not human",
+          label: "Not human",
           points: 1,
           response: {
             title: "Correct",
@@ -23,7 +23,7 @@ const QUIZ_ROGI: UI.Quiz.Game = {
           },
         },
         {
-          label: "It is a human",
+          label: "Human",
           points: 0,
           response: {
             title: "Incorrect",

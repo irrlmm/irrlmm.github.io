@@ -1,5 +1,7 @@
 export const SITE_URL = "https://irrlmm.me";
 
+const email = "hello@irrlmm.me";
+
 export const IRRLMM = {
   name: "Igor Lemeshkin",
   title: "Product Designer and Creative Developer",
@@ -17,6 +19,7 @@ export const IRRLMM = {
     portfolio:
       "https://www.figma.com/deck/tnPFgqabFQjxFZdKURTlda/Igor-Lemeshkin---Portfolio-S",
     github: "https://github.com/irrlmm",
+    mailto: "mailto:hello@irrlmm.me",
   },
 };
 

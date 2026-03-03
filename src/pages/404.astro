@@ -1,68 +1,42 @@
 ---
-import Paragraph from "../components/Paragraph.astro";
-import Header from "../components/Header.astro";
-import MainLayout from "../layouts/MainLayout.astro";
-import Footer from "../components/Footer.astro";
 import QuizStack from "../components/QuizStack";
 import QUIZ_ROGI from "../consts/quizzes/rogi";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<MainLayout>
-  <div class="wrapper">
-    <Header />
+<Layout
+  head={{ title: "404 | ROGI ???", description: "You are lost in the woods" }}
+>
+  <h1>Four-oh-four</h1>
 
-    <section class="col gap-l">
-      <h1>Four-Oh-Four</h1>
+  <p>
+    This is a broken route... or not. Anyways, Rogi greets you.<br />
+    You probably think: What Rogi? Why is everything green? What's that thing at the
+    top?
+    <br />
+    All answers below.
+  </p>
 
-      <Paragraph
-        text="This is a broken route... or not. Anyways, Rogi greets you."
-      />
-
-      <Paragraph
-        text="You probably think: What Rogi? Why is everything green? What's that thing at the top? All answers below."
-      />
-    </section>
-
-    <section>
-      <QuizStack client:load quiz={QUIZ_ROGI} />
-    </section>
-
-    <Footer name="Rogi ???" year={1997} />
-  </div>
-</MainLayout>
-
-<style>
-  .wrapper {
-    font-feature-settings:
-      "zero" on,
-      "case" on;
-    padding: var(--unit-2xl) 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--unit-2xl);
-  }
-
-  section {
-    width: 100%;
-    max-width: calc(var(--unit-m) * 22);
-    padding: 0 var(--unit-m);
-  }
-
-  h1 {
-    font-size: var(--unit-xl);
-    line-height: 1;
-  }
-</style>
+  <QuizStack quiz={QUIZ_ROGI} client:load />
+</Layout>
 
 <style is:global>
   :root {
-    --background: #010501 !important;
-    --on-surface: rgba(57, 255, 20, 1) !important;
-    --on-surface-var: rgba(57, 255, 20, 0.6) !important;
-    --on-surface-var-2: rgba(57, 255, 20, 0.2) !important;
-
-    text-transform: uppercase;
+    --background: #030900;
+    --surface: #010501;
+    --on-surface: #96fc00;
+    --on-surface-overlay: #96fc0008;
+    --inverse-surface: rgba(57, 255, 20, 1);
+    --inverse-on-surface: #010501;
+    --pixel-grid-line: rgba(57, 255, 20, 1);
     text-align: justify;
     letter-spacing: 0.05em;
+  }
+
+  p {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    max-width: 40rem;
+    line-height: 1.5em;
   }
 </style>

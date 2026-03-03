@@ -1,0 +1,15 @@
+{
+  "name": "Igor Lemeshkin",
+  "email": "hello@irrlmm.me",
+  "birthday": "12 May 1997",
+  "cv": {
+    "description": "For over 8 years, I've built complex SaaS and AI-native products from zero to scale. As a design engineer by background, I pair systems thinking with refined interaction and visual craft.",
+    "roles": [
+      ["reedsy"],
+      ["imd4", "imd3", "imd2", "imd1"],
+      ["uniyo"]
+    ],
+    "education": ["hse"],
+    "projects": ["99sales"]
+  }
+}

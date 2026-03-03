@@ -1,0 +1,38 @@
+---
+type Props = {
+  items: string[];
+};
+
+const { items } = Astro.props;
+---
+
+<div class="eyebrow">
+  {
+    items.map((item, i) => (
+      <>
+        <span class="overline-s lh-capped">{item}</span>
+        {i !== items.length - 1 && (
+          <span class="overline-s lh-capped decor">|</span>
+        )}
+      </>
+    ))
+  }
+</div>
+
+<style>
+  .eyebrow {
+    display: inline-flex;
+    height: 1.5rem;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    border-radius: var(--br-square);
+    align-items: center;
+    background-color: var(--inverse-surface);
+    color: var(--inverse-on-surface);
+  }
+
+  .decor {
+    opacity: 0.2;
+  }
+</style>

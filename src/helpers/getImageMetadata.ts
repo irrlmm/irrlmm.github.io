@@ -1,17 +1,17 @@
 const getImageMetadata = (path: string) => {
   const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/**/*.{jpeg,jpg,png,gif,svg}"
+    "/assets/**/*.{jpeg,jpg,png,gif,svg}",
   );
+  const normalizedPath = path.replace(/^\//, "").replace(/^assets\//, "");
+  const key = `/assets/${normalizedPath}`;
 
-  if (!images["/src/assets/" + path]) {
+  if (!images[key]) {
     throw new Error(
-      `"${
-        "/src/assets/" + path
-      }" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`
+      `"${key}" does not exist in glob: "/assets/**/*.{jpeg,jpg,png,gif,svg}"`,
     );
   }
 
-  return images["/src/assets/" + path];
+  return images[key];
 };
 
 export default getImageMetadata;

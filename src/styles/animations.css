@@ -1,6 +1,12 @@
 :root {
-  transition: color 0.15s var(--bezier), background-color 0.15s var(--bezier);
+  --bezier: cubic-bezier(0.25, 0.75, 0.5, 1);
+  transition: background-color 0.2s var(--bezier);
 }
+
+/* div,
+span {
+  transition: background-color 0.2s var(--bezier);
+} */
 
 @keyframes appear {
   0% {
@@ -14,12 +20,12 @@
 @keyframes appear-with-scale {
   0% {
     opacity: 0;
-    filter: blur(8px);
+    filter: blur(0.5rem);
     transform: scale(0.8);
   }
   100% {
     opacity: 1;
-    filter: blur(0px);
+    filter: blur(0rem);
     transform: scale(1);
   }
 }
@@ -29,6 +35,6 @@
     opacity: 1;
   }
   100% {
-    opacity: 0.1;
+    opacity: 0;
   }
 }

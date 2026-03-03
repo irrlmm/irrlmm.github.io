@@ -1,0 +1,27 @@
+---
+import { SVG_DEFAULT } from "../consts/svg";
+
+type Props = {
+  stroke?: string;
+  size?: string | number;
+  d?: string;
+};
+
+const { stroke, size, d } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={stroke || "var(--on-surface)"}
+  style={{
+    width: size || "1.5rem",
+    height: size || "1.5rem",
+  }}
+>
+  <path
+    d={d || SVG_DEFAULT}
+    vector-effect="non-scaling-stroke"
+    stroke-width={1.5}></path>
+</svg>

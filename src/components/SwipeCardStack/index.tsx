@@ -5,6 +5,7 @@ import AnimatedCard, { type GenericCardContent } from "../AnimatedCard";
 import StackProgressToolbar from "../StackProgressToolbar";
 
 import trackEvent from "../../helpers/trackEvent";
+import useCardStackPointer from "../../helpers/useCardStackPointer";
 
 import styles from "./styles.module.css";
 
@@ -23,6 +24,9 @@ const CardStack = <T,>({
   renderItem: CardContent,
   transformProgressBarText,
 }: Props<T>) => {
+  const { pointerNormX, pointerNormY, handlePointerMove, handlePointerLeave } =
+    useCardStackPointer();
+
   const [currentStep, setCurrentStep] = useState(0);
 
   const [started, setStarted] = useState(false);
@@ -141,6 +145,8 @@ const CardStack = <T,>({
 
       <motion.div
         className={styles.container}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
         variants={{
           hidden: {
             opacity: 0,
@@ -161,6 +167,8 @@ const CardStack = <T,>({
             onSwipe={handleSwipe}
             card={card}
             renderItem={CardContent}
+            pointerNormX={pointerNormX}
+            pointerNormY={pointerNormY}
             shouldSwipe={i === cardsShown.length - 1 && shouldSwipe}
             trackMeta={{
               started,

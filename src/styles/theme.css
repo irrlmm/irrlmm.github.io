@@ -1,31 +1,14 @@
-:root {
+:root,
+:root[data-theme="auto"] {
   color-scheme: light dark;
-
-  /* Primitives */
-  --black-100: rgba(0, 0, 0, 1);
-  --black-90: rgba(0, 0, 0, 0.9);
-  --black-15: rgba(0, 0, 0, 0.15);
-  --white-100: rgba(255, 255, 255, 1);
-  --white-80: rgba(255, 255, 255, 0.8);
-  --white-25: rgba(255, 255, 255, 0.25);
-
-  /* Surface tokens */
-  --background: light-dark(var(--white-100), var(--black-100));
-  --on-surface: light-dark(var(--black-100), var(--white-100));
-  --on-surface-var: light-dark(var(--black-90), var(--white-80));
-  --on-surface-var-2: light-dark(var(--black-15), var(--white-25));
-
-  /** Decor overlay effect */
-  --pixel-grid-line: var(--on-surface-var-2);
-
-  /** Accent tokens */
-  --accent: light-dark(#1642ff, #00d0fa);
-
-  /* Bezier curve */
-  --bezier: cubic-bezier(0.25, 0.75, 0.5, 1);
-
   background-color: var(--background);
   color: var(--on-surface);
+}
 
-  transition: background-color 0.15s var(--bezier), color 0.15s var(--bezier);
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }

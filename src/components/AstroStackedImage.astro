@@ -1,0 +1,19 @@
+---
+import StackedImage, { type StackedImageProps } from "./StackedImage";
+import getOptimizedImage from "../helpers/getOptimizedImage";
+
+type Props = StackedImageProps & {
+  srcs: string[];
+};
+
+const { srcs, ...props } = Astro.props;
+
+const optimizedSrcs = await Promise.all(
+  srcs.map(async (src) => {
+    const optimizedImage = await getOptimizedImage(src);
+    return optimizedImage.src;
+  }),
+);
+---
+
+<StackedImage srcs={optimizedSrcs} {...props} client:load />

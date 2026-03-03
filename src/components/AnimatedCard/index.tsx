@@ -7,7 +7,7 @@ export type GenericCardContent<T> = {
 };
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type MotionValue, useMotionValue } from "framer-motion";
 
 import useSwipeCard from "../../helpers/useSwipeCard";
 
@@ -23,6 +23,8 @@ type Props<T> = {
   onSwipe: () => void;
   onClick?: (payload: any) => void;
   trackMeta?: object;
+  pointerNormX?: MotionValue<number>;
+  pointerNormY?: MotionValue<number>;
 };
 
 const AnimatedCard = <T,>({
@@ -35,9 +37,21 @@ const AnimatedCard = <T,>({
   shouldSwipe,
   onClick,
   trackMeta,
+  pointerNormX,
+  pointerNormY,
 }: Props<T>) => {
+  const defaultPointerX = useMotionValue(0);
+  const defaultPointerY = useMotionValue(0);
+
   const { variants, style, isConstrained, handleDrag, handleDragEnd } =
-    useSwipeCard({ index, shouldSwipe, onSwipe, isRemovable });
+    useSwipeCard({
+      index,
+      shouldSwipe,
+      onSwipe,
+      isRemovable,
+      pointerNormX: pointerNormX ?? defaultPointerX,
+      pointerNormY: pointerNormY ?? defaultPointerY,
+    });
 
   return (
     <motion.div
