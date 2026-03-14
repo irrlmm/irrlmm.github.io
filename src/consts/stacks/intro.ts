@@ -1,58 +1,21 @@
-import { IRRLMM } from "../meta";
-import RELEASE_NOTES from "../release-notes";
-import { SVG_GEM } from "../svg";
-
-const STACK_INTRO: UI.CardStack<
-  | UI.Card.Fact
-  | UI.Card.CaseStudy
-  | UI.Card.ProductEye
-  | UI.Card.ReleaseNote
-  | UI.Card.Facts
-> = {
+const STACK_INTRO = {
   id: "facts-intro",
   cards: [
     {
-      id: "portfolio",
-      type: "case-study",
-      title: "Skim through my new portfolio",
-      link: {
-        label: "To Figma Slides",
-        href: IRRLMM.links.portfolio,
-        external: true,
-      },
+      id: "1",
+      text: "The product’s very existence is enabled by the technology",
     },
     {
-      id: "punchline",
-      type: "facts",
-      title: "Daily Wisdom",
-      lines: [
-        "Maximum impact can be achieved with minimum resources",
-        "Perfect timing beats perfect polish",
-        "Loops should never feel like traps",
-        "[ROGI] Portal opened at /undefined. Find it. Quick!",
-      ],
+      id: "2",
+      text: "Designer’s job is to translate that technology into user experience",
     },
     {
-      id: "me",
-      type: "fact",
-      icon: { path: SVG_GEM },
-      text: "I approach design with founder-level ownership and focus design on making products valuable and sustainable.",
+      id: "3",
+      text: "Creativity and craft are as important as a technical literacy",
     },
     {
-      id: "product-eye",
-      type: "product-eye",
-      title: "Rogi is watching",
-      text: "Fresh user signals received. Page optimization ongoing.",
-    },
-    {
-      id: "release-note",
-      type: "release-note",
-      version: RELEASE_NOTES[0].version,
-      title: RELEASE_NOTES[0].title,
-      link: {
-        href: "/changelog",
-        label: "View changelog",
-      },
+      id: "4",
+      text: "Design must activate the user as early as possible",
     },
   ],
 };

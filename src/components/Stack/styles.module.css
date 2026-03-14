@@ -1,0 +1,51 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  background-color: var(--overlay-on-surface);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlayDot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: var(--on-surface);
+}
+.overlayDot:nth-of-type(1) {
+  top: 2rem;
+  left: 2rem;
+}
+.overlayDot:nth-of-type(2) {
+  top: 2rem;
+  right: 2rem;
+}
+.overlayDot:nth-of-type(3) {
+  bottom: 2rem;
+  right: 2rem;
+}
+.overlayDot:nth-of-type(4) {
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.draggable {
+  cursor: grab;
+}
+.draggable:active {
+  cursor: grabbing;
+}
+
+.quote {
+  text-align: center;
+  font-size: var(--text-xl);
+  letter-spacing: 0.05em;
+  quotes: none;
+}

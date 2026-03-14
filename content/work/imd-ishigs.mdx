@@ -1,0 +1,311 @@
+---
+title: "Instant Mastering: Unlocking Revenue Using GenAI"
+org: imd
+tag: revenue
+date: 20 Feb 2025
+coverImage: /work/test/test.png
+draft: true
+---
+
+import Image from "../../src/components/StackedImage";
+
+## Context
+
+Mastering is the final step before releasing music, ensuring tracks sound consistent across listening devices.  
+A significant share of artists on iMusician used Instant Mastering right before distribution.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Domain context diagram showing mastering before distribution"
+/>
+
+A third-party vendor announced a shutdown, leaving Instant Mastering with two months of uptime.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Legacy architecture dependency diagram showing vendor shutdown risk"
+/>
+
+---
+
+## Strategic Risk
+
+Instant Mastering was not an isolated feature.
+
+It sat at the highest-intent moment in the artist workflow.
+
+```
+Instant Mastering → Music Distribution → Artist Hub / Release Pages → Music Analytics
+```
+
+If we failed to replace it convincingly, artists would switch to alternatives.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Platform flow diagram highlighting Instant Mastering as entry point to release workflow"
+/>
+
+---
+
+## Market Context
+
+At the same time, AI mastering had become mainstream.
+
+External services offered instant mastering powered by open-source models approaching professional studio quality.
+
+Artists had multiple alternatives:
+
+| Type   | Product        | Speed   | Core Strength                             |
+| ------ | -------------- | ------- | ----------------------------------------- |
+| Web    | LANDR          | Instant | AI mastering with preview before purchase |
+| Web    | eMastered      | Instant | Adjustable mastering intensity            |
+| Web    | CloudBounce    | Fast    | Balanced loudness and stereo clarity      |
+| Web    | Masterchannel  | Instant | Simple one-click mastering                |
+| Web    | BandLab        | Instant | Free, mobile-friendly mastering           |
+| Plugin | iZotope Ozone  | Fast    | AI-assisted mastering inside DAWs         |
+| App    | BandLab Mobile | Instant | Mobile mastering workflow                 |
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Competitive snapshot table of AI mastering services"
+/>
+
+In parallel, the market had shifted toward instant, comparison-driven mastering experiences.
+
+We reassessed our position.
+
+---
+
+## Strategic Analysis
+
+To understand where we could compete, we analyzed the product’s strengths, weaknesses, and market threats.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="SWOT analysis artifact showing strengths, weaknesses, opportunities, and threats"
+/>
+
+Strengths
+
+- Integrated directly into the distribution workflow
+- High-intent moment before release
+- Existing paying user base
+- Strong ecosystem positioning
+
+Weaknesses
+
+- Vendor dependency for mastering engine
+- Sequential interaction model
+- Slow preview generation
+- Low comparison clarity
+
+Opportunities
+
+- Vertical integration of the mastering engine
+- Shift toward comparison-first workflows
+- Increased attach rate and ARPU
+- Stronger platform differentiation
+
+Threats
+
+- Rapid growth of standalone AI mastering tools
+- Open-source models approaching professional quality
+- Low switching costs for independent artists
+
+---
+
+## The Legacy Experience
+
+Before rebuilding the product, we mapped the existing mastering flow.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Legacy flow diagram showing sequential mastering workflow"
+/>
+
+```
+Upload track
+→ Choose parameters
+→ Wait for preview (~5 min)
+→ Listen
+→ Restart if unsatisfied
+→ Pay
+```
+
+This revealed several structural issues.
+
+---
+
+## Structural Problems
+
+| Problem                      | Evidence                                                        |
+| ---------------------------- | --------------------------------------------------------------- |
+| Slow feedback loop           | Each preview generation took ~5 minutes                         |
+| One-shot mental model        | Any change restarted the flow                                   |
+| Unclear value before payment | Users could not compare results easily                          |
+| High cognitive load          | Many controls with no immediate feedback                        |
+| Low confidence threshold     | If the first result didn't feel right, users rarely tried again |
+
+One thing _did_ work well:
+
+✔ Audio quality was strong
+
+The engine itself was not the problem.  
+The interaction model was.
+
+---
+
+## Hypothesis
+
+If users can generate and compare multiple mastering variants instantly in one session, confidence will increase and completion will increase.
+
+---
+
+## Exploration
+
+We started with a radical prototype: chat-based mastering.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Prototype screens of chat-style mastering flow"
+/>
+
+The system suggested steps conversationally, and users selected responses through guided prompts.
+
+However, testing revealed problems:
+
+- High time to understand the interface
+- Long scrolling sessions
+- Hard to track state changes
+
+The idea helped break assumptions, but it was not the right model.
+
+---
+
+## Breakthrough
+
+We shifted to a comparison-first interaction model.
+
+Instead of tweaking parameters sequentially, users could generate multiple mastering variants instantly and compare them.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Wireframe showing variant pills and comparison interface"
+/>
+
+Each pill represented a mastering result.
+
+Users could switch between variants instantly without restarting the flow.
+
+This removed iteration friction and externalized the decision.
+
+---
+
+## New Workflow
+
+Before:
+
+```
+Upload → tweak parameters → wait → listen → repeat → pay
+```
+
+After:
+
+```
+Upload → generate variants → compare instantly → select → pay
+```
+
+Confidence moved before payment instead of after.
+
+---
+
+## Execution Constraints
+
+The rebuild had to ship within two months.
+
+Key decisions:
+
+- Do not redesign the mediation layer between mastering and distribution
+- Focus only on the core mastering experience
+- Design features modularly so they could be enabled when backend work was ready
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Scope definition artifact showing included vs excluded work"
+/>
+
+Execution followed a Lean UX model integrated with Scrum.
+
+Design ran roughly half a sprint ahead of engineering.
+
+---
+
+## Design System Contribution
+
+The new experience introduced reusable system components.
+
+- Scalable pill component with defined states
+- Visual variants for mastering results
+- Interaction animations for switching between variants
+- Integration with theme and size tokens
+- Extensions to the custom icon library
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Design system component diagram for mastering variant pills"
+/>
+
+---
+
+## Launch
+
+The redesigned Instant Mastering experience shipped before the vendor shutdown deadline.
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Final UI screenshots of the redesigned mastering interface"
+/>
+
+---
+
+## Results
+
+The structural change delivered measurable improvements.
+
+- +20% session completion
+- 4.5 / 5 CSAT
+- 25% adoption of reference mastering
+- +21% increase in track output per user
+
+Confidence increased because users could hear and compare results before paying.
+
+---
+
+## Strategic Impact
+
+The project did more than replace a vendor dependency.
+
+It enabled:
+
+- Vertical integration of mastering technology
+- Reduced leakage to external AI tools
+- A comparison-first interaction model aligned with market expectations
+
+<Image
+  client:load
+  srcs={[]}
+  alt="Product ecosystem diagram showing mastering as integrated platform capability"
+/>
+
+What began as a shutdown risk became an opportunity to rethink how mastering works inside the platform.

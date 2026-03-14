@@ -1,20 +1,38 @@
 ---
 title: Igor Lemeshkin | Product designer
 description: hello world
+updated: Mar 5 2026
 ---
 
+import Quiz from "../../src/components/Quiz";
+import QUIZ_ROGI from "../../src/consts/quizzes/rogi";
+
+import { getCollection } from "astro:content";
 import AstroSectionWork from "../../src/components/AstroSectionWork.astro";
 
-# Hi,
+export const blog = await getCollection("artifacts");
+export const work = await getCollection("work");
 
-I'm Igor, a product designer.<br />
-I have worked across UI engineering, product design, and design leadership in small engineering-led startups.
+# Hello.
 
-Here are the [design principles](/blog/manifesto) I defined along the way.<br />
-And here's my [resume](/cv).
+I am Igor, a product designer & design engineer building captivating digital experiences.  
+Here's my [resume](/cv).
 
-Apart from work, I enjoy slow mornings with filter coffee, making music, road trips, and taking photos.
+Outside of work, I enjoy slow mornings with filter coffee, making beats, taking my denim blue hatchback for road trips, or flying to far-away countries.
 
 Contact me via [LinkedIn](https://linkedin.com/in/irrlmm) or [E-mail](mailto:hello@irrlmm.me) for opportunities, consultations, or casual design talk.
 
-<AstroSectionWork />
+{/* - My [resume](/cv) */}
+{/* - A little [more about me](/about) */}
+
+{/* I have worked across UI engineering, product design, and design leadership in small engineering-led startups. */}
+
+{/* - Here are [design principles](/blog/manifesto) I defined along the way, */}
+
+{/* - [The principles](/blog/manifesto) I've defined along the way */}
+{/* - [My resume](/cv) */}
+{/* - A little [more about me](/about) */}
+
+{/* Apart from work I enjoy slow mornings with filter coffee, making music, road trips, and taking photos. */}
+
+<AstroSectionWork items={[...blog, ...work]} />

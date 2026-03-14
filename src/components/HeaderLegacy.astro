@@ -5,10 +5,8 @@ import Svg from "./Svg.astro";
 import ThemeSwitch from "./ThemeSwitch.astro";
 
 type Props = {
-  breadcrumb?: UI.Link;
 };
 
-const { breadcrumb } = Astro.props;
 const pathname = Astro.url.pathname;
 const segments = pathname.split("/").filter(Boolean);
 const root = segments[0];
@@ -22,7 +20,7 @@ const routeLinks: Record<string, UI.Link> = {
 };
 
 const resolvedBreadcrumb =
-  breadcrumb ?? (segments.length > 1 && root ? routeLinks[root] : undefined);
+  segments.length > 1 && root ? routeLinks[root] : undefined;
 ---
 
 <header>

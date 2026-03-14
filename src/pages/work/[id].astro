@@ -6,8 +6,9 @@ import {
   render,
 } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import SectionHero from "../../components/SectionHero.astro";
 import moment from "moment";
+import StackedImage from "../../components/StackedImage";
+import OrgPill from "../../components/OrgPill.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("work");
@@ -26,18 +27,18 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 ---
 
 <Layout
-  header={{ breadcrumb: { label: "Work", href: "/work" } }}
+  theme={post.data.theme}
   head={{ title: "", description: "" }}
   footerItems={[
     { label: "prj", value: post.id },
     { label: "clt", value: org.data.name, capsule: org.data.countryCode },
     {
       label: "dte",
-      value: moment(post.data.date).format("MMMM YYYY"),
+      value: moment(post.data.date).format("MMM 'YY"),
     },
   ]}
 >
-  <SectionHero
+  <!-- <SectionHero
     chips={["Case study", remarkPluginFrontmatter.text]}
     title={post.data.title}
     lead={"post.data.lead"}
@@ -46,11 +47,23 @@ const { Content, remarkPluginFrontmatter } = await render(post);
       // { label: "Duration", value: post.data.duration },
       // { label: "Role", value: post.data.project.role },
     ]}
-  />
+  /> -->
 
   <article class="prose">
-    <h1>{post.data.title}</h1>
+    <StackedImage srcs={[""]} aspectRatio="21/9" maxWidth="40rem" client:load />
 
-    <Content />
+    <!-- <h1>{post.data.title}</h1>
+
+    <span class="kicker overline text-s"
+      >{remarkPluginFrontmatter.readingTime.text}
+    </span> -->
+
+    <Content components={{ Org: OrgPill }} />
   </article>
 </Layout>
+
+<style>
+  .kicker {
+    margin-top: 1rem;
+  }
+</style>

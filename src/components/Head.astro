@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { META } from "../consts/meta";
 import PostHog from "./PostHog.astro";
+import { ClientRouter } from "astro:transitions";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -12,6 +13,39 @@ const isProd = import.meta.env.PROD;
 <meta charset="utf-8" />
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<script is:inline>
+  (() => {
+    try {
+      const root = document.documentElement;
+
+      const theme = localStorage.getItem("theme");
+      if (theme === "auto" || theme === "dark" || theme === "light") {
+        root.setAttribute("data-theme", theme);
+      } else {
+        root.setAttribute("data-theme", "auto");
+      }
+
+      const hasExplicitPageTheme =
+        root.style.getPropertyValue("--root-color-a").trim() !== "" ||
+        root.style.getPropertyValue("--root-color-b").trim() !== "";
+
+      if (hasExplicitPageTheme) return;
+
+      const rawPalette = localStorage.getItem("paletteColors");
+      const parsed = rawPalette ? JSON.parse(rawPalette) : null;
+      const isValidPalette =
+        Array.isArray(parsed) &&
+        parsed.length === 2 &&
+        typeof parsed[0] === "string" &&
+        typeof parsed[1] === "string";
+
+      const [a, b] = isValidPalette ? parsed : ["#ffffff", "#000000"];
+      root.style.setProperty("--root-color-a", a);
+      root.style.setProperty("--root-color-b", b);
+    } catch {}
+  })();
+</script>
 
 <link rel="icon" type="image/svg+xml" href={META.favicon} />
 <link rel="apple-touch-icon" href={META.appleTouchIcon} />
@@ -46,3 +80,6 @@ const isProd = import.meta.env.PROD;
 
 <!-- PostHog -->
 <>{isProd && <PostHog />}</>
+
+<!-- Transitions -->
+<ClientRouter />

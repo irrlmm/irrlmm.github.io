@@ -4,6 +4,7 @@ import { SCHEMA_PERSON_FULL } from "../consts/schemas";
 import { getEntry, render } from "astro:content";
 
 import Layout from "../layouts/Layout.astro";
+import moment from "moment";
 
 const page = await getEntry("pages", "index");
 
@@ -18,10 +19,15 @@ const { Content } = await render(page);
   head={{ title: "Title", description: "Description" }}
   schema={SCHEMA_PERSON_FULL}
   footerItems={[
-    { label: "prd", value: "irrlmm", capsule: "v3.1" },
-    { label: "upd", value: "23 Feb 2026" },
+    { label: "prd", value: "irrlmm", capsule: "v3" },
+    {
+      label: "upd",
+      value: moment(page.data.updated).format("DD MMM YYYY") || "null",
+    },
     { label: "loc", value: "Berlin", capsule: "DE" },
   ]}
 >
-  <Content />
+  <article class="prose">
+    <Content />
+  </article>
 </Layout>

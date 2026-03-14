@@ -23,6 +23,7 @@
 }
 
 .overlay,
+.outline,
 .imageLayer {
   position: absolute;
   top: 0;
@@ -37,5 +38,9 @@
 .imageLayer {
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+}
+
+.outline {
+  border: solid var(--line) var(--on-surface);
 }

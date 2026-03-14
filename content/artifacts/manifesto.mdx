@@ -1,0 +1,52 @@
+---
+title: Principles of A Product Design / Engineering
+date: 10 Mar 2026 14:05 UTC+3
+type: article
+---
+
+import { getCollection, getEntry } from "astro:content";
+
+import Stack from "../../src/components/Stack";
+
+import INTRO_STACK from "../../src/consts/stacks/intro";
+import { SVG_REFRESH } from "../../src/consts/svg";
+
+export const posts = await getCollection("artifacts");
+
+# A Product Design / Engineering Manifesto
+
+Memorable experiences stay in the subconscious, leaving a lasting mark on human culture & habits.
+
+For over 8 years working across product design and engineering, I have been trying to understand how they are made.
+
+Below are my live notes, and they update as I continue to learn.
+
+<Stack
+  cards={[
+    {
+      id: "1",
+      text: "any PRODUCT exists due to TECHNOLOGY",
+    },
+    {
+      id: "2",
+      text: "TECHNICAL CONSTRAINTS are the fuel of CRAFT",
+    },
+    {
+      id: "4",
+      text: "'LESS IS MORE' is, first of all, about DISCIPLINE",
+    },
+    {
+      id: "6",
+      text: "DESIGNER & ENGINEER solve problems TOGETHER",
+    },
+    {
+      id: "7",
+      text: "BEFORE ANYTHING else, design for ACTIVATION",
+    },
+    {
+      id: "revert",
+      icon: SVG_REFRESH,
+    },
+  ]}
+  client:load
+/>

@@ -25,7 +25,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
     {icon !== null && <Svg d={icon} size="1.5rem" />}
 
-    <span className="overline-l">{text}</span>
+    <span className="overline text-m">{text}</span>
   </motion.div>
 );
 

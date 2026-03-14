@@ -2,32 +2,43 @@ import type { CollectionEntry } from "astro:content";
 import { motion } from "framer-motion";
 import moment from "moment";
 
-import { useStackedImageLightShadowTransforms } from "../../helpers/stackedImageLightShadow";
+import {
+  useElementPerspective,
+  useHighlight,
+  useHoverElement,
+  useTilt,
+} from "../../helpers/lightbox";
 
+import { cardLightConfig, cardVariants } from "../SectionWork/const";
 import styles from "./styles.module.css";
-import { cardLightningEffectConfig } from "../SectionWork";
 
 type Props = {
-  item: CollectionEntry<"blog">;
+  item: CollectionEntry<"artifacts">;
 };
 
 const CardArticle: React.FC<Props> = ({ item }) => {
-  const {
-    wrapperRef,
-    wrapperStyle,
-    containerStyle,
-    shadowStyle,
-    handlePointerMove,
-    handlePointerLeave,
-  } = useStackedImageLightShadowTransforms<HTMLAnchorElement>(
-    cardLightningEffectConfig,
-  );
+  const { wrapperRef, x, y, onPointerMove, onPointerLeave } =
+    useHoverElement<HTMLAnchorElement>();
 
-  const layerVariants = {
-    idle: { translateZ: 0 },
-    hover: {
-      translateZ: wrapperStyle.perspective / 30,
-    },
+  const perspective = useElementPerspective({
+    elementRef: wrapperRef,
+  });
+
+  const { tiltX, tiltY } = useTilt({
+    x,
+    y,
+    maxTilt: cardLightConfig.tilt,
+  });
+
+  const { highlightStyle, dimStyle, highlightIntensity } = useHighlight({
+    x,
+    y,
+    intensity: cardLightConfig.lightEffectIntensity,
+  });
+
+  const containerStyle = {
+    rotateX: tiltX,
+    rotateY: tiltY,
   };
 
   const layerTransition = {
@@ -39,31 +50,35 @@ const CardArticle: React.FC<Props> = ({ item }) => {
   return (
     <motion.a
       ref={wrapperRef}
-      href={`/work/${item.id}`}
+      href={`/artifact/${item.id}`}
       className={styles.wrapper}
-      style={wrapperStyle}
-      initial="idle"
-      whileHover="hover"
-      whileTap="tap"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      variants={{ hover: { scale: 1.025 }, tap: { scale: 0.975 } }}
+      style={perspective.wrapperStyle}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
       transition={layerTransition}
+      variants={cardVariants}
+      whileHover="hover"
     >
       <motion.div className={styles.container} style={containerStyle}>
         <motion.div
-          className={styles.content}
+          className={`${styles.content} col justify-start`}
           transition={layerTransition}
-          variants={layerVariants}
         >
-          <h3 className="overline-s">{item.data.title}</h3>
+          <div className={styles.contentHeader} />
 
-          <span className="overline-xs">
-            {moment(item.data.date).toNow(true)} ago
-          </span>
+          <svg className={styles.dashedLine}>
+            <line x1={0} y1={0} x2="100%" y2={0} stroke="var(--outline)" />
+          </svg>
+
+          <h3 className="overline text-s">{item.data.title}</h3>
         </motion.div>
 
-        <motion.div className={styles.overlay} style={shadowStyle} />
+        <motion.div className={styles.overlay} style={dimStyle} />
+        <motion.div className={styles.overlay} style={highlightStyle} />
+
+        <span className="overline text-xs">
+          {moment(item.data.date).toNow(true)} ago
+        </span>
       </motion.div>
     </motion.a>
   );

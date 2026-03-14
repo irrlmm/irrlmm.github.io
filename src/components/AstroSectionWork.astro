@@ -1,37 +1,51 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getEntry, type CollectionEntry } from "astro:content";
 import getOptimizedImage from "../helpers/getOptimizedImage";
 import getAverageImageColorServer from "../helpers/getAverageImageColorServer";
 
 import SectionWork from "./SectionWork";
+import type {
+  CollectionEntryType,
+  WorkCollectionWithOrgInfo,
+} from "./SectionWork/types";
 
-const blog = await getCollection("blog");
-const work = await getCollection("work");
+type Props = {
+  items: Array<CollectionEntry<"artifacts"> | CollectionEntry<"work">>;
+};
 
-const optimizedWork = await Promise.all(
-  work.map(async (item) => {
+const { items }: Props = Astro.props;
+
+const processedItems: CollectionEntryType[] = await Promise.all(
+  items.map(async (item) => {
+    if (item.collection === "artifacts") {
+      return item;
+    }
+
     const orgEntry = await getEntry(item.data.org);
-    const orgName = orgEntry?.data.name;
+    if (!orgEntry) {
+      throw new Error(`Missing org entry for work item: ${item.id}`);
+    }
 
     try {
       const [optimizedCoverImage, optimizedOrgImage] = await Promise.all([
-        getOptimizedImage(item.data.coverImage, 1024),
-        getOptimizedImage(orgEntry.data.img, 512),
+        getOptimizedImage(item.data.coverImage, 512),
+        getOptimizedImage(orgEntry.data.img, 256),
       ]);
-      const coverImageColor = await getAverageImageColorServer(
-        item.data.coverImage,
-      );
 
-      return {
+      const colors = await getAverageImageColorServer(item.data.coverImage);
+
+      const optimizedWorkItem: WorkCollectionWithOrgInfo = {
         ...item,
         data: {
           ...item.data,
           coverImage: optimizedCoverImage.src,
-          coverImageColor,
+          colors,
           orgImage: optimizedOrgImage.src,
-          orgName,
+          orgName: orgEntry.data.name,
         },
       };
+
+      return optimizedWorkItem;
     } catch (error) {
       throw new Error(`Failed to optimize images for work item: ${item.id}`, {
         cause: error,
@@ -39,6 +53,8 @@ const optimizedWork = await Promise.all(
     }
   }),
 );
+
+processedItems.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<SectionWork items={[...blog, ...optimizedWork]} client:load />
+<SectionWork items={processedItems} client:load />

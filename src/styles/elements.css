@@ -1,7 +1,9 @@
 :root {
   font-family: "mono", monospace;
+  text-wrap: balance;
   -webkit-font-smoothing: antialiased;
   font-variant-ligatures: none;
+  font-size: 16px;
 }
 
 /* line height cap mod for precise centering */
@@ -36,71 +38,84 @@ h5,
 h6 {
   font-family: "sans", sans-serif;
   font-weight: 700;
-  letter-spacing: 0.02em;
   line-height: 1;
-  text-transform: uppercase;
-  max-width: 40rem;
+  max-width: 32rem;
+  margin-top: 2.5em;
 }
 
 h1 {
-  font-size: var(--text-h1);
-  margin-top: 6rem;
+  font-size: var(--h1);
+  letter-spacing: 0em;
 }
 h2 {
-  font-size: var(--text-h2);
-  margin-top: 4.5rem;
+  font-size: var(--h2);
+  letter-spacing: 0.01em;
 }
 h3 {
-  font-size: var(--text-h3);
-  margin-top: 3em;
+  font-size: var(--h3);
+  letter-spacing: 0.02em;
 }
 
 /* Paragraph */
+p {
+  margin-top: 2em;
+}
+
 p,
 ul {
-  text-wrap: balance;
-  line-height: 1.5rem;
-  max-width: 40rem;
-}
-
-p {
-}
-
-p,
-ul,
-.label {
+  max-width: 32rem;
   font-family: "mono", monospace;
   font-weight: 400;
   letter-spacing: 0;
   font-size: var(--text-m);
+  line-height: 1.5em;
+  opacity: 0.8;
 }
 
-p,
-ul:not(.ui-list) {
-  opacity: 0.9;
-  margin-top: 1.5rem;
-}
-
-p,
-ul {
-}
+/* Unordered list */
 
 ul {
-  list-style-type: "• ";
+  list-style-type: "- ";
   padding-inline-start: 1rem;
+  cursor: text;
+  margin-top: 1em;
+}
+ul > li:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+ul:hover {
+  color: var(--on-surface-var);
+}
+ul:hover li:hover {
+  color: var(--on-surface);
 }
 
-/* Label */
-
-.label {
-  line-height: 1.25em;
-  text-transform: none;
+/* Text styles by size */
+.text-xs {
+  font-size: var(--text-xs);
+}
+.text-s {
+  font-size: var(--text-s);
+}
+.text-m {
+  font-size: var(--text-m);
+}
+.text-l {
+  font-size: var(--text-l);
+}
+.text-xl {
+  font-size: var(--text-xl);
+}
+.text-2xl {
+  font-size: var(--text-2xl);
+}
+.text-3xl {
+  font-size: var(--text-3xl);
 }
 
 /* Outline */
-
 hr {
-  max-width: 40rem;
+  max-width: 32rem;
   margin-top: 8rem;
   border: none;
   height: var(--line);
@@ -108,11 +123,7 @@ hr {
 }
 
 /* Overline text styles */
-
-.overline-xs,
-.overline-s,
-.overline-m,
-.overline-l {
+.overline {
   font-family: "mono", monospace;
   font-weight: 400;
   line-height: 1;
@@ -120,47 +131,105 @@ hr {
   text-transform: uppercase;
   margin: 0;
 }
-.overline-xs {
-  font-size: var(--text-xs);
-}
-.overline-s {
-  font-size: var(--text-s);
-}
-.overline-m {
-  font-size: var(--text-m);
-}
-.overline-l {
-  font-size: var(--text-l);
-}
 
 /* Links */
-
 p a,
 ul a,
 ol a {
-  color: var(--on-surface);
+  color: inherit;
 }
 
 p a,
-ul:not(.ui-list) a,
+ul a,
 ol:not(.ui-list) a {
   text-underline-offset: 0.25em;
   opacity: 0.7;
 }
 
 p a:hover,
-ul:not(.ui-list) a:hover,
+ul a:hover,
 ol:not(.ui-list) a:hover {
   opacity: 0.5;
 }
 
-/* Eyebrow */
+/* Kicker */
 
-.eyebrow {
-  padding: 0.5rem;
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  height: 2em;
+  padding: 0.5em;
   border-radius: var(--br-square);
   background-color: var(--inverse-surface);
   color: var(--inverse-on-surface);
-  text-box-trim: trim-both;
-  text-box-edge: cap alphabetic;
+}
+
+/* UI elements */
+
+.ui-image,
+.ui-stack,
+.ui-grid {
+  margin-top: 6rem;
+}
+
+.ui-grid .ui-image {
+  margin-top: 0;
+}
+
+.ui-stack {
+  max-width: 64rem;
+  aspect-ratio: 16/9;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--overlay-on-surface);
+  border-radius: var(--br-card);
+}
+
+.ui-card {
+  max-width: 24rem;
+  width: 66%;
+  aspect-ratio: 4/3;
+  position: absolute;
+  border-radius: var(--br-card);
+  background-color: var(--surface);
+  padding: 2rem;
+  border: solid var(--line) var(--on-surface);
+  overflow: hidden;
+}
+
+/* Inverse */
+
+.inverse {
+  background-color: var(--on-surface);
+  color: var(--background);
+  padding: 0.125em;
+  border-radius: var(--br-square);
+}
+
+@media (max-width: 1024px) {
+  .ui-stack {
+    aspect-ratio: 4/3;
+  }
+}
+
+@media (max-width: 768px) {
+  .ui-stack {
+    aspect-ratio: 1/1;
+  }
+
+  .ui-card {
+    aspect-ratio: 1/1;
+  }
+}
+
+@media (max-width: 512px) {
+  .ui-stack {
+    aspect-ratio: 3/4;
+  }
+
+  .ui-card {
+    aspect-ratio: 3/4;
+  }
 }

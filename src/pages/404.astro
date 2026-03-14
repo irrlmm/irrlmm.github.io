@@ -12,26 +12,55 @@ if (!page) {
 const { Content } = await render(page);
 ---
 
-<Layout head={{ title: page.data.title, description: page.data.description }}>
-  <Content />
+<Layout
+  head={{ title: page.data.title, description: page.data.description }}
+  theme={["#00ff00", "#000000"]}
+  footerItems={[
+    { value: "That font was cool so i stole it" },
+    { value: "Now go and tell your mama" },
+    { value: "I'm a bad boy" },
+  ]}
+>
+  <article class="prose">
+    <Content />
+  </article>
+
+  <div id="overlay"></div>
 </Layout>
 
 <style is:global>
   :root {
-    --background: #030900;
-    --surface: #010501;
-    --on-surface: #96fc00;
-    --on-surface-overlay: #96fc0008;
-    --outline: var(--on-surface);
-    --pixel-grid-line: rgba(57, 255, 20, 1);
-    text-align: justify;
+    color-scheme: dark !important;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
-  p {
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    max-width: 40rem;
-    line-height: 1.5em;
+  article > p {
+    font-size: 1.25rem;
+    text-align: justify;
+  }
+
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to right,
+        transparent,
+        transparent 50%,
+        var(--on-surface) 50%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent,
+        transparent 50%,
+        var(--on-surface) 50%
+      );
+    background-size: 2px 2px;
+    opacity: 0.1;
   }
 </style>

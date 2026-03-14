@@ -1,5 +1,5 @@
 export const SPRING_CONFIG = {
-  stiffness: 220,
-  damping: 20,
-  mass: 0.7,
+  transition: "spring",
+  mass: 0.05,
+  bounce: 0,
 } as const;

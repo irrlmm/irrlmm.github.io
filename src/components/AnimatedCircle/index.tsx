@@ -9,9 +9,9 @@ export type ProgressBarProps = {
 };
 
 const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
-  const CIRCLE_SIZE = 40;
-  const ICON_SIZE = 24;
-  const CIRCLE_STROKE_WIDTH = 1;
+  const CIRCLE_SIZE = 32;
+  const ICON_SIZE = 16;
+  const CIRCLE_STROKE_WIDTH = 1.5;
   const ICON_STROKE_WIDTH = 1.5;
   const CIRCLE_RADIUS = CIRCLE_SIZE / 2 - CIRCLE_STROKE_WIDTH / 2;
   const CIRCLE_CP = CIRCLE_SIZE / 2;
@@ -62,7 +62,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
         xmlns="http://www.w3.org/2000/svg"
         width={ICON_SIZE}
         height={ICON_SIZE}
-        viewBox={`0 0 ${ICON_SIZE} ${ICON_SIZE}`}
+        viewBox={`0 0 24 24`}
         fill="none"
         stroke="var(--on-surface)"
       >
@@ -76,6 +76,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           }}
           strokeWidth={ICON_STROKE_WIDTH}
           strokeDasharray={CHECK_PATH_LENGTH}
+          vectorEffect="non-scaling-stroke"
         ></motion.path>
       </svg>
     </div>

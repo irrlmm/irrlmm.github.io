@@ -1,90 +1,112 @@
 import type { CollectionEntry } from "astro:content";
 import { motion } from "framer-motion";
-import moment from "moment";
 
-import { useStackedImageLightShadowTransforms } from "../../helpers/stackedImageLightShadow";
+import {
+  useElementPerspective,
+  useGloom,
+  useHighlight,
+  useHoverElement,
+  useParallax,
+  useTilt,
+} from "../../helpers/lightbox";
 
+import type { ImageColors } from "../../helpers/getAverageImageColorServer";
+import { SPRING_CONFIG } from "../../helpers/motion";
+import { cardLightConfig, cardVariants } from "../SectionWork/const";
 import styles from "./styles.module.css";
-import { cardLightningEffectConfig } from "../SectionWork";
 
 type Props = {
   item: CollectionEntry<"work"> & {
     data: CollectionEntry<"work">["data"] & {
       orgImage: string;
       orgName: string;
-      coverImageColor: string;
+      colors: ImageColors;
     };
   };
 };
 
 const CardWork: React.FC<Props> = ({ item }) => {
-  const {
-    wrapperRef,
-    wrapperStyle,
-    containerStyle,
-    highlightStyle,
-    shadowStyle,
-    handlePointerMove,
-    handlePointerLeave,
-  } = useStackedImageLightShadowTransforms<HTMLAnchorElement>({
-    ...cardLightningEffectConfig,
-    mixShadowColor: item.data.coverImageColor,
+  const { x, y, wrapperRef, onPointerMove, onPointerLeave } =
+    useHoverElement<HTMLAnchorElement>();
+
+  const perspective = useElementPerspective({
+    elementRef: wrapperRef,
   });
 
-  const layerVariants = {
-    idle: { translateZ: 0 },
-    hover: {
-      translateZ: wrapperStyle.perspective / 30,
-    },
-  };
+  const { tiltX, tiltY } = useTilt({
+    x,
+    y,
+    maxTilt: cardLightConfig.tilt,
+  });
 
-  const layerTransition = {
-    type: "spring",
-    bounce: 0,
-    mass: 0.1,
-  };
+  const parallaxStyles = useParallax({ x, y });
+
+  const { highlightIntensity, highlightStyle, dimStyle } = useHighlight({
+    x,
+    y,
+    intensity: cardLightConfig.lightEffectIntensity,
+  });
+
+  const imageGloom = useGloom({
+    x,
+    y,
+    highlightIntensity,
+    gloomColor: item.data.colors.gloom,
+    shadowColor: item.data.colors.shadow,
+  });
 
   return (
     <motion.a
       ref={wrapperRef}
       href={`/work/${item.id}`}
       className={styles.wrapper}
-      style={wrapperStyle}
-      initial="idle"
+      style={{
+        ...perspective.wrapperStyle,
+      }}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+      transition={SPRING_CONFIG}
       whileHover="hover"
-      whileTap="tap"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      variants={{ hover: { scale: 1.025 }, tap: { scale: 0.975 } }}
-      transition={layerTransition}
+      variants={cardVariants}
     >
       <motion.div
         className={styles.container}
         style={{
-          ...containerStyle,
-          backgroundImage: `url(${item.data.coverImage})`,
+          rotateX: tiltX,
+          rotateY: tiltY,
         }}
       >
         <motion.div
-          className={styles.content}
-          transition={layerTransition}
-          variants={layerVariants}
-        >
+          className={styles.image}
+          style={{
+            backgroundImage: `url(${item.data.coverImage})`,
+            ...imageGloom,
+            ...parallaxStyles,
+          }}
+        ></motion.div>
+
+        <div className="row align-center justify-between">
           <motion.div
             className={styles.orgLogo}
-            style={{ backgroundImage: `url(${item.data.orgImage})` }}
+            style={{
+              backgroundImage: `url(${item.data.orgImage})`,
+            }}
           />
 
-          <motion.div className={styles.item} variants={layerVariants}>
-            <span className="overline-xs">{item.data.orgName}</span>
+          <span className="overline text-xs">{item.data.orgName}</span>
+        </div>
 
-            <h3 className="overline-s">{item.data.title}</h3>
+        <h3 className="overline text-s">{item.data.title}</h3>
 
-            <span className="overline-xs">{item.data.tags.join(", ")}</span>
-          </motion.div>
-        </motion.div>
+        <div className="row gap-s justify-between">
+          <span className="overline text-xs">{item.data.tag}</span>
 
-        <motion.div className={styles.overlay} style={shadowStyle} />
+          <span className="overline text-xs">
+            {item.data.date.getFullYear()}
+          </span>
+        </div>
+
+        <motion.div className={styles.overlay} style={dimStyle} />
         <motion.div className={styles.overlay} style={highlightStyle} />
       </motion.div>
     </motion.a>

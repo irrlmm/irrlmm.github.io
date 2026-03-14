@@ -1,15 +1,59 @@
 .wrapper {
-  color: var(--on-surface);
+  width: 100%;
   text-decoration: none;
+  color: var(--on-surface);
 }
 
 .container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1;
   background-color: var(--surface-dim);
-  aspect-ratio: 4/3;
-  padding: 1.5rem;
+  padding: 0.5rem;
+  gap: 0.25rem;
   border-radius: var(--br-card);
-  transition: background-color 0.2s var(--bezier);
+  border: solid var(--line) var(--on-surface);
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.container,
+.content {
+  transition: background-color 0.1s ease-in-out;
+}
+
+.content {
+  flex: 1;
+  border-radius: calc(var(--br-card) - 0.5rem);
+  background-color: var(--surface);
+  border: solid var(--line) var(--outline);
+  transform: translateZ(0.5rem);
+  overflow: hidden;
+}
+
+.contentHeader {
+  width: 100%;
+  height: 2rem;
+  background-color: #ceb525;
+}
+
+.dashedLine {
+  width: 100%;
+  height: 2px;
+  margin-top: 0.25rem;
+}
+.dashedLine line {
+  stroke-dasharray: 2px 2px;
+  stroke-width: 2px;
+}
+
+.content h3 {
+  margin: 1rem;
+}
+
+.container span {
+  padding: 0.5rem 1rem;
 }
 
 .overlay {
@@ -19,8 +63,4 @@
   width: 100%;
   height: 100%;
   border-radius: inherit;
-}
-
-.container span {
-  opacity: 0.6;
 }

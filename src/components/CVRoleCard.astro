@@ -14,11 +14,11 @@ const { dateStart, dateEnd, role, type, experience } = Astro.props;
 
 <div class="role-card">
   <div class="row">
-    <span class="eyebrow lh-capped">
+    <span class="kicker lh-capped">
       {moment(dateStart).year()} - {moment(dateEnd).year()}
     </span>
 
-    {type && <span class="eyebrow lh-capped">{type}</span>}
+    {type && <span class="kicker lh-capped">{type}</span>}
   </div>
 
   <div class="col">

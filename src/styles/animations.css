@@ -1,12 +1,7 @@
 :root {
   --bezier: cubic-bezier(0.25, 0.75, 0.5, 1);
-  transition: background-color 0.2s var(--bezier);
+  transition: background-color 0.1s ease-in-out;
 }
-
-/* div,
-span {
-  transition: background-color 0.2s var(--bezier);
-} */
 
 @keyframes appear {
   0% {
@@ -35,6 +30,6 @@ span {
     opacity: 1;
   }
   100% {
-    opacity: 0;
+    opacity: 0.1;
   }
 }

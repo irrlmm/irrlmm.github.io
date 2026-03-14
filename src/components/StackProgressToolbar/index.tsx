@@ -1,9 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-import ToolbarButton from "../ToolbarButton";
 import ProgressBar, { type ProgressBarProps } from "../AnimatedProgressBar";
-
-import { SVG_FWD, SVG_REFRESH } from "../../consts/svg";
 
 import styles from "./styles.module.css";
 
@@ -26,13 +23,11 @@ const StackProgressToolbar: React.FC<Props> = ({
         shown: { opacity: 1 },
       }}
     >
-      <div className="row gap-l">
-        {bars.map((bar, i) => (
-          <ProgressBar key={i} {...bar} />
-        ))}
-      </div>
+      {bars.map((bar, i) => (
+        <ProgressBar key={i} {...bar} />
+      ))}
 
-      <AnimatePresence mode="wait">
+      {/* <AnimatePresence mode="wait">
         {refreshButtonProps && refreshButtonProps.isShown && (
           <ToolbarButton
             key="refresh"
@@ -52,7 +47,7 @@ const StackProgressToolbar: React.FC<Props> = ({
             whileTap={{ x: 6 }}
           />
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </motion.div>
   );
 };

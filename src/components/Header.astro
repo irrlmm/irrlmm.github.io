@@ -1,60 +1,61 @@
 ---
-import { IRRLMM } from "../consts/meta";
 import ThemeSwitch from "./ThemeSwitch.astro";
+import PaletteSwitch from "../components/PaletteSwitch";
 
 type Props = {
-  breadcrumb?: UI.Link;
+  showPaletteSwitch?: boolean;
 };
 
-const { breadcrumb } = Astro.props;
+const { showPaletteSwitch = true } = Astro.props;
+
 const pathname = Astro.url.pathname;
 const segments = pathname.split("/").filter(Boolean);
 const root = segments[0];
 
-const routeLinks: Record<string, UI.Link> = {
-  work: { label: "Work", href: "/work" },
-  blog: { label: "Blog", href: "/blog" },
-  about: { label: "About", href: "/about" },
+const routeLinks: Record<string, string> = {
+  work: "Case study",
+  artifact: "Artifact",
+  cv: "CV",
 };
 
 const resolvedBreadcrumb =
-  breadcrumb ?? (segments.length > 1 && root ? routeLinks[root] : undefined);
+  segments.length >= 1 && root ? routeLinks[root] : undefined;
 ---
 
-<header class="overline-l">
-  <div>
-    <a href="/">
-      <span class="lh-capped">{IRRLMM.name}</span>
-    </a>
+<header class="overline text-l max-width-m">
+  <div class="row gap-s align-center">
+    <a href="/">{segments.length > 1 ? "Igor L." : "Igor Lemeshkin"}</a>
     {
       resolvedBreadcrumb && (
         <>
           <span class="dash lh-capped">/</span>
-
-          <a href={resolvedBreadcrumb.href}>
-            <span class="lh-capped">{resolvedBreadcrumb.label}</span>
-          </a>
+          <span class="lh-capped">{resolvedBreadcrumb}</span>
         </>
       )
     }
   </div>
 
-  <ThemeSwitch />
+  <div class="controls">
+    {showPaletteSwitch && <PaletteSwitch client:only="react" />}
+
+    <ThemeSwitch />
+  </div>
 </header>
 
 <style>
   header {
     width: 100%;
-    max-width: 40rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  header > div {
-    display: flex;
+  .controls {
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    /* animation: appear 0.4s var(--bezier) both; */
+    /* animation-delay: 0.4s; */
   }
 
   a {

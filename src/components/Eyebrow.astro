@@ -6,13 +6,13 @@ type Props = {
 const { items } = Astro.props;
 ---
 
-<div class="eyebrow">
+<div class="kicker">
   {
     items.map((item, i) => (
       <>
-        <span class="overline-s lh-capped">{item}</span>
+        <span class="overline text-s lh-capped">{item}</span>
         {i !== items.length - 1 && (
-          <span class="overline-s lh-capped decor">|</span>
+          <span class="overline text-s lh-capped decor">|</span>
         )}
       </>
     ))
@@ -20,7 +20,7 @@ const { items } = Astro.props;
 </div>
 
 <style>
-  .eyebrow {
+  .kicker {
     display: inline-flex;
     height: 1.5rem;
     justify-content: center;

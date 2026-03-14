@@ -1,0 +1,34 @@
+---
+import { getEntry } from "astro:content";
+import getOptimizedImage from "../helpers/getOptimizedImage";
+
+type Props = {
+  org: string;
+};
+
+const { org } = Astro.props;
+const orgEntry = await getEntry("orgs", org);
+
+if (!orgEntry) {
+  throw new Error(`Missing org entry: ${org}`);
+}
+
+const optimizedOrgImage = await getOptimizedImage(orgEntry.data.img, 24 * 3);
+---
+
+<div class="row gap-s align-center">
+  <img
+    src={optimizedOrgImage.src}
+    alt={orgEntry.data.name}
+    width={24}
+    height={24}
+  />
+
+  <span class="overline text-s">{orgEntry.data.name}</span>
+</div>
+
+<style>
+  img {
+    border-radius: var(--br-square);
+  }
+</style>

@@ -11,10 +11,6 @@
   flex-direction: column;
 }
 
-.ui {
-  margin-top: 8rem;
-}
-
 .align-center {
   align-items: center;
 }
@@ -25,6 +21,9 @@
 .justify-start {
   justify-content: flex-start;
 }
+.justify-end {
+  justify-content: flex-end;
+}
 .justify-center {
   justify-content: center;
 }
@@ -33,18 +32,26 @@
 }
 
 .gap-s {
-  gap: 1rem;
+  gap: 0.5rem;
 }
 .gap-m {
-  gap: 1.5rem;
+  gap: 1rem;
 }
 .gap-l {
   gap: 2rem;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .max-width-m {
-  max-width: 40rem;
+  max-width: var(--max-width-m);
 }
 .max-width-l {
-  max-width: 64rem;
+  max-width: var(--max-width-l);
+}
+
+.flex-1 {
+  flex: 1;
 }

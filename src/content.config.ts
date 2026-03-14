@@ -1,18 +1,6 @@
 import { glob } from "astro/loaders";
-import { defineCollection, reference } from "astro:content";
 import { z } from "astro/zod";
-
-//
-// Schemas
-
-const schemaRole = z.object({
-  role: z.string(),
-  org: reference("orgs"),
-  dateStart: z.coerce.date(),
-  dateEnd: z.coerce.date(),
-  experience: z.array(z.string()).optional(),
-  type: z.string().optional(),
-});
+import { defineCollection, reference } from "astro:content";
 
 //
 // Collections
@@ -23,32 +11,38 @@ const work = defineCollection({
     pattern: "**/*.{md,mdx,json}",
   }),
   schema: z.object({
+    date: z.coerce.date(),
     title: z.string(),
     coverImage: z.string(),
     org: reference("orgs"),
-    tags: z.array(
-      z.enum([
-        "design system",
-        "growth",
-        "onboarding",
-        "revenue",
-        "concept",
-        "task completion",
-        "ai",
-      ]),
-    ),
-    date: z.coerce.date(),
+    theme: z.tuple([z.string(), z.string()]).optional(),
+    draft: z.boolean().optional(),
+    tag: z.enum([
+      "design system",
+      "growth",
+      "onboarding",
+      "revenue",
+      "concept",
+      "task completion",
+      "trust",
+      "mobile",
+      "ai",
+      "personalization",
+      "engagement",
+    ]),
   }),
 });
 
-const blog = defineCollection({
+const artifacts = defineCollection({
   loader: glob({
-    base: "./content/blog",
+    base: "./content/artifacts",
     pattern: "**/*.{md,mdx,json}",
   }),
   schema: z.object({
-    title: z.string(),
     date: z.coerce.date(),
+    title: z.string(),
+    type: z.enum(["article", "stack"]).optional(),
+    draft: z.boolean().optional(),
   }),
 });
 
@@ -60,6 +54,7 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    updated: z.string().optional(),
   }),
 });
 
@@ -76,55 +71,9 @@ const orgs = defineCollection({
   }),
 });
 
-const users = defineCollection({
-  loader: glob({
-    base: "./content/users",
-    pattern: "**/*.json",
-  }),
-  schema: z.object({
-    name: z.string(),
-    email: z.string(),
-    birthday: z.coerce.date(),
-    cv: z.object({
-      description: z.string(),
-      roles: z.array(z.array(reference("cv:roles"))),
-      education: z.array(reference("cv:education")),
-      projects: z.array(reference("cv:projects")),
-    }),
-  }),
-});
-
-const cvEducation = defineCollection({
-  loader: glob({
-    base: "./content/cv/education",
-    pattern: "**/*.json",
-  }),
-  schema: schemaRole,
-});
-
-const cvRoles = defineCollection({
-  loader: glob({
-    base: "./content/cv/roles",
-    pattern: "**/*.json",
-  }),
-  schema: schemaRole,
-});
-
-const cvProjects = defineCollection({
-  loader: glob({
-    base: "./content/cv/projects",
-    pattern: "**/*.json",
-  }),
-  schema: schemaRole,
-});
-
 export const collections = {
-  users,
   orgs,
   work,
-  blog,
+  artifacts,
   pages,
-  "cv:education": cvEducation,
-  "cv:roles": cvRoles,
-  "cv:projects": cvProjects,
 };

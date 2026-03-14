@@ -1,0 +1,68 @@
+.button {
+  --button-size: 2.5rem;
+  --icon-size: 1.5rem;
+
+  --dial-size: 10rem;
+  --dial-radius: calc(var(--dial-size) / 2);
+  --dial-padding: 0.5rem;
+  --spoke-width: calc(var(--dial-size) - 2 * var(--dial-padding));
+
+  position: relative;
+  width: var(--button-size);
+  height: var(--button-size);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dial {
+  position: absolute;
+  right: 0;
+  width: var(--dial-size);
+  height: var(--dial-size);
+  border-radius: calc(var(--dial-radius));
+  pointer-events: none;
+}
+
+.dialFrame {
+  position: absolute;
+  right: 0;
+  width: var(--dial-size);
+  height: var(--dial-size);
+  border-radius: calc(var(--dial-radius));
+  pointer-events: none;
+}
+
+.dialFrame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.spoke {
+  position: absolute;
+  left: var(--dial-padding);
+  top: 50%;
+  width: var(--spoke-width);
+  height: var(--icon-size);
+  transform-origin: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dot {
+  position: absolute;
+  left: 100%;
+  width: 4px;
+  height: 2px;
+  margin-left: 0rem;
+  background: var(--on-surface-var);
+  transform-origin: left center;
+  pointer-events: none;
+}

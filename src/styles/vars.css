@@ -1,22 +1,27 @@
 :root {
-  /* Color primitives */
-  --gray-1000: #ffffff;
-  --gray-970: #f6f6f6;
-  --gray-920: #e8e8e8;
-  --gray-160: #282828;
-  --gray-80: #181818;
-  --gray-50: #0d0d0d;
-  --gray-30: #0b0b0b;
+  --root-color-a: #ffffff;
+  --root-color-b: #000000;
+
+  --gray-a1: color-mix(var(--root-color-a) 100%, var(--root-color-b));
+  --gray-a2: color-mix(var(--root-color-a) 98%, var(--root-color-b));
+  --gray-a3: color-mix(var(--root-color-a) 96%, var(--root-color-b));
+  --gray-b1: color-mix(var(--root-color-a) 15%, var(--root-color-b));
+  --gray-b2: color-mix(var(--root-color-a) 10%, var(--root-color-b));
+  --gray-b3: color-mix(var(--root-color-a) 5%, var(--root-color-b));
 
   /* Color tokens */
-  --background: light-dark(var(--gray-970), var(--gray-30));
-  --surface: light-dark(var(--gray-1000), var(--gray-80));
-  --surface-dim: light-dark(var(--gray-920), var(--gray-50));
-  --on-surface: light-dark(var(--gray-30), var(--gray-970));
+  --background: light-dark(var(--gray-a2), var(--gray-b2));
+  --surface: light-dark(var(--gray-a1), var(--gray-b1));
+  --surface-dim: light-dark(var(--gray-a3), var(--gray-b3));
+  --on-surface: light-dark(var(--gray-b1), var(--gray-a1));
+  --on-surface-var: color-mix(var(--on-surface) 66%, transparent);
+  --overlay-on-surface: color-mix(var(--on-surface) 5%, transparent);
+  --shadow: color-mix(black 80%, var(--background));
 
-  /** Alpha color tokens */
-  --outline: color-mix(var(--on-surface) 25%, transparent);
-  --on-surface-overlay: color-mix(var(--on-surface) 5%, transparent);
+  --outline: light-dark(
+    color-mix(var(--on-surface) 20%, transparent),
+    color-mix(var(--on-surface) 30%, transparent)
+  );
 
   /* Inverse theme tokens */
   --inverse-surface: var(--on-surface);
@@ -28,31 +33,25 @@
   --line: 1px;
 
   /* Card border radius */
-  --br-ui-list-default: 1rem 1rem 1px 1px;
-  --br-ui-list-hover: 2rem 2rem 1px 1px;
   --br-card: 2rem;
   --br-square: 2px;
-
-  /* Base unit scale */
-  --unit: 0.5rem;
-
-  /* Legacy unit aliases */
-  --unit-3xs: calc(var(--unit) * 0.25);
-  --unit-2xs: calc(var(--unit) * 0.5);
-  --unit-xs: calc(var(--unit) * 1);
-  --unit-s: calc(var(--unit) * 2);
-  --unit-sm: 0.875rem;
-  --unit-m: calc(var(--unit) * 4);
-  --unit-l: calc(var(--unit) * 6);
-  --unit-xl: calc(var(--unit) * 8);
-  --unit-2xl: calc(var(--unit) * 12);
 
   /* Text */
   --text-xs: 0.625rem;
   --text-s: 0.875rem;
   --text-m: 1rem;
   --text-l: 1.125rem;
-  --text-h3: 1.5rem;
-  --text-h2: 2.5rem;
-  --text-h1: 3.5rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+
+  /* Headings */
+  --h4: 1.25rem;
+  --h3: 1.5rem;
+  --h2: 2rem;
+  --h1: 3rem;
+
+  /* Max widths */
+  --max-width-m: 32rem;
+  --max-width-l: 64rem;
 }

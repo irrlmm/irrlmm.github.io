@@ -1,0 +1,22 @@
+---
+import { getEntry, render } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+
+const page = await getEntry("pages", "404");
+
+if (!page) {
+  throw Error("index page not found!");
+}
+
+const { Content } = await render(page);
+---
+
+<Layout
+  head={{ title: page.data.title, description: page.data.description }}
+  footerItems={[
+    { value: "That font was cool so i stole it" },
+    { value: "Now go and tell your mama" },
+    { value: "I'm a bad boy" },
+  ]}
+/>
