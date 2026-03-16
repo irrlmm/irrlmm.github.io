@@ -185,6 +185,7 @@ ol:not(.ui-list) a:hover {
   justify-content: center;
   background-color: var(--overlay-on-surface);
   border-radius: var(--br-card);
+  overflow: hidden;
 }
 
 .ui-card {
