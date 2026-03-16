@@ -5,6 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 interface Props {
+  headerText?: string;
   head: {
     title: string;
     description: string;
@@ -14,7 +15,7 @@ interface Props {
   schema?: WithContext<Person | Article | CreativeWork>;
 }
 
-const { schema, head, footerItems, theme } = Astro.props;
+const { headerText, schema, head, footerItems, theme } = Astro.props;
 
 const rootStyle = theme
   ? `--root-color-a: ${theme[0]}; --root-color-b: ${theme[1]};`
@@ -32,7 +33,7 @@ const rootStyle = theme
   </head>
 
   <body transition:animate="fade">
-    <Header showPaletteSwitch={!theme} />
+    <Header text={headerText} showPaletteSwitch={!theme} />
 
     <main>
       <slot />

@@ -3,10 +3,11 @@ import ThemeSwitch from "./ThemeSwitch.astro";
 import PaletteSwitch from "../components/PaletteSwitch";
 
 type Props = {
+  text?: string;
   showPaletteSwitch?: boolean;
 };
 
-const { showPaletteSwitch = true } = Astro.props;
+const { showPaletteSwitch = true, text = "Igor Lemeshkin" } = Astro.props;
 
 const pathname = Astro.url.pathname;
 const segments = pathname.split("/").filter(Boolean);
@@ -20,11 +21,18 @@ const routeLinks: Record<string, string> = {
 
 const resolvedBreadcrumb =
   segments.length >= 1 && root ? routeLinks[root] : undefined;
+
+const nameParts = text.trim().split(/\s+/).filter(Boolean);
+
+const shorterName =
+  nameParts.length >= 2
+    ? `${nameParts[0]} ${nameParts[1].slice(0, 1)}.`
+    : (nameParts[0] ?? text);
 ---
 
 <header class="overline text-l max-width-m">
   <div class="row gap-s align-center">
-    <a href="/">{segments.length > 1 ? "Igor L." : "Igor Lemeshkin"}</a>
+    <a href="/">{segments.length > 1 ? shorterName : text}</a>
     {
       resolvedBreadcrumb && (
         <>
