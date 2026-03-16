@@ -30,7 +30,7 @@ const CardArticle: React.FC<Props> = ({ item }) => {
     maxTilt: cardLightConfig.tilt,
   });
 
-  const { highlightStyle, dimStyle, highlightIntensity } = useHighlight({
+  const { highlightStyle, dimStyle } = useHighlight({
     x,
     y,
     intensity: cardLightConfig.lightEffectIntensity,
