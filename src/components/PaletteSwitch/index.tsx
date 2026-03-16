@@ -10,9 +10,11 @@ type Palette = { a: string; b: string };
 const SLOT_COUNT = 12;
 const PALETTE_STORAGE_KEY = "paletteColors";
 const PALETTES: Palette[] = [
-  { a: "#ffffff", b: "#000000" }, // Mono (untouchable)
-  { a: "#ececec", b: "#111111" },
-  { a: "#e7eacd", b: "#010018" },
+  { a: "#ffffff", b: "#010101" }, // Mono (untouchable)
+  { a: "#eaeae1", b: "#2e2e2c" },
+  { a: "#ffb0e9", b: "#2a1f01" },
+  { a: "#6de877", b: "#001502" },
+  { a: "#b3fffa", b: "#26041e" },
 ];
 
 //
