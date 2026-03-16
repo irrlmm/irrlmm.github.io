@@ -1,0 +1,33 @@
+---
+import Head from "../components/Head.astro";
+---
+
+<html lang="en">
+  <head>
+    <Head title="Demo" description="Demo page" />
+  </head>
+
+  <slot />
+</html>
+
+<style>
+  :root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: black !important;
+  }
+
+  body {
+    width: 640px;
+    aspect-ratio: 16/10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+  }
+</style>

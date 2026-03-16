@@ -1,0 +1,18 @@
+---
+import DemoLayout from "../layouts/Demo.astro";
+import Header from "../components/Header.astro";
+---
+
+<DemoLayout>
+  <Header text="Dial test" />
+</DemoLayout>
+
+<style is:global>
+  * {
+    cursor: url("/cursor.svg"), auto !important;
+  }
+
+  .max-width-m {
+    max-width: 18rem;
+  }
+</style>
