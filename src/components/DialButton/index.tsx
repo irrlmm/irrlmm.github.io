@@ -72,8 +72,6 @@ const DialButton = ({
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
     >
-      <div className={styles.dialFrame} aria-hidden="true" />
-
       <motion.div
         className={styles.dial}
         initial={false}

@@ -28,22 +28,6 @@
   pointer-events: none;
 }
 
-.dialFrame {
-  position: absolute;
-  right: 0;
-  width: var(--dial-size);
-  height: var(--dial-size);
-  border-radius: calc(var(--dial-radius));
-  pointer-events: none;
-}
-
-.dialFrame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-}
-
 .spoke {
   position: absolute;
   left: var(--dial-padding);
