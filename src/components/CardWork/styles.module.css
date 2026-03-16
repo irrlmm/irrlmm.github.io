@@ -28,7 +28,6 @@
   gap: 1rem;
   transform-style: preserve-3d;
   will-change: transform, box-shadow, background-position;
-  transition: background-color 0.1s ease-in-out;
 }
 
 .image {

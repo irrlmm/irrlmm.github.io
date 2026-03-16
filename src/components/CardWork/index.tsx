@@ -60,9 +60,7 @@ const CardWork: React.FC<Props> = ({ item }) => {
       ref={wrapperRef}
       href={`/work/${item.id}`}
       className={styles.wrapper}
-      style={{
-        ...perspective.wrapperStyle,
-      }}
+      style={perspective.wrapperStyle}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
       transition={SPRING_CONFIG}

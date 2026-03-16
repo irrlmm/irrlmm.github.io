@@ -18,7 +18,39 @@ const { items }: Props = Astro.props;
 const processedItems: CollectionEntryType[] = await Promise.all(
   items.map(async (item) => {
     if (item.collection === "artifacts") {
-      return item;
+      if (item.data.type !== "stack" || !item.data.images?.length) {
+        return item;
+      }
+
+      try {
+        const [optimizedImages, imageColors] = await Promise.all([
+          Promise.all(
+            item.data.images.map(async (image) => {
+              const optimized = await getOptimizedImage(image, 512);
+              return optimized.src;
+            }),
+          ),
+          Promise.all(
+            item.data.images.map(async (image) => getAverageImageColorServer(image)),
+          ),
+        ]);
+
+        return {
+          ...item,
+          data: {
+            ...item.data,
+            images: optimizedImages,
+            imageColors,
+          },
+        };
+      } catch (error) {
+        throw new Error(
+          `Failed to optimize images for artifact stack: ${item.id}`,
+          {
+            cause: error,
+          },
+        );
+      }
     }
 
     const orgEntry = await getEntry(item.data.org);

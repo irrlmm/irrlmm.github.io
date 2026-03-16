@@ -42,6 +42,7 @@ const artifacts = defineCollection({
     date: z.coerce.date(),
     title: z.string(),
     type: z.enum(["article", "stack"]).optional(),
+    images: z.array(z.string()).min(1).optional(),
     draft: z.boolean().optional(),
   }),
 });
