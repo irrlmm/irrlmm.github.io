@@ -79,9 +79,9 @@ const CardStack: React.FC<Props> = ({ item }) => {
     Math.floor(layers.length / 2),
   );
 
-  const minSpreadPercent = 10;
+  const minSpreadPercent = 15;
   const maxSpreadPercent = 30;
-  const minRotateDeg = 2;
+  const minRotateDeg = 2.5;
   const maxRotateDeg = 5;
 
   useMotionValueEvent(x, "change", (latestX) => {
@@ -103,6 +103,8 @@ const CardStack: React.FC<Props> = ({ item }) => {
       onPointerLeave={onPointerLeave}
       transition={layerTransition}
       variants={cardVariants}
+      initial="initial"
+      animate="shown"
       whileHover="hover"
     >
       <motion.div className={styles.container} style={containerStyle}>
@@ -136,10 +138,6 @@ const CardStack: React.FC<Props> = ({ item }) => {
                 <motion.div
                   className={styles.layer}
                   variants={{
-                    hidden: {
-                      x: 0,
-                      rotate: 0,
-                    },
                     shown: {
                       x: spreadXIdle,
                       rotate: rotateDegIdle,
@@ -149,7 +147,7 @@ const CardStack: React.FC<Props> = ({ item }) => {
                       rotate: rotateDegHover,
                     },
                   }}
-                  style={{ z: `${depthRem}rem` }}
+                  animate={{ z: `${depthRem}rem` }}
                 >
                   {layerUrl && (
                     <motion.div
