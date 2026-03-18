@@ -17,33 +17,33 @@ import cofefi from "../../assets/work/cofefi/cofefi.png";
 import camera from "../../assets/work/camera-app/cover.png";
 
 const PROJECTS_HIGHLIGHTS: UI.Project[] = [
-  {
-    id: "narrative-copilot",
-    title: "Reedsy Studio: Narrative Copilot",
-    timeline: "2026",
-    lines: [
-      "AI-powered narrative copilot for book authors, focused on editorial-level analysis rather than text generation.",
-      "For 6 months, I drove discovery, product vision, and high-fidelity prototyping as consulting Lead Product Designer.",
-    ],
-    imgs: [
-      {
-        src: reedsyCover,
-        chip: "I led design of AI-assisted writing features that demonstrated early 2-month retention uplift in closed testing.",
-      },
-      {
-        src: reedsyViz,
-        chip: "Copilot is writer-first AI with zero slop, using helpful visualizations, NLP analysis and contextual LLM search to support real writing.",
-      },
-      {
-        src: reedsyNoir,
-        chip: "AI assistants need a personality and distinct voice. I created a set of cats to elevate each writer's personal style.",
-      },
-    ],
-    // link: {
-    //   label: "View",
-    //   href: "/work",
-    // },
-  },
+  // {
+  //   id: "narrative-copilot",
+  //   title: "Reedsy Studio: Narrative Copilot",
+  //   timeline: "2026",
+  //   lines: [
+  //     "AI-powered narrative copilot for book authors, focused on editorial-level analysis rather than text generation.",
+  //     "For 6 months, I drove discovery, product vision, and high-fidelity prototyping as consulting Lead Product Designer.",
+  //   ],
+  //   imgs: [
+  //     {
+  //       src: reedsyCover,
+  //       chip: "I led design of AI-assisted writing features that demonstrated early 2-month retention uplift in closed testing.",
+  //     },
+  //     {
+  //       src: reedsyViz,
+  //       chip: "Copilot is writer-first AI with zero slop, using helpful visualizations, NLP analysis and contextual LLM search to support real writing.",
+  //     },
+  //     {
+  //       src: reedsyNoir,
+  //       chip: "AI assistants need a personality and distinct voice. I created a set of cats to elevate each writer's personal style.",
+  //     },
+  //   ],
+  //   // link: {
+  //   //   label: "View",
+  //   //   href: "/work",
+  //   // },
+  // },
   {
     id: "imusician-im",
     title: "iMusician: Instant Music Mastering, powered by AI",
