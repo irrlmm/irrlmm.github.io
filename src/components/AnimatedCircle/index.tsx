@@ -36,7 +36,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           cx={CIRCLE_CP}
           cy={CIRCLE_CP}
           r={CIRCLE_RADIUS}
-          stroke="var(--on-surface)"
+          stroke="var(--accent, var(--on-surface))"
           opacity={0.2}
           strokeWidth={CIRCLE_STROKE_WIDTH}
         ></motion.circle>
@@ -45,7 +45,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           cx={CIRCLE_CP}
           cy={CIRCLE_CP}
           r={CIRCLE_RADIUS}
-          stroke="var(--on-surface)"
+          stroke="var(--accent, var(--on-surface))"
           strokeWidth={CIRCLE_STROKE_WIDTH}
           strokeDasharray={CIRCLE_PATH_LENGTH}
           variants={{
@@ -64,7 +64,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
         height={ICON_SIZE}
         viewBox={`0 0 24 24`}
         fill="none"
-        stroke="var(--on-surface)"
+        stroke="var(--accent, var(--on-surface))"
       >
         <motion.path
           d={SVG_CHECK}

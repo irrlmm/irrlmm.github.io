@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  font-display: block;
   font-feature-settings: "zero" on;
 }
 
@@ -13,5 +14,6 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  font-display: block;
   font-feature-settings: "zero" on;
 }

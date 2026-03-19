@@ -2,12 +2,13 @@ import { motion, type MotionValue } from "framer-motion";
 import { type FC } from "react";
 import { getStackCardVariants } from "../../helpers/stack/getStackCardVariants";
 import { useStackHover } from "../../helpers/stack/useStackHover";
+import type { QuizGameQuestion } from "../../types/content";
 
 import AnimatedParagraph from "../AnimatedParagraph";
 import styles from "./styles.module.css";
 
 type Props = {
-  card: UI.Quiz.GameQuestion;
+  card: QuizGameQuestion;
   index: number;
   onAnswer: (points: number) => void;
   onClose: () => void;

@@ -1,11 +1,13 @@
 const CARD_GAP = 8;
-const MAX_LAYERS = 40;
+const MAX_LAYERS = 3;
 const BLUR_STEP = 0.5;
 
 export const getStackCardVariants = (index: number) => {
-  const offsetX = -1 * index * CARD_GAP;
+  const visualIndex = Math.min(index, MAX_LAYERS - 1);
+
+  const offsetX = -1 * visualIndex * CARD_GAP;
   const offsetY = -1 * offsetX;
-  const blur = index * BLUR_STEP;
+  const blur = visualIndex * BLUR_STEP;
 
   const shownOpacity = MAX_LAYERS - index > 0 ? 1 : 0;
 

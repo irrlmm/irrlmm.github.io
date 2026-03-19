@@ -5,6 +5,7 @@ import getAverageImageColorServer from "../helpers/getAverageImageColorServer";
 
 import SectionWork from "./SectionWork";
 import type {
+  ArtifactStackCollectionEntry,
   CollectionEntryType,
   WorkCollectionWithOrgInfo,
 } from "./SectionWork/types";
@@ -23,26 +24,29 @@ const processedItems: CollectionEntryType[] = await Promise.all(
       }
 
       try {
-        const [optimizedImages, imageColors] = await Promise.all([
-          Promise.all(
-            item.data.images.map(async (image) => {
-              const optimized = await getOptimizedImage(image, 512);
-              return optimized.src;
-            }),
-          ),
-          Promise.all(
-            item.data.images.map(async (image) => getAverageImageColorServer(image)),
-          ),
-        ]);
+        const layers = await Promise.all(
+          item.data.images.map(async (image) => {
+            const [optimized, imageColors] = await Promise.all([
+              getOptimizedImage(image, 512),
+              getAverageImageColorServer(image),
+            ]);
 
-        return {
+            return {
+              src: optimized.src,
+              imageColors,
+            };
+          }),
+        );
+
+        const stackItem: ArtifactStackCollectionEntry = {
           ...item,
           data: {
             ...item.data,
-            images: optimizedImages,
-            imageColors,
+            images: layers,
           },
         };
+
+        return stackItem;
       } catch (error) {
         throw new Error(
           `Failed to optimize images for artifact stack: ${item.id}`,

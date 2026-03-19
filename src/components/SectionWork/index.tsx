@@ -6,6 +6,7 @@ import CardWork from "../CardWork";
 import styles from "./styles.module.css";
 
 import type { CollectionEntryType } from "./types";
+import type { ArtifactStackCollectionEntry, StackImageLayer } from "./types";
 
 type Props = {
   items: CollectionEntryType[];
@@ -28,7 +29,7 @@ const SectionWork: React.FC<Props> = ({ items }) => (
   >
     {items.map((item) => {
       if (item.collection === "artifacts") {
-        if (item.data.type === "stack") {
+        if (isArtifactStackCollectionEntry(item)) {
           return <CardStack key={item.id} item={item} />;
         }
 
@@ -39,5 +40,21 @@ const SectionWork: React.FC<Props> = ({ items }) => (
     })}
   </motion.div>
 );
+
+const isStackImageLayer = (image: unknown): image is StackImageLayer =>
+  Boolean(
+    image &&
+      typeof image === "object" &&
+      "src" in image &&
+      "imageColors" in image,
+  );
+
+const isArtifactStackCollectionEntry = (
+  item: CollectionEntryType,
+): item is ArtifactStackCollectionEntry =>
+  item.collection === "artifacts" &&
+  item.data.type === "stack" &&
+  Array.isArray(item.data.images) &&
+  item.data.images.every(isStackImageLayer);
 
 export default SectionWork;

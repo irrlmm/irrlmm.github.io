@@ -23,7 +23,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   >
     {progress !== null && <AnimatedCircle progress={progress} />}
 
-    {icon !== null && <Svg d={icon} size="1.5rem" />}
+    {icon !== null && (
+      <Svg d={icon} size="1.5rem" stroke="var(--accent, var(--on-surface))" />
+    )}
 
     <span className="overline text-m">{text}</span>
   </motion.div>

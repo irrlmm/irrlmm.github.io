@@ -6,12 +6,16 @@ images: ["/work/test/magic.png", "/work/test/rogi.png", "/work/test/magic.png"]
 ---
 
 import QUIZ_ROGI from "../../src/consts/quizzes/rogi";
+import GAME_MAGIC_JPEG, {
+  GAME_MAGIC_JPEG_THEME_COLORS,
+} from "../../src/consts/games/magicJpeg";
+import Game from "../../src/components/Game";
 import Quiz from "../../src/components/Quiz";
 
 # Text Games Are So Back
 
 Last year, I made a text game for my 404 page on the old version of the website. Since then, I never added more games, even though the data structure allowed to do so.
 
-<Quiz quiz={QUIZ_ROGI} client:load />
-<Quiz quiz={QUIZ_ROGI} client:load />
+<Game game={GAME_MAGIC_JPEG} themeColors={GAME_MAGIC_JPEG_THEME_COLORS} client:load />
+
 <Quiz quiz={QUIZ_ROGI} client:load />

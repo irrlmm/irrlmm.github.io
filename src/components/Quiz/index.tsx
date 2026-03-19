@@ -7,6 +7,7 @@ import QuizIntro from "./QuizIntro";
 import QuizOutro from "./QuizOutro";
 
 import { SVG_KEY } from "../../consts/svg";
+import type { QuizGame } from "../../types/content";
 
 import { useHoverElement } from "../../helpers/lightbox";
 
@@ -44,7 +45,7 @@ export const cardVariants = {
 };
 
 type Props = {
-  quiz: UI.Quiz.Game;
+  quiz: QuizGame;
 };
 
 const Quiz: React.FC<Props> = ({ quiz }) => {

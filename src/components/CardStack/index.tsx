@@ -1,4 +1,3 @@
-import type { CollectionEntry } from "astro:content";
 import { motion, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 
@@ -10,19 +9,12 @@ import {
   useParallax,
   useTilt,
 } from "../../helpers/lightbox";
-
-import type { ImageColors } from "../../helpers/getAverageImageColorServer";
 import { cardLightConfig, cardVariants } from "../SectionWork/const";
+import type { ArtifactStackCollectionEntry } from "../SectionWork/types";
 import styles from "./styles.module.css";
 
-type StackCardItem = CollectionEntry<"artifacts"> & {
-  data: CollectionEntry<"artifacts">["data"] & {
-    imageColors?: ImageColors[];
-  };
-};
-
 type Props = {
-  item: StackCardItem;
+  item: ArtifactStackCollectionEntry;
 };
 
 const getSnappedDepth = (
@@ -54,7 +46,7 @@ const CardStack: React.FC<Props> = ({ item }) => {
   const { highlightIntensity, dimStyle, highlightStyle } = useHighlight({
     x,
     y,
-    intensity: cardLightConfig.lightEffectIntensity,
+    intensity: 0.4,
   });
 
   const containerStyle = {
@@ -79,10 +71,12 @@ const CardStack: React.FC<Props> = ({ item }) => {
     Math.floor(layers.length / 2),
   );
 
-  const minSpreadPercent = 15;
-  const maxSpreadPercent = 30;
-  const minRotateDeg = 2.5;
-  const maxRotateDeg = 5;
+  const minSpreadPercent = 10;
+  const maxSpreadPercent = 20;
+  const minRotateDeg = 5;
+  const maxRotateDeg = 8;
+  const fallbackGloomColor = "#fff";
+  const fallbackShadowColor = "#111";
 
   useMotionValueEvent(x, "change", (latestX) => {
     const normalizedX = Math.max(0, Math.min(1, (latestX + 1) / 2));
@@ -109,7 +103,7 @@ const CardStack: React.FC<Props> = ({ item }) => {
     >
       <motion.div className={styles.container} style={containerStyle}>
         <motion.div className={styles.stack} transition={layerTransition}>
-          {layers.map((layerUrl, i) => {
+          {layers.map((layer, i) => {
             const ratio = layers.length > 1 ? i / (layers.length - 1) : 0.5;
 
             const spreadXIdle = `${-minSpreadPercent + ratio * minSpreadPercent * 2}%`;
@@ -124,14 +118,14 @@ const CardStack: React.FC<Props> = ({ item }) => {
             const rotateDegIdle = (ratio - 0.5) * 2 * minRotateDeg;
             const rotateDegHover = (ratio - 0.5) * 2 * maxRotateDeg;
 
-            const imageColors = item.data.imageColors?.[i];
+            const imageColors = layer?.imageColors;
             {
               const imageGloom = useGloom({
                 x,
                 y,
                 highlightIntensity,
-                gloomColor: imageColors?.gloom,
-                shadowColor: imageColors?.shadow,
+                gloomColor: imageColors?.gloom ?? fallbackGloomColor,
+                shadowColor: imageColors?.shadow ?? fallbackShadowColor,
               });
 
               return (
@@ -149,11 +143,11 @@ const CardStack: React.FC<Props> = ({ item }) => {
                   }}
                   animate={{ z: `${depthRem}rem` }}
                 >
-                  {layerUrl && (
+                  {layer && (
                     <motion.div
                       className={styles.imageOverlay}
                       style={{
-                        backgroundImage: `url(${layerUrl})`,
+                        backgroundImage: `url(${layer.src})`,
                         ...parallaxStyle,
                         ...imageGloom,
                       }}

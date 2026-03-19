@@ -2,30 +2,21 @@ import { motion, type MotionValue } from "framer-motion";
 import { useState, type FC } from "react";
 import { getStackCardVariants } from "../../helpers/stack/getStackCardVariants";
 import { useStackHover } from "../../helpers/stack/useStackHover";
-import type { QuizGameQuestion } from "../../types/content";
+import type { CardGameCard } from "../../types/content";
 
 import AnimatedParagraph from "../AnimatedParagraph";
 import Button from "../Button";
 
 type Props = {
-  card: QuizGameQuestion;
+  card: CardGameCard;
   index: number;
-  onAnswer: (points: number) => void;
-  onClose: () => void;
+  onChooseOption: (option: CardGameCard["options"][number]) => void;
   moveX: MotionValue<number>;
   moveY: MotionValue<number>;
 };
 
-const QuizCard: FC<Props> = ({
-  card,
-  index,
-  onAnswer,
-  onClose,
-  moveX,
-  moveY,
-}) => {
-  const [answer, setAnswer] = useState<QuizGameQuestion["options"][0]>();
-
+const GameCard: FC<Props> = ({ card, index, onChooseOption, moveX, moveY }) => {
+  const [answer, setAnswer] = useState<CardGameCard["options"][number]>();
   const [questionShown, setQuestionShown] = useState(false);
   const [responseShown, setResponseShown] = useState(false);
 
@@ -39,9 +30,9 @@ const QuizCard: FC<Props> = ({
 
   const handleContinue = () => {
     if (answer) {
-      onAnswer(answer.points);
-      onClose();
+      onChooseOption(answer);
       setResponseShown(false);
+      setAnswer(undefined);
     }
   };
 
@@ -50,8 +41,8 @@ const QuizCard: FC<Props> = ({
       className={`ui-card col justify-between`}
       variants={variants}
       style={{
-        translateX: translateX,
-        translateY: translateY,
+        translateX,
+        translateY,
         rotate: rotateSpring,
       }}
       initial="hidden"
@@ -61,7 +52,7 @@ const QuizCard: FC<Props> = ({
       <div className="col gap-m">
         <AnimatedParagraph
           text={card.text}
-          key="question"
+          key={card.id}
           animate={index === 0}
           onAnimationComplete={() => setQuestionShown(true)}
         />
@@ -70,9 +61,7 @@ const QuizCard: FC<Props> = ({
           <p className="overline text-m">
             {">"}
             <motion.span
-              initial={{
-                opacity: 0,
-              }}
+              initial={{ opacity: 0 }}
               animate={{
                 opacity: 1,
                 transition: { repeat: Infinity, duration: 0.3 },
@@ -90,7 +79,7 @@ const QuizCard: FC<Props> = ({
         {!!answer && (
           <AnimatedParagraph
             text={answer.response.text}
-            key="response"
+            key={`${card.id}-${answer.label}`}
             onAnimationComplete={() => setResponseShown(true)}
           />
         )}
@@ -101,7 +90,7 @@ const QuizCard: FC<Props> = ({
           questionShown &&
           card.options.map((option) => (
             <Button
-              key={option.id}
+              key={option.id ?? option.label}
               onClick={() => setAnswer(option)}
               label={option.label}
             />
@@ -113,4 +102,4 @@ const QuizCard: FC<Props> = ({
   );
 };
 
-export default QuizCard;
+export default GameCard;

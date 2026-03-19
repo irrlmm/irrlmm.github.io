@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { QuizGame } from "../../types/content";
+import type { CardGame, CardGameEnding } from "../../types/content";
 
 import { coverVariants } from ".";
 import { SVG_REFRESH } from "../../consts/svg";
@@ -8,13 +8,12 @@ import styles from "./styles.module.css";
 
 type Props = {
   points: number;
-  winScore: QuizGame["winScore"];
-  outro: QuizGame["outro"];
+  ending: CardGameEnding;
+  title: CardGame["outro"]["title"];
+  onRestart: () => void;
 };
 
-const QuizOutro: React.FC<Props> = ({ points, winScore, outro }) => {
-  const completionPercent = Math.round((points / winScore) * 100);
-
+const GameOutro: React.FC<Props> = ({ points, ending, title, onRestart }) => {
   return (
     <motion.div
       className={styles.cover}
@@ -23,20 +22,22 @@ const QuizOutro: React.FC<Props> = ({ points, winScore, outro }) => {
       animate="shown"
       exit="hidden"
     >
-      <span className="kicker overline text-l">Session ended</span>
+      <span className="kicker overline text-l">{title}</span>
 
-      <p className="overline text-l">
-        {outro[completionPercent === 100 ? "winnerText" : "loserText"]}
-      </p>
+      <p className="overline text-xl">{ending.title}</p>
+
+      <p className="overline text-l">{ending.text}</p>
+
+      <p className={`overline text-l ${styles.score}`}>Score: {points}</p>
 
       <RefreshButton
         icon={SVG_REFRESH}
         whileHover={{ rotate: 15 }}
         whileTap={{ rotate: 30 }}
-        onClick={() => {}}
+        onClick={onRestart}
       />
     </motion.div>
   );
 };
 
-export default QuizOutro;
+export default GameOutro;

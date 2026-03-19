@@ -1,6 +1,7 @@
 ---
 import { IRRLMM } from "../consts/meta";
 import { SVG_ARROW } from "../consts/svg";
+import type { Link } from "../types/content";
 import Svg from "./Svg.astro";
 import ThemeSwitch from "./ThemeSwitch.astro";
 
@@ -12,7 +13,7 @@ const segments = pathname.split("/").filter(Boolean);
 const root = segments[0];
 const backHref = segments.length > 1 && root ? `/${root}` : "/";
 
-const routeLinks: Record<string, UI.Link> = {
+const routeLinks: Record<string, Link> = {
   work: { label: "Work", href: "/work" },
   posts: { label: "Posts", href: "/posts" },
   notes: { label: "Notes", href: "/notes" },
