@@ -2,14 +2,10 @@
   font-family: var(--font-sans);
   font-size: clamp(3rem, 12vw, 6rem);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
   line-height: 1;
   text-transform: uppercase;
   text-align: justify;
-  margin-top: 8rem;
-  max-width: inherit;
-}
-
-.sentence:first-of-type {
   margin-top: 50vh;
+  max-width: inherit;
 }

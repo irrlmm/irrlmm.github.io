@@ -1,4 +1,3 @@
-import getSvgMaskStyle from "../../helpers/getSvgMaskStyle";
 import styles from "./styles.module.css";
 
 type Props = {
@@ -8,6 +7,13 @@ type Props = {
   style?: React.CSSProperties;
   label?: string;
 };
+
+function getSvgMaskStyle(src: string) {
+  return {
+    WebkitMaskImage: `url(${src})`,
+    maskImage: `url(${src})`,
+  };
+}
 
 const SvgMaskImage: React.FC<Props> = ({
   src,

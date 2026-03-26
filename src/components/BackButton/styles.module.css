@@ -1,0 +1,19 @@
+.button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--on-surface);
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

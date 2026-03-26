@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+
 import { pew } from "../../helpers/motion";
+
 import DialButton from "../DialButton";
 import { SVGS, type SvgName } from "../Svg";
 
@@ -9,8 +11,12 @@ type ColorScheme = "auto" | "dark" | "light";
 const SLOT_COUNT = 10;
 
 const getInitialColorScheme = (): ColorScheme => {
-  if (typeof window === "undefined") return "auto";
+  if (typeof window === "undefined") {
+    return "auto";
+  }
+
   const stored = localStorage.getItem("theme");
+
   return stored === "dark" || stored === "light" || stored === "auto"
     ? stored
     : "auto";
@@ -49,7 +55,9 @@ const ThemeSwitch = () => {
   }, []);
 
   const otherColorScheme: ColorScheme = prefersDark ? "light" : "dark";
+
   const cycle: ColorScheme[] = ["auto", otherColorScheme];
+
   const activeColorScheme: ColorScheme = cycle.includes(colorScheme)
     ? colorScheme
     : "auto";
@@ -57,7 +65,9 @@ const ThemeSwitch = () => {
   useEffect(() => {
     if (colorScheme !== activeColorScheme) {
       setColorScheme(activeColorScheme);
+
       localStorage.setItem("theme", activeColorScheme);
+
       applyColorScheme(activeColorScheme);
     }
   }, [colorScheme, activeColorScheme]);
@@ -65,7 +75,9 @@ const ThemeSwitch = () => {
   const onClick = () => {
     const index = cycle.indexOf(activeColorScheme);
     const next = cycle[(index + 1) % cycle.length];
+
     setColorScheme(next);
+
     localStorage.setItem("theme", next);
     applyColorScheme(next);
   };

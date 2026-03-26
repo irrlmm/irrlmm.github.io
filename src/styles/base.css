@@ -26,5 +26,5 @@ hr {
   margin: 8rem 0;
   border: none;
   height: var(--line);
-  background-color: var(--on-surface);
+  background-color: var(--outline);
 }

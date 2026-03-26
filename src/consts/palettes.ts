@@ -1,47 +1,39 @@
+import { opacityToHex } from "../helpers/opacityToHex";
 import type { Theme } from "../helpers/themeTokens";
 
 export type PalettePreset = {
   id: string;
-  label: string;
-  swatchA: string;
-  swatchB: string;
   theme: Theme;
 };
 
 export const PALETTES: PalettePreset[] = [
   {
     id: "mono",
-    label: "Mono",
-    swatchA: "#ffffff",
-    swatchB: "#050505",
     theme: {
       light: {
         "surface-container": "#ffffff",
-        background: "#f4f4f4",
-        surface: "#ebebeb",
-        "on-surface": "#121212",
-        outline: "#4f4f4f",
-        primary: "#121212",
-        "on-primary": "#f4f4f4",
-        shadow: "#080808",
+        background: "#f6f6f6",
+        surface: "#eeeeee",
+        "on-surface": "#0b0b0b",
+        outline: opacityToHex("#333333", 0.5),
+        primary: "#000000",
+        "on-primary": "#ffffff",
+        shadow: "#131313",
       },
       dark: {
         "surface-container": "#1f1f1f",
-        background: "#101010",
+        background: "#131313",
         surface: "#191919",
-        "on-surface": "#f7f7f7",
-        outline: "#8f8f8f",
-        primary: "#f7f7f7",
-        "on-primary": "#101010",
+        "on-surface": "#ffffff",
+        outline: opacityToHex("#cccccc", 0.5),
+        primary: "#ffffff",
+        "on-primary": "#131313",
         shadow: "#000000",
       },
     },
   },
   {
     id: "ember",
-    label: "Ember",
-    swatchA: "#ffd2a6",
-    swatchB: "#2a0701",
     theme: {
       light: {
         "surface-container": "#fff8f1",
@@ -67,9 +59,6 @@ export const PALETTES: PalettePreset[] = [
   },
   {
     id: "acid",
-    label: "Acid",
-    swatchA: "#c3ffd8",
-    swatchB: "#01261a",
     theme: {
       light: {
         "surface-container": "#f2fff8",
@@ -95,9 +84,6 @@ export const PALETTES: PalettePreset[] = [
   },
   {
     id: "ultraviolet",
-    label: "Ultraviolet",
-    swatchA: "#ebdcff",
-    swatchB: "#140221",
     theme: {
       light: {
         "surface-container": "#fbf6ff",
@@ -123,9 +109,6 @@ export const PALETTES: PalettePreset[] = [
   },
   {
     id: "sea",
-    label: "Sea",
-    swatchA: "#bdf6ff",
-    swatchB: "#001b2c",
     theme: {
       light: {
         "surface-container": "#f2fdff",

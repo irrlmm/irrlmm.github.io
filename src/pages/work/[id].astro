@@ -15,6 +15,7 @@ import Classified from "../../components/Classified.astro";
 import Quote from "../../components/Quote.astro";
 import Hero from "../../components/Hero";
 import getSvgMaskImageServer from "../../helpers/getSvgMaskImageServer";
+import ManifestoScrollFocus from "../../components/ManifestoScrollFocus";
 
 export async function getStaticPaths() {
   const posts = await getCollection("work", ({ data }) => !data.draft);
@@ -45,9 +46,14 @@ const { Content, remarkPluginFrontmatter } = await render(post);
     },
   ]}
 >
-  <!-- <AstroWorkImageStack srcs={stackImages} /> -->
-
   <article class="prose">
+    <ManifestoScrollFocus
+      sentences={[
+        "''I improved the onboarding experience for event organizers''",
+      ]}
+      client:load
+    />
+
     <Hero
       title={post.data.title}
       readingTime={remarkPluginFrontmatter.readingTime}

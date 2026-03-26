@@ -12,6 +12,10 @@ const PALETTE_STORAGE_KEY = "paletteColors";
 
 const getPaletteAt = (index: number): Palette => PALETTES[index] ?? PALETTES[0];
 const getNextIndex = (index: number): number => (index + 1) % PALETTES.length;
+const getPaletteSwatches = (palette: Palette): [string, string] => [
+  palette.theme.light.primary,
+  palette.theme.dark.primary,
+];
 
 const applyPalette = (palette: Palette) => {
   applyThemeToRoot(document.documentElement, palette.theme);
@@ -64,11 +68,12 @@ const PaletteSwitch = () => {
       slotCount={SLOT_COUNT}
       activeSlot={activeIndex}
       onStep={onClick}
-      ariaLabel={`Palette: ${activePalette.label}`}
+      ariaLabel={`Palette: ${activePalette.id}`}
     >
       {({ slotIndex, hovered, dialRotate, slotAngle }) => {
         const palette = PALETTES[slotIndex];
         if (!palette) return null;
+        const [swatchA, swatchB] = getPaletteSwatches(palette);
 
         const isActive = slotIndex === activeIndex;
         const spokeRotate = -1 * (dialRotate + slotAngle);
@@ -95,8 +100,8 @@ const PaletteSwitch = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor={palette.swatchA} />
-                <stop offset="100%" stopColor={palette.swatchB} />
+                <stop offset="0%" stopColor={swatchA} />
+                <stop offset="100%" stopColor={swatchB} />
               </linearGradient>
             </defs>
 

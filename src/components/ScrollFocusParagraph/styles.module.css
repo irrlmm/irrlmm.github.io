@@ -3,10 +3,29 @@
 }
 
 .wordWrap {
+  position: relative;
   display: inline;
 }
 
 .word {
   display: inline-block;
   will-change: opacity;
+}
+
+.debugIndex {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 0;
+  display: inline-block;
+  margin-left: 0.2em;
+  font-family: var(--font-mono, "mono", monospace);
+  font-size: 0.18em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  opacity: 0.65;
+  pointer-events: none;
+  text-transform: none;
+  user-select: none;
+  vertical-align: middle;
 }

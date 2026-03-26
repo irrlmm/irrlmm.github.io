@@ -1,6 +1,7 @@
 ---
-import ThemeSwitch from "./ThemeSwitch.astro";
+import ThemeSwitch from "./ThemeSwitch";
 import PaletteSwitch from "../components/PaletteSwitch";
+import BackButton from "../components/BackButton";
 
 type Props = {
   text?: string;
@@ -30,6 +31,8 @@ const shorterName =
 
 <header class="overline text-l max-width-m">
   <div class="row gap-4 align-center">
+    {segments.length > 0 && <BackButton client:only="react" />}
+
     <a href="/">{segments.length > 1 ? shorterName : text}</a>
     {
       resolvedBreadcrumb && (
@@ -41,24 +44,25 @@ const shorterName =
   <div class="controls">
     {showPaletteSwitch && <PaletteSwitch client:only="react" />}
 
-    <ThemeSwitch />
+    <ThemeSwitch client:only="react" />
   </div>
 </header>
 
 <style>
   header {
+    z-index: 101;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 1.5rem;
   }
 
   .controls {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    /* animation: appear 0.4s var(--bezier) both; */
-    /* animation-delay: 0.4s; */
   }
 
   a {
