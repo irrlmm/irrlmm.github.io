@@ -44,7 +44,6 @@ type GameOptionResponse = {
 export type CardGameOption = {
   id?: string;
   label: string;
-  points: number;
   healthDelta?: number;
   armorDelta?: number;
   nextCardId: string;
@@ -65,21 +64,24 @@ export type CardGameEnding = {
 };
 
 export type CardGameStat = {
-  label?: string;
-  min?: number;
-  max?: number;
-  initial?: number;
+  label: string;
+  min: number;
+  max: number;
+  initial: number;
 };
 
 export type CardGameThemeColors = {
-  primary: string;
-  secondary: string;
-  surface: string;
-  surfaceDim: string;
-  onSurface: string;
-  onAccent: string;
-  outline: string;
-  overlayOnSurface: string;
+  "--surface": string;
+  "--surface-container": string;
+  "--on-surface": string;
+  "--outline": string;
+  "--primary": string;
+  "--on-primary": string;
+};
+
+export type CardGameThemeByMode = {
+  dark: CardGameThemeColors;
+  light: CardGameThemeColors;
 };
 
 export type CardGame = {
@@ -87,9 +89,9 @@ export type CardGame = {
   startCardId: string;
   finishCardId: string;
   coverImage?: string;
-  stats?: {
-    health?: CardGameStat;
-    armor?: CardGameStat;
+  stats: {
+    health: CardGameStat;
+    armor: CardGameStat;
   };
   intro: {
     title: string;

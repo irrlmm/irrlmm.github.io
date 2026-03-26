@@ -6,7 +6,7 @@ import {
   useHoverElement,
   useTilt,
 } from "../../helpers/lightbox";
-import { SPRING_CONFIG } from "../../helpers/motion";
+import { pew } from "../../helpers/motion";
 import styles from "./styles.module.css";
 
 export type StackedImageProps = {
@@ -31,9 +31,8 @@ const StackedImage: React.FC<StackedImageProps> = ({
   aspectRatio = "16/10",
   maxWidth = "64rem",
   tilt = 7.5,
-  stackDepth = 0.15,
+  stackDepth = 0.1,
   caption,
-  immediateStack = false,
 }) => {
   const [baseSrc, ...depthSrcs] = srcs;
 
@@ -41,9 +40,10 @@ const StackedImage: React.FC<StackedImageProps> = ({
     return null;
   }
 
-  const { wrapperRef, x, y, onPointerMove, onPointerLeave, isHovered } =
+  const { hoverElementRef, x, y, onPointerMove, onPointerLeave, isHovered } =
     useHoverElement({
-      // resetsToCenter: true,
+      // initialTilt: [0, 0],
+      // resetsToInitial: true,
     });
 
   const { tiltX, tiltY } = useTilt({
@@ -53,7 +53,7 @@ const StackedImage: React.FC<StackedImageProps> = ({
   });
 
   const { elementPerspective, wrapperStyle } = useElementPerspective({
-    elementRef: wrapperRef,
+    elementRef: hoverElementRef,
   });
 
   const { highlightStyle, dimStyle } = useHighlight({
@@ -82,7 +82,7 @@ const StackedImage: React.FC<StackedImageProps> = ({
   return (
     <div className={`ui-image ${styles.column}`} style={{ maxWidth }}>
       <motion.div
-        ref={wrapperRef}
+        ref={hoverElementRef}
         className={styles.wrapper}
         style={wrapperStyle}
         onPointerMove={onPointerMove}
@@ -107,7 +107,7 @@ const StackedImage: React.FC<StackedImageProps> = ({
                 zIndex,
                 backgroundImage: `url("${src}")`,
               }}
-              transition={SPRING_CONFIG}
+              transition={pew(0.3)}
             />
           ))}
 

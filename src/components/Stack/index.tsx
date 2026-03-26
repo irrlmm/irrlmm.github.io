@@ -32,7 +32,7 @@ const variants = {
 
 const Stack: React.FC<Props> = ({ cards }) => {
   const hover = useHoverElement<HTMLDivElement>({
-    resetsToCenter: true,
+    resetsToInitial: true,
   });
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -81,7 +81,7 @@ const Stack: React.FC<Props> = ({ cards }) => {
 
   return (
     <motion.div
-      ref={hover.wrapperRef}
+      ref={hover.hoverElementRef}
       className={`ui-stack ${styles.wrapper}`}
       onPointerMove={hover.onPointerMove}
       onPointerLeave={hover.onPointerLeave}

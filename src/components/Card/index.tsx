@@ -19,7 +19,7 @@ type Props = {
 const CardQuiz: FC<Props> = ({ card, index, moveX, moveY }) => {
   const { variants } = getStackCardVariants(index);
 
-  const { translateX, translateY, rotateSpring } = useStackHover({
+  const { translateX, translateY, rotate } = useStackHover({
     index,
     moveX,
     moveY,
@@ -32,7 +32,7 @@ const CardQuiz: FC<Props> = ({ card, index, moveX, moveY }) => {
       style={{
         translateX,
         translateY,
-        rotate: rotateSpring,
+        rotate,
       }}
       initial="hidden"
       animate="shown"
@@ -44,7 +44,7 @@ const CardQuiz: FC<Props> = ({ card, index, moveX, moveY }) => {
         initial={{ filter: "blur(0.5rem)", opacity: 0, scale: 0.98 }}
         animate={{ filter: "blur(0rem)", opacity: 1, scale: 1 }}
       >
-        <div className="col gap-m">
+        <div className="col gap-4">
           <AnimatedParagraph
             text={card.text}
             key="question"

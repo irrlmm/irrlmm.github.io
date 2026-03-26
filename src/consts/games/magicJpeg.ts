@@ -56,8 +56,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "start-drink",
-          label: "Order the first drink",
-          points: 1,
+          label: "drink 1 beer",
           healthDelta: -10,
           armorDelta: -8,
           nextCardId: "drink_one",
@@ -68,8 +67,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "start-hardcore",
-          label: "Order a triple shot immediately",
-          points: -1,
+          label: "drink 3 shots",
           healthDelta: -20,
           armorDelta: -16,
           nextCardId: "drink_three",
@@ -80,8 +78,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "start-detective",
-          label: "Stay sharp and scan the room",
-          points: 2,
+          label: "scan room",
           armorDelta: 8,
           nextCardId: "detective_mode",
           response: {
@@ -97,8 +94,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "trail-sign",
-          label: "Head for the road sign",
-          points: 1,
+          label: "go sign",
           nextCardId: "ranger_sign",
           response: {
             title: "Proceed",
@@ -107,8 +103,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "trail-totem",
-          label: "Check the carved totem",
-          points: 2,
+          label: "check totem",
           nextCardId: "totem",
           response: {
             title: "Inspect",
@@ -123,8 +118,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "prints-totem",
-          label: "Follow toward the totem",
-          points: 2,
+          label: "follow totem",
           nextCardId: "totem",
           response: {
             title: "Track",
@@ -133,8 +127,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "prints-sign",
-          label: "Ignore it and move to town",
-          points: 0,
+          label: "go town",
           nextCardId: "ranger_sign",
           response: {
             title: "Move",
@@ -149,8 +142,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "totem-bus",
-          label: "Take the ticket",
-          points: 2,
+          label: "take ticket",
           nextCardId: "bus_stop",
           response: {
             title: "Acquire",
@@ -159,8 +151,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "totem-sign",
-          label: "Walk to the ranger sign instead",
-          points: 1,
+          label: "go sign",
           nextCardId: "ranger_sign",
           response: {
             title: "Move",
@@ -175,8 +166,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "sign-bus",
-          label: "Wait at the bus stop",
-          points: 1,
+          label: "wait bus",
           nextCardId: "bus_stop",
           response: {
             title: "Wait",
@@ -185,8 +175,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "sign-gate",
-          label: "Walk straight to town",
-          points: 1,
+          label: "go town",
           nextCardId: "town_gate",
           response: {
             title: "Walk",
@@ -201,8 +190,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "bus-town",
-          label: "Ride to town gate",
-          points: 1,
+          label: "ride bus",
           nextCardId: "town_gate",
           response: {
             title: "Ride",
@@ -211,8 +199,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "bus-bar",
-          label: "Get off at The Velvet Pixel",
-          points: 1,
+          label: "enter bar",
           nextCardId: "neon_bar",
           response: {
             title: "Arrive",
@@ -227,8 +214,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "gate-bar",
-          label: "Enter The Velvet Pixel",
-          points: 1,
+          label: "enter bar",
           nextCardId: "neon_bar",
           response: {
             title: "Enter",
@@ -237,8 +223,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "gate-detective",
-          label: "Switch to detective mode",
-          points: 2,
+          label: "mode detective",
           armorDelta: 8,
           nextCardId: "detective_mode",
           response: {
@@ -254,8 +239,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "bar-stool",
-          label: "Take a stool",
-          points: 0,
+          label: "sit stool",
           armorDelta: -4,
           nextCardId: "bar_counter",
           response: {
@@ -265,8 +249,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "bar-detective",
-          label: "Start questioning people",
-          points: 2,
+          label: "ask people",
           armorDelta: 6,
           nextCardId: "detective_mode",
           response: {
@@ -282,8 +265,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "counter-drink",
-          label: "Order the first drink",
-          points: 1,
+          label: "drink 1 beer",
           healthDelta: -12,
           armorDelta: -10,
           nextCardId: "drink_one",
@@ -294,8 +276,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "counter-detective",
-          label: "Skip drinks, ask for leads",
-          points: 2,
+          label: "ask leads",
           armorDelta: 6,
           nextCardId: "detective_mode",
           response: {
@@ -311,8 +292,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "drink1-more",
-          label: "Another, for confidence",
-          points: 1,
+          label: "drink 2 beers",
           healthDelta: -16,
           armorDelta: -12,
           nextCardId: "drink_two",
@@ -323,8 +303,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "drink1-stop",
-          label: "Switch to questions",
-          points: 0,
+          label: "ask bartender",
           healthDelta: 4,
           armorDelta: 3,
           nextCardId: "bartender",
@@ -341,8 +320,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "drink2-more",
-          label: "Double down",
-          points: 1,
+          label: "drink 3 beers",
           healthDelta: -22,
           armorDelta: -16,
           nextCardId: "drink_three",
@@ -353,8 +331,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "drink2-overclock",
-          label: "Order two more for the road",
-          points: -6,
+          label: "drink 2 shots",
           healthDelta: -100,
           armorDelta: -100,
           nextCardId: "finish",
@@ -366,8 +343,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "drink2-air",
-          label: "Step out for air",
-          points: 1,
+          label: "go alley",
           healthDelta: 8,
           armorDelta: 2,
           nextCardId: "alley",
@@ -384,8 +360,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "drink3-finish",
-          label: "Chug it anyway",
-          points: -8,
+          label: "chug drink",
           healthDelta: -100,
           armorDelta: -100,
           nextCardId: "finish",
@@ -397,8 +372,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "drink3-stop",
-          label: "Abort mission, investigate instead",
-          points: -1,
+          label: "start case",
           healthDelta: -18,
           armorDelta: -10,
           nextCardId: "detective_mode",
@@ -415,8 +389,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "detective-bartender",
-          label: "Question bartender",
-          points: 2,
+          label: "ask bartender",
           armorDelta: 5,
           nextCardId: "bartender",
           response: {
@@ -426,8 +399,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "detective-gambler",
-          label: "Interrogate gambler",
-          points: 2,
+          label: "ask gambler",
           armorDelta: 5,
           nextCardId: "gambler",
           response: {
@@ -437,8 +409,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "detective-jukebox",
-          label: "Inspect jukebox",
-          points: 1,
+          label: "check jukebox",
           armorDelta: 3,
           nextCardId: "jukebox",
           response: {
@@ -454,8 +425,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "bartender-gambler",
-          label: "Press him about the gambler",
-          points: 1,
+          label: "ask gambler",
           armorDelta: 2,
           nextCardId: "gambler",
           response: {
@@ -465,8 +435,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "bartender-alley",
-          label: "Ask about back door",
-          points: 2,
+          label: "ask backdoor",
           armorDelta: 4,
           nextCardId: "alley",
           response: {
@@ -482,8 +451,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "gambler-jukebox",
-          label: "Call his bluff",
-          points: 2,
+          label: "call bluff",
           armorDelta: 3,
           nextCardId: "jukebox",
           response: {
@@ -493,8 +461,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "gambler-alley",
-          label: "Search his coat pocket",
-          points: 1,
+          label: "search pocket",
           armorDelta: 2,
           nextCardId: "alley",
           response: {
@@ -510,8 +477,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "jukebox-finish",
-          label: "Take the pier call immediately",
-          points: 3,
+          label: "take call",
           nextCardId: "finish",
           endingId: "cliffhanger",
           response: {
@@ -521,8 +487,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "jukebox-alley",
-          label: "Find more evidence first",
-          points: 2,
+          label: "find evidence",
           nextCardId: "alley",
           response: {
             title: "Delay",
@@ -537,8 +502,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "alley-open",
-          label: "Open the lockbox",
-          points: 2,
+          label: "open lockbox",
           armorDelta: 2,
           nextCardId: "lockbox",
           response: {
@@ -548,8 +512,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "alley-back",
-          label: "Go back inside",
-          points: 0,
+          label: "enter bar",
           nextCardId: "bartender",
           response: {
             title: "Retreat",
@@ -564,8 +527,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "lockbox-correct",
-          label: "Enter 451",
-          points: 3,
+          label: "enter 451",
           armorDelta: 4,
           nextCardId: "key_room",
           response: {
@@ -575,8 +537,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "lockbox-random",
-          label: "Guess random numbers",
-          points: -2,
+          label: "guess code",
           healthDelta: -20,
           armorDelta: -20,
           nextCardId: "finish",
@@ -594,8 +555,7 @@ const GAME_MAGIC_JPEG: CardGame = {
       options: [
         {
           id: "key-room-take",
-          label: "Take the special key",
-          points: 5,
+          label: "take key",
           armorDelta: 6,
           nextCardId: "finish",
           endingId: "special-key",
@@ -606,8 +566,7 @@ const GAME_MAGIC_JPEG: CardGame = {
         },
         {
           id: "key-room-leave",
-          label: "Leave it and chase the caller",
-          points: 2,
+          label: "chase caller",
           nextCardId: "finish",
           endingId: "cliffhanger",
           response: {

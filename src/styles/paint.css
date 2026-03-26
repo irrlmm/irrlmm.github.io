@@ -1,0 +1,48 @@
+/* Paint utilities */
+.color-on-surface {
+  color: var(--on-surface);
+}
+.color-on-surface-variant {
+  color: var(--on-surface-variant);
+}
+.color-primary {
+  color: var(--primary);
+}
+.color-on-primary {
+  color: var(--on-primary);
+}
+.color-outline {
+  color: var(--outline);
+}
+.color-inverse-surface {
+  color: var(--inverse-surface);
+}
+.color-inverse-on-surface {
+  color: var(--inverse-on-surface);
+}
+
+.bg-surface-container {
+  background-color: var(--surface-container);
+}
+.bg-background {
+  background-color: var(--background);
+}
+.bg-surface {
+  background-color: var(--surface);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.bg-inverse-surface {
+  background-color: var(--inverse-surface);
+}
+
+.border-outline {
+  border: solid var(--line) var(--outline);
+}
+.border-on-surface {
+  border: solid var(--line) var(--on-surface);
+}
+.border-primary {
+  border: solid var(--line) var(--primary);
+}

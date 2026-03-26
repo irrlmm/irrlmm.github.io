@@ -1,16 +1,32 @@
+import type { GetImageResult } from "astro";
 import { getImage } from "astro:assets";
 import getImageMetadata from "./getImageMetadata";
 
-const getOptimizedImage = async (src: string, width?: number) => {
+export type OptimizedImageResult = GetImageResult & {
+  width: number;
+  height: number;
+};
+
+const getOptimizedImage = async (
+  src: string,
+  width?: number,
+): Promise<OptimizedImageResult> => {
   try {
     const imageMetadata = await getImageMetadata(src)();
+    const image = imageMetadata.default;
+
     const optimizedImage = await getImage({
-      src: imageMetadata.default,
-      format: "webp",
-      quality: 95,
+      src: image,
+      format: image.format === "svg" ? "svg" : "webp",
+      quality: 99,
       width: width || 2560,
     });
-    return optimizedImage;
+
+    return {
+      ...optimizedImage,
+      width: image.width,
+      height: image.height,
+    };
   } catch (error) {
     throw new Error(`Failed to optimize image: ${error}`);
   }

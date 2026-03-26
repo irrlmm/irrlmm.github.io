@@ -1,18 +1,14 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import {
-  SVG_MOON,
-  SVG_MOON_AUTO,
-  SVG_SUN,
-  SVG_SUN_AUTO,
-} from "../../consts/svg";
+import { pew } from "../../helpers/motion";
 import DialButton from "../DialButton";
+import { SVGS, type SvgName } from "../Svg";
 
-type Theme = "auto" | "dark" | "light";
+type ColorScheme = "auto" | "dark" | "light";
 
 const SLOT_COUNT = 10;
 
-const getInitialTheme = (): Theme => {
+const getInitialColorScheme = (): ColorScheme => {
   if (typeof window === "undefined") return "auto";
   const stored = localStorage.getItem("theme");
   return stored === "dark" || stored === "light" || stored === "auto"
@@ -26,15 +22,17 @@ const getInitialPrefersDark = (): boolean => {
 };
 
 const ThemeSwitch = () => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(
+    getInitialColorScheme,
+  );
   const [prefersDark, setPrefersDark] = useState(getInitialPrefersDark);
 
-  const applyTheme = (next: Theme) => {
+  const applyColorScheme = (next: ColorScheme) => {
     document.documentElement.setAttribute("data-theme", next);
   };
 
   useEffect(() => {
-    applyTheme(theme);
+    applyColorScheme(colorScheme);
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     setPrefersDark(mediaQuery.matches);
@@ -42,7 +40,7 @@ const ThemeSwitch = () => {
     const onChange = () => {
       setPrefersDark(mediaQuery.matches);
       if ((localStorage.getItem("theme") || "auto") === "auto") {
-        applyTheme("auto");
+        applyColorScheme("auto");
       }
     };
 
@@ -50,49 +48,51 @@ const ThemeSwitch = () => {
     return () => mediaQuery.removeEventListener("change", onChange);
   }, []);
 
-  const otherTheme: Theme = prefersDark ? "light" : "dark";
-  const cycle: Theme[] = ["auto", otherTheme];
-  const activeTheme: Theme = cycle.includes(theme) ? theme : "auto";
+  const otherColorScheme: ColorScheme = prefersDark ? "light" : "dark";
+  const cycle: ColorScheme[] = ["auto", otherColorScheme];
+  const activeColorScheme: ColorScheme = cycle.includes(colorScheme)
+    ? colorScheme
+    : "auto";
 
   useEffect(() => {
-    if (theme !== activeTheme) {
-      setTheme(activeTheme);
-      localStorage.setItem("theme", activeTheme);
-      applyTheme(activeTheme);
+    if (colorScheme !== activeColorScheme) {
+      setColorScheme(activeColorScheme);
+      localStorage.setItem("theme", activeColorScheme);
+      applyColorScheme(activeColorScheme);
     }
-  }, [theme, activeTheme]);
+  }, [colorScheme, activeColorScheme]);
 
   const onClick = () => {
-    const index = cycle.indexOf(activeTheme);
+    const index = cycle.indexOf(activeColorScheme);
     const next = cycle[(index + 1) % cycle.length];
-    setTheme(next);
+    setColorScheme(next);
     localStorage.setItem("theme", next);
-    applyTheme(next);
+    applyColorScheme(next);
   };
 
-  const getIconPath = (slotTheme: Theme) => {
-    if (slotTheme === "auto") {
-      return prefersDark ? SVG_MOON_AUTO : SVG_SUN_AUTO;
+  const getIconName = (slotColorScheme: ColorScheme): SvgName => {
+    if (slotColorScheme === "auto") {
+      return prefersDark ? "moonAuto" : "sunAuto";
     }
-    return slotTheme === "dark" ? SVG_MOON : SVG_SUN;
+    return slotColorScheme === "dark" ? "moon" : "sun";
   };
 
   return (
     <DialButton
       slotCount={SLOT_COUNT}
-      activeSlot={activeTheme === "auto" ? 0 : 1}
+      activeSlot={activeColorScheme === "auto" ? 0 : 1}
       onStep={onClick}
-      ariaLabel={`Theme: ${activeTheme}`}
+      ariaLabel={`ColorScheme: ${activeColorScheme}`}
     >
       {({ slotIndex, slotAngle, dialRotate, hovered }) => {
-        let slotTheme: Theme | undefined;
+        let slotColorScheme: ColorScheme | undefined;
 
-        if (slotIndex === 0) slotTheme = "auto";
-        if (slotIndex === 1) slotTheme = otherTheme;
+        if (slotIndex === 0) slotColorScheme = "auto";
+        if (slotIndex === 1) slotColorScheme = otherColorScheme;
 
-        if (!slotTheme) return null;
+        if (!slotColorScheme) return null;
 
-        const isActive = slotTheme === activeTheme;
+        const isActive = slotColorScheme === activeColorScheme;
         const spokeRotate = -1 * (dialRotate + slotAngle);
 
         return (
@@ -109,10 +109,10 @@ const ThemeSwitch = () => {
               rotate: spokeRotate,
               opacity: isActive ? 1 : hovered ? 0.5 : 0,
             }}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            transition={pew()}
           >
             <path
-              d={getIconPath(slotTheme)}
+              d={SVGS[getIconName(slotColorScheme)]}
               vectorEffect="non-scaling-stroke"
             />
           </motion.svg>

@@ -1,81 +1,61 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { DEFAULT_PALETTE_ID, PALETTES, type PalettePreset } from "../../consts/palettes";
+import { pew } from "../../helpers/motion";
+import { applyThemeToRoot } from "../../helpers/themeTokens";
 import DialButton from "../DialButton";
 
-type Palette = { a: string; b: string };
-
-//
-// Presets and storage
+type Palette = PalettePreset;
 
 const SLOT_COUNT = 12;
 const PALETTE_STORAGE_KEY = "paletteColors";
-const PALETTES: Palette[] = [
-  { a: "#ffffff", b: "#010101" }, // Mono (untouchable)
-  { a: "#eaeae1", b: "#2e2e2c" },
-  { a: "#ffb0e9", b: "#2a1f01" },
-  { a: "#6de877", b: "#001502" },
-  { a: "#b3fffa", b: "#26041e" },
-];
 
-//
-// Helpers
-
-const paletteKey = (a: string, b: string) => `${a}|${b}`;
-
-// Returns a valid preset for any index value.
 const getPaletteAt = (index: number): Palette => PALETTES[index] ?? PALETTES[0];
-
-// Returns the next palette index in a circular manner.
 const getNextIndex = (index: number): number => (index + 1) % PALETTES.length;
 
-// Applies palette colors to root CSS variables used across the site.
 const applyPalette = (palette: Palette) => {
-  document.documentElement.style.setProperty("--root-color-a", palette.a);
-  document.documentElement.style.setProperty("--root-color-b", palette.b);
+  applyThemeToRoot(document.documentElement, palette.theme);
 };
 
-// Restores initial preset index from localStorage with safe fallbacks.
-const getInitialPaletteIndex = (): number => {
-  // SSR has no localStorage.
-  if (typeof window === "undefined") return 0;
-
-  // Stored as JSON tuple: ["#colorA", "#colorB"].
-  const raw = localStorage.getItem(PALETTE_STORAGE_KEY);
-  if (!raw) return 0;
+const readStoredPaletteId = (raw: string | null): string | null => {
+  if (!raw) return null;
 
   try {
     const parsed = JSON.parse(raw);
-    // Accept only two string values.
-    if (!Array.isArray(parsed) || parsed.length !== 2) return 0;
-
-    const [a, b] = parsed;
-    if (typeof a !== "string" || typeof b !== "string") return 0;
-
-    const storedKey = paletteKey(a, b);
-    const index = PALETTES.findIndex(
-      (palette) => paletteKey(palette.a, palette.b) === storedKey,
-    );
-    return index >= 0 ? index : 0;
+    if (typeof parsed === "string") return parsed;
   } catch {
-    // Invalid JSON should never break rendering.
-    return 0;
+    // Ignore malformed storage payloads.
   }
+
+  return null;
+};
+
+const getInitialPaletteIndex = (): number => {
+  if (typeof window === "undefined") return 0;
+
+  const storedId = readStoredPaletteId(localStorage.getItem(PALETTE_STORAGE_KEY));
+  if (!storedId) {
+    const defaultIndex = PALETTES.findIndex((palette) => palette.id === DEFAULT_PALETTE_ID);
+    return defaultIndex >= 0 ? defaultIndex : 0;
+  }
+
+  const index = PALETTES.findIndex((palette) => palette.id === storedId);
+  return index >= 0 ? index : 0;
 };
 
 const PaletteSwitch = () => {
   const [activeIndex, setActiveIndex] = useState(getInitialPaletteIndex);
   const activePalette = getPaletteAt(activeIndex);
 
-  // Ensure persisted palette is applied when component mounts.
   useEffect(() => {
     applyPalette(activePalette);
-  }, []);
+  }, [activePalette]);
 
   const onClick = () => {
     const nextIndex = getNextIndex(activeIndex);
     const next = getPaletteAt(nextIndex);
     setActiveIndex(nextIndex);
-    localStorage.setItem(PALETTE_STORAGE_KEY, JSON.stringify([next.a, next.b]));
+    localStorage.setItem(PALETTE_STORAGE_KEY, JSON.stringify(next.id));
     applyPalette(next);
   };
 
@@ -84,7 +64,7 @@ const PaletteSwitch = () => {
       slotCount={SLOT_COUNT}
       activeSlot={activeIndex}
       onStep={onClick}
-      ariaLabel={`Palette: ${activePalette.a} to ${activePalette.b}`}
+      ariaLabel={`Palette: ${activePalette.label}`}
     >
       {({ slotIndex, hovered, dialRotate, slotAngle }) => {
         const palette = PALETTES[slotIndex];
@@ -105,7 +85,7 @@ const PaletteSwitch = () => {
               rotate: spokeRotate,
               opacity: isActive ? 1 : hovered ? 0.5 : 0,
             }}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            transition={pew()}
           >
             <defs>
               <linearGradient
@@ -115,8 +95,8 @@ const PaletteSwitch = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor={palette.a} />
-                <stop offset="100%" stopColor={palette.b} />
+                <stop offset="0%" stopColor={palette.swatchA} />
+                <stop offset="100%" stopColor={palette.swatchB} />
               </linearGradient>
             </defs>
 

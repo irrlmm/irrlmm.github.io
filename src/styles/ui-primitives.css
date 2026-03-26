@@ -1,0 +1,77 @@
+/* Kicker */
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  height: 2em;
+  padding: 0.5em;
+  border-radius: var(--br-square);
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+/* UI elements */
+
+.ui-grid {
+  margin-top: 8rem;
+}
+
+.ui-stack {
+  max-width: 64rem;
+  aspect-ratio: 16/9;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface);
+  border-radius: var(--br-card);
+  overflow: hidden;
+}
+.ui-stack p {
+  opacity: initial;
+}
+
+.ui-card {
+  position: absolute;
+  max-width: 24rem;
+  width: 66%;
+  aspect-ratio: 4/3;
+  border-radius: var(--br-card);
+  background-color: var(--surface-container);
+  padding: 2rem;
+  border: solid var(--line) var(--on-surface);
+  overflow: hidden;
+}
+
+/* Primary */
+
+.primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+@media (max-width: 1024px) {
+  .ui-stack {
+    aspect-ratio: 4/3;
+  }
+}
+
+@media (max-width: 768px) {
+  .ui-stack {
+    aspect-ratio: 1/1;
+  }
+
+  .ui-card {
+    aspect-ratio: 1/1;
+  }
+}
+
+@media (max-width: 512px) {
+  .ui-stack {
+    aspect-ratio: 3/4;
+  }
+
+  .ui-card {
+    aspect-ratio: 3/4;
+  }
+}

@@ -1,6 +1,5 @@
 ---
 import { IRRLMM } from "../consts/meta";
-import { SVG_ARROW } from "../consts/svg";
 import type { Link } from "../types/content";
 import Svg from "./Svg.astro";
 import ThemeSwitch from "./ThemeSwitch.astro";
@@ -29,7 +28,7 @@ const resolvedBreadcrumb =
     {
       pathname !== "/" && (
         <a class="back-button" href={backHref} aria-label="Go back">
-          <Svg d={SVG_ARROW} />
+          <Svg name="arrow" />
         </a>
       )
     }

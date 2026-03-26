@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-import { SVG_CHECK } from "../../consts/svg";
+import { SVGS } from "../Svg";
 
 import styles from "./styles.module.css";
 
@@ -24,7 +24,13 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
   const CHECK_PATH_LENGTH = 30.643;
 
   return (
-    <div className={styles.iconWrapper}>
+    <motion.div
+      className={styles.iconWrapper}
+      variants={{
+        hidden: {},
+        shown: { transition: { delayChildren: 0.15 } },
+      }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={CIRCLE_SIZE}
@@ -36,7 +42,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           cx={CIRCLE_CP}
           cy={CIRCLE_CP}
           r={CIRCLE_RADIUS}
-          stroke="var(--accent, var(--on-surface))"
+          stroke="var(--primary)"
           opacity={0.2}
           strokeWidth={CIRCLE_STROKE_WIDTH}
         ></motion.circle>
@@ -45,7 +51,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           cx={CIRCLE_CP}
           cy={CIRCLE_CP}
           r={CIRCLE_RADIUS}
-          stroke="var(--accent, var(--on-surface))"
+          stroke="var(--primary)"
           strokeWidth={CIRCLE_STROKE_WIDTH}
           strokeDasharray={CIRCLE_PATH_LENGTH}
           variants={{
@@ -64,10 +70,10 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
         height={ICON_SIZE}
         viewBox={`0 0 24 24`}
         fill="none"
-        stroke="var(--accent, var(--on-surface))"
+        stroke="var(--primary)"
       >
         <motion.path
-          d={SVG_CHECK}
+          d={SVGS.check}
           variants={{
             hidden: { strokeDashoffset: CHECK_PATH_LENGTH },
             shown: {
@@ -79,7 +85,7 @@ const AnimatedCircle: React.FC<ProgressBarProps> = ({ progress = 0 }) => {
           vectorEffect="non-scaling-stroke"
         ></motion.path>
       </svg>
-    </div>
+    </motion.div>
   );
 };
 

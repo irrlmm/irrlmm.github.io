@@ -1,5 +1,5 @@
 const CARD_GAP = 8;
-const MAX_LAYERS = 3;
+const MAX_LAYERS = 4;
 const BLUR_STEP = 0.5;
 
 export const getStackCardVariants = (index: number) => {

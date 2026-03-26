@@ -1,3 +1,5 @@
+import type { SvgName } from "../../components/Svg";
+
 export type TEST_TYPE_STRUCTURE = {
   id: string;
   label: string;
@@ -6,7 +8,7 @@ export type TEST_TYPE_STRUCTURE = {
 export type TEST_TYPE = {
   id: string;
   label: string;
-  icon: string;
+  icon: SvgName;
   values: {
     id: TEST_TYPE_STRUCTURE["id"];
     value: string;
@@ -26,7 +28,7 @@ export type TEST_QUESTION = {
 
 export type TEST_SCHEMA = {
   intro: {
-    icon: string;
+    icon: SvgName;
     title: string;
     text: string;
   };

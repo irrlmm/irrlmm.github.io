@@ -6,15 +6,13 @@ import GameCard from "./GameCard";
 import GameIntro from "./GameIntro";
 import GameOutro from "./GameOutro";
 
-import { SVG_KEY } from "../../consts/svg";
 import type {
   CardGame,
   CardGameOption,
   CardGameStat,
+  CardGameThemeByMode,
   CardGameThemeColors,
 } from "../../types/content";
-
-import { useHoverElement } from "../../helpers/lightbox";
 
 import styles from "./styles.module.css";
 
@@ -58,22 +56,30 @@ export const cardVariants = {
 
 type Props = {
   game: CardGame;
-  themeColors?: CardGameThemeColors;
+  themeColors?: CardGameThemeByMode;
 };
 
 const Game: React.FC<Props> = ({ game, themeColors }) => {
-  const normalizeStatConfig = (
-    input: CardGameStat | undefined,
-    fallback: ResolvedStatConfig,
+  const resolveStatConfig = (
+    statName: "health" | "armor",
+    stat: CardGameStat,
   ): ResolvedStatConfig => {
-    const min = input?.min ?? fallback.min;
-    const rawMax = input?.max ?? fallback.max;
-    const max = rawMax <= min ? min + 1 : rawMax;
-    const initialRaw = input?.initial ?? fallback.initial;
-    const initial = Math.max(min, Math.min(initialRaw, max));
+    const { label, min, max, initial } = stat;
+
+    if (max <= min) {
+      throw new Error(
+        `Game "${game.id}" has invalid ${statName} range: max (${max}) must be greater than min (${min}).`,
+      );
+    }
+
+    if (initial < min || initial > max) {
+      throw new Error(
+        `Game "${game.id}" has invalid ${statName} initial value (${initial}): it must be within [${min}, ${max}].`,
+      );
+    }
 
     return {
-      label: input?.label ?? fallback.label,
+      label,
       min,
       max,
       initial,
@@ -81,37 +87,20 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
   };
 
   const healthConfig = useMemo(
-    () =>
-      normalizeStatConfig(game.stats?.health, {
-        label: "HP",
-        min: 0,
-        max: 100,
-        initial: 50,
-      }),
-    [game.stats?.health],
+    () => resolveStatConfig("health", game.stats.health),
+    [game.id, game.stats.health],
   );
 
   const armorConfig = useMemo(
-    () =>
-      normalizeStatConfig(game.stats?.armor, {
-        label: "AR",
-        min: 0,
-        max: 100,
-        initial: 50,
-      }),
-    [game.stats?.armor],
+    () => resolveStatConfig("armor", game.stats.armor),
+    [game.id, game.stats.armor],
   );
 
   const [isIntroShown, setIsIntroShown] = useState(true);
-  const [points, setPoints] = useState(0);
   const [health, setHealth] = useState(healthConfig.initial);
   const [armor, setArmor] = useState(armorConfig.initial);
   const [currentCardId, setCurrentCardId] = useState(game.startCardId);
   const [endingId, setEndingId] = useState<string | null>(null);
-
-  const hover = useHoverElement<HTMLDivElement>({
-    resetsToCenter: true,
-  });
 
   const cardsById = useMemo(() => {
     return game.cards.reduce<Map<string, CardGame["cards"][number]>>(
@@ -125,7 +114,15 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
 
   const isFinished = currentCardId === game.finishCardId;
 
-  const currentCard = isFinished ? null : cardsById.get(currentCardId) ?? null;
+  const currentCard = isFinished
+    ? null
+    : (cardsById.get(currentCardId) ?? null);
+
+  if (!isFinished && !currentCard) {
+    throw new Error(
+      `Game "${game.id}" has unknown currentCardId "${currentCardId}".`,
+    );
+  }
 
   const resolveEnding = (id: string) => {
     const ending = game.outro.endings.find((item) => item.id === id);
@@ -136,28 +133,20 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
     return ending;
   };
 
-  const ending = endingId ? resolveEnding(endingId) : null;
+  const finishGame = (nextEndingId: string) => {
+    resolveEnding(nextEndingId);
+    setEndingId(nextEndingId);
+    setCurrentCardId(game.finishCardId);
+  };
 
-  const gameThemeStyle = useMemo(() => {
-    if (!themeColors) {
-      return undefined;
-    }
-
-    const colors = themeColors;
-
-    return {
-      "--surface": colors.surface,
-      "--surface-dim": colors.surfaceDim,
-      "--on-surface": colors.onSurface,
-      "--on-surface-var": `color-mix(in srgb, ${colors.onSurface} 66%, transparent)`,
-      "--overlay-on-surface": colors.overlayOnSurface,
-      "--outline": colors.outline,
-      "--accent": colors.primary,
-      "--on-accent": colors.onAccent,
-      "--inverse-surface": colors.primary,
-      "--inverse-on-surface": colors.onAccent,
-    } as React.CSSProperties;
-  }, [themeColors]);
+  const gameThemeStyle = themeColors
+    ? (Object.fromEntries(
+        Object.entries(themeColors.dark).map(([key, darkValue]) => [
+          key,
+          `light-dark(${themeColors.light[key as keyof CardGameThemeColors]}, ${darkValue})`,
+        ]),
+      ) as React.CSSProperties)
+    : undefined;
 
   const handleBeginGame = () => {
     setIsIntroShown(false);
@@ -166,7 +155,6 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
   const handleRestart = () => {
     setCurrentCardId(game.startCardId);
     setEndingId(null);
-    setPoints(0);
     setHealth(healthConfig.initial);
     setArmor(armorConfig.initial);
     setIsIntroShown(true);
@@ -187,33 +175,16 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
       armorConfig.max,
     );
 
-    setPoints((prev) => prev + option.points);
     setHealth(nextHealth);
     setArmor(nextArmor);
 
     if (nextHealth <= healthConfig.min) {
-      resolveEnding("dead");
-      setEndingId("dead");
-      setCurrentCardId(game.finishCardId);
+      finishGame("dead");
       return;
     }
 
-    if (option.endingId && option.nextCardId !== game.finishCardId) {
-      throw new Error(
-        `Game "${game.id}" card "${currentCardId}" has endingId on non-terminal option "${option.id ?? option.label}".`,
-      );
-    }
-
     if (option.nextCardId === game.finishCardId) {
-      if (!option.endingId) {
-        throw new Error(
-          `Game "${game.id}" card "${currentCardId}" option "${option.id ?? option.label}" reaches finish without endingId.`,
-        );
-      }
-
-      resolveEnding(option.endingId);
-      setEndingId(option.endingId);
-      setCurrentCardId(game.finishCardId);
+      finishGame(option.endingId!);
       return;
     }
 
@@ -228,7 +199,7 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
 
   return (
     <motion.div
-      className={`ui-stack ${styles.wrapper}`}
+      className={`ui-stack col ${styles.wrapper}`}
       style={gameThemeStyle}
       variants={{
         hidden: {},
@@ -243,20 +214,18 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
     >
       {!isIntroShown && (
         <StackProgressToolbar
+          className={styles.toolbar}
           bars={[
             {
               progress:
-                (health - healthConfig.min) / (healthConfig.max - healthConfig.min),
+                (health - healthConfig.min) /
+                (healthConfig.max - healthConfig.min),
               text: `${healthConfig.label} ${health}`,
             },
             {
               progress:
                 (armor - armorConfig.min) / (armorConfig.max - armorConfig.min),
               text: `${armorConfig.label} ${armor}`,
-            },
-            {
-              icon: SVG_KEY,
-              text: `Score ${points}`,
             },
           ]}
         />
@@ -274,41 +243,26 @@ const Game: React.FC<Props> = ({ game, themeColors }) => {
 
         {!isIntroShown && !isFinished && currentCard && (
           <motion.div
-            ref={hover.wrapperRef}
             key={currentCard.id}
-            className={styles.wrapper}
-            onPointerMove={hover.onPointerMove}
-            onPointerLeave={hover.onPointerLeave}
+            className={styles.container}
             variants={cardVariants}
             initial="hidden"
             animate="shown"
             exit="hidden"
           >
-            <AnimatePresence>
-              <GameCard
-                key={currentCard.id}
-                index={0}
-                card={currentCard}
-                onChooseOption={handleChooseOption}
-                moveX={hover.x}
-                moveY={hover.y}
-              />
-            </AnimatePresence>
+            <GameCard
+              key={currentCard.id}
+              index={0}
+              card={currentCard}
+              onChooseOption={handleChooseOption}
+            />
           </motion.div>
         )}
 
-        {!isIntroShown && (isFinished || !currentCard) && (
+        {!isIntroShown && isFinished && endingId && (
           <GameOutro
-            points={points}
             title={game.outro.title}
-            ending={
-              ending ??
-              (() => {
-                throw new Error(
-                  `Game "${game.id}" reached finish without a resolved endingId.`,
-                );
-              })()
-            }
+            ending={resolveEnding(endingId)}
             onRestart={handleRestart}
           />
         )}

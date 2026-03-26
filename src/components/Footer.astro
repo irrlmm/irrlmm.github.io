@@ -10,7 +10,7 @@ const year = new Date().getFullYear();
 const { items } = Astro.props;
 ---
 
-<footer>
+<footer class="max-width-m">
   <div class="micrographic">
     <div class="logo-wrapper">
       <svg
@@ -31,7 +31,9 @@ const { items } = Astro.props;
           items.map((item) => (
             <div class="row">
               {item.label && (
-                <span class="overline text-xs lh-capped">{item.label}</span>
+                <span class="label overline text-xs lh-capped">
+                  {item.label}
+                </span>
               )}
               <span class="overline lh-capped">{item.value}</span>
               {item.capsule && (
@@ -51,18 +53,21 @@ const { items } = Astro.props;
 
 <style>
   footer {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 4rem;
-    margin-top: 8rem;
+    padding: 2rem;
+    /* border: solid var(--line) var(--on-surface); */
+    /* border-radius: var(--br-square); */
   }
 
   .micrographic {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     text-transform: uppercase;
+    align-items: center;
     gap: 2rem;
   }
 
@@ -80,7 +85,7 @@ const { items } = Astro.props;
   .items {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
     letter-spacing: 0.05em;
   }
@@ -92,6 +97,16 @@ const { items } = Astro.props;
     align-items: flex-start;
   }
 
+  .label,
+  .capsule {
+    position: absolute;
+  }
+
+  .label {
+    top: 0;
+    right: calc(100% + 1rem);
+  }
+
   .capsule {
     position: absolute;
     width: max-content;
@@ -101,9 +116,9 @@ const { items } = Astro.props;
     align-items: center;
     height: 1.5rem;
     border-radius: 0.75rem;
-    padding: 0 0.75rem;
+    padding: 0 0.5rem;
     text-transform: none;
-    box-shadow: inset 0 0 0 var(--line) var(--outline);
+    box-shadow: inset 0 0 0 var(--line) var(--on-surface);
   }
 
   p {

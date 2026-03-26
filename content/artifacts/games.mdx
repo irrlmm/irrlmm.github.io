@@ -2,7 +2,8 @@
 title: Card games anthology
 date: 13 Mar 2026
 type: stack
-images: ["/work/test/magic.png", "/work/test/rogi.png", "/work/test/magic.png"]
+images: ["/work/test/rogi.png", "/work/test/magic.png"]
+draft: true
 ---
 
 import QUIZ_ROGI from "../../src/consts/quizzes/rogi";
@@ -16,6 +17,10 @@ import Quiz from "../../src/components/Quiz";
 
 Last year, I made a text game for my 404 page on the old version of the website. Since then, I never added more games, even though the data structure allowed to do so.
 
-<Game game={GAME_MAGIC_JPEG} themeColors={GAME_MAGIC_JPEG_THEME_COLORS} client:load />
+<Game
+  game={GAME_MAGIC_JPEG}
+  themeColors={GAME_MAGIC_JPEG_THEME_COLORS}
+  client:load
+/>
 
 <Quiz quiz={QUIZ_ROGI} client:load />

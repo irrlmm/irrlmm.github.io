@@ -6,7 +6,6 @@ import QuizCard from "./QuizCard";
 import QuizIntro from "./QuizIntro";
 import QuizOutro from "./QuizOutro";
 
-import { SVG_KEY } from "../../consts/svg";
 import type { QuizGame } from "../../types/content";
 
 import { useHoverElement } from "../../helpers/lightbox";
@@ -53,7 +52,7 @@ const Quiz: React.FC<Props> = ({ quiz }) => {
   const [points, setPoints] = useState(0);
 
   const hover = useHoverElement<HTMLDivElement>({
-    resetsToCenter: true,
+    resetsToInitial: true,
   });
 
   const [cardsShown, setCardsShown] = useState(() =>
@@ -104,7 +103,7 @@ const Quiz: React.FC<Props> = ({ quiz }) => {
               text: `${currentStep} / ${totalCards}`,
             },
             {
-              icon: SVG_KEY,
+              icon: "key",
               text: points < 0 ? "0" : points.toString(),
             },
           ]}
@@ -127,7 +126,7 @@ const Quiz: React.FC<Props> = ({ quiz }) => {
 
         {!isIntroShown && cardsShown.length > 0 && (
           <motion.div
-            ref={hover.wrapperRef}
+            ref={hover.hoverElementRef}
             key="cards"
             className={styles.wrapper}
             onPointerMove={hover.onPointerMove}

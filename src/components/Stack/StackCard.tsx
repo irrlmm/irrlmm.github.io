@@ -22,13 +22,11 @@ const StackCard: React.FC<
 
   const { variants } = getStackCardVariants(index);
 
-  const { translateX, translateY, rotateSpring, rotateYSpring } = useStackHover(
-    {
-      index,
-      moveX,
-      moveY,
-    },
-  );
+  const { translateX, translateY, rotate } = useStackHover({
+    index,
+    moveX,
+    moveY,
+  });
 
   const getClampedSwipeVelocity = (velocity: number) => {
     const direction = velocity < 0 ? -1 : 1;
@@ -78,10 +76,9 @@ const StackCard: React.FC<
         }
       }}
       style={{
-        translateX: translateX,
-        translateY: translateY,
-        rotate: rotateSpring,
-        rotateY: rotateYSpring,
+        translateX,
+        translateY,
+        rotate,
         zIndex: isDraggable ? 2 : 1,
       }}
     >

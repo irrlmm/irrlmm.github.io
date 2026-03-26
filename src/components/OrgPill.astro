@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import getOptimizedImage from "../helpers/getOptimizedImage";
+import getSvgMaskImageServer from "../helpers/getSvgMaskImageServer";
 
 type Props = {
   org: string;
@@ -13,26 +13,39 @@ if (!orgEntry) {
   throw new Error(`Missing org entry: ${org}`);
 }
 
-const optimizedOrgImage = await getOptimizedImage(orgEntry.data.img, 24 * 3);
+const imageHeight = 24;
+const optimizedOrgImage = await getSvgMaskImageServer(orgEntry.data.img, 24 * 3);
+const imageWidth = Math.max(
+  1,
+  Math.round(optimizedOrgImage.aspectRatio * imageHeight),
+);
 ---
 
-<div class="row gap-s align-center">
-  <img
-    src={optimizedOrgImage.src}
-    alt={orgEntry.data.name}
-    width={24}
-    height={24}
+<div class="orgRow row gap-2 align-center">
+  <div
+    role="img"
+    aria-label={orgEntry.data.name}
+    class="orgLogo"
+    style={`--mask-url:url(${optimizedOrgImage.src});height:${imageHeight}px;width:${imageWidth}px;`}
   />
 
   <span class="overline text-s">{orgEntry.data.name}</span>
 </div>
 
 <style>
-  img {
-    border-radius: var(--br-square);
+  .orgLogo {
+    background-color: var(--on-surface);
+    -webkit-mask-image: var(--mask-url);
+    mask-image: var(--mask-url);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
   }
 
-  div {
+  .orgRow {
     margin-top: 2rem;
   }
 </style>

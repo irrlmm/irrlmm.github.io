@@ -1,0 +1,73 @@
+/* Element styles */
+
+.prose :where(h1, h2, h3, h4, h5, h6, p, ul, ol):not(
+    :where(.prose-escape *)
+  ) {
+  margin: 0;
+}
+
+/* Header styles */
+
+.prose :where(h1, h2, h3, h4, h5, h6):not(:where(.prose-escape *)) {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1;
+  max-width: 34rem;
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+.prose :where(h1):not(:where(.prose-escape *)) {
+  font-size: var(--h1);
+  letter-spacing: 0em;
+}
+.prose :where(h2):not(:where(.prose-escape *)) {
+  font-size: var(--h2);
+  letter-spacing: 0.01em;
+}
+.prose :where(h3):not(:where(.prose-escape *)) {
+  font-size: var(--h3);
+  letter-spacing: 0.02em;
+}
+
+/* Paragraph */
+.prose :where(p):not(:where(.prose-escape *)) {
+  margin-top: 2em;
+}
+
+.prose :where(p, ul):not(:where(.prose-escape *)) {
+  max-width: 34rem;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: var(--text-m);
+  line-height: 1.5em;
+}
+
+/* Unordered list */
+
+.prose :where(ul):not(:where(.prose-escape *)) {
+  list-style-type: "- ";
+  padding-inline-start: 1rem;
+  cursor: text;
+  margin-top: 1em;
+}
+.prose :where(ul):not(:where(.prose-escape *)) > li:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+.prose :where(p, ul, ol):not(:where(.prose-escape *)) a {
+  color: inherit;
+}
+
+.prose :where(p, ul):not(:where(.prose-escape *)) a,
+.prose ol:not(.ui-list):not(:where(.prose-escape *)) a {
+  text-underline-offset: 0.25em;
+  opacity: 0.7;
+}
+
+.prose :where(p, ul):not(:where(.prose-escape *)) a:hover,
+.prose ol:not(.ui-list):not(:where(.prose-escape *)) a:hover {
+  opacity: 0.5;
+}

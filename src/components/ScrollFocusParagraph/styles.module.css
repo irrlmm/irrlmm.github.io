@@ -1,0 +1,12 @@
+.paragraph {
+  margin: 0;
+}
+
+.wordWrap {
+  display: inline;
+}
+
+.word {
+  display: inline-block;
+  will-change: opacity;
+}

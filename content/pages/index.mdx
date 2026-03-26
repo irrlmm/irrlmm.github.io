@@ -7,20 +7,24 @@ updated: Mar 5 2026
 import Quiz from "../../src/components/Quiz";
 import QUIZ_ROGI from "../../src/consts/quizzes/rogi";
 
-import { getCollection } from "astro:content";
 import AstroSectionWork from "../../src/components/AstroSectionWork.astro";
-
-export const blog = await getCollection("artifacts");
-export const work = await getCollection("work");
 
 # Hello.
 
-I am Igor, a product designer & design engineer building captivating digital experiences.  
+I'm a product designer & design engineer crafting captivating digital experiences.
 Here's my [resume](/cv).
 
-Outside of work, I enjoy slow mornings with filter coffee, making beats, taking my denim blue hatchback for road trips, or flying to far-away countries.
+Outside of work, you'll find me making beats, taking my denim
+blue hatchback on road trips, or exploring far-away countries.
 
-Contact me via [LinkedIn](https://linkedin.com/in/irrlmm) or [E-mail](mailto:hello@irrlmm.me) for opportunities, consultations, or casual design talk.
+Reach out via [LinkedIn](https://linkedin.com/in/irrlmm) or [email](mailto:hello@irrlmm.me) for opportunities, consultations, or a casual design talk.
+
+{/* I am Igor, a product designer & design engineer building captivating digital experiences. */}
+{/* Here's my [resume](/cv). */}
+
+{/* Outside of work, I enjoy slow mornings with filter coffee, making beats, taking my denim blue hatchback for road trips, or flying to far-away countries. */}
+
+{/* Contact me via [LinkedIn](https://linkedin.com/in/irrlmm) or [E-mail](mailto:hello@irrlmm.me) for opportunities, consultations, or casual design talk. */}
 
 {/* - My [resume](/cv) */}
 {/* - A little [more about me](/about) */}
@@ -35,4 +39,4 @@ Contact me via [LinkedIn](https://linkedin.com/in/irrlmm) or [E-mail](mailto:hel
 
 {/* Apart from work I enjoy slow mornings with filter coffee, making music, road trips, and taking photos. */}
 
-<AstroSectionWork items={[...blog, ...work]} />
+<AstroSectionWork />

@@ -25,20 +25,15 @@ const resolvedBreadcrumb =
 const nameParts = text.trim().split(/\s+/).filter(Boolean);
 
 const shorterName =
-  nameParts.length >= 2
-    ? `${nameParts[0]} ${nameParts[1].slice(0, 1)}.`
-    : (nameParts[0] ?? text);
+  nameParts.length >= 2 ? `${nameParts[0]}'s` : (nameParts[0] ?? text);
 ---
 
 <header class="overline text-l max-width-m">
-  <div class="row gap-s align-center">
+  <div class="row gap-4 align-center">
     <a href="/">{segments.length > 1 ? shorterName : text}</a>
     {
       resolvedBreadcrumb && (
-        <>
-          <span class="dash lh-capped">/</span>
-          <span class="lh-capped">{resolvedBreadcrumb}</span>
-        </>
+        <span class="color-primary lh-capped">{resolvedBreadcrumb}</span>
       )
     }
   </div>

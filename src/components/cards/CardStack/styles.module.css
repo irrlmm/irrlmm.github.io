@@ -1,0 +1,61 @@
+.wrapper {
+  text-decoration: none;
+  color: var(--on-surface);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 10/11;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.stack {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.layer {
+  position: absolute;
+  height: 100%;
+  border-radius: var(--br-card);
+  background-color: var(--surface-container);
+  padding: 0.5rem;
+  border: solid var(--line) var(--on-surface);
+  transform-style: preserve-3d;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.imageOverlay {
+  position: relative;
+  aspect-ratio: 3/4;
+  height: 100%;
+  border-radius: calc(var(--br-card) - 0.5rem);
+  transform: translateZ(0.25rem);
+}
+
+.imageOverlay::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 var(--line) var(--outline);
+}

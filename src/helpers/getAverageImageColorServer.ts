@@ -26,8 +26,10 @@ const MAX_QUANTIZED_COLORS = 8;
 const getHctColors = (r: number, g: number, b: number): ImageColors => {
   const sourceHue = Hct.fromInt(argbFromRgb(r, g, b)).hue;
 
-  const gloom = Hct.from(sourceHue, 40, 90).toInt();
-  const shadow = Hct.from(sourceHue, 30, 3).toInt();
+  const chroma = 35;
+
+  const gloom = Hct.from(sourceHue, chroma, 95).toInt();
+  const shadow = Hct.from(sourceHue, chroma, 15).toInt();
 
   return {
     gloom: hexFromArgb(gloom),

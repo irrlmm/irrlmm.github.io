@@ -6,48 +6,23 @@ import styles from "./styles.module.css";
 
 type Props = {
   bars: ProgressBarProps[];
+  className?: string;
   forwardButtonProps?: any;
   refreshButtonProps?: any;
 };
 
-const StackProgressToolbar: React.FC<Props> = ({
-  bars,
-  forwardButtonProps,
-  refreshButtonProps,
-}) => {
+const StackProgressToolbar: React.FC<Props> = ({ bars, className }) => {
   return (
     <motion.div
-      className={styles.toolbar}
+      className={`${styles.toolbar} ${className || undefined}`}
       variants={{
         hidden: { opacity: 0 },
-        shown: { opacity: 1 },
+        shown: { opacity: 1, transition: { staggerChildren: 0.15 } },
       }}
     >
       {bars.map((bar, i) => (
         <ProgressBar key={i} {...bar} />
       ))}
-
-      {/* <AnimatePresence mode="wait">
-        {refreshButtonProps && refreshButtonProps.isShown && (
-          <ToolbarButton
-            key="refresh"
-            onClick={refreshButtonProps.onClick}
-            icon={SVG_REFRESH}
-            whileHover={{ rotate: 22.5 }}
-            whileTap={{ rotate: 45 }}
-          />
-        )}
-
-        {forwardButtonProps && forwardButtonProps.isShown && (
-          <ToolbarButton
-            key="fwd"
-            onClick={forwardButtonProps.onClick}
-            icon={SVG_FWD}
-            whileHover={{ x: 3 }}
-            whileTap={{ x: 6 }}
-          />
-        )}
-      </AnimatePresence> */}
     </motion.div>
   );
 };

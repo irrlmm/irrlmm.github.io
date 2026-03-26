@@ -31,14 +31,31 @@
   justify-content: space-between;
 }
 
+.gap-1 {
+  gap: var(--space-1);
+}
+.gap-2 {
+  gap: var(--space-2);
+}
+.gap-4 {
+  gap: var(--space-4);
+}
+.gap-8 {
+  gap: var(--space-8);
+}
+
+/* Legacy aliases; keep while migrating older class names. */
+.gap-xs {
+  gap: var(--space-1);
+}
 .gap-s {
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 .gap-m {
-  gap: 1rem;
+  gap: var(--space-4);
 }
 .gap-l {
-  gap: 2rem;
+  gap: var(--space-8);
 }
 
 .wrap {
@@ -54,4 +71,11 @@
 
 .flex-1 {
   flex: 1;
+}
+
+.br-square {
+  border-radius: var(--br-square);
+}
+.br-card {
+  border-radius: var(--br-card);
 }

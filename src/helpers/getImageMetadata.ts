@@ -7,7 +7,7 @@ const getImageMetadata = (path: string) => {
 
   if (!images[key]) {
     throw new Error(
-      `"${key}" does not exist in glob: "/assets/**/*.{jpeg,jpg,png,gif,svg}"`,
+      `"${key}" does not exist in glob: "/assets/**/*.{jpeg,jpg,png,gif,svg,webp}"`,
     );
   }
 

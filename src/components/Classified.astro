@@ -1,0 +1,15 @@
+---
+const html = await Astro.slots.render("default");
+
+const classifiedText = html.replace(/\S/g, "\u00A0");
+---
+
+<del>{classifiedText}</del>
+
+<style>
+  del {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    text-decoration: none;
+  }
+</style>

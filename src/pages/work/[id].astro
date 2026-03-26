@@ -5,13 +5,19 @@ import {
   getEntry,
   render,
 } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+
 import moment from "moment";
-import StackedImage from "../../components/StackedImage";
+
+import Layout from "../../layouts/Layout.astro";
+
 import OrgPill from "../../components/OrgPill.astro";
+import Classified from "../../components/Classified.astro";
+import Quote from "../../components/Quote.astro";
+import Hero from "../../components/Hero";
+import getSvgMaskImageServer from "../../helpers/getSvgMaskImageServer";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("work");
+  const posts = await getCollection("work", ({ data }) => !data.draft);
   return posts.map((post) => ({
     params: { id: post.id },
     props: post,
@@ -22,6 +28,7 @@ type Props = CollectionEntry<"work">;
 
 const post = Astro.props;
 const org = await getEntry(post.data.org);
+const optimizedOrgImage = await getSvgMaskImageServer(org.data.img, 256);
 
 const { Content, remarkPluginFrontmatter } = await render(post);
 ---
@@ -38,32 +45,41 @@ const { Content, remarkPluginFrontmatter } = await render(post);
     },
   ]}
 >
-  <!-- <SectionHero
-    chips={["Case study", remarkPluginFrontmatter.text]}
-    title={post.data.title}
-    lead={"post.data.lead"}
-    values={[
-      { label: "Client", value: org.data.name },
-      // { label: "Duration", value: post.data.duration },
-      // { label: "Role", value: post.data.project.role },
-    ]}
-  /> -->
+  <!-- <AstroWorkImageStack srcs={stackImages} /> -->
 
   <article class="prose">
-    <StackedImage srcs={[""]} aspectRatio="21/9" maxWidth="40rem" client:load />
+    <Hero
+      title={post.data.title}
+      readingTime={remarkPluginFrontmatter.readingTime}
+      values={[
+        // { label: "Year", value: moment(post.data.date).format("YYYY") },
+        {
+          label: "Client",
+          type: "org",
+          value: {
+            name: org.data.name,
+            orgImage: optimizedOrgImage.src,
+            orgImageAspect: optimizedOrgImage.aspectRatio,
+          },
+        },
+        // { label: "Tag", value: post.data.tag },
+        { label: "Role", value: post.data.role },
+        { label: "Engagement", value: post.data.engagement },
+        { label: "Duration", value: post.data.duration },
+        { label: "Team", value: post.data.team },
+        // { label: "Impact", value: post.data.impact },
+      ]}
+      client:load
+    />
 
-    <!-- <h1>{post.data.title}</h1>
-
-    <span class="kicker overline text-s"
-      >{remarkPluginFrontmatter.readingTime.text}
-    </span> -->
-
-    <Content components={{ Org: OrgPill }} />
+    <Content
+      components={{ Org: OrgPill, del: Classified, blockquote: Quote }}
+    />
   </article>
 </Layout>
 
 <style>
-  .kicker {
+  /* .kicker {
     margin-top: 1rem;
-  }
+  } */
 </style>

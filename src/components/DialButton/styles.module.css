@@ -46,7 +46,7 @@
   width: 4px;
   height: 2px;
   margin-left: 0rem;
-  background: var(--on-surface-var);
+  background: var(--on-surface);
   transform-origin: left center;
   pointer-events: none;
 }

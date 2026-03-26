@@ -46,11 +46,12 @@ export const useGloom = ({
   );
 
   const gloomOpacity = useTransform(highlightIntensity, [0, 1], [12, 100]);
-  const shadowOpacity = useTransform(highlightIntensity, [0, 1], [33, 0]);
+
+  const shadowOpacity = useTransform(highlightIntensity, [0, 1], [100, 20]);
 
   return {
     boxShadow: useMotionTemplate`
-      ${shadowOffsetX}px ${shadowOffsetY}px 8px -2px color-mix(${shadowColor} ${shadowOpacity}%, transparent),
+      ${shadowOffsetX}px ${shadowOffsetY}px 16px -6px color-mix(${shadowColor} ${shadowOpacity}%, transparent),
       ${gloomOffsetX}px ${gloomOffsetY}px 40px -4px color-mix(${gloomColor} ${gloomOpacity}%, transparent)
     `,
   };

@@ -1,42 +1,73 @@
 :root {
-  --root-color-a: #ffffff;
-  --root-color-b: #000000;
+  --theme-light-surface-container: #ffffff;
+  --theme-light-background: #f5f5f5;
+  --theme-light-surface: #ebebeb;
+  --theme-light-on-surface: #292929;
+  --theme-light-on-surface-variant: #292929;
+  --theme-light-outline: #505050;
+  --theme-light-primary: #292929;
+  --theme-light-on-primary: #f5f5f5;
+  --theme-light-shadow: #070707;
 
-  --gray-a1: color-mix(var(--root-color-a) 100%, var(--root-color-b));
-  --gray-a2: color-mix(var(--root-color-a) 98%, var(--root-color-b));
-  --gray-a3: color-mix(var(--root-color-a) 96%, var(--root-color-b));
-  --gray-b1: color-mix(var(--root-color-a) 15%, var(--root-color-b));
-  --gray-b2: color-mix(var(--root-color-a) 10%, var(--root-color-b));
-  --gray-b3: color-mix(var(--root-color-a) 5%, var(--root-color-b));
+  --theme-dark-surface-container: #292929;
+  --theme-dark-background: #1f1f1f;
+  --theme-dark-surface: #333333;
+  --theme-dark-on-surface: #ffffff;
+  --theme-dark-on-surface-variant: #ffffff;
+  --theme-dark-outline: #505050;
+  --theme-dark-primary: #ffffff;
+  --theme-dark-on-primary: #1f1f1f;
+  --theme-dark-shadow: #030303;
 
-  /* Color tokens */
-  --background: light-dark(var(--gray-a2), var(--gray-b2));
-  --surface: light-dark(var(--gray-a1), var(--gray-b1));
-  --surface-dim: light-dark(var(--gray-a3), var(--gray-b3));
-  --on-surface: light-dark(var(--gray-b1), var(--gray-a1));
-  --on-surface-var: color-mix(var(--on-surface) 66%, transparent);
-  --overlay-on-surface: color-mix(var(--on-surface) 5%, transparent);
-  --shadow: color-mix(black 80%, var(--background));
-
-  --outline: light-dark(
-    color-mix(var(--on-surface) 20%, transparent),
-    color-mix(var(--on-surface) 30%, transparent)
+  /* Core layout surfaces.
+     `light-dark(light, dark)` selects value by color-scheme. */
+  --surface-container: light-dark(
+    var(--theme-light-surface-container),
+    var(--theme-dark-surface-container)
   );
+  --background: light-dark(
+    var(--theme-light-background),
+    var(--theme-dark-background)
+  );
+  --surface: light-dark(var(--theme-light-surface), var(--theme-dark-surface));
 
-  /* Inverse theme tokens */
+  /* Foreground + separators on top of surface layers. */
+  --on-surface: light-dark(
+    var(--theme-light-on-surface),
+    var(--theme-dark-on-surface)
+  );
+  --on-surface-variant: light-dark(
+    var(--theme-light-on-surface-variant),
+    var(--theme-dark-on-surface-variant)
+  );
+  --outline: light-dark(var(--theme-light-outline), var(--theme-dark-outline));
+
+  /* Primary accent defaults to inverse foreground/background pairing. */
+  --primary: light-dark(var(--theme-light-primary), var(--theme-dark-primary));
+  --on-primary: light-dark(
+    var(--theme-light-on-primary),
+    var(--theme-dark-on-primary)
+  );
   --inverse-surface: var(--on-surface);
   --inverse-on-surface: var(--background);
 
-  --pixel-grid-line: light-dark(rgba(0, 0, 0, 1), rgba(255, 255, 255, 0.5));
+  /* Shared elevated shadow color for cards/overlays. */
+  --shadow: light-dark(var(--theme-light-shadow), var(--theme-dark-shadow));
+}
 
-  /* Line */
+:root {
+  /* Global stroke width used for borders/dividers. */
   --line: 1px;
 
-  /* Card border radius */
+  /* Font stacks. */
+  --font-mono: "mono", monospace;
+  --font-sans: "sans", sans-serif;
+
+  /* Corner radii. */
   --br-card: 2rem;
   --br-square: 2px;
 
-  /* Text */
+  /* Body text scale (small -> display). */
   --text-xs: 0.625rem;
   --text-s: 0.875rem;
   --text-m: 1rem;
@@ -45,13 +76,19 @@
   --text-2xl: 1.5rem;
   --text-3xl: 2rem;
 
-  /* Headings */
+  /* Heading presets. */
   --h4: 1.25rem;
   --h3: 1.5rem;
   --h2: 2rem;
   --h1: 3rem;
 
-  /* Max widths */
-  --max-width-m: 32rem;
+  /* Spacing scale (in rem). */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-8: 2rem;
+
+  /* Content width constraints. */
+  --max-width-m: 34rem;
   --max-width-l: 64rem;
 }

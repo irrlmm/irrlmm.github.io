@@ -6,13 +6,13 @@
   border: none;
   width: 3.5rem;
   height: 3.5rem;
-  border: solid var(--line) var(--accent, var(--on-surface));
+  border: solid var(--line) var(--inverse-surface);
   background-color: transparent;
   cursor: pointer;
 }
 .toolbarButton:hover {
-  background-color: var(--accent, var(--on-surface));
+  background-color: var(--inverse-surface);
 }
 .toolbarButton:hover svg {
-  stroke: var(--on-accent, var(--background));
+  stroke: var(--inverse-on-surface);
 }

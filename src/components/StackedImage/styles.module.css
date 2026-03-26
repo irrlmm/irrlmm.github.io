@@ -20,6 +20,7 @@
   border-radius: 2rem;
   transform-style: preserve-3d;
   will-change: transform;
+  background-color: var(--surface);
 }
 
 .overlay,

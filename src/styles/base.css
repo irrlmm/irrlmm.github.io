@@ -1,0 +1,30 @@
+:root {
+  font-family: var(--font-mono);
+  text-wrap: balance;
+  -webkit-font-smoothing: antialiased;
+  font-variant-ligatures: none;
+  font-size: 16px;
+}
+
+/* line height cap mod for precise centering */
+
+.lh-capped {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+/* Element styles */
+
+em,
+a {
+  color: var(--primary);
+}
+
+hr {
+  width: 100%;
+  max-width: 34rem;
+  margin: 8rem 0;
+  border: none;
+  height: var(--line);
+  background-color: var(--on-surface);
+}

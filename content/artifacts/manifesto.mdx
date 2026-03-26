@@ -1,52 +1,89 @@
 ---
-title: Principles of A Product Design / Engineering
-date: 10 Mar 2026 14:05 UTC+3
-type: article
+title: Manifesto
+date: 25 Mar 2026 10:45 UTC+3
+type: note
+theme:
+  {
+    light:
+      {
+        "surface-container": "#fff7f4",
+        background: "#ffede7",
+        surface: "#ffd9cd",
+        "on-surface": "#2a0701",
+        outline: "#8c2c15",
+        primary: "#981f00",
+        "on-primary": "#ffede7",
+        shadow: "#180400",
+      },
+    dark:
+      {
+        "surface-container": "#2b0b06",
+        background: "#170302",
+        surface: "#220805",
+        "on-surface": "#ffd8cd",
+        outline: "#ff7e5a",
+        primary: "#ff7e5a",
+        "on-primary": "#170302",
+        shadow: "#000000",
+      },
+  }
 ---
 
-import { getCollection, getEntry } from "astro:content";
+import ManifestoScrollFocus from "../../src/components/ManifestoScrollFocus";
 
-import Stack from "../../src/components/Stack";
-
-import INTRO_STACK from "../../src/consts/stacks/intro";
-import { SVG_REFRESH } from "../../src/consts/svg";
-
-export const posts = await getCollection("artifacts");
-
-# A Product Design / Engineering Manifesto
-
-Memorable experiences stay in the subconscious, leaving a lasting mark on human culture & habits.
-
-For over 8 years working across product design and engineering, I have been trying to understand how they are made.
-
-Below are my live notes, and they update as I continue to learn.
-
-<Stack
-  cards={[
-    {
-      id: "1",
-      text: "any PRODUCT exists due to TECHNOLOGY",
-    },
-    {
-      id: "2",
-      text: "TECHNICAL CONSTRAINTS are the fuel of CRAFT",
-    },
-    {
-      id: "4",
-      text: "'LESS IS MORE' is, first of all, about DISCIPLINE",
-    },
-    {
-      id: "6",
-      text: "DESIGNER & ENGINEER solve problems TOGETHER",
-    },
-    {
-      id: "7",
-      text: "BEFORE ANYTHING else, design for ACTIVATION",
-    },
-    {
-      id: "revert",
-      icon: SVG_REFRESH,
-    },
+<ManifestoScrollFocus
+  sentences={[
+    "This is a design manifesto",
+    "* * *",
+    "1. be humble",
+    "( without technology, there is no product )",
+    "2. be an engineer",
+    "( constraints are the fuel of craft. learn coding, and don't just vibe )",
+    "3. be disciplined",
+    `( less is more )`,
+    "4. be a team player",
+    "5. use metrics, but don't worship them",
+    "( really, don't be that guy )",
+    "6. Do it for activation",
+    "7. do it for joy",
+    "* * *",
+    "your job is to make purposeful , sexy, and memorable products .",
   ]}
   client:load
 />
+
+---
+
+# this is personal
+
+Not many people in the field realize this, even over the span of a career.
+
+Around friends, I often say: _choose a product if it speaks with you_.
+
+When I close my eyes and imagine the pantheon of products I have lived with, I see products that stay great no matter the time or place.
+
+### \*\*\*
+
+Welcome to the cult of everyday change.  
+The age of vibe coding.
+
+Too many things around us now are things we do not want to experience, but _have to_.  
+That's what happens when anyone can pass for a developer, an engineer, or a designer.
+
+Software is bloated with motion, while task completion gets slower. The bells and whistles get praise, then morph into complaints about friction.
+
+Feels like a bad time to be a designer, because _too little is made to be remembered_.
+
+### \*\*\*
+
+In my pantheon, there's the Bic pen. The iPod Nano. The SP-404.
+They are all incredibly flawed, but they got the combination right.
+
+It starts with the idea.  
+_Why should the product exist?_
+
+_Someone_ cared enough to ask that question seriously. Understood what the thing was for, and what made it possible. Then came the look and the feel.
+
+_Someone_ was a great product designer, no matter the formal title.
+
+And I think: _I want to be like them_.

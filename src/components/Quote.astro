@@ -1,0 +1,15 @@
+<blockquote class="max-width-l">
+  <slot />
+</blockquote>
+
+<style>
+  blockquote {
+    margin: 0;
+    transform: skewX(-7.5deg);
+  }
+
+  blockquote :global(p) {
+    max-width: inherit;
+    font-size: var(--text-2xl);
+  }
+</style>

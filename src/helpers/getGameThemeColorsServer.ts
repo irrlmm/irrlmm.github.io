@@ -1,32 +1,19 @@
 import {
-  Hct,
-  SchemeTonalSpot,
   argbFromRgb,
+  blueFromArgb,
+  greenFromArgb,
+  Hct,
   hexFromArgb,
   QuantizerCelebi,
   redFromArgb,
-  greenFromArgb,
-  blueFromArgb,
   Score,
+  TonalPalette,
 } from "@material/material-color-utilities";
 import path from "node:path";
 import sharp from "sharp";
-import type { CardGameThemeColors } from "../types/content";
-
-const DEFAULT_GAME_THEME_COLORS: CardGameThemeColors = {
-  primary: "#ffb59c",
-  secondary: "#e7bdb0",
-  surface: "#1a110f",
-  surfaceDim: "#1a110f",
-  onSurface: "#f1dfd9",
-  onAccent: "#561f0b",
-  outline: "#a08d86",
-  overlayOnSurface: "color-mix(in srgb, #f1dfd9 6%, transparent)",
-};
+import type { CardGameThemeByMode } from "../types/content";
 
 const MAX_QUANTIZED_COLORS = 8;
-const GAME_THEME_IS_DARK = true;
-const GAME_THEME_CONTRAST_LEVEL = 0;
 
 const getTopQuantizedColor = (data: Buffer, channels: number): number => {
   const pixels: number[] = [];
@@ -61,7 +48,7 @@ const getTopQuantizedColor = (data: Buffer, channels: number): number => {
 
 const getGameThemeColorsServer = async (
   coverImage: string,
-): Promise<CardGameThemeColors> => {
+): Promise<CardGameThemeByMode> => {
   try {
     const imagePath = path.join(
       process.cwd(),
@@ -76,28 +63,49 @@ const getGameThemeColorsServer = async (
       .toBuffer({ resolveWithObject: true });
 
     const top = getTopQuantizedColor(data, info.channels);
+
     const source = Hct.fromInt(
       argbFromRgb(redFromArgb(top), greenFromArgb(top), blueFromArgb(top)),
     );
 
-    const scheme = new SchemeTonalSpot(
-      source,
-      GAME_THEME_IS_DARK,
-      GAME_THEME_CONTRAST_LEVEL,
+    const lightPalette = TonalPalette.fromHct(Hct.from(source.hue, 4, 2));
+    const lightAccentPalette = TonalPalette.fromHct(
+      Hct.from(source.hue + 60, 80, source.chroma),
     );
 
-    return {
-      primary: hexFromArgb(scheme.primary),
-      secondary: hexFromArgb(scheme.secondary),
-      surface: hexFromArgb(scheme.surface),
-      surfaceDim: hexFromArgb(scheme.surfaceDim),
-      onSurface: hexFromArgb(scheme.onSurface),
-      onAccent: hexFromArgb(scheme.onPrimary),
-      outline: hexFromArgb(scheme.outline),
-      overlayOnSurface: `color-mix(in srgb, ${hexFromArgb(scheme.onSurface)} 6%, transparent)`,
+    const darkPalette = TonalPalette.fromHct(Hct.from(source.hue, 3, 20));
+    const darkAccentPalette = TonalPalette.fromHct(
+      Hct.from(source.hue + 60, 80, source.chroma),
+    );
+
+    const getTone = (palette: TonalPalette, tone: number) => {
+      return hexFromArgb(palette.getHct(tone).toInt());
     };
-  } catch {
-    return DEFAULT_GAME_THEME_COLORS;
+
+    return {
+      dark: {
+        "--surface": getTone(darkPalette, 10),
+        "--surface-container": getTone(darkPalette, 15),
+        "--on-surface": getTone(darkPalette, 90),
+        "--outline": getTone(darkPalette, 20),
+        "--primary": getTone(darkAccentPalette, 90),
+        "--on-primary": getTone(darkAccentPalette, 10),
+      },
+      light: {
+        "--surface": getTone(lightPalette, 93),
+        "--surface-container": getTone(lightPalette, 88),
+        "--on-surface": getTone(lightPalette, 22),
+        "--outline": getTone(lightPalette, 46),
+        "--primary": getTone(lightAccentPalette, 40),
+        "--on-primary": getTone(lightAccentPalette, 95),
+      },
+    };
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    throw new Error(
+      `Failed to generate game theme colors for "${coverImage}": ${errorMessage}`,
+    );
   }
 };
 

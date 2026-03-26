@@ -1,16 +1,9 @@
-import type { LightningEffectInput } from "../../helpers/lightbox";
-
-export const cardLightConfig: LightningEffectInput = {
-  tilt: 17.5,
-  lightEffectIntensity: 0.66,
-  lightPoint: [0.25, 0.25],
-};
-
-export const cardVariants = {
-  hidden: { scale: 0.975, opacity: 0, rotateX: 0, rotateY: 0 },
+export const variants = {
+  hidden: {},
   shown: {
-    scale: 1,
-    opacity: 1,
+    transition: {
+      delayChildren: 0.15,
+      staggerChildren: 0.075,
+    },
   },
-  hover: { scale: 1.05 },
 };

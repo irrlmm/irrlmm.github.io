@@ -3,6 +3,7 @@ import Head from "../components/Head.astro";
 import type { WithContext, Person, Article, CreativeWork } from "schema-dts";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { getRootThemeStyle, type Theme } from "../helpers/themeTokens";
 
 interface Props {
   headerText?: string;
@@ -11,15 +12,13 @@ interface Props {
     description: string;
   };
   footerItems?: { label?: string; value: string; capsule?: string }[];
-  theme?: [themeColorA: string, themeColorB: string];
+  theme?: Theme;
   schema?: WithContext<Person | Article | CreativeWork>;
 }
 
 const { headerText, schema, head, footerItems, theme } = Astro.props;
 
-const rootStyle = theme
-  ? `--root-color-a: ${theme[0]}; --root-color-b: ${theme[1]};`
-  : undefined;
+const rootStyle = theme ? getRootThemeStyle(theme) : undefined;
 ---
 
 <html lang="en" style={rootStyle}>
@@ -32,7 +31,7 @@ const rootStyle = theme
     }
   </head>
 
-  <body transition:animate="fade">
+  <body transition:animate="none">
     <Header text={headerText} showPaletteSwitch={!theme} />
 
     <main>
@@ -54,15 +53,7 @@ const rootStyle = theme
 
   main {
     width: 100%;
-    display: flex;
-    flex-direction: column;
     animation: appear 0.4s var(--bezier) both;
     animation-delay: 0.4s;
   }
-
-  /* @media (max-width: 40rem) {
-    body {
-      padding: 2rem 1.5rem;
-    }
-  } */
 </style>

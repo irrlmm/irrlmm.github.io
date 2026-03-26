@@ -3,12 +3,13 @@
   padding: 0.5em 1em;
   border-radius: 1.25em;
   background-color: transparent;
-  border: solid var(--line) var(--accent, var(--on-surface));
-  color: var(--accent, var(--on-surface));
+  border: solid var(--line) var(--primary);
+  color: var(--primary);
   cursor: pointer;
 }
+
 .button:hover {
-  background-color: var(--accent, var(--on-surface));
-  color: var(--on-accent, var(--background));
+  background-color: var(--primary);
+  color: var(--on-primary);
   border-color: transparent;
 }

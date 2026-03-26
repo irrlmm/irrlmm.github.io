@@ -2,6 +2,7 @@
 import { getEntry, render } from "astro:content";
 
 import Layout from "../layouts/Layout.astro";
+import type { Theme } from "../helpers/themeTokens";
 
 const page = await getEntry("pages", "404");
 
@@ -10,12 +11,35 @@ if (!page) {
 }
 
 const { Content } = await render(page);
+
+const notFoundTheme: Theme = {
+  light: {
+    "surface-container": "#f3fff3",
+    background: "#e8ffe8",
+    surface: "#ccffcc",
+    "on-surface": "#002200",
+    outline: "#1f7a1f",
+    primary: "#008500",
+    "on-primary": "#e8ffe8",
+    shadow: "#001000",
+  },
+  dark: {
+    "surface-container": "#032403",
+    background: "#001500",
+    surface: "#012001",
+    "on-surface": "#9bff9b",
+    outline: "#32c832",
+    primary: "#4eff4e",
+    "on-primary": "#001500",
+    shadow: "#000000",
+  },
+};
 ---
 
 <Layout
   headerText="ROGI ???"
   head={{ title: page.data.title, description: page.data.description }}
-  theme={["#00ff00", "#000000"]}
+  theme={notFoundTheme}
   footerItems={[
     { value: "That font was cool so i stole it" },
     { value: "Now go and tell your mama" },

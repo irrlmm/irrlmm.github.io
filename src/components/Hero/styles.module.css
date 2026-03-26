@@ -1,0 +1,44 @@
+.root {
+  gap: 3rem;
+  margin: 8rem 0;
+}
+
+.title {
+  margin: 0;
+}
+
+.metaTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.metaRow {
+  height: 2rem;
+}
+
+.metaRow > * {
+  width: 50%;
+}
+
+.metaHead {
+  font-weight: normal;
+  opacity: 0.8;
+  text-align: start;
+}
+
+.orgLogo {
+  display: block;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  background-color: var(--on-surface);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.org {
+  text-transform: none;
+}

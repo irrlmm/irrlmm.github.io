@@ -1,10 +1,11 @@
 import { motion, type TargetAndTransition } from "framer-motion";
+import type { SvgName } from "../Svg";
 import Svg from "../Svg";
 import styles from "./styles.module.css";
 
 type Props = {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  icon?: string;
+  icon?: SvgName;
   whileHover?: TargetAndTransition;
   whileTap?: TargetAndTransition;
 };
@@ -31,7 +32,7 @@ const RefreshButton: React.FC<Props> = ({
     onClick={onClick}
   >
     <MotionSvg
-      d={icon}
+      name={icon}
       size="2rem"
       variants={{
         hover: whileHover,

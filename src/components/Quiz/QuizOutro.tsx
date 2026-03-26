@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import type { QuizGame } from "../../types/content";
 
 import { coverVariants } from ".";
-import { SVG_REFRESH } from "../../consts/svg";
 import RefreshButton from "../RefreshButton";
 import styles from "./styles.module.css";
 
@@ -30,7 +29,7 @@ const QuizOutro: React.FC<Props> = ({ points, winScore, outro }) => {
       </p>
 
       <RefreshButton
-        icon={SVG_REFRESH}
+        icon="refresh"
         whileHover={{ rotate: 15 }}
         whileTap={{ rotate: 30 }}
         onClick={() => {}}

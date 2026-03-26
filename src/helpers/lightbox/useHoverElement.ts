@@ -1,6 +1,6 @@
 import { useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { SPRING_CONFIG } from "../motion";
+import { pew } from "../motion";
 
 const NORMALIZED_MIN = 0;
 const NORMALIZED_MAX = 1;
@@ -19,35 +19,38 @@ const normalizedToCentered = (value: number) =>
 const getRandomCentered = () => Math.random() * 2 - 1;
 
 type UseHoverElementInput = {
-  initialXY?: [number, number];
-  resetsToCenter?: boolean;
-  spring?: any;
+  initialTilt?: [number, number];
+  resetsToInitial?: boolean;
+  pew?: number;
 };
 
 export const useHoverElement = <T extends HTMLElement = HTMLDivElement>({
-  initialXY,
-  resetsToCenter = false,
-  spring,
+  initialTilt,
+  resetsToInitial = false,
+  pew: p,
 }: UseHoverElementInput = {}) => {
   const initialTargetRef = useRef<[number, number] | null>(null);
+
   if (!initialTargetRef.current) {
-    const [startX, startY] = resetsToCenter
-      ? [0, 0]
-      : (initialXY ?? [getRandomCentered(), getRandomCentered()]);
+    const [startX, startY] = initialTilt ?? [
+      getRandomCentered(),
+      getRandomCentered(),
+    ];
+
     initialTargetRef.current = [
       clampToCentered(startX),
       clampToCentered(startY),
     ];
   }
 
-  const wrapperRef = useRef<T>(null);
+  const hoverElementRef = useRef<T>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const intX = useMotionValue(0);
   const intY = useMotionValue(0);
 
-  const x = useSpring(intX, spring || SPRING_CONFIG);
-  const y = useSpring(intY, spring || SPRING_CONFIG);
+  const x = useSpring(intX, pew(p));
+  const y = useSpring(intY, pew(p));
 
   useEffect(() => {
     const [initialX, initialY] = initialTargetRef.current ?? [0, 0];
@@ -72,8 +75,9 @@ export const useHoverElement = <T extends HTMLElement = HTMLDivElement>({
 
   const resetHover = () => {
     setIsHovered(false);
-    intX.set(0);
-    intY.set(0);
+    const [initialX, initialY] = initialTargetRef.current ?? [0, 0];
+    intX.set(initialX);
+    intY.set(initialY);
   };
 
   const onPointerMove = (event: PointerEvent<T>) => {
@@ -84,7 +88,7 @@ export const useHoverElement = <T extends HTMLElement = HTMLDivElement>({
   };
 
   const onPointerLeave = () => {
-    if (resetsToCenter) {
+    if (resetsToInitial) {
       resetHover();
       return;
     }
@@ -92,7 +96,7 @@ export const useHoverElement = <T extends HTMLElement = HTMLDivElement>({
   };
 
   return {
-    wrapperRef,
+    hoverElementRef,
     x,
     y,
     isHovered,

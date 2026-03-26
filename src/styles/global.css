@@ -1,7 +1,11 @@
 @import url(./normalize.css);
 @import url(./fonts.css);
 @import url(./vars.css);
-@import url(./elements.css);
+@import url(./base.css);
+@import url(./typography.css);
+@import url(./prose.css);
+@import url(./ui-primitives.css);
 @import url(./theme.css);
 @import url(./layout.css);
+@import url(./paint.css);
 @import url(./animations.css);

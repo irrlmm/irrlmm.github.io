@@ -58,7 +58,7 @@ const QuizCard: FC<Props> = ({
       animate="shown"
       exit="exit"
     >
-      <div className="col gap-m">
+      <div className="col gap-4">
         <AnimatedParagraph
           text={card.text}
           key="question"
@@ -84,7 +84,7 @@ const QuizCard: FC<Props> = ({
         )}
 
         {!!answer && (
-          <p className="inverse overline text-m">{`> ${answer.label}`}</p>
+          <p className="kicker overline text-m">{`> ${answer.label}`}</p>
         )}
 
         {!!answer && (
@@ -96,7 +96,7 @@ const QuizCard: FC<Props> = ({
         )}
       </div>
 
-      <div className="row gap-s wrap">
+      <div className="row gap-2 wrap">
         {!answer &&
           questionShown &&
           card.options.map((option) => (

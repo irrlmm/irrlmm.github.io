@@ -1,9 +1,8 @@
 import type { TEST_SCHEMA } from ".";
-import { SVG_GEM } from "../svg";
 
 export const TEST_COLLABORATOR_TYPE: TEST_SCHEMA = {
   intro: {
-    icon: SVG_GEM,
+    icon: "gem",
     title: "Let's evaluate our alignment.",
     text: "Sincerity is expected.",
   },
@@ -24,7 +23,7 @@ export const TEST_COLLABORATOR_TYPE: TEST_SCHEMA = {
   types: [
     {
       id: "ac",
-      icon: SVG_GEM,
+      icon: "gem",
       label: "The Anchor",
       values: [
         { id: "trait", value: "Stability" },
@@ -39,7 +38,7 @@ export const TEST_COLLABORATOR_TYPE: TEST_SCHEMA = {
     },
     {
       id: "sp",
-      icon: SVG_GEM,
+      icon: "gem",
       label: "The Spark",
       values: [
         { id: "trait", value: "Momentum" },
@@ -54,7 +53,7 @@ export const TEST_COLLABORATOR_TYPE: TEST_SCHEMA = {
     },
     {
       id: "tn",
-      icon: SVG_GEM,
+      icon: "gem",
       label: "The Tension",
       values: [
         { id: "trait", value: "Challenge" },

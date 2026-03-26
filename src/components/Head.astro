@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { DEFAULT_PALETTE_ID, PALETTE_THEMES_BY_ID } from "../consts/palettes";
 import { META } from "../consts/meta";
 import PostHog from "./PostHog.astro";
 import { ClientRouter } from "astro:transitions";
@@ -14,10 +15,23 @@ const isProd = import.meta.env.PROD;
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<script is:inline>
+<script
+  is:inline
+  define:vars={{ defaultPaletteId: DEFAULT_PALETTE_ID, paletteThemesById: PALETTE_THEMES_BY_ID }}
+>
   (() => {
     try {
       const root = document.documentElement;
+      const THEME_TOKENS = [
+        "surface-container",
+        "background",
+        "surface",
+        "on-surface",
+        "outline",
+        "primary",
+        "on-primary",
+        "shadow",
+      ];
 
       const theme = localStorage.getItem("theme");
       if (theme === "auto" || theme === "dark" || theme === "light") {
@@ -27,22 +41,33 @@ const isProd = import.meta.env.PROD;
       }
 
       const hasExplicitPageTheme =
-        root.style.getPropertyValue("--root-color-a").trim() !== "" ||
-        root.style.getPropertyValue("--root-color-b").trim() !== "";
+        root.style.getPropertyValue("--theme-light-background").trim() !== "" ||
+        root.style.getPropertyValue("--theme-dark-background").trim() !== "";
 
       if (hasExplicitPageTheme) return;
 
       const rawPalette = localStorage.getItem("paletteColors");
       const parsed = rawPalette ? JSON.parse(rawPalette) : null;
-      const isValidPalette =
-        Array.isArray(parsed) &&
-        parsed.length === 2 &&
-        typeof parsed[0] === "string" &&
-        typeof parsed[1] === "string";
+      const storedPaletteId = typeof parsed === "string" ? parsed : defaultPaletteId;
 
-      const [a, b] = isValidPalette ? parsed : ["#ffffff", "#000000"];
-      root.style.setProperty("--root-color-a", a);
-      root.style.setProperty("--root-color-b", b);
+      const isValidModeTheme = (value) =>
+        value &&
+        typeof value === "object" &&
+        THEME_TOKENS.every((token) => typeof value[token] === "string");
+
+      const storedTheme = paletteThemesById[storedPaletteId] || null;
+      const hasValidTheme =
+        storedTheme &&
+        typeof storedTheme === "object" &&
+        isValidModeTheme(storedTheme.light) &&
+        isValidModeTheme(storedTheme.dark);
+
+      if (!hasValidTheme) return;
+
+      for (const token of THEME_TOKENS) {
+        root.style.setProperty(`--theme-light-${token}`, storedTheme.light[token]);
+        root.style.setProperty(`--theme-dark-${token}`, storedTheme.dark[token]);
+      }
     } catch {}
   })();
 </script>

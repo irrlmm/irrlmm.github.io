@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { pew } from "../../helpers/motion";
 import styles from "./styles.module.css";
 
 type SlotRenderCtx = {
@@ -76,7 +77,7 @@ const DialButton = ({
         className={styles.dial}
         initial={false}
         animate={{ rotate: dialRotate }}
-        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+        transition={pew(0.15)}
       >
         {Array.from({ length: slotCount }).map((_, i) => (
           <motion.div

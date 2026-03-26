@@ -2,18 +2,16 @@ import { motion } from "framer-motion";
 import type { CardGame, CardGameEnding } from "../../types/content";
 
 import { coverVariants } from ".";
-import { SVG_REFRESH } from "../../consts/svg";
 import RefreshButton from "../RefreshButton";
 import styles from "./styles.module.css";
 
 type Props = {
-  points: number;
   ending: CardGameEnding;
   title: CardGame["outro"]["title"];
   onRestart: () => void;
 };
 
-const GameOutro: React.FC<Props> = ({ points, ending, title, onRestart }) => {
+const GameOutro: React.FC<Props> = ({ ending, title, onRestart }) => {
   return (
     <motion.div
       className={styles.cover}
@@ -28,10 +26,8 @@ const GameOutro: React.FC<Props> = ({ points, ending, title, onRestart }) => {
 
       <p className="overline text-l">{ending.text}</p>
 
-      <p className={`overline text-l ${styles.score}`}>Score: {points}</p>
-
       <RefreshButton
-        icon={SVG_REFRESH}
+        icon="refresh"
         whileHover={{ rotate: 15 }}
         whileTap={{ rotate: 30 }}
         onClick={onRestart}
